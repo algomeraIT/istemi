@@ -1,0 +1,30 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Lead;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
+class LeadFactory extends Factory
+{
+    protected $model = Lead::class;
+
+    public function definition(): array
+    {
+        return [
+            'company_name' => $this->faker->company,
+            'email' => $this->faker->unique()->safeEmail,
+            'pec' => $this->faker->optional()->companyEmail,
+            'service' => $this->faker->word,
+            'provenance' => $this->faker->city,
+            'registered_office_address' => $this->faker->address,
+            'first_telephone' => $this->faker->phoneNumber,
+            'second_telephone' => $this->faker->optional()->phoneNumber,
+            'note' => $this->faker->optional()->sentence,
+            'sales_manager' => $this->faker->name,
+            'status' => $this->faker->randomElement([0, 1]),
+            'acquisition_date' => $this->faker->date,
+        ];
+    }
+}

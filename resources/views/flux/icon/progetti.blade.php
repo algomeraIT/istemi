@@ -1,0 +1,19 @@
+@php $attributes = $unescapedForwardedAttributes ?? $attributes; @endphp
+
+@props([
+	'variant' => 'outline',
+])
+
+@php
+$classes = Flux::classes('shrink-0')
+->add(match($variant) {
+	'outline' => '[:where(&)]:size-6',
+	'solid' => '[:where(&)]:size-6',
+	'mini' => '[:where(&)]:size-5',
+	'micro' => '[:where(&)]:size-4',
+});
+@endphp
+
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" {{ $attributes->class($classes) }} data-flux-icon aria-hidden="true">
+<path d="M65.58,57.526H64.25a.1.1,0,0,1-.1-.1V53.717a1.868,1.868,0,0,0-1.868-1.868H58.572a.1.1,0,0,1-.1-.1v-1.33A2.406,2.406,0,0,0,56.137,48a2.381,2.381,0,0,0-2.423,2.38v1.369a.1.1,0,0,1-.1.1H49.9a1.911,1.911,0,0,0-1.9,1.9v3.384a.1.1,0,0,0,.1.1H49.39a2.695,2.695,0,0,1,.038,5.385H48.1a.1.1,0,0,0-.1.1V66.1A1.911,1.911,0,0,0,49.9,68h3.384a.1.1,0,0,0,.1-.1V66.9a2.761,2.761,0,0,1,2.644-2.743,2.544,2.544,0,0,1,2.74,2.417v1.332a.1.1,0,0,0,.1.1h3.42a1.868,1.868,0,0,0,1.868-1.868v-3.75a.1.1,0,0,1,.1-.1h1.369a2.381,2.381,0,1,0-.039-4.762Z" transform="translate(-47.5 -47.502)" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+</svg>
