@@ -518,9 +518,10 @@
                     @else
 
                     <div class=" h-3/6 overflow-scroll">
-                        <flux:badge variant="pill" icon="calendar"
-                            class="bg-[#F9EDF1]! text-[#E873A0]! rounded-0 pl-5 pr-5">Attività</flux:badge>
-                        <ul>
+                    
+                        <ul class="border pt-4 mb-5">
+                            <flux:badge variant="pill" icon="calendar"
+                            class="bg-[#F9EDF1]! text-[#E873A0]! rounded-0 pl-5 pr-5 rounded-none!">Attività</flux:badge>
                             @foreach($activity_communications as $activity)
                             <li class=" m-3.5 mb-6">
                                 <div>
@@ -623,9 +624,10 @@
                     <p class="text-gray-500">Nessuna Nota per questo cliente</p>
                     @else
                     {{-- <div class=" h-96 overflow-scroll"> --}}
-                        <flux:badge variant="pill" icon="pencil"
-                            class="bg-[#F3F3F3]! text-[#B0B0B0]! rounded-0! pl-5 pr-5">Nota</flux:badge>
-                        <ul>
+                     
+                        <ul class="border pt-4 mb-5">
+                            <flux:badge variant="pill" icon="pencil"
+                                class="bg-[#F3F3F3]! text-[#B0B0B0]! rounded-0! pl-5 pr-5 rounded-none!">Nota</flux:badge>
                             @foreach($note_communications as $note)
                             <li class=" m-3.5 mb-6">
                                 <div>
@@ -708,9 +710,10 @@
 
 
                     {{-- <div class=" h-96 overflow-scroll"> --}}
-                        <flux:badge variant="pill" icon="paper-airplane"
-                            class="bg-[#E2EDF7]! text-[#1078D4! rounded-0! pl-5 pr-5">E-mail</flux:badge>
-                        <ul>
+             
+                        <ul class="border pt-4 mb-5">
+                            <flux:badge variant="pill" icon="paper-airplane"
+                                class="bg-[#E2EDF7]! text-[#1078D4! rounded-0! pl-5 pr-5 rounded-none!">E-mail</flux:badge>
                             @foreach($email_communications as $email)
                             <li class=" m-3.5 mb-6">
                                 <div>
@@ -787,6 +790,85 @@
                     {{--
                 </div> --}}
 
+                @if(empty($note_communications) || count($note_communications) === 0)
+                <p class="text-gray-500">Nessuna Nota per questo cliente</p>
+                @else
+                {{-- <div class=" h-96 overflow-scroll"> --}}
+                  
+                    <ul class="border pt-4 mb-5">
+                        <flux:badge variant="pill" icon="phone"
+                            class="bg-purple-100! text-purple-400! rounded-0! pl-5 pr-5 rounded-none!">Chiamate</flux:badge>
+                        @foreach($note_communications as $note)
+                        <li class=" m-3.5 mb-6">
+                            <div>
+                                <div class="m-2">
+                                    <div class="flex">
+                                        @if (isset(Auth::user()->profile_photo))
+                                        <img src="{{ Auth::user()->profile_photo_url }}" alt="User"
+                                            class="w-8 h-8 rounded-full">
+                                        @else
+                                        <img alt="utente" src="{{ asset('icon/navbar/user.svg') }}" />
+                                        @endif
+
+                                        <div class="flex flex-col items-start ml-[20px]">
+                                            <span
+                                                class="text-[18px] leading-[21px] font-normal text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
+                                                {{ $activity->name . ' ' . $activity->last_name . ' - ' .
+                                                $activity->role}} </span>
+                                            <span
+                                                class="text-[17px] leading-[20px] font-light text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
+                                                {{ Auth::user()->role }}</span>
+                                            <span class="font-extralight">{{
+                                                \Carbon\Carbon::parse($activity->created_at)->format('d/m/Y')
+                                                }}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="m-4">
+                                        <p>{{$note->note}}</p>
+                                    </div>
+                                    {{-- <div class="m-4">
+                                        <p>Allegati:</p>
+                                        @php
+                                        $paths = json_decode($note->path, true);
+                                        @endphp
+
+                                        @if($paths && is_array($paths))
+                                        <ul>
+                                            @foreach($paths as $path)
+                                            <li><a href="{{ $path }}" target="_blank">{{ basename($path) }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                        @else
+                                        <p>Nessun allegato</p>
+                                        @endif
+                                    </div> --}}
+                                </div>
+                                <div class="mt-4">
+                                    <button wire:click="showNote{{ $note->id }})" title="Dettaglio"
+                                        class=" text-gray-600 rounded  hover:cursor-pointer">
+                                        <flux:icon.eye class="text-[#10BDD4]" />
+                                    </button>
+                                    <button wire:click="edit({{ $note->id }})" title="Modifica"
+                                        class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
+                                        <flux:icon.pencil class="text-[#6C757D]" />
+                                    </button>
+                                    <button wire:click="delete({{ $note->id }})" title="Cancella"
+                                        class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
+                                        <flux:icon.trash class="text-[#E63946]" />
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ul>
+                    {{--
+                </div> --}}
+                @endif
+                {{--
+            </div> --}}
             </div>
         </div>
     </div>
