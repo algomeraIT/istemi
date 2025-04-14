@@ -443,7 +443,7 @@
 
             <div x-show="activeTab === 'communication'" x-data="{ activeTabCommunication: 'activities' }" x-cloak>
 
-                <div class="flex space-x-4 border-b">
+                {{-- <div class="flex space-x-4 border-b">
                     <button @click="activeTabCommunication = 'activities'"
                         :class="{ 'border-b-2 border-cyan-500 text-cyan-600': activeTabCommunication === 'activities' }"
                         class="py-2 px-4 focus:outline-none">
@@ -461,19 +461,65 @@
                         class="py-2 px-4 focus:outline-none">
                         Note
                     </button>
+                </div> --}}
+                <div x-data="{ open: false }" class="relative inline-block text-left mb-8">
+                    <!-- Trigger Button -->
+                    <flux:button @click="open = !open"
+                        class="bg-white  text-sm font-semibold px-4 py-2 rounded shadow-sm border border-gray-200 hover:bg-gray-50 transition duration-200 flex items-center gap-2">
+
+                        <flux:icon.plus class="w-4 h-4" />
+                        Aggiungi
+                        <svg class="w-4 h-4 transform transition-transform duration-200" :class="{ 'rotate-180': open }"
+                            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </flux:button>
+                    <!-- Dropdown Items -->
+                    <div x-show="open" @click.away="open = false"
+                        class="absolute mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50"
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+
+                        <div class="py-1 space-y-1">
+                            <flux:button wire:click="openModalActivity"
+                                class="flex w-full border-0  justify-start text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600 ">
+                                <flux:icon.calendar-days class="w-4 h-4" />
+                                Attività
+                            </flux:button>
+
+                            <flux:button wire:click="openModalEmail"
+                                class="w-full  border-0 justify-start text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600 transition flex items-center gap-2 px-4 py-2">
+                                <flux:icon.envelope class="w-4 h-4" />
+                                E-mail
+                            </flux:button>
+
+                            <flux:button wire:click="openModalNote"
+                                class="w-full  border-0 justify-start text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600 transition flex items-center gap-2 px-4 py-2">
+                                <flux:icon.pencil class="w-4 h-4" />
+                                Nota
+                            </flux:button>
+
+                            <flux:button wire:click="openModalNote"
+                                class="w-full border-0  justify-start text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600 transition flex items-center gap-2 px-4 py-2">
+                                <flux:icon.phone class="w-4 h-4" />
+                                Chiamata
+                            </flux:button>
+                        </div>
+                    </div>
                 </div>
 
-                <div x-show="activeTabCommunication === 'activities'" x-cloak>
-                    <input type="text" wire:model.live="query_activities" placeholder="Cerca"
-                        class="border p-2 rounded w-full mb-4" />
+                {{-- <div x-show="activeTabCommunication === 'activities'" x-cloak> --}}
+                    {{-- <input type="text" wire:model.live="query_activities" placeholder="Cerca"
+                        class="border p-2 rounded w-full mb-4" /> --}}
                     @if(empty($activity_communications) || count($activity_communications) === 0)
                     <p class="text-gray-500">Nessuna Attività per questo cliente</p>
                     @else
-                    <button wire:click="openModalActivity"
-                        class="bg-cyan-500 text-white text-sm hover:bg-cyan-700 p-2 m-4">Programma attività</button>
-                    <div class=" h-96 overflow-scroll">
-                        <label
-                            class="w-[146px] h-[26px] bg-[#F9EDF1] rounded-t px-0 py-0 rotate-90 opacity-100">Attività</label>
+
+                    <div class=" h-3/6 overflow-scroll">
+                        <flux:badge variant="pill" icon="calendar"
+                            class="bg-[#F9EDF1]! text-[#E873A0]! rounded-0 pl-5 pr-5">Attività</flux:badge>
                         <ul>
                             @foreach($activity_communications as $activity)
                             <li class=" m-3.5 mb-6">
@@ -483,7 +529,7 @@
                                         <img src="{{ Auth::user()->profile_photo_url }}" alt="User"
                                             class="w-8 h-8 rounded-full">
                                         @else
-                                        <image alt="utente" src="{{ asset('icon/navbar/user.svg') }}" />
+                                        <img alt="utente" src="{{ asset('icon/navbar/user.svg') }}" />
                                         @endif
 
                                         <div class="flex flex-col items-start ml-[20px]">
@@ -494,61 +540,203 @@
                                             <span
                                                 class="text-[17px] leading-[20px] font-light text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
                                                 {{ Auth::user()->role }}</span>
-                                            <span>{{$activity->created_at->diffForHumans()}}</span>
+                                            <span
+                                                class="font-extralight">{{$activity->created_at->diffForHumans()}}</span>
                                         </div>
 
                                     </div>
-                                    <div class="flex">
+                                    <div class="flex ml-5">
                                         <div class="m-4 flex">
-                                            <p>Assegnata a:</p>
-                                            <p>{{$activity->assignee->name}}</p>
+                                            <p class="font-extralight">Assegnato a:</p>
+                                            <img class=" w-5 h-5"
+                                                src="{{ $activity->user->image_path? asset($activity->user->image_path) : asset('icon/navbar/user.svg') }}"
+                                                class="rounded-full h-10 w-10 object-cover" />
                                         </div>
                                         <div class="m-4 flex">
-                                            <p>Conoscenza:</p>
-                                            <p>{{$activity->id_knowledge}}</p>
+                                            <p class="font-extralight">Conoscenza:</p>
+                                            <img class="w-5 h-5"
+                                                title=" {{ $activity->name . ' ' . $activity->last_name}}"
+                                                src="{{ $activity->user->image_path? asset($activity->user->image_path) : asset('icon/navbar/user.svg') }}"
+                                                class="rounded-full h-10 w-10 object-cover" />
                                         </div>
 
                                         <div class="m-4 flex">
-                                            <p>Scadenza:</p>
-                                            <p>{{\Carbon\Carbon::parse($activity->expire_at)->format('d/m/Y') }}</p>
+                                            <p class="font-extralight">Scadenza:</p>
+                                            <p class="text-[#28A745]">
+                                                {{\Carbon\Carbon::parse($activity->expire_at)->format('d/m/Y') }}</p>
                                         </div>
                                         <div class="m-4 flex">
-                                            <p>{{$activity->to_do}}</p>
+                                            <p> <span class="px-2 py-1  font-semibold rounded-[15px] border border-solid 
+                                                @if($activity->to_do == " Fatta") bg-[#EFF9F3] text-[#65C587]
+                                                    border-[#65C587] @elseif($activity->to_do == "Da Terminare")
+                                                    bg-[] text-[#65C587] border-[#E63946]
+                                                    @elseif($activity->to_do == "In sospeso")
+                                                    bg-cyan-100 text-[#0C7BFF] border-[#65C587]
+                                                    @else
+                                                    bg-gray-100 text-gray-600 border-gray-600
+                                                    @endif">
+                                                    @if($activity->to_do == "Fatta")
+                                                    Fatta
+                                                    @elseif($activity->to_do == "Da Terminare")
+                                                    Da terminare
+                                                    @elseif($activity->to_do == "In sospeso")
+                                                    In sospeso
+                                                    @else
+                                                    ---
+                                                    @endif
+                                                </span></p>
                                         </div>
                                     </div>
-                                    <div class="m-4">
-
-                                        <p>Attività:</p>
+                                    <div class="flex ml-8">
+                                        <p class="font-extralight">Titolo:</p>
                                         <p>{{$activity->activities}}</p>
+
                                     </div>
-                                    <div class="m-4">
-                                        <a wire:click='showActivity({{$activity->id}})'>mostra di più -></a>
+                                    <div class="mt-4">
+                                        <button wire:click="showActivity({{ $activity->id }})" title="Dettaglio"
+                                            class=" text-gray-600 rounded  hover:cursor-pointer">
+                                            <flux:icon.eye class="text-[#10BDD4]" />
+                                        </button>
+                                        <button wire:click="edit({{ $activity->id }})" title="Modifica"
+                                            class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
+                                            <flux:icon.pencil class="text-[#6C757D]" />
+                                        </button>
+                                        <button wire:click="delete({{ $activity->id }})" title="Cancella"
+                                            class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
+                                            <flux:icon.trash class="text-[#E63946]" />
+                                        </button>
                                     </div>
                                 </div>
                             </li>
                             @endforeach
                         </ul>
-                    </div>
+                        {{--
+                    </div> --}}
                     @endif
-                </div>
-                <div x-show="activeTabCommunication === 'email'" x-cloak>
-                    <input type="text" wire:model.live="query_emails" placeholder="Cerca"
-                        class="border p-2 rounded w-full mb-4" />
-                    @if(empty($communications) || count($communications) === 0)
+                    {{--
+                </div> --}}
+
+                {{-- <div x-show="activeTabCommunication === 'notes'" x-cloak> --}}
+                    {{-- <input type="text" wire:model.live="query_notes" placeholder="Cerca"
+                        class="border p-2 rounded w-full mb-4" /> --}}
+                    @if(empty($note_communications) || count($note_communications) === 0)
+                    <p class="text-gray-500">Nessuna Nota per questo cliente</p>
+                    @else
+                    {{-- <div class=" h-96 overflow-scroll"> --}}
+                        <flux:badge variant="pill" icon="pencil"
+                            class="bg-[#F3F3F3]! text-[#B0B0B0]! rounded-0! pl-5 pr-5">Nota</flux:badge>
+                        <ul>
+                            @foreach($note_communications as $note)
+                            <li class=" m-3.5 mb-6">
+                                <div>
+                                    <div class="m-2">
+                                        <div class="flex">
+                                            @if (isset(Auth::user()->profile_photo))
+                                            <img src="{{ Auth::user()->profile_photo_url }}" alt="User"
+                                                class="w-8 h-8 rounded-full">
+                                            @else
+                                            <img alt="utente" src="{{ asset('icon/navbar/user.svg') }}" />
+                                            @endif
+
+                                            <div class="flex flex-col items-start ml-[20px]">
+                                                <span
+                                                    class="text-[18px] leading-[21px] font-normal text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
+                                                    {{ $activity->name . ' ' . $activity->last_name . ' - ' .
+                                                    $activity->role}} </span>
+                                                <span
+                                                    class="text-[17px] leading-[20px] font-light text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
+                                                    {{ Auth::user()->role }}</span>
+                                                <span class="font-extralight">{{
+                                                    \Carbon\Carbon::parse($activity->created_at)->format('d/m/Y')
+                                                    }}</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="flex">
+                                        <div class="m-4">
+                                            <p>{{$note->note}}</p>
+                                        </div>
+                                        {{-- <div class="m-4">
+                                            <p>Allegati:</p>
+                                            @php
+                                            $paths = json_decode($note->path, true);
+                                            @endphp
+
+                                            @if($paths && is_array($paths))
+                                            <ul>
+                                                @foreach($paths as $path)
+                                                <li><a href="{{ $path }}" target="_blank">{{ basename($path) }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                            @else
+                                            <p>Nessun allegato</p>
+                                            @endif
+                                        </div> --}}
+                                    </div>
+                                    <div class="mt-4">
+                                        <button wire:click="showNote{{ $note->id }})" title="Dettaglio"
+                                            class=" text-gray-600 rounded  hover:cursor-pointer">
+                                            <flux:icon.eye class="text-[#10BDD4]" />
+                                        </button>
+                                        <button wire:click="edit({{ $note->id }})" title="Modifica"
+                                            class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
+                                            <flux:icon.pencil class="text-[#6C757D]" />
+                                        </button>
+                                        <button wire:click="delete({{ $note->id }})" title="Cancella"
+                                            class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
+                                            <flux:icon.trash class="text-[#E63946]" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                        {{--
+                    </div> --}}
+                    @endif
+                    {{--
+                </div> --}}
+
+
+                {{-- <div x-show="activeTabCommunication === 'email'" x-cloak> --}}
+                    {{-- <input type="text" wire:model.live="query_emails" placeholder="Cerca"
+                        class="border p-2 rounded w-full mb-4" /> --}}
+                    @if(empty($email_communications) || count($email_communications) === 0)
                     <p class="text-gray-500">Nessuna Email per questo cliente</p>
                     @else
-                    <button wire:click="openModalEmail"
-                        class="bg-cyan-500 text-white text-sm hover:bg-cyan-700 p-2 m-4">Invia Email</button>
 
-                    <div class=" h-96 overflow-scroll">
 
+                    {{-- <div class=" h-96 overflow-scroll"> --}}
+                        <flux:badge variant="pill" icon="paper-airplane"
+                            class="bg-[#E2EDF7]! text-[#1078D4! rounded-0! pl-5 pr-5">E-mail</flux:badge>
                         <ul>
                             @foreach($email_communications as $email)
                             <li class=" m-3.5 mb-6">
                                 <div>
                                     <div class="m-2">
-                                        <p class=" bold">{{$email->name . ' ' . $email->last_name}}</p>
-                                        <p>ha inviato un'email {{$email->created_at}}</p>
+                                        <div class="flex">
+                                            @if (isset(Auth::user()->profile_photo))
+                                            <img src="{{ Auth::user()->profile_photo_url }}" alt="User"
+                                                class="w-8 h-8 rounded-full">
+                                            @else
+                                            <img alt="utente" src="{{ asset('icon/navbar/user.svg') }}" />
+                                            @endif
+
+                                            <div class="flex flex-col items-start ml-[20px]">
+                                                <span
+                                                    class="text-[18px] leading-[21px] font-normal text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
+                                                    {{ $activity->name . ' ' . $activity->last_name . ' - ' .
+                                                    $activity->role}} </span>
+                                                <span
+                                                    class="text-[17px] leading-[20px] font-light text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
+                                                    {{ Auth::user()->role }}</span>
+                                                <span class="font-extralight">{{
+                                                    \Carbon\Carbon::parse($activity->created_at)->format('d/m/Y')
+                                                    }}</span>
+                                            </div>
+
+                                        </div>
                                     </div>
                                     <div class="flex">
                                         <div class="m-4">
@@ -562,7 +750,7 @@
                                             @endforeach
                                         </div>
 
-
+{{-- 
                                         <div class="m-4">
                                             <p>Allegati:</p>
                                             @php
@@ -578,59 +766,17 @@
                                             @else
                                             <p>Nessun allegato</p>
                                             @endif
-                                        </div>
+                                        </div> --}}
+                                    </div>
+                                    <div class="m-4 flex">
+                                        <p>Oggetto:</p>
+                                        <p>Fare modifica su DB</p>
+                                      
                                     </div>
                                     <div class="m-4">
-                                        <a wire:click='showEmail({{$email->id}})'>mostra di più -></a>
-                                    </div>
-                                </div>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                </div>
-                <div x-show="activeTabCommunication === 'notes'" x-cloak>
-                    <input type="text" wire:model.live="query_notes" placeholder="Cerca"
-                        class="border p-2 rounded w-full mb-4" />
-                    @if(empty($note_communications) || count($note_communications) === 0)
-                    <p class="text-gray-500">Nessuna Nota per questo cliente</p>
-                    @else
-                    <button wire:click="openModalNote"
-                        class="bg-cyan-500 text-white text-sm hover:bg-cyan-700 p-2 m-4">Scrivi Nota</button>
-                    <div class=" h-96 overflow-scroll">
-                        <ul>
-                            @foreach($note_communications as $note)
-                            <li class=" m-3.5 mb-6">
-                                <div>
-                                    <div class="m-2">
-                                        <p class=" bold">{{$note->name_user . ' ' . $note->last_name_user}}</p>
-                                        <p>ha scritto una nota {{$note->created_at}}</p>
-                                    </div>
-                                    <div class="flex">
-                                        <div class="m-4">
-                                            <p>Nota:</p>
-                                            <p>{{$note->note}}</p>
-                                        </div>
-                                        <div class="m-4">
-                                            <p>Allegati:</p>
-                                            @php
-                                            $paths = json_decode($note->path, true);
-                                            @endphp
+                                        {{-- <a wire:click='showEmail({{$email->id}})'>mostra di più -></a> --}}
+                                        <p>{{ $email->note }}</p>
 
-                                            @if($paths && is_array($paths))
-                                            <ul>
-                                                @foreach($paths as $path)
-                                                <li><a href="{{ $path }}" target="_blank">{{ basename($path) }}</a></li>
-                                                @endforeach
-                                            </ul>
-                                            @else
-                                            <p>Nessun allegato</p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="m-4">
-                                        <a wire:click='showNote({{$note->id}})'>mostra di più -></a>
                                     </div>
                                 </div>
                             </li>
@@ -638,7 +784,9 @@
                         </ul>
                     </div>
                     @endif
-                </div>
+                    {{--
+                </div> --}}
+
             </div>
         </div>
     </div>

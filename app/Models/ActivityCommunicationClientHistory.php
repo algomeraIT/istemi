@@ -32,7 +32,12 @@ class ActivityCommunicationClientHistory extends Model
     }
 
     public function assignee()
-{
-    return $this->belongsTo(Users::class, 'id_assignee');
-}
+    {
+        return $this->belongsTo(Users::class, 'id_assignee');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(Users::class, 'user_id');
+    }
 }
