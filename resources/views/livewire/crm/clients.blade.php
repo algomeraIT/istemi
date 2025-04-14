@@ -16,7 +16,7 @@
         </div>
 
         {{-- tab --}}
-        <div class="flex border-gray-300 w-1/3 h-8 justify-center" x-data="{ activeTab: @entangle('activeTab') }">
+        <div class="lg:xl:flex md:block sm:block border-gray-300 w-1/3 h-8 justify-center" x-data="{ activeTab: @entangle('activeTab') }">
             <div
                 class="  bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
                 <button wire:click="setTab('list')"
@@ -38,7 +38,7 @@
         </div>
         {{-- filtro --}}
 
-        <div class="flex space-x-4 w-1/3">
+        <div class="lg:xl:flex md:block sm:block space-x-4 w-1/3">
             <select wire:model.live="city"
                 class="border-gray-200 border p-1  h-8 text-[16px] w-32  text-[#B0B0B0] font-medium opacity-100">
                 <option value="" selected>Tutti le sedi</option>

@@ -15,20 +15,20 @@
         <div class="w-1/3">
         </div>
         {{-- tab --}}
-        <div class="flex border-gray-300 w-1/3 justify-center" x-data="{ activeTab: @entangle('activeTab') }">
+        <div class="lg:xl:flex md:block sm:block border-gray-300 text-[16px]  w-1/3 justify-center" x-data="{ activeTab: @entangle('activeTab') }">
             <div
-                class="top-[230px] left-[873px] w-[78px] h-[32px] bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
+                class="top-[230px] left-[873px] lg:xl:w-28  md:sm:w-40 h-8 bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
                 <button wire:click="setTab('list')"
-                    class="flex w-[78px] h-[32px] text-[16px] m-[3px] text-[#B0B0B0] font-sans  opacity-100 focus:outline-none  transition-all duration-200 hover:cursor-pointer"
+                    class="flex w-[78px] h-8 m-[3px] text-[#B0B0B0] font-sans  opacity-100 focus:outline-none  transition-all duration-200 hover:cursor-pointer"
                     :class="{ 'border-cyan-400 text-cyan-400': activeTab === 'list' }">
                     <flux:icon.list-bullet class="w-[20px] ml-[10px] " /> Lista
                 </button>
             </div>
 
             <div
-                class="h-[32px] bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
+                class=" h-8 lg:xl:w-28  md:sm:w-40 bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
                 <button wire:click="setTab('kanban')"
-                    class="flex  w-[101px] h-[32px]   text-[16px] m-[3px] text-[#B0B0B0] font-sans  opacity-100 focus:outline-none  transition-all duration-200 hover:cursor-pointer"
+                    class="flex  w-28 h-8    m-[3px] text-[#B0B0B0] font-sans  opacity-100 focus:outline-none  transition-all duration-200 hover:cursor-pointer"
                     :class="{ 'border-cyan-400 text-cyan-400': activeTab === 'kanban' }">
                     <flux:icon.squares-2x2 class="w-[20px] ml-[10px] " /> Kanban
                 </button>
@@ -36,9 +36,9 @@
 
         </div>
         {{-- filtro --}}
-        <div class="flex w-1/3 justify-end">
+        <div class="flex  md:block sm:block w-1/3 justify-end">
             <select wire:model.live="status"
-                class="border-gray-200 border p-1 w-[150px] h-[32px] text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100">
+                class="border-gray-200 border p-1 w-[150px] h-8 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100">
                 <option value="">Tutti gli stati</option>
                 <option value="1" class="text-[#FEC106]">In contatto</option>
                 <option value="0" class="text-[#6C757D]">Non idoneo</option>

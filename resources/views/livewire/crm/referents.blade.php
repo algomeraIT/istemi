@@ -37,7 +37,7 @@
                         <button wire:click="openModalReferent"
                             class="bg-[#10BDD4] w-[88px] h-[32px] text-white text-sm hover:bg-cyan-700  ml-[22px] text-[16px] leading-[20px] font-medium  text-center opacity-100 font-inter">Aggiungi</button>
 
-                        <input type="text" wire:model.live="query_referent" placeholder="Cerca tra i referenti"
+                        <input type="text" wire:model.live="query_referent" placeholder="Cerca"
                             class="border p-2 rounded w-[250px] ml-[600px]" />
 
                     </div>
@@ -111,30 +111,30 @@
             <!-- Sales Tab (Lazy Loaded) -->
             <div x-show="activeTab === 'sale'" x-cloak>
                 <div x-data="{ activeTabSales: 'sales' }">
-                    <div class="flex  pt-[10px] pl-[40px] pb-[20px] h-[65px]">
+                    <div class="flex">
                         <button @click="activeTabSales = 'sales'"
                             :class="{ ' text-[#10BDD4]': activeTabSales === 'sales' }"
-                            class="flex p-[4px] border-1 border-[#10BDD4] text-[16px] leading-[25px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                            <flux:icon.arrow-up-right class="w-[12px] ml-[6px] mr-[10px] " /> Vendite
+                            class="flex p-1 border-1 border-[#10BDD4] text-[16px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
+                            <flux:icon.arrow-up-right class="w-3 ml-1.5 mr-2" /> Vendite
                         </button>
 
                         <button @click="activeTabSales = 'acquisitions';"
                             :class="{ ' text-[#10BDD4]': activeTabSales === 'acquisitions' }"
-                            class="flex p-[4px] border-1 border-[#10BDD4] text-[16px] leading-[25px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                            <flux:icon.arrow-down-right class="w-[12px] ml-[6px] mr-[10px] " /> Acquisti
+                            class="flex p-1 border-1 border-[#10BDD4] text-[16px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
+                            <flux:icon.arrow-down-right class="w-3 ml-1.5 mr-2 " /> Acquisti
                         </button>
 
                         <div class="" x-show="activeTabSales === 'sales'" x-cloak>
 
-                            <div class="">
-                                <select wire:model.live="status_sales" class="ml-[300px] border-1 h-[40px] p-[10px]">
+                            <div class="flex h-14 p-2">
+                                <select wire:model.live="status_sales" class=" border-1 ">
                                     <option value="" selected>Filtro</option>
                                     <option value="0">In transito</option>
                                     <option value="1">Consegnato</option>
                                 </select>
                                 <input type="text" wire:model.live="query_sales"
-                                    placeholder="Cerca una fattura tra le vendite"
-                                    class="border p-2 rounded w-[280px] mb-4 ml-[40px]" />
+                                    placeholder="Cerca"
+                                    class="border" />
                             </div>
                         </div>
 
@@ -142,19 +142,19 @@
 
                             <div class="">
                                 <select wire:model.live="acquisition_sales"
-                                    class="ml-[300px] border-1 h-[40px] p-[10px] w-[130px]">
+                                    class=" border-1 h-[40px] p-[10px] w-[130px]">
                                     <option value="" selected>Filtro</option>
                                     <option value="0">In arrivo</option>
                                     <option value="1">Ricevuta</option>
                                 </select>
                                 <input type="text" wire:model.live="query_acquisitions"
-                                    placeholder="Cerca una fattura tra gli acquisti"
-                                    class="border p-2 rounded w-[280px] mb-4 ml-[40px]" />
+                                    placeholder="Cerca"
+                                    class="border p-2" />
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-2" x-show="activeTabSales === 'sales'" x-cloak>
+                    <div class="mt-2 " x-show="activeTabSales === 'sales'" x-cloak>
 
 
                         @if(empty($sales) || count($sales) === 0)
@@ -202,7 +202,7 @@
                         @endif
                     </div>
 
-                    <div class="mt-2" x-show="activeTabSales === 'acquisitions'" x-cloak>
+                    <div class="mt-2 " x-show="activeTabSales === 'acquisitions'" x-cloak>
 
                         @if(empty($acquisitions) || count($acquisitions) === 0)
                         <p class="text-gray-500">Nessun acquisto per questo cliente</p>
@@ -277,7 +277,7 @@
 
                             </select>
                             <input type="text" wire:model.debounce.300ms="query_orders"
-                                placeholder="Cerca tra gli ordini"
+                                placeholder="Cerca"
                                 class="border p-2 rounded w-[280px] mb-4 ml-[40px]" />
                         </div>
                     </div>
@@ -291,7 +291,7 @@
                                 <option value="2">Scaduta</option>
 
                             </select>
-                            <input type="text" wire:model.live="query_invoices" placeholder="Cerca tra le fatture"
+                            <input type="text" wire:model.live="query_invoices" placeholder="Cerca"
                                 class="border p-2 rounded w-[280px] mb-4 ml-[40px]" />
                         </div>
                     </div>
@@ -464,7 +464,7 @@
                 </div>
 
                 <div x-show="activeTabCommunication === 'activities'" x-cloak>
-                    <input type="text" wire:model.live="query_activities" placeholder="Cerca tra le attività"
+                    <input type="text" wire:model.live="query_activities" placeholder="Cerca"
                         class="border p-2 rounded w-full mb-4" />
                     @if(empty($activity_communications) || count($activity_communications) === 0)
                     <p class="text-gray-500">Nessuna Attività per questo cliente</p>
@@ -531,7 +531,7 @@
                 @endif
             </div>
             <div x-show="activeTabCommunication === 'email'" x-cloak>
-                <input type="text" wire:model.live="query_emails" placeholder="Cerca tra le email"
+                <input type="text" wire:model.live="query_emails" placeholder="Cerca"
                     class="border p-2 rounded w-full mb-4" />
                 @if(empty($communications) || count($communications) === 0)
                 <p class="text-gray-500">Nessuna Email per questo cliente</p>
@@ -590,7 +590,7 @@
                 @endif
             </div>
             <div x-show="activeTabCommunication === 'notes'" x-cloak>
-                <input type="text" wire:model.live="query_notes" placeholder="Cerca tra le note"
+                <input type="text" wire:model.live="query_notes" placeholder="Cerca"
                     class="border p-2 rounded w-full mb-4" />
                 @if(empty($note_communications) || count($note_communications) === 0)
                 <p class="text-gray-500">Nessuna Nota per questo cliente</p>

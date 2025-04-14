@@ -14,7 +14,7 @@
         </div>
 
         {{-- tab --}}
-        <div class="flex w-1/3 border-gray-300 justify-center" x-data="{ activeTab: @entangle('activeTab') }">
+        <div class="lg:xl:flex md:block sm:block w-1/3 border-gray-300 justify-center" x-data="{ activeTab: @entangle('activeTab') }">
             <div
                 class=" h-7 bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
                 <button wire:click="setTab('list')"
@@ -35,7 +35,7 @@
 
         </div>
         {{-- filtro --}}
-        <div class="flex space-x-4 w-1/3">
+        <div class="lg:xl:flex md:block sm:block space-x-4 w-1/3">
             <select wire:model.live="status"
                 class="border-gray-200 border h-7 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100">
                 <option value="">Tutti gli stati</option>

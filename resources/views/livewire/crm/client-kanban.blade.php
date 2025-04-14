@@ -1,5 +1,5 @@
 <div>
-    <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+    <div class="mt-4 grid  sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xl:gap-4 lg:gap-3 md:gap-2 sm:gap-1">
         @foreach ($client_kanban as $client)
         <div class="bg-white border-1 border-gray-300  p-4 ">
             <h3 class="text-lg font-bold text-[#232323]">{{ $client->company_name }}</h3>
@@ -12,7 +12,7 @@
                     {{ \Carbon\Carbon::parse($client->created_at)->format('d/m/Y') }}</p>
             </div>
 
-            <div class="flex ">
+            <div class="flex md:block">
                 <div>
                     <p
                         class="flex font-light text-sm  text-[#B0B0B0] tracking-normal  text-[13px] text-left opacity-100 items-center">
@@ -27,7 +27,7 @@
                     </span>
                 </div>
 
-                <div class="ml-[30px]">
+                <div class=" ml-7 md:ml-0">
                     <p
                         class="flex font-light text-sm  text-[#B0B0B0] tracking-normal  text-[13px] text-left opacity-100 items-center">
                         <flux:icon.phone class="w-[13px]" />

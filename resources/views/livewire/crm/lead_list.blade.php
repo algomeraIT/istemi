@@ -25,12 +25,12 @@
         </thead>
         <tbody>
             @foreach($leads as $lead)
-            <tr class="hover:bg-gray-100 border-b h-12">
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{ $lead->id
+            <tr class="hover:bg-gray-100 border-b h-12 xl:text-[18px] lg:text-[14px] md:text-[12px] sm:text-[10px]">
+                <td class="font-medium  text-[#232323] tracking-normal text-left">{{ $lead->id
                     }}</td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{
+                <td class="font-medium  text-[#232323] tracking-normal text-left">{{
                     $lead->company_name }}</td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
+                <td class="font-medium  text-[#232323] tracking-normal text-left">
                     <span class="myInput flex">{{ $lead->email }}
                         <div onclick="myFunction('{{ $lead->email }}')"
                             class="relative group w-[32px] h-[32px] flex items-center justify-center ml-[11px]">
@@ -44,17 +44,17 @@
                         </div>
                     </span>
                 </td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
+                <td class="font-medium  text-[#232323] tracking-normal text-left">
                     <span class="flex">{{ $lead->first_telephone }}
                         <flux:icon.document-duplicate onclick="myFunction('{{ $lead->first_telephone }}')"
                             class="text-[#10BDD4] w-[26px] h-[26px] ml-[11px]" />
                     </span>
                 </td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
+                <td class="font-medium  text-[#232323] tracking-normal text-left">
                     {{ \Carbon\Carbon::parse($lead->created_at)->format('d/m/Y') }}
                 </td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
-                    <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border border-solid 
+                <td class="font-medium  text-[#232323] tracking-normal text-left">
+                    <span class="px-2 py-1  font-semibold rounded-[15px] border border-solid 
                         @if($lead->status == 1)
                             bg-purple-100 text-[#6F42C1] border-[#6F42C1]
                         @elseif($lead->status == 2)
@@ -75,7 +75,7 @@
                         @endif
                     </span>
                 </td>
-                <td class="">
+                <td class=" md:flex sm:flex">
                     <button wire:click="show({{ $lead->id }})" title="Dettaglio"
                         class=" text-gray-600 rounded  hover:cursor-pointer">
                         <flux:icon.eye class="text-[#10BDD4]" />
