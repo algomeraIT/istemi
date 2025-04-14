@@ -1,40 +1,40 @@
 <div class=" mx-auto">
 
     <!-- Clients Table -->
-    <table class="table-fixed w-full">
+    <table class="w-full">
         <thead>
-            <tr class="text-gray-400 h-[40px]">
+            <tr class="text-gray-400 h-10">
                 <th
-                class=" w-[150px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                class=" font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
                 ID</th>
                 <th
-                    class=" w-[150px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                    class=" font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
                     logo</th>
                 <th
-                    class=" w-[250px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                    class="font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
                     Ragione sociale</th>
                 <th
-                    class=" w-[300px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                    class=" font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
                     E-mail</th>
                 <th
-                    class=" w-[250px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                    class=" font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
                     Telefono</th>
                 <th
-                    class=" w-[150px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                    class=" font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
                     Sede</th>
                 <th
-                    class=" w-[200px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                    class=" w-[200px] font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
                     Etichette</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach($clients as $client)
-            <tr class="hover:bg-gray-100 h-[50px] ">
+            <tr class="hover:bg-gray-100 h-12 border-b-2">
                 <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{
                     $client->id }}</td>
                 <td class=" font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
-                    <img class="w-11 h-11" src="{{ $client->logo_path ?: asset('images/default-logo.webp') }}" />
+                    <img class="w-10 h-10" src="{{ $client->logo_path ?: asset('images/default-logo.webp') }}" />
                 </td>
                 <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{
                     $client->company_name }}</td>

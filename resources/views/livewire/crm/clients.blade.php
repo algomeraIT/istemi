@@ -1,21 +1,24 @@
 <div
-    class="absolute  top-[130px] left-[105px] right-[105px] w-[1710px] h-[880px] mt-[52px] bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100">
+    class=" bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100">
     <h2
-        class="relative top-[1px] left-[50px] w-[56px] h-[29px] text-[24px] leading-[29px] font-bold text-[#232323] font-sans opacity-100">
+        class="relative text-[24px] mb-5 font-bold text-[#232323] font-sans opacity-100">
         Clienti</h2>
     <!-- Add Lead Button -->
-    <div class=" mt-[16px] w-full flex justify-between ">
+    <div class="flex justify-between space-x-3 mb-5">
 
         {{-- pulsante crea --}}
-        <button wire:click="create"
-            class="relative left-[50px] px-1 py-1 min-w-[56px] h-[32px] bg-[#10BDD4] rounded-[1px] text-white opacity-100 hover:bg-[#0da9be] transition duration-200">
-            Crea
-        </button>
+  
+        <div class=" w-2/6 mb-8 ">
+            <flux:button wire:click="create"
+                class=" p-2.5! bg-[#10BDD4]! rounded-none! text-lg! text-white! opacity-100 hover:bg-[#0da9be]! transition duration-200">
+                Crea
+            </flux:button>
+        </div>
 
         {{-- tab --}}
-        <div class="flex border-gray-300 ml-[700px]" x-data="{ activeTab: @entangle('activeTab') }">
+        <div class="flex border-gray-300 w-2/6 h-8 justify-center" x-data="{ activeTab: @entangle('activeTab') }">
             <div
-                class="top-[230px] left-[873px] w-[78px] h-[32px] bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
+                class="  bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
                 <button wire:click="setTab('list')"
                     class="flex w-[78px] h-[32px] text-[16px] m-[3px] text-[#B0B0B0] font-sans  opacity-100 focus:outline-none  transition-all duration-200 hover:cursor-pointer"
                     :class="{ 'border-cyan-400 text-cyan-400': activeTab === 'list' }">
@@ -24,7 +27,7 @@
             </div>
 
             <div
-                class="top-[230px] left-[873px] w-[101px] h-[32px] bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
+                class="  bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
                 <button wire:click="setTab('kanban')"
                     class="flex  w-[101px] h-[32px]   text-[16px] m-[3px] text-[#B0B0B0] font-sans  opacity-100 focus:outline-none  transition-all duration-200 hover:cursor-pointer"
                     :class="{ 'border-cyan-400 text-cyan-400': activeTab === 'kanban' }">
@@ -35,7 +38,7 @@
         </div>
         {{-- filtro --}}
 
-        <div class="flex space-x-4 ml-[100px]">
+        <div class="flex space-x-4 w-1/3">
             <select wire:model.live="city"
                 class="border-gray-200 border p-1 w-[150px] h-[32px] text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100">
                 <option value="" selected>Tutti le sedi</option>
@@ -75,7 +78,7 @@
     </div>
 
 
-    <div class=" w-[1700px] ml-[65px] mt-[40px]">
+    <div class=" ">
         @if ($activeTab === 'list')
         @include('livewire.crm.client-list')
         @elseif ($activeTab === 'kanban')

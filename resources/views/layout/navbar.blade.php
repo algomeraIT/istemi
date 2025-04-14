@@ -1,13 +1,14 @@
 <section class="">
     <nav class=" w-full h-[100px] bg-white opacity-100 flex justify-between items-center z-[1]">
-        @livewire('collapsible-menu')
-
-        <div class="flex text-center justify-center mt-5 mb-8 ">
+        <div class="w-2/6">
+            @livewire('collapsible-menu')
+        </div>
+        <div class="flex text-center justify-center mt-5 mb-8 w-2/6">
             <img class="absolute top-8  w-24 h-9 opacity-100 " src="{{ asset('icon/logo.svg') }}" alt="Logo">
         </div>
 
         <!-- Right: Icons and User Info -->
-        <div class="flex space-x-3">
+        <div class="flex space-x-3 w-2/6">
             <!-- Messages Icon -->
             <button class="text-gray-600 focus:outline-none pr-8">
                 <image alt="chat" src="{{ asset('icon/navbar/chatbox-ellipses-outline.svg') }}" />
