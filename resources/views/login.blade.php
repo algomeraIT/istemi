@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="bg-white min-h-screen font-inter flex items-center justify-center shadow-[0_10px_15px_30px_rgb(0_0_0/0.1),0_4px_6px_-4px_rgb(0_0_0/0.1)] ">
+  <div class="bg-[#F5FCFD] min-h-screen font-inter flex items-center justify-center shadow-[0_10px_15px_30px_rgb(0_0_0/0.1),0_4px_6px_-4px_rgb(0_0_0/0.1)] ">
     <div class="w-[533px] h-[778px] mt-[150px]   relative z-10 bg-white shadow-[0px_0px_39px_1px_rgb(0_88_95_/_27%)] opacity-100">
       {{-- Logo --}}
       <div class="flex justify-start ml-[50px] mt-[50px]">
