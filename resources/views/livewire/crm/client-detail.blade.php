@@ -2,14 +2,15 @@
 
 @section('content')
 
-<a class="text-[18px] leading-[21px] font-light text-[#A0A0A0] text-left opacity-100 font-inter"
-    href=" {{url()->previous()}}">
-    <- Torna indietro </a>
 
-        <div class="lg:xl:flex md:block sm:block ">
-            <div class="flex xl:lg:w-2/3 md:sm:w-full p-6">
-                <div class="w-full mx-auto bg-white">
 
+        <div class="lg:xl:flex md:block sm:block pl-24 pr-24 pt-12">
+            
+            <div class="flex xl:lg:w-2/3 md:sm:w-full p-6 bg-white">
+                <div class="w-full mx-auto >
+                    <a class="text-[18px] leading-[21px] font-light text-[#A0A0A0] text-left opacity-100 font-inter"
+                    href=" {{url()->previous()}}">
+                    <- Torna indietro </a>
                     <!-- Tab Content -->
                     <div class="mt-4">
                         @livewire('crm.referents', ['client' => $client])
@@ -18,7 +19,7 @@
             </div>
 
 
-            <div class="flex xl:lg:w-1/3 md:sm:w-full p-6">
+            <div class="flex xl:lg:w-1/3 md:sm:w-full p-6 bg-white">
                 <div class=" w-md  bg-white border-2 border-dotted border-[#10BDD4] rounded-[2px] opacity-100">
                     <!-- Client Logo -->
                     <div

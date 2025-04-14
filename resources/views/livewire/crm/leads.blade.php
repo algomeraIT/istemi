@@ -48,7 +48,7 @@
 
                 {{-- <input type="date" wire:model.live="date" class="border-gray-300  p-2 " />--}}
                 <input type="number" wire:model.live="year"
-                    class="border-gray-200 xl:w-60 lg:w-52 md:w-40 sm:w-[90%] sm:w-36  h-7 text-[#B0B0B0] border placeholder:font-medium" min="1900"
+                    class="border-gray-200 xl:w-60 lg:w-52 md:w-40 sm:w-[90%]  h-7 text-[#B0B0B0] border placeholder:font-medium" min="1900"
                     max="2099" step="1" placeholder="Tutte le date di acquisizione" />
 
                 {{-- <button wire:click="resetFilters" class="bg-gray-200 px-3 py-1  hover:cursor-pointer">

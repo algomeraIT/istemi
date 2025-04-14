@@ -4,7 +4,7 @@
             class="px-3 py-1.5 text-sm float-right bg-white text-[#B0B0B0] hover:bg-gray-500 transition">
             x Chiudi
         </button>
-        <div class="bg-white p-4 rounded-lg shadow-sm h-full">
+        <div class="bg-white pt-2.5 border-none h-full">
 
             <!-- Ragione Sociale -->
             <div class=" ml-[105px] mb-[79px]">
