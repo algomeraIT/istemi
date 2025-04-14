@@ -78,7 +78,7 @@
                     @endif
                 </span>
                 </td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left flex">
+                <td class="font-medium text-[18px] text-[#232323] tracking-normal text-left">
                     <button wire:click="goToDetail({{ $client->id }})" title="Dettaglio"
                         class=" text-gray-600 rounded  hover:cursor-pointer">
                         <flux:icon.eye class="text-[#10BDD4]" />
