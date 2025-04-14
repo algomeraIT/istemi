@@ -6,8 +6,8 @@
     href=" {{url()->previous()}}">
     <- Torna indietro </a>
 
-        <div class="flex ">
-            <div class="flex w-2/3 p-6">
+        <div class="lg:xl:flex md:block sm:block ">
+            <div class="flex xl:lg:w-2/3 md:sm:w-full p-6">
                 <div class="w-full mx-auto bg-white">
 
                     <!-- Tab Content -->
@@ -18,7 +18,7 @@
             </div>
 
 
-            <div class="flex w-1/3">
+            <div class="flex xl:lg:w-1/3 md:sm:w-full p-6">
                 <div class=" w-md  bg-white border-2 border-dotted border-[#10BDD4] rounded-[2px] opacity-100">
                     <!-- Client Logo -->
                     <div
