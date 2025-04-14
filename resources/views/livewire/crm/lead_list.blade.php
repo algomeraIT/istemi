@@ -1,4 +1,4 @@
-<div class="justify-between items-center  ">
+<div class="justify-between items-center">
     @if($leads != null)
     <table class="w-full">
         <thead>

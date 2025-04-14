@@ -48,20 +48,20 @@
 
                 {{-- <input type="date" wire:model.live="date" class="border-gray-300  p-2 " />--}}
                 <input type="number" wire:model.live="year"
-                    class="border-gray-200 w-3xl h-7 text-[#B0B0B0] border placeholder:font-medium" min="1900"
+                    class="border-gray-200 xl:w-60 lg:w-52 md:w-40 sm:w-[90%] sm:w-36  h-7 text-[#B0B0B0] border placeholder:font-medium" min="1900"
                     max="2099" step="1" placeholder="Tutte le date di acquisizione" />
 
                 {{-- <button wire:click="resetFilters" class="bg-gray-200 px-3 py-1  hover:cursor-pointer">
                     Reset Filtri
                 </button> --}}
 
-                <div class="relative w-full">
+                <div class="relative xl:w-40 lg:w-32 md:w-40 sm:w-36 ">
                     <span class="absolute inset-y-0 left-0 flex items-center pointer-events-none h-5 p-3.5">
                         <flux:icon.magnifying-glass class="w-4 h-4 text-gray-300" />
                     </span>
 
                     <input type="text" wire:model.live="query" placeholder="Cerca..."
-                        class="pl-9 border border-gray-200 h-7  focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
+                        class="pl-9 border border-gray-200 h-7 sm:w-[90%] focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
                 </div>
 
             </div>
@@ -69,7 +69,7 @@
 
 
         @if ($activeTab === 'list')
-        <div class=" ">
+        <div class="  xl:w-full lg:w-[800px] md:[700px] sm:w-[93%] overflow-auto">
             @include('livewire.crm.lead_list')
             @elseif ($activeTab === 'kanban')
             <div class=" ">
