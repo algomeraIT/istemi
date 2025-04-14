@@ -521,7 +521,7 @@
                     
                         <ul class="border pt-4 mb-5">
                             <flux:badge variant="pill" icon="calendar"
-                            class="bg-[#F9EDF1]! text-[#E873A0]! rounded-0 pl-5 pr-5 rounded-none!">Attività</flux:badge>
+                            class="bg-[#F9EDF1]! text-[#E873A0]! rounded-0  pl-8 pr-8  rounded-none!">Attività</flux:badge>
                             @foreach($activity_communications as $activity)
                             <li class=" m-3.5 mb-6">
                                 <div>
@@ -568,8 +568,9 @@
                                         </div>
                                         <div class="m-4 flex">
                                             <p> <span class="px-2 py-1  font-semibold rounded-[15px] border border-solid 
-                                                @if($activity->to_do == " Fatta") bg-[#EFF9F3] text-[#65C587]
-                                                    border-[#65C587] @elseif($activity->to_do == "Da Terminare")
+                                                @if($activity->to_do == "Fatta") 
+                                                    bg-[#EFF9F3] text-[#65C587] border-[#65C587] 
+                                                    @elseif($activity->to_do == "Da Terminare")
                                                     bg-[] text-[#65C587] border-[#E63946]
                                                     @elseif($activity->to_do == "In sospeso")
                                                     bg-cyan-100 text-[#0C7BFF] border-[#65C587]
@@ -627,7 +628,7 @@
                      
                         <ul class="border pt-4 mb-5">
                             <flux:badge variant="pill" icon="pencil"
-                                class="bg-[#F3F3F3]! text-[#B0B0B0]! rounded-0! pl-5 pr-5 rounded-none!">Nota</flux:badge>
+                                class="bg-[#F3F3F3]! text-[#B0B0B0]! rounded-0!  pl-8 pr-8  rounded-none!">Nota</flux:badge>
                             @foreach($note_communications as $note)
                             <li class=" m-3.5 mb-6">
                                 <div>
@@ -713,7 +714,7 @@
              
                         <ul class="border pt-4 mb-5">
                             <flux:badge variant="pill" icon="paper-airplane"
-                                class="bg-[#E2EDF7]! text-[#1078D4! rounded-0! pl-5 pr-5 rounded-none!">E-mail</flux:badge>
+                                class="bg-[#E2EDF7]! text-[#1078D4! rounded-0!  pl-8 pr-8  rounded-none!">E-mail</flux:badge>
                             @foreach($email_communications as $email)
                             <li class=" m-3.5 mb-6">
                                 <div>
@@ -797,7 +798,7 @@
                   
                     <ul class="border pt-4 mb-5">
                         <flux:badge variant="pill" icon="phone"
-                            class="bg-purple-100! text-purple-400! rounded-0! pl-5 pr-5 rounded-none!">Chiamate</flux:badge>
+                            class="bg-purple-100! text-purple-400! rounded-0!  pl-8 pr-8  rounded-none!">Chiamate</flux:badge>
                         @foreach($note_communications as $note)
                         <li class=" m-3.5 mb-6">
                             <div>

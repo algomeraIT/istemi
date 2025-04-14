@@ -22,7 +22,7 @@
                 <div class=" w-md  bg-white border-2 border-dotted border-[#10BDD4] rounded-[2px] opacity-100">
                     <!-- Client Logo -->
                     <div
-                        class="flex justify-center border-b border-t-0 border-l-0 border-r-0 border-2 h-[70px] border-dotted border-[#10BDD4]">
+                        class="flex justify-center border-b border-t-0 border-l-0 border-r-0 border-2 h-[70px] border-dotted border-[#10BDD4] bg-[#F5FCFD]">
                         <img src="{{ asset($client->logo_path) }}" alt="Client Logo"
                             class="w-24 h-24 ml-52 mt-5 object-cover rounded-full border-2 border-dotted border-[#10BDD4]">
                     </div>
