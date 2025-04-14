@@ -1,31 +1,31 @@
-<div class="justify-between items-center relative left-[15px]">
+<div class="justify-between items-center  ">
     @if($leads != null)
-    <table class="table-fixed w-full">
+    <table class="w-full">
         <thead>
             <tr class="text-gray-400 h-[40px]">
-                <th class=" font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                <th class=" font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
                     ID
                 </th>
                 <th
-                    class="w-[300px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                    class="font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
                     Ragione Sociale</th>
                 <th
-                    class="w-[400px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                    class=" font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
                     E-mail</th>
                 <th
-                    class="w-[300px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                    class="font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
                     Telefono</th>
-                <th class="w-[200px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                <th class=" font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
                     Acquisizione</th>
-                <th class="w-[200px] font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                <th class=" font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
                     Stato</th>
-                <th class="font-light text-[14px] leading-[17px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
+                <th class="font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
                     Azioni</th>
             </tr>
         </thead>
         <tbody>
             @foreach($leads as $lead)
-            <tr class="hover:bg-gray-100 h-[40px] border-b">
+            <tr class="hover:bg-gray-100 border-b h-12">
                 <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{ $lead->id
                     }}</td>
                 <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{
@@ -53,7 +53,7 @@
                 <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
                     {{ \Carbon\Carbon::parse($lead->created_at)->format('d/m/Y') }}
                 </td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left w-1">
+                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
                     <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border border-solid 
                         @if($lead->status == 1)
                             bg-purple-100 text-[#6F42C1] border-[#6F42C1]
@@ -75,7 +75,7 @@
                         @endif
                     </span>
                 </td>
-                <td class="flex">
+                <td class="">
                     <button wire:click="show({{ $lead->id }})" title="Dettaglio"
                         class=" text-gray-600 rounded  hover:cursor-pointer">
                         <flux:icon.eye class="text-[#10BDD4]" />

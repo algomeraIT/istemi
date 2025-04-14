@@ -1,10 +1,10 @@
 <div
-    class="absolute  top-[130px] left-[105px] right-[105px] w-[1710px] h-[880px] mt-[52px] bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100">
+    class=" bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100">
     <h2
-        class="relative top-[1px] left-[50px] w-[56px] h-[29px] text-[24px] leading-[29px] font-bold text-[#232323] font-sans opacity-100">
+        class=" text-[24px]  font-bold text-[#232323] font-sans opacity-100">
         Contatti</h2>
     <!-- Add Lead Button -->
-    <div class=" mt-[16px] w-full flex justify-between ">
+    <div class="flex  w-full">
 
         {{-- pulsante crea --}}
    {{--      <button wire:click="create"
@@ -12,8 +12,10 @@
             Crea
         </button> --}}
 
+        <div class="w-1/3">
+        </div>
         {{-- tab --}}
-        <div class="flex border-gray-300 ml-[744px]" x-data="{ activeTab: @entangle('activeTab') }">
+        <div class="flex border-gray-300 w-1/3 justify-center" x-data="{ activeTab: @entangle('activeTab') }">
             <div
                 class="top-[230px] left-[873px] w-[78px] h-[32px] bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
                 <button wire:click="setTab('list')"
@@ -24,7 +26,7 @@
             </div>
 
             <div
-                class="top-[230px] left-[873px] w-[101px] h-[32px] bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
+                class="h-[32px] bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
                 <button wire:click="setTab('kanban')"
                     class="flex  w-[101px] h-[32px]   text-[16px] m-[3px] text-[#B0B0B0] font-sans  opacity-100 focus:outline-none  transition-all duration-200 hover:cursor-pointer"
                     :class="{ 'border-cyan-400 text-cyan-400': activeTab === 'kanban' }">
@@ -34,7 +36,7 @@
 
         </div>
         {{-- filtro --}}
-        <div class="flex space-x-4 ml-[100px]">
+        <div class="flex w-1/3 justify-end">
             <select wire:model.live="status"
                 class="border-gray-200 border p-1 w-[150px] h-[32px] text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100">
                 <option value="">Tutti gli stati</option>
@@ -63,7 +65,7 @@
         </div>
     </div>
 
-    <div class="ml-[60px] mt-[20px] w-[1800px]">
+    <div class="">
         @if ($activeTab === 'list')
         @include('livewire.crm.contact-list')
         @elseif ($activeTab === 'kanban')

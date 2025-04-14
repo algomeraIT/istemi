@@ -20,11 +20,11 @@
     @stack('styles')
 </head>
 
-<body class="bg-[#F5FCFD] font-inter max-w-[1920px] max-h-[1080px]">
+<body class="bg-[#F5FCFD] font-inter container  contents">
     @include('flash-message')
     @include('layout.navbar')
 
-    <div class="grid">
+    <div class="mt-[60px] mx-[140px] mb-[140px]">
         @yield('content')
     </div>
 

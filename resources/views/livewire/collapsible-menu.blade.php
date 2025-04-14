@@ -36,7 +36,7 @@
             this.isExpanded = !this.isExpanded;
         }
     }" @click.away="isExpanded = false" id="mega-menu-container"
-        class="absolute bg-white transition-all duration-300 overflow-hidden border-b border-gray-300 w-[1980px] cursor-pointer select-none"
+        class="absolute bg-white transition-all duration-300 overflow-hidden border-b border-gray-300 w-[1980px] cursor-pointer select-none z-10"
         x-show="isMenuOpen" x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100"
