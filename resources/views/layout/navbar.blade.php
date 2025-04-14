@@ -1,5 +1,5 @@
 <section class="">
-    <nav class=" w-full h-[100px] bg-white opacity-100 flex justify-between items-center z-[1]">
+    <nav class=" w-full h-[100px] bg-white border-b border-gray-200 shadow-sm opacity-100 flex justify-between items-center z-[1]">
         <div class="w-2/6">
             @livewire('collapsible-menu')
         </div>

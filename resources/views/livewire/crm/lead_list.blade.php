@@ -2,7 +2,7 @@
     @if($leads != null)
     <table class="w-full">
         <thead>
-            <tr class="text-gray-400 h-[40px]">
+            <tr class="text-gray-400 h-10">
                 <th class=" font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
                     ID
                 </th>

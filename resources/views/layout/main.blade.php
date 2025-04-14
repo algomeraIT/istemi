@@ -20,11 +20,11 @@
     @stack('styles')
 </head>
 
-<body class="bg-[#F5FCFD] font-inter container  contents">
+<body class=" font-inter container  contents">
     @include('flash-message')
     @include('layout.navbar')
 
-    <div class="mt-[60px] mx-[140px] mb-[140px]">
+    <div class="bg-[#F5FCFD]">
         @yield('content')
     </div>
 
