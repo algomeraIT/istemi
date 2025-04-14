@@ -4,25 +4,25 @@
         <!-- Tab Buttons -->
         <div class="flex space-x-4 ml-[10px]">
             <button @click="activeTab = 'referent'"
-                :class="{ 'border-b-2 border-cyan-500 text-cyan-600': activeTab === 'referent' }"
+                :class="{ ' bg-[#FBFBFB] text-cyan-600': activeTab === 'referent' }"
                 class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
                 Referenti
             </button>
 
             <button @click="activeTab = 'sale';"
-                :class="{ 'border-b-2 border-cyan-500 text-cyan-600': activeTab === 'sale' }"
+                :class="{ ' bg-[#FBFBFB] text-cyan-600': activeTab === 'sale' }"
                 class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
                 Vendite e acquisti
             </button>
 
             <button @click="activeTab = 'accounting';"
-                :class="{ 'border-b-2 border-cyan-500 text-cyan-600': activeTab === 'accounting' }"
+                :class="{ ' bg-[#FBFBFB] text-cyan-600': activeTab === 'accounting' }"
                 class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
                 Contabilità
             </button>
 
             <button @click="activeTab = 'communication';"
-                :class="{ 'border-b-2 border-cyan-500 text-cyan-600': activeTab === 'communication' }"
+                :class="{ ' bg-[#FBFBFB] text-cyan-600': activeTab === 'communication' }"
                 class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
                 Comunicazioni
             </button>
@@ -113,7 +113,7 @@
             <div x-show="activeTab === 'sale'" x-cloak>
                 <div x-data="{ activeTabSales: 'sales' }">
                     <div class="flex  place-content-between">
-                        <div class="flex  place-content-between">
+                        <div class="flex  pt-[10px] pl-[40px] pb-[20px] h-[65px]">
                             <button @click="activeTabSales = 'sales'"
                                 :class="{ ' text-[#10BDD4]': activeTabSales === 'sales' }"
                                 class="flex p-1 border-1 border-[#10BDD4] text-[16px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">

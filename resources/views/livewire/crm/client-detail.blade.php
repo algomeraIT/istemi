@@ -7,12 +7,12 @@
         <div class="lg:xl:flex md:block sm:block pl-24 pr-24 pt-12">
             
             <div class="flex xl:lg:w-2/3 md:sm:w-full p-6 bg-white">
-                <div class="w-full mx-auto >
-                    <a class="text-[18px] leading-[21px] font-light text-[#A0A0A0] text-left opacity-100 font-inter"
-                    href=" {{url()->previous()}}">
+                <div class="w-full mx-auto m-3" >
+                    <a class="text-[20px] font-light text-[#A0A0A0] text-left opacity-100 font-inter"
+                    href=" {{url()->previous()}}" >
                     <- Torna indietro </a>
                     <!-- Tab Content -->
-                    <div class="mt-4">
+                    <div class="mt-8">
                         @livewire('crm.referents', ['client' => $client])
                     </div>
                 </div>
