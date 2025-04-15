@@ -15,7 +15,7 @@
         {{-- Email Input --}}
         <div class="ml-[50px] mt-[52px]">
 
-            <label for="email" class=" font-light text-[18px] leading-[21px] text-[#A0A0A0] opacity-100">
+            <label for="email" class=" font-light text-lg leading-[21px] text-[#A0A0A0] opacity-100">
                 E-mail
                 @if ($messageEmail)
                 <p class="flex float-right mr-[50px] italic font-light text-[16px] leading-[20px] tracking-[0px] text-[#E67E22] opacity-100">{{ $messageEmail }}</p>
@@ -35,7 +35,7 @@
             </div>
 
 
-            <label for="password" class="font-light text-[18px] leading-[21px] text-[#A0A0A0] opacity-100">
+            <label for="password" class="font-light text-lg leading-[21px] text-[#A0A0A0] opacity-100">
                 Password
                 @if ($messagePassword)
                 <p
@@ -99,7 +99,7 @@
                 <h2 class="font-bold text-[24px] leading-[29px] text-[#232323] opacity-100">Password dimenticata</h2>
                 <h6 class="font-semibold text-[20px] leading-[24px] text-[#6B6B6B] opacity-100 mt-[9px] mb-[52px]">Recupera l'accesso al tuo account</h6>
 
-                <label for="email" class="font-light text-[18px] leading-[21px] text-[#A0A0A0] opacity-100 ">
+                <label for="email" class="font-light text-lg leading-[21px] text-[#A0A0A0] opacity-100 ">
                     E-mail
                     @if ($messageEmail)
                     <p class="flex float-right mr-[50px] italic font-light text-[16px] leading-[20px] tracking-[0px] text-[#E67E22] opacity-100">{{ $messageEmail }}</p>

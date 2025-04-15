@@ -17,9 +17,9 @@
             @include('livewire.crm.utilities.tab')
 
             {{-- filtro --}}
-            <div class="flex  md:block sm:block w-1/3  space-x-4 justify-end">
+            <div class="xl:lg:flex  md:sm:block w-1/3  space-x-4 justify-end">
                 <select wire:model.live="status"
-                    class="border-gray-200 border h-7 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100">
+                    class="border-gray-200 border h-7 text-[16px] text-[#B0B0B0] font-medium opacity-100 md:sm:w-11/12">
                     <option value="">Tutti gli stati</option>
                     <option value="1" class="text-[#FEC106]">In contatto</option>
                     <option value="0" class="text-[#6C757D]">Non idoneo</option>
@@ -27,7 +27,7 @@
 
                 {{-- <input type="date" wire:model.live="date" class="border-gray-300  p-2 " />--}}
                 <input type="number" wire:model.live="year"
-                    class="border-gray-200 xl:w-60 lg:w-52 md:w-40 sm:w-[90%]  h-7 text-[#B0B0B0] border placeholder:font-medium"
+                    class="border-gray-200   h-7 text-[#B0B0B0] border placeholder:font-medium md:sm:w-11/12"
                     min="1900" max="2099" step="1" placeholder="Tutte le date di acquisizione" />
 
                 {{-- <button wire:click="resetFilters" class="bg-gray-200 px-3 py-1  hover:cursor-pointer">
@@ -40,7 +40,7 @@
                     </span>
 
                     <input type="text" wire:model.live="query" placeholder="Cerca..."
-                        class="pl-9 border border-gray-200 h-7 sm:w-[90%] focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
+                        class="pl-9 border border-gray-200 h-7 md:sm:w-full focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
                 </div>
 
             </div>

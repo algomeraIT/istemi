@@ -1,105 +1,93 @@
-<div>
-    @if($contacts != null)
-    <table class="w-full">
-        <thead>
-            <tr class="text-gray-400 h-10">
-                <th
-                class=" font-light text-[14px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                ID</th>
-                <th
-                    class=" font-light text-[14px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    Ragione Sociale</th>
-                <th
-                    class="font-light text-[14px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    Email</th>
-                <th
-                    class=" font-light text-[14px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    telefono</th>
-                <th
-                    class="font-light text-[14px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    Acquisizione</th>
-                <th
-                    class=" font-light text-[14px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    Stato</th>
+<div class="w-full overflow-x-auto">
+    @if ($contacts)
+        <table class="w-full min-w-[768px] text-left text-sm font-inter">
+            <thead class="text-[#B0B0B0] font-light text-lg">
+                <tr class="h-10">
+                    <th>ID</th>
+                    <th>Ragione Sociale</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Acquisizione</th>
+                    <th>Stato</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($contacts as $contact)
+                    <tr class="border-b hover:bg-gray-100 h-12">
+                        <td class="text-[#232323]">{{ $contact->id }}</td>
+                        <td class="text-[#232323]">{{ $contact->company_name }}</td>
 
-                    <th
-                    class="font-light text-[14px] tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    Azioni</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($contacts as $contact)
-            <tr class="hover:bg-gray-100 border-b h-12 xl:text-[18px] lg:text-[14px] md:text-[12px] sm:text-[10px]">
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{
-                    $contact->id }}</td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{
-                    $contact->company_name }}</td>
-           <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
-            <div class="flex items-center">
-                <span>{{ $contact->email }}</span>
-                <div onclick="myFunction('{{ $contact->email }}')"
-                    class="relative group w-[32px] h-[32px] flex items-center justify-center ml-[11px]">
-                    <div class="absolute w-full h-full rounded-full border-[1px] border-transparent group-hover:border-[#10BDD4] transition-all"></div>
-                    <flux:icon.document-duplicate class="text-[#10BDD4] w-[26px] h-[26px]" />
-                </div>
-            </div>
-        </td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
-                    <div class="flex items-center">
-                        <span>{{ $contact->first_telephone }}</span>
-                        <div onclick="myFunction('{{ $contact->first_telephone }}')"
-                            class="relative group w-[32px] h-[32px] flex items-center justify-center ml-[11px]">
-                            <div class="absolute w-full h-full rounded-full border-[1px] border-transparent group-hover:border-[#10BDD4] transition-all"></div>
-                            <flux:icon.document-duplicate class="text-[#10BDD4] w-[26px] h-[26px]" />
-                        </div>
-                    </div>
-                </td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{
-                    \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y') }}</td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
-                    <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border border-solid 
-                                @if($contact->status == 1)
-                                    bg-[#FFF9E5] text-[#FEC106] border-[#FFC107]
-                                @else
-                                    bg-[#F0F1F2] text-[#6C757D] border-[#6C757D]
-                     
-                                @endif ">
-                        @if($contact->status == 1)
-                        In contatto
-                        @else
-                        Non idoneo
-                        @endif
-                    </span>
-                </td>
-                </td>
-                <td class="">
-                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $contact->id])
-                    @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $contact->id])
+                        <td class="text-[#232323]">
+                            <div class="flex items-center gap-2">
+                                <span>{{ $contact->email }}</span>
+                                <button onclick="copyToClipboard('{{ $contact->email }}')" title="Copia email"
+                                    class="group relative w-8 h-8 flex items-center justify-center">
+                                    <div
+                                        class="absolute inset-0 rounded-full border group-hover:border-[#10BDD4] transition-all">
+                                    </div>
+                                    <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
+                                </button>
+                            </div>
+                        </td>
 
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <!-- Pagination Links -->
-    <div class="mt-4">
-        {{ $contacts->links('customPagination') }}
-    </div>
+                        <td class="text-[#232323]">
+                            <div class="flex items-center gap-2">
+                                <span>{{ $contact->first_telephone }}</span>
+                                <button onclick="copyToClipboard('{{ $contact->first_telephone }}')"
+                                    title="Copia telefono"
+                                    class="group relative w-8 h-8 flex items-center justify-center">
+                                    <div
+                                        class="absolute inset-0 rounded-full border group-hover:border-[#10BDD4] transition-all">
+                                    </div>
+                                    <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
+                                </button>
+                            </div>
+                        </td>
+
+                        <td class="text-[#232323]">
+                            {{ \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y') }}
+                        </td>
+
+                        <td>
+                            @php
+                                $isActive = $contact->status == 1;
+                                $statusClasses = $isActive
+                                    ? 'bg-[#FFF9E5] text-[#FEC106] border-[#FFC107]'
+                                    : 'bg-[#F0F1F2] text-[#6C757D] border-[#6C757D]';
+                            @endphp
+                            <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $statusClasses }}">
+                                {{ $isActive ? 'In contatto' : 'Non idoneo' }}
+                            </span>
+                        </td>
+
+                        <td>
+                            @include('livewire.crm.utilities.detail-button', [
+                                'functionName' => 'show',
+                                'id' => $contact->id,
+                            ])
+                            @include('livewire.crm.utilities.delete-button', [
+                                'functionName' => 'delete',
+                                'id' => $contact->id,
+                            ])
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <div class="mt-4">
+            {{ $contacts->links('customPagination') }}
+        </div>
     @else
-    <p class="text-gray-500">Nessun elemento da mostrare</p>
+        <p class="text-gray-500">Nessun elemento da mostrare</p>
     @endif
 </div>
 
 <script>
-    function myFunction(text) {
-        var textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        textArea.setSelectionRange(0, 99999); // For mobile devices
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-
-        alert("Copiato: " + text);
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Copiato: " + text);
+        });
     }
 </script>

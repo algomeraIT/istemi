@@ -187,7 +187,7 @@
                     @endif
                     <div class="flex flex-col items-start ml-5 mb-5">
                         <span
-                            class="text-[18px]  font-normal text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
+                            class="text-lg  font-normal text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
                             {{ $selectedActivity->name . ' ' . $selectedActivity->last_name . ' - ' .
                             $selectedActivity->role}} </span>
                         <span

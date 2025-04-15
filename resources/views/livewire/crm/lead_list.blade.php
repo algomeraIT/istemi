@@ -25,7 +25,7 @@
         </thead>
         <tbody>
             @foreach($leads as $lead)
-            <tr class="hover:bg-gray-100 border-b h-12 xl:text-[18px] lg:text-[14px] md:text-[12px] sm:text-[10px]">
+            <tr class="hover:bg-gray-100 border-b h-12 xl:text-lg lg:text-[14px] md:text-[12px] sm:text-[10px]">
                 <td class="font-medium  text-[#232323] tracking-normal text-left">{{ $lead->id
                     }}</td>
                 <td class="font-medium  text-[#232323] tracking-normal text-left">{{

@@ -30,15 +30,15 @@
         </thead>
         <tbody>
             @foreach($clients as $client)
-            <tr class="hover:bg-gray-100 border-b h-12 xl:text-[18px] lg:text-[14px] md:text-[12px] sm:text-[10px]">
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{
+            <tr class="hover:bg-gray-100 border-b h-12 xl:text-lg lg:text-[14px] md:text-[12px] sm:text-[10px]">
+                <td class="font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">{{
                     $client->id }}</td>
-                <td class=" font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
+                <td class=" font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">
                     <img class="w-10 h-10" src="{{ $client->logo_path ?: asset('images/default-logo.webp') }}" />
                 </td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{
+                <td class="font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">{{
                     $client->company_name }}</td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
+                <td class="font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">
                     <div class="flex items-center">
                         <span>{{ $client->email }}</span>
                         <div onclick="myFunction('{{ $client->email }}')"
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">
+                <td class="font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">
                     <div class="flex items-center">
                         <span>{{ $client->first_telephone }}</span>
                         <div onclick="myFunction('{{ $client->first_telephone }}')"
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </td>
-                <td class="font-medium text-[18px] leading-[21px] text-[#232323] tracking-normal text-left">{{
+                <td class="font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">{{
                     $client->city }}</td>
                 <td>
                 <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border border-solid 
@@ -78,7 +78,7 @@
                     @endif
                 </span>
                 </td>
-                <td class="font-medium text-[18px] text-[#232323] tracking-normal text-left">
+                <td class="font-medium text-lg text-[#232323] tracking-normal text-left">
                     @include('livewire.crm.utilities.detail-button', ['functionName' => 'goToDetail', 'id' => $client->id])
                     @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $client->id])
                     @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $client->id])
