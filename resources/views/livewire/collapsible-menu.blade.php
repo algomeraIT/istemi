@@ -36,13 +36,13 @@
             this.isExpanded = !this.isExpanded;
         }
     }" @click.away="isExpanded = false" id="mega-menu-container"
-        class="absolute bg-white transition-all duration-300 overflow-hidden border-b border-gray-300 w-[1900px] cursor-pointer select-none z-10"
+        class="absolute bg-white transition-all duration-300 overflow-hidden  border-gray-300 w-[1900px] cursor-pointer select-none z-10 border-b-0"
         x-show="isMenuOpen" x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100"
         x-transition:leave-end="opacity-0 transform scale-95"
         x-bind:style="isExpanded ? 'height: 768px' : 'height: 420px'">
-        <div class="">
+        <div class=" overflow-auto">
             <!-- Initial Menu Content (Horizontal Layout) -->
             <div id="menu-content" class="flex flex-col md:flex-row md:space-x-6  justify-center mt-[47px]"
                 x-bind:style="isExpanded ? 'justify-self: center; height: 700px;' : ''">
@@ -50,12 +50,12 @@
                     x-bind:class="{ 'list-item list-none': isExpanded }">
 
                     <!-- Menu Item 1 -->
-                    <div class="menu-item w-max-52 mr-5"
-                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200' : 'h-88'"
-                        :style="isExpanded ? 'padding: 0; justify-items: baseline;' : 'display:flex;'"
+                    <div class=""
+                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200 p-5 pl-10' : 'menu-item w-max-52 mr-5 flex'"
+                        :style="isExpanded ? '' : 'display:flex;'"
                         @click="selected = 'dashboard'">
-                        <a href="#" class="block group ml-2.5 h-[32px]">
-                            <div>
+                        <a href="#" class="block group ml-4 h-[32px]">
+                            <div class="w-5">
                                 <img x-show="!isExpanded"
                                     :src="selected === 'dashboard' ? '/icon/dash-blue.svg' : '/icon/dash.svg'"
                                     alt="Dashboard"
@@ -63,7 +63,7 @@
                                 <img x-show="isExpanded"
                                     :src="selected === 'dashboard' ? '/icon/menu_exploded/dash - color.svg' : '/icon/dash.svg'"
                                     alt="Dashboard"
-                                    class="w-[20px] expand-images object-cover transition duration-300 group-hover:scale-105 m-[15px]" />
+                                    class=" expand-images object-cover transition duration-300 group-hover:scale-105 m-[15px]" />
                             </div>
                         </a>
                         <a href="#"
@@ -72,10 +72,10 @@
                                 selected === 'dashboard' ? 'text-[#10BDD4]' :
                                 'text-[#B0B0B0] group-hover:text-[#10BDD4]'
                             ]"
-                            class="relative group font-light text-[15px] leading-[19px] opacity-100 w-[100px] ml-[8px] h-[32px] whitespace-pre-line">
+                            class="relative group font-light text-[15px] leading-[19px] opacity-100 w-[100px] ml-[8px] h-[32px] ">
                             Dashboard
                             <span
-                                class="absolute left-0 bottom-0 w-0 h-[1px] bg-gray-400 transition-all duration-200 group-hover:w-full"></span>
+                                class="absolute left-0 bottom-0 w-0 h-[1px] bg-gray-400 transition-all duration-200 group-hover:w-full mt-1"></span>
                         </a>
                     </div>
 
@@ -97,9 +97,9 @@
                         <!-- Sub Menu Item -->
                         <div @click="selected = 'projects.project'"
                             class="menu-item-inside grid lg:w-40 md:w-20 sm:w-12"
-                            :style="isExpanded ? 'padding: 0; justify-items: baseline;' : ''">
+                            :style="isExpanded ? 'padding: 20px; justify-items: baseline;' : ''">
                             <a href="{{ route('projects.project') }}" class="relative group">
-                                <div class="mb-3">
+                                <div :class="isExpanded ? 'mb-3 w-5 h-5' : 'mb-3'">
                                     <img x-show="isExpanded"
                                         :src="selected === 'projects.project' || '{{ Route::currentRouteName() }}'
                                         === 'projects.project'
@@ -134,15 +134,15 @@
                   { label: 'Progetti Archiviati', icon: '/icon/menu_exploded/progetti archiviati.svg' }
               ]">
                             <div class="menu-item-inside grid lg:w-40 md:w-20 sm:w-12"
-                                :style="isExpanded ? 'padding: 0; justify-items: baseline;' : ''">
+                                :style="isExpanded ? 'padding: 20px  ; justify-items: baseline;' : ''">
                                 <a href="#" class="block group ml-2.5">
-                                    <div class="mb-3">
+                                    <div :class="isExpanded ? 'mb-3 w-5 h-5' : 'mb-3'">
                                         <img x-show="isExpanded" :src="item.icon" :alt="item.label"
                                             class="expand-images object-cover transition duration-300 group-hover:scale-105 m-[15px]">
                                     </div>
                                 </a>
                                 <a href="#"
-                                    class="relative group font-light text-[15px] leading-[19px] text-[#B0B0B0] opacity-100 w-[100px] ml-[8px] h-[32px] whitespace-pre-line"
+                                    class="relative group font-light text-[15px] leading-[19px] text-[#B0B0B0] opacity-100 w-[100px] ml-[8px] h-[32px]  "
                                     :class="{ 'pl-4': !isExpanded }" x-text="item.label">
                                 </a>
                             </div>
@@ -152,7 +152,7 @@
 
                     <!-- Menu Item 3 - Operazioni e risorse -->
                     <div class="menu-item w-max-52 mr-5"
-                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200' : 'h-88 border-l-2 border-gray-200'"
+                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' : 'h-88 border-l-2 border-gray-200'"
                         x-bind:style="isExpanded ? 'display: flex' : ''">
 
                         <!-- Collapsed View -->
@@ -176,9 +176,9 @@
                                 { icon: 'codici a barre', label: 'Codici a barre' }
                             ]">
                             <div class="menu-item-inside grid lg:w-40 md:w-20 sm:w-12"
-                                x-bind:style="isExpanded ? 'padding: 0; justify-items: baseline;' : ''">
+                                x-bind:style="isExpanded ? 'padding: 20px  ; justify-items: baseline;' : ''">
                                 <a href="#" class="block group ml-2.5">
-                                    <div class="mb-3">
+                                    <div :class="isExpanded ? 'mb-3 w-5 h-5' : 'mb-3'">
                                         <img x-bind:hidden="!isExpanded"
                                             x-bind:src="'/icon/menu_exploded/' + item.icon + '.svg'"
                                             x-bind:alt="item.label"
@@ -186,7 +186,7 @@
                                     </div>
                                 </a>
                                 <a href="#"
-                                    class="relative group whitespace-pre-line font-light text-[15px] leading-[19px] text-[#B0B0B0] opacity-100 w-[100px] ml-[8px] h-[32px]"
+                                    class="relative group   font-light text-[15px] leading-[19px] text-[#B0B0B0] opacity-100 w-[100px] ml-[8px] h-[32px]"
                                     x-bind:class="{ 'pl-4': !isExpanded }" x-text="item.label">
                                 </a>
                             </div>
@@ -196,7 +196,7 @@
                     <!-- Menu Item 4-->
                     <!-- Menu Item - Dipendenti -->
                     <div class="menu-item w-max-52 mr-5"
-                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200' : 'h-88 border-l-2 border-gray-200'"
+                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' : 'h-88 border-l-2 border-gray-200'"
                         x-bind:style="isExpanded ? 'display: flex' : ''">
 
                         <!-- Collapsed View -->
@@ -222,9 +222,9 @@
     { icon: 'selezione personale', labelExpanded: 'Selezione personale', labelCollapsed: 'Selezione', route: '#' }
 ]">
                             <div class="menu-item-inside grid lg:w-40 md:w-20 sm:w-12"
-                                x-bind:style="isExpanded ? 'padding: 0; justify-items: baseline;' : ''">
+                                x-bind:style="isExpanded ? 'padding: 20px  ; justify-items: baseline;' : ''">
                                 <a :href="item.route" class="block group ml-2.5">
-                                    <div class="mb-3">
+                                    <div :class="isExpanded ? 'mb-3 w-5 h-5' : 'mb-3'">
                                         <img x-bind:hidden="!isExpanded"
                                             x-bind:src="'/icon/menu_exploded/' + item.icon + '.svg'"
                                             x-bind:alt="item.labelExpanded"
@@ -232,7 +232,7 @@
                                     </div>
                                 </a>
                                 <a :href="item.route"
-                                    class="relative group whitespace-pre-line font-light text-[15px] leading-[19px] text-[#B0B0B0] opacity-100 w-[100px] ml-[8px] h-[32px]"
+                                    class="relative group   font-light text-[15px] leading-[19px] text-[#B0B0B0] opacity-100 w-[100px] ml-[8px] h-[32px]"
                                     x-bind:class="{ 'pl-4': !isExpanded }"
                                     x-text="isExpanded ? item.labelExpanded : item.labelCollapsed">
                                     <span
@@ -244,7 +244,7 @@
 
                     <!-- Menu Item - Amministrazione -->
                     <div class="menu-item w-max-52 mr-5"
-                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200' : 'h-88 border-l-2 border-gray-200'"
+                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' : 'h-88 border-l-2 border-gray-200'"
                         x-bind:style="isExpanded ? 'display: flex' : ''">
 
                         <!-- Collapsed View -->
@@ -265,7 +265,7 @@
     { icon: 'contabilità', label: 'Contabilità', route: '{{ route('projects.project') }}' }
 ]">
                             <div class="menu-item-inside grid lg:w-40 md:w-20 sm:w-12"
-                                x-bind:style="isExpanded ? 'padding: 0; justify-items: baseline;' : ''">
+                                x-bind:style="isExpanded ? 'padding: 20px  ; justify-items: baseline;' : ''">
                                 <a :href="item.route" class="block group">
                                     <div>
                                         <img x-bind:hidden="!isExpanded"
@@ -275,7 +275,7 @@
                                     </div>
                                 </a>
                                 <a :href="item.route"
-                                    class="relative group whitespace-pre-line font-light text-[15px] leading-[19px] text-[#B0B0B0] opacity-100 w-[100px] ml-[8px] h-[32px]"
+                                    class="relative group   font-light text-[15px] leading-[19px] text-[#B0B0B0] opacity-100 w-[100px] ml-[8px] h-[32px]"
                                     x-bind:class="{ 'pl-4': !isExpanded }" x-text="item.label">
                                     <span
                                         class="absolute left-0 bottom-0 w-0 h-[1px] bg-gray-400 transition-all duration-200 group-hover:w-full"></span>
@@ -309,7 +309,7 @@
 
                     <!-- Menu Item - CRM -->
                     <div class="menu-item w-max-52 mr-5"
-                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200' : 'h-88 border-l-2 border-gray-200'"
+                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' : 'h-88 border-l-2 border-gray-200'"
                         x-bind:style="isExpanded ? 'display: flex' : ''">
 
                         <!-- Collapsed View -->
@@ -327,57 +327,57 @@
                         <!-- Expanded View Items -->
                         <template
                             x-for="item in [
-    {
-        id: 'crm.leads',
-        label: 'Lead',
-        icon: 'lead',
-        route: '{{ route('crm.leads') }}',
-        isActive: '{{ Route::currentRouteName() }}' === 'crm.leads'
-    },
-    {
-        id: 'crm.contacts',
-        label: 'Contatti',
-        icon: 'contatti',
-        route: '{{ route('crm.contacts') }}',
-        isActive: '{{ Route::currentRouteName() }}' === 'crm.contacts'
-    },
-    {
-        id: 'crm.clients',
-        label: 'Clienti',
-        icon: 'clienti',
-        route: '{{ route('crm.clients') }}',
-        isActive: '{{ Route::currentRouteName() }}' === 'crm.clients'
-    },
-    {
-        id: 'selling',
-        label: 'Vendite',
-        icon: 'vendite',
-        route: '#',
-        isActive: false
-    },
-    {
-        id: 'service',
-        label: 'Servizi & prezzi',
-        icon: 'servizi e prezzi',
-        route: '#',
-        isActive: false
-    }
-]"
+                                {
+                                    id: 'crm.leads',
+                                    label: 'Lead',
+                                    icon: 'lead',
+                                    route: '{{ route('crm.leads') }}',
+                                    isActive: '{{ Route::currentRouteName() }}' === 'crm.leads'
+                                },
+                                {
+                                    id: 'crm.contacts',
+                                    label: 'Contatti',
+                                    icon: 'contatti',
+                                    route: '{{ route('crm.contacts') }}',
+                                    isActive: '{{ Route::currentRouteName() }}' === 'crm.contacts'
+                                },
+                                {
+                                    id: 'crm.clients',
+                                    label: 'Clienti',
+                                    icon: 'clienti',
+                                    route: '{{ route('crm.clients') }}',
+                                    isActive: '{{ Route::currentRouteName() }}' === 'crm.clients'
+                                },
+                                {
+                                    id: 'selling',
+                                    label: 'Vendite',
+                                    icon: 'vendite',
+                                    route: '#',
+                                    isActive: false
+                                },
+                                {
+                                    id: 'service',
+                                    label: 'Servizi & prezzi',
+                                    icon: 'servizi e prezzi',
+                                    route: '#',
+                                    isActive: false
+                                }
+                            ]"
                             :key="item.id">
 
                             <div class="menu-item-inside grid lg:w-40 md:w-20 sm:w-12"
-                                x-bind:style="isExpanded ? 'padding: 0; justify-items: baseline;' : ''"
+                                x-bind:style="isExpanded ? 'padding: 20px  ; justify-items: baseline;' : ''"
                                 @click="selected = item.id">
 
                                 <!-- Icon -->
                                 <a :href="item.route" class="block group">
-                                    <div class="mb-3">
+                                    <div :class="isExpanded ? 'mb-3 w-5 h-5' : 'mb-3'">
                                         <img x-bind:hidden="!isExpanded"
                                             :src="item.isActive || selected === item.id ?
                                                 '/icon/menu_exploded/' + item.icon + ' - color.svg' :
                                                 '/icon/menu_exploded/' + item.icon + '.svg'"
                                             :alt="item.label"
-                                            class="font-light w-[20px] expand-images object-cover transition duration-300 group-hover:scale-105 m-[15px]" />
+                                            class="font-light  expand-images object-cover transition duration-300 group-hover:scale-105 m-[15px]" />
                                     </div>
                                 </a>
 
@@ -386,10 +386,10 @@
                                     :class="{
                                         'text-[#10BDD4]': item.isActive || selected === item.id,
                                         'text-[#B0B0B0]': !(item.isActive || selected === item.id),
-                                        'mt-5': isExpanded,
+                                        '': isExpanded,
                                         'font-light text-[15px] leading-[19px] opacity-100 w-[100px] ml-[25px] h-[32px]': true
                                     }"
-                                    class="relative group whitespace-pre-line">
+                                    class="relative group  ">
                                     <span x-text="item.label"></span>
                                     <span
                                         class="absolute left-0 bottom-0 w-0 h-[1px] bg-gray-400 transition-all duration-200 group-hover:w-full"></span>
@@ -418,25 +418,25 @@
                         <!-- Expanded View Items -->
                         <template
                             x-for="item in [
-    {
-        id: 'gestione.task',
-        label: 'Gestione task',
-        icon: 'pianificazione',
-        route: '#',
-        isActive: false
-    },
-    {
-        id: 'gestione.calendar',
-        label: 'Calendario',
-        icon: 'mappa',
-        route: '#',
-        isActive: false
-    }
-]"
+                                {
+                                    id: 'gestione.task',
+                                    label: 'Gestione task',
+                                    icon: 'pianificazione',
+                                    route: '#',
+                                    isActive: false
+                                },
+                                {
+                                    id: 'gestione.calendar',
+                                    label: 'Calendario',
+                                    icon: 'mappa',
+                                    route: '#',
+                                    isActive: false
+                                }
+                            ]"
                             :key="item.id">
 
                             <div class="menu-item-inside grid lg:w-40 md:w-20 sm:w-12"
-                                x-bind:style="isExpanded ? 'padding: 0; justify-items: baseline;' : ''"
+                                x-bind:style="isExpanded ? 'padding: 20px  ; justify-items: baseline;' : ''"
                                 @click="selected = item.id">
 
                                 <!-- Icon -->
@@ -456,7 +456,7 @@
                                         'mt-5': isExpanded,
                                         'font-light text-[15px] leading-[19px] opacity-100 w-[100px] ml-[25px] h-[32px]': true
                                     }"
-                                    class="relative group whitespace-pre-line">
+                                    class="relative group  ">
                                     <span x-text="item.label"></span>
                                     <span
                                         class="absolute left-0 bottom-0 w-0 h-[1px] bg-gray-400 transition-all duration-200 group-hover:w-full"></span>
