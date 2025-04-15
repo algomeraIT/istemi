@@ -8,20 +8,20 @@
         </div>
 
         <!-- Right: Icons and User Info -->
-        <div class="flex space-x-3 w-2/6">
+        <div class="flex space-x-3 w-2/6 justify-center">
             <!-- Messages Icon -->
-            <button class="text-gray-600 focus:outline-none pr-8">
+            <button class="text-gray-600 focus:outline-none pr-10">
                 <image alt="chat" src="{{ asset('icon/navbar/chatbox-ellipses-outline.svg') }}" />
             </button>
 
             <!-- Generic Icon (Example) -->
-            <button class="text-gray-600 focus:outline-none pr-8">
+            <button class="text-gray-600 focus:outline-none pr-10">
                 <image alt="chat" src="{{ asset('icon/navbar/easel-outline.svg') }}" />
 
             </button>
 
             <!-- Notifications Icon -->
-            <button class="text-gray-600 focus:outline-none pr-8">
+            <button class="text-gray-600 focus:outline-none pr-10">
                 <image alt="notifiche" src="{{ asset('icon/navbar/notifications-outline.svg') }}" />
 
             </button>
@@ -35,7 +35,9 @@
                     @if (isset(Auth::user()->profile_photo))
                     <img src="{{ Auth::user()->profile_photo_url }}" alt="User" class="w-8 h-8 rounded-full">
                     @else
-                    <image alt="utente" src="{{ asset('icon/navbar/user.svg') }}" />
+                    <div class="w-10 h-10 bg-[#F5FCFD] rounded-4xl flex">
+                        <image alt="utente" class="w-4.5 h-4.5 m-2.5" src="{{ asset('icon/navbar/user.svg') }}" />
+                    </div>
 
                     @endif
                     <div class="flex flex-col items-start ml-5">
@@ -62,6 +64,8 @@
                         </button>
                     </form>
                 </div>
+
+                
             </div>
     </nav>
 </section>
