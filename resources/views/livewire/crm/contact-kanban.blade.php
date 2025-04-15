@@ -1,91 +1,80 @@
 <div>
-    <div class="mt-4 grid  sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 xl:gap-4 lg:gap-3 md:gap-2 sm:gap-1">
+    <div class="mt-4 grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
+        @php
+            $statusMap = [
+                1 => ['label' => 'In contatto', 'bg' => 'bg-[#FFF9E5]', 'text' => 'text-[#FEC106]', 'border' => 'border-[#FFC107]'],
+                0 => ['label' => 'Non idoneo', 'bg' => 'bg-[#F0F1F2]', 'text' => 'text-[#6C757D]', 'border' => 'border-[#6C757D]']
+            ];
+        @endphp
+
         @foreach ($contact_kanban as $contact)
-        <div class="bg-white border-1 border-gray-300  p-4">
-            <h3 class="text-lg font-bold text-[#232323]">{{ $contact->company_name }}</h3>
-            <div class="flex mb-[22px] mt-[8px]">
-                <p class="italic font-extralight text-base leading-5 text-[#B0B0B0] tracking-normal text-left"> {{
-                    $contact->id }}&nbsp;-
-                </p>
-                <p class="italic font-extralight text-base leading-5 text-[#B0B0B0] tracking-normal text-left">&nbsp;
-                    Acquisizione:
-                    {{ \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y') }}</p>
-            </div>
+            @php
+                $status = $statusMap[$contact->status] ?? $statusMap[0];
+            @endphp
 
-            <div class="flex md:sm:block">
-                <div>
-                    <p
-                        class="flex font-light text-sm  text-[#B0B0B0] tracking-normal  text-[13px] text-left opacity-100 items-center">
-                        <flux:icon.at-symbol class="w-[13px]" />
-                        E-mail:
-                    </p>
-                    <span
-                        class="myInput font-semibold text-base leading-5 text-[#B0B0B0] tracking-normal text-left flex mt-[8px]">
-                        {{ $contact->email }}
-                        <flux:icon.document-duplicate onclick="myFunction('{{ $contact->email }}')"
-                            class="text-[#10BDD4] w-[26px] h-[26px] ml-[11px]" />
+            <div class="bg-white border border-gray-300 p-4 rounded shadow-sm text-sm">
+                {{-- Company Name --}}
+                <h3 class="text-lg font-bold text-[#232323]">{{ $contact->company_name }}</h3>
+
+                {{-- Info Line --}}
+                <div class="flex flex-wrap mt-2 mb-4 gap-2 text-[#B0B0B0] italic font-extralight text-base">
+                    <span>ID: {{ $contact->id }}</span>
+                    <span>Acquisizione: {{ \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y') }}</span>
+                </div>
+
+                {{-- Contact Info --}}
+                <div class="flex flex-col gap-4 md:flex-row md:justify-between">
+                    {{-- Email --}}
+                    <div>
+                        <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
+                            <flux:icon.at-symbol class="w-4" /> E-mail:
+                        </p>
+                        <div class="flex items-center gap-2 mt-1 font-semibold text-[#232323]">
+                            {{ $contact->email }}
+                            <button onclick="copyToClipboard('{{ $contact->email }}')">
+                                <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
+                            </button>
+                        </div>
+                    </div>
+
+                    {{-- Phone --}}
+                    <div>
+                        <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
+                            <flux:icon.phone class="w-4" /> Telefono:
+                        </p>
+                        <div class="flex items-center gap-2 mt-1 font-semibold text-[#232323]">
+                            {{ $contact->first_telephone }}
+                            <button onclick="copyToClipboard('{{ $contact->first_telephone }}')">
+                                <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Status Badge --}}
+                <div class="mt-3">
+                    <span class="inline-block px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $status['bg'] }} {{ $status['text'] }} {{ $status['border'] }}">
+                        {{ $status['label'] }}
                     </span>
                 </div>
 
-                <div class=" ml-7 md:sm:ml-0">
-                    <p
-                        class="flex font-light text-sm  text-[#B0B0B0] tracking-normal  text-[13px] text-left opacity-100 items-center">
-                        <flux:icon.phone class="w-[13px]" />
-                        Telefono:
-                    </p>
-                    <span
-                        class="font-semibold text-base leading-5 text-[#B0B0B0] tracking-normal text-left flex mt-[8px]">
-                        {{ $contact->first_telephone }}
-                        <flux:icon.document-duplicate onclick="myFunction('{{ $contact->first_telephone }}')"
-                            class="text-[#10BDD4] w-[26px] h-[26px] ml-[11px]" />
-                    </span>
+                {{-- Action Buttons --}}
+                <div class="mt-4 text-right flex justify-end gap-2">
+                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $contact->id])
+                    @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $contact->id])
                 </div>
-
             </div>
-
-            <p class="mt-2">
-                <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border border-solid 
-                @if($contact->status == 1)
-                    bg-[#FFF9E5] text-[#FEC106] border-[#FFC107]
-                @else
-                    bg-[#F0F1F2] text-[#6C757D] border-[#6C757D]
-     
-                @endif ">
-                    @if($contact->status == 1)
-                    In contatto
-                    @else
-                    Non idoneo
-                    @endif
-                </span>
-            </p>
-            <div class="mt-3 text-right">
-                @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $contact->id])
-
-            
-                {{-- <button wire:click="edit({{ $lead->id }})" class="px-3 py-1  text-gray-400 hover:cursor-pointer">
-                    <flux:icon.pencil-square />
-                </button> --}}
-                @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $contact->id])
-
-            </div>
-        </div>
         @endforeach
     </div>
-    {{-- <div class="mt-4">
-        {{ $leads->links() }}
-    </div> --}}
+
+    {{-- Pagination (Optional) --}}
+    {{-- <div class="mt-4">{{ $leads->links() }}</div> --}}
 </div>
 
 <script>
-    function myFunction(text) {
-        var textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        textArea.setSelectionRange(0, 99999); // For mobile devices
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-
-        alert("Copiato: " + text);
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text)
+            .then(() => alert("Copiato: " + text))
+            .catch(err => console.error("Clipboard error:", err));
     }
 </script>

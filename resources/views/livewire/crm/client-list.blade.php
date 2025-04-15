@@ -1,112 +1,85 @@
-<div class=" mx-auto">
+<div class="mx-auto">
+    {{-- Responsive Table Wrapper --}}
+    <div class="overflow-x-auto w-full">
+        <table class="min-w-[800px] w-full text-sm">
+            <thead>
+                <tr class="text-gray-400 h-10 text-left">
+                    @foreach (['ID', 'Logo', 'Ragione sociale', 'E-mail', 'Telefono', 'Sede', 'Etichette', ''] as $heading)
+                        <th class="font-inter font-light text-[14px] text-[#B0B0B0] tracking-normal whitespace-nowrap">{{ $heading }}</th>
+                    @endforeach
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $statusMap = [
+                        0 => ['label' => 'Call center', 'bg' => 'bg-[#FEF7EF]', 'text' => 'text-[#F5AD65]', 'border' => 'border-[#F5AD65]'],
+                        1 => ['label' => 'Censimento', 'bg' => 'bg-[#E3F1F4]', 'text' => 'text-[#2A8397]', 'border' => 'border-[#2A8397]']
+                    ];
+                @endphp
 
-    <!-- Clients Table -->
-    <table class="w-full">
-        <thead>
-            <tr class="text-gray-400 h-10">
-                <th
-                class=" font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                ID</th>
-                <th
-                    class=" font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    logo</th>
-                <th
-                    class="font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    Ragione sociale</th>
-                <th
-                    class=" font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    E-mail</th>
-                <th
-                    class=" font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    Telefono</th>
-                <th
-                    class=" font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    Sede</th>
-                <th
-                    class=" w-[200px] font-light text-[14px]  tracking-[0px] text-[#B0B0B0] text-left font-inter">
-                    Etichette</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($clients as $client)
-            <tr class="hover:bg-gray-100 border-b h-12 xl:text-lg lg:text-[14px] md:text-[12px] sm:text-[10px]">
-                <td class="font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">{{
-                    $client->id }}</td>
-                <td class=" font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">
-                    <img class="w-10 h-10" src="{{ $client->logo_path ?: asset('images/default-logo.webp') }}" />
-                </td>
-                <td class="font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">{{
-                    $client->company_name }}</td>
-                <td class="font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">
-                    <div class="flex items-center">
-                        <span>{{ $client->email }}</span>
-                        <div onclick="myFunction('{{ $client->email }}')"
-                            class="relative group w-[32px] h-[32px] flex items-center justify-center ml-[11px]">
-                            <div
-                                class="absolute w-full h-full rounded-full border-[1px] border-transparent group-hover:border-[#10BDD4] transition-all">
+                @foreach($clients as $client)
+                    @php
+                        $status = $statusMap[$client->status] ?? $statusMap[0];
+                    @endphp
+                    <tr class="border-b h-14 hover:bg-gray-100 text-[#232323]">
+                        <td class="font-medium whitespace-nowrap">{{ $client->id }}</td>
+
+                        <td class="whitespace-nowrap">
+                            <img src="{{ $client->logo_path ?: asset('images/default-logo.webp') }}" class="w-10 h-10 rounded" />
+                        </td>
+
+                        <td class="font-medium whitespace-nowrap">{{ $client->company_name }}</td>
+
+                        <td class="whitespace-nowrap">
+                            <div class="flex items-center">
+                                <span class="truncate max-w-[150px]">{{ $client->email }}</span>
+                                <button onclick="copyToClipboard('{{ $client->email }}')"
+                                    class="ml-2 group relative flex items-center justify-center w-8 h-8">
+                                    <div class="absolute w-full h-full rounded-full border border-transparent group-hover:border-[#10BDD4] transition-all"></div>
+                                    <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
+                                </button>
                             </div>
-                            <flux:icon.document-duplicate class="text-[#10BDD4] w-[26px] h-[26px]" />
-                        </div>
-                    </div>
-                </td>
-                <td class="font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">
-                    <div class="flex items-center">
-                        <span>{{ $client->first_telephone }}</span>
-                        <div onclick="myFunction('{{ $client->first_telephone }}')"
-                            class="relative group w-[32px] h-[32px] flex items-center justify-center ml-[11px]">
-                            <div
-                                class="absolute w-full h-full rounded-full border-[1px] border-transparent group-hover:border-[#10BDD4] transition-all">
+                        </td>
+
+                        <td class="whitespace-nowrap">
+                            <div class="flex items-center">
+                                <span>{{ $client->first_telephone }}</span>
+                                <button onclick="copyToClipboard('{{ $client->first_telephone }}')"
+                                    class="ml-2 group relative flex items-center justify-center w-8 h-8">
+                                    <div class="absolute w-full h-full rounded-full border border-transparent group-hover:border-[#10BDD4] transition-all"></div>
+                                    <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
+                                </button>
                             </div>
-                            <flux:icon.document-duplicate class="text-[#10BDD4] w-[26px] h-[26px]" />
-                        </div>
-                    </div>
-                </td>
-                <td class="font-medium text-lg leading-[21px] text-[#232323] tracking-normal text-left">{{
-                    $client->city }}</td>
-                <td>
-                <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border border-solid 
-                    @if($client->status == 0)
-                        bg-[#FEF7EF] text-[#F5AD65] border-[#F5AD65]
-                    @else
-                        bg-[#E3F1F4] text-[#2A8397] border-[#2A8397]
-                    @endif">
-                    @if($client->status == 0)
-                    Call center
-                    @else
-                    Censimento
-                    @endif
-                </span>
-                </td>
-                <td class="font-medium text-lg text-[#232323] tracking-normal text-left">
-                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'goToDetail', 'id' => $client->id])
-                    @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $client->id])
-                    @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $client->id])
+                        </td>
 
-               
+                        <td class="font-medium whitespace-nowrap">{{ $client->city }}</td>
 
-                 
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+                        <td class="whitespace-nowrap">
+                            <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $status['bg'] }} {{ $status['text'] }} {{ $status['border'] }}">
+                                {{ $status['label'] }}
+                            </span>
+                        </td>
 
-
+                        <td class="flex gap-2 whitespace-nowrap">
+                            @include('livewire.crm.utilities.detail-button', ['functionName' => 'goToDetail', 'id' => $client->id])
+                            @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $client->id])
+                            @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $client->id])
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
+
 <div class="mt-4">
     {{ $clients->links('customPagination') }}
 </div>
-<script>
-    function myFunction(text) {
-        var textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        textArea.setSelectionRange(0, 99999); // For mobile devices
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
 
-        alert("Copiato: " + text);
+<script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text)
+            .then(() => alert("Copiato: " + text))
+            .catch(err => console.error("Clipboard error:", err));
     }
 </script>

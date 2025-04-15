@@ -1,114 +1,89 @@
-<div class="justify-between items-center">
-    @if($leads != null)
-    <table class="w-full">
-        <thead>
-            <tr class="text-gray-400 h-10">
-                <th class=" font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
-                    ID
-                </th>
-                <th
-                    class="font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
-                    Ragione Sociale</th>
-                <th
-                    class=" font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
-                    E-mail</th>
-                <th
-                    class="font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
-                    Telefono</th>
-                <th class=" font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
-                    Acquisizione</th>
-                <th class=" font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
-                    Stato</th>
-                <th class="font-light text-[14px]   text-[#B0B0B0] text-left font-inter">
-                    Azioni</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($leads as $lead)
-            <tr class="hover:bg-gray-100 border-b h-12 xl:text-lg lg:text-[14px] md:text-[12px] sm:text-[10px]">
-                <td class="font-medium  text-[#232323] tracking-normal text-left">{{ $lead->id
-                    }}</td>
-                <td class="font-medium  text-[#232323] tracking-normal text-left">{{
-                    $lead->company_name }}</td>
-                <td class="font-medium  text-[#232323] tracking-normal text-left">
-                    <span class="myInput flex">{{ $lead->email }}
-                        <div onclick="myFunction('{{ $lead->email }}')"
-                            class="relative group w-[32px] h-[32px] flex items-center justify-center ml-[11px]">
-                            <!-- Circle (only visible on hover) -->
-                            <div
-                                class="absolute w-full h-full rounded-full border-[1px] border-transparent group-hover:border-[#10BDD4] transition-all">
+<div class="w-full overflow-x-auto">
+    @if ($leads)
+        <table class="w-full min-w-[768px] font-inter text-sm text-left">
+            <thead class="text-[#B0B0B0] font-light text-[14px]">
+                <tr class="h-10">
+                    <th>ID</th>
+                    <th>Ragione Sociale</th>
+                    <th>E-mail</th>
+                    <th>Telefono</th>
+                    <th>Acquisizione</th>
+                    <th>Stato</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($leads as $lead)
+                    <tr class="border-b hover:bg-gray-100 h-12 text-[#232323] font-medium xl:text-lg lg:text-base md:text-sm sm:text-xs">
+                        <td>{{ $lead->id }}</td>
+                        <td>{{ $lead->company_name }}</td>
+
+                        {{-- Email --}}
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <span>{{ $lead->email }}</span>
+                                <button onclick="copyToClipboard('{{ $lead->email }}')" class="group relative w-8 h-8 flex items-center justify-center">
+                                    <div class="absolute inset-0 rounded-full border group-hover:border-[#10BDD4] transition-all"></div>
+                                    <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
+                                </button>
                             </div>
+                        </td>
 
-                            <!-- Icon -->
-                            <flux:icon.document-duplicate class="text-[#10BDD4] w-[26px] h-[26px] " />
-                        </div>
-                    </span>
-                </td>
-                <td class="font-medium  text-[#232323] tracking-normal text-left">
-                    <span class="flex">{{ $lead->first_telephone }}
-                        <flux:icon.document-duplicate onclick="myFunction('{{ $lead->first_telephone }}')"
-                            class="text-[#10BDD4] w-[26px] h-[26px] ml-[11px]" />
-                    </span>
-                </td>
-                <td class="font-medium  text-[#232323] tracking-normal text-left">
-                    {{ \Carbon\Carbon::parse($lead->created_at)->format('d/m/Y') }}
-                </td>
-                <td class="font-medium  text-[#232323] tracking-normal text-left">
-                    <span class="px-2 py-1  font-semibold rounded-[15px] border border-solid 
-                        @if($lead->status == 1)
-                            bg-purple-100 text-[#6F42C1] border-[#6F42C1]
-                        @elseif($lead->status == 2)
-                            bg-red-100 text-[#E63946] border-[#E63946]
-                        @elseif($lead->status == 0)
-                            bg-cyan-100 text-[#0C7BFF] border-[#0C7BFF]
-                        @else
-                            bg-gray-100 text-gray-600 border-gray-600
-                        @endif">
-                        @if($lead->status == 1)
-                        Assegnato
-                        @elseif($lead->status == 2)
-                        Da riassegnare
-                        @elseif($lead->status == 0)
-                        Nuovo
-                        @else
-                        Unknown
-                        @endif
-                    </span>
-                </td>
-                <td class=" md:flex sm:flex">
-                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $lead->id])
-                    @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $lead->id])
+                        {{-- Phone --}}
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <span>{{ $lead->first_telephone }}</span>
+                                <button onclick="copyToClipboard('{{ $lead->first_telephone }}')" class="group relative w-8 h-8 flex items-center justify-center">
+                                    <div class="absolute inset-0 rounded-full border group-hover:border-[#10BDD4] transition-all"></div>
+                                    <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
+                                </button>
+                            </div>
+                        </td>
 
-                 
-                </td>
-                {{-- <td class="text-left w-1">
-                     @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $lead->id])
+                        {{-- Acquisition Date --}}
+                        <td>{{ \Carbon\Carbon::parse($lead->created_at)->format('d/m/Y') }}</td>
 
-                </td> --}}
+                        {{-- Status --}}
+                        <td>
+                            @php
+                                $statusMap = [
+                                    0 => ['text' => 'Nuovo', 'bg' => 'bg-cyan-100', 'textColor' => 'text-[#0C7BFF]', 'border' => 'border-[#0C7BFF]'],
+                                    1 => ['text' => 'Assegnato', 'bg' => 'bg-purple-100', 'textColor' => 'text-[#6F42C1]', 'border' => 'border-[#6F42C1]'],
+                                    2 => ['text' => 'Da riassegnare', 'bg' => 'bg-red-100', 'textColor' => 'text-[#E63946]', 'border' => 'border-[#E63946]'],
+                                ];
+                                $status = $statusMap[$lead->status] ?? ['text' => 'Sconosciuto', 'bg' => 'bg-gray-100', 'textColor' => 'text-gray-600', 'border' => 'border-gray-600'];
+                            @endphp
+                            <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $status['bg'] }} {{ $status['textColor'] }} {{ $status['border'] }}">
+                                {{ $status['text'] }}
+                            </span>
+                        </td>
 
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <!-- Pagination Links -->
-    <div class="mt-4">
-        {{ $leads->links('customPagination') }}
-    </div>
+                        {{-- Actions --}}
+                        <td class="flex flex-wrap gap-2">
+                            @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $lead->id])
+                            @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $lead->id])
+                            {{-- Optional: Edit Button --}}
+                            {{-- @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $lead->id]) --}}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <div class="mt-4">
+            {{ $leads->links('customPagination') }}
+        </div>
     @else
-    <p class="text-gray-500">Nessun elemento da mostrare</p>
+        <p class="text-gray-500">Nessun elemento da mostrare</p>
     @endif
 </div>
 
 <script>
-    function myFunction(text) {
-        var textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        textArea.setSelectionRange(0, 99999); // For mobile devices
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-
-        alert("Copiato: " + text);
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Copiato: " + text);
+        }).catch(err => {
+            console.error('Clipboard error:', err);
+        });
     }
 </script>
