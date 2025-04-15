@@ -66,10 +66,8 @@
                 </span>
             </p>
             <div class="mt-3 text-right">
-                <button wire:click="show({{ $lead->id }})" title="Dettaglio"
-                    class=" text-gray-600 rounded  hover:cursor-pointer">
-                    <flux:icon.eye class="text-[#10BDD4]" />
-                </button>
+                @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $lead->id])
+
                 {{-- <button wire:click="edit({{ $lead->id }})" class="px-3 py-1  text-gray-400 hover:cursor-pointer">
                     <flux:icon.pencil-square />
                 </button> --}}

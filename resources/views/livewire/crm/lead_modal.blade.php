@@ -6,7 +6,7 @@
         </button>
 
         <h2 class="text-lg font-semibold mb-3 ">{{ $lead_id ? 'Modifica Lead' : 'Crea Lead' }}</h3>
-        <div class="bg-whiterounded-lg shadow-sm h-full pt-[60px]">
+        <div class=" h-full pt-14">
             <!-- Ragione Sociale -->
             <label
                 class=" text-xs   flex items-center gap-2 mb-1 text-[13px] leading-[16px] font-ultralight text-[#B0B0B0] tracking-[0px] text-left opacity-100">

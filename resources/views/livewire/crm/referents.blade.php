@@ -84,10 +84,8 @@
                                     <td class=" ">{{ $referent->email }}</td>
                                     <td class="">{{ $referent->telephone }}</td>
                                     <td class="flex ">
-                                        <button wire:click="show({{ $referent->id }})" title="Dettaglio"
-                                            class="px-3 py-1  text-[#10BDD4] rounded  hover:cursor-pointer">
-                                            <flux:icon.eye />
-                                        </button>
+                                        @include('livewire.crm.utilities.detail-button', ['functionName' => 'referent', 'id' => $contact->id])
+
 
                                         <button wire:click="edit({{ $referent->id }})"
                                             class="px-3 py-1 text-[#6C757D] hover:cursor-pointer">
@@ -188,10 +186,9 @@
                                             @endif
                                         </span></td>
                                     <td>
-                                        <button wire:click="showSale({{ $sale->id }})" title="Dettaglio"
-                                            class="px-3 py-1  text-gray-600 rounded  hover:cursor-pointer">
-                                            <flux:icon.eye />
-                                        </button>
+                                        @include('livewire.crm.utilities.detail-button', ['functionName' => 'showSale', 'id' => $sale->id])
+
+                            
                                     </td>
 
                                 </tr>
@@ -236,10 +233,9 @@
                                             @endif
                                         </span></td>
                                     <td>
-                                        <button wire:click="showSale({{ $acquisition->id }})" title="Dettaglio"
-                                            class="px-3 py-1  text-gray-600 rounded  hover:cursor-pointer">
-                                            <flux:icon.eye />
-                                        </button>
+                                        @include('livewire.crm.utilities.detail-button', ['functionName' => 'showSale', 'id' => $acquisition->id])
+
+                                      
                                     </td>
 
                                 </tr>
@@ -352,10 +348,9 @@
                                         @endif
                                     </span></td>
                                 <td>
-                                    <button wire:click="showInvoice({{ $accounting->id }})" title="Dettaglio"
-                                        class="px-3 py-1  text-[#10BDD4] rounded  hover:cursor-pointer">
-                                        <flux:icon.eye />
-                                    </button>
+                                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'showInvoice', 'id' => $accounting->id])
+
+                               
                                 </td>
                             </tr>
                             @endforeach
@@ -421,14 +416,10 @@
                                         @endif
                                     </span></td>
                                 <td>
-                                    <button wire:click="showInvoice({{ $accounting_i->id }})" title="Dettaglio"
-                                        class=" text-gray-600 rounded  hover:cursor-pointer">
-                                        <flux:icon.eye class="text-[#10BDD4]" />
-                                    </button>
-                                    <button wire:click="showInvoice({{ $accounting_i->id }})" title="Dettaglio"
-                                        class="ml-[10px] text-gray-600 rounded  hover:cursor-pointer">
-                                        <flux:icon.arrow-down-tray class="text-[#10BDD4]" />
-                                    </button>
+                                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'showInvoice', 'id' => $accounting_i->id])
+
+                               
+                           
                                 </td>
                             </tr>
                             @endforeach
@@ -593,10 +584,9 @@
 
                                     </div>
                                     <div class="mt-4">
-                                        <button wire:click="showActivity({{ $activity->id }})" title="Dettaglio"
-                                            class=" text-gray-600 rounded  hover:cursor-pointer">
-                                            <flux:icon.eye class="text-[#10BDD4]" />
-                                        </button>
+                                        @include('livewire.crm.utilities.detail-button', ['functionName' => 'showActivity', 'id' => $activity->id])
+
+                                   
                                         <button wire:click="edit({{ $activity->id }})" title="Modifica"
                                             class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
                                             <flux:icon.pencil class="text-[#6C757D]" />
@@ -677,10 +667,9 @@
                                         </div> --}}
                                     </div>
                                     <div class="mt-4">
-                                        <button wire:click="showNote{{ $note->id }})" title="Dettaglio"
-                                            class=" text-gray-600 rounded  hover:cursor-pointer">
-                                            <flux:icon.eye class="text-[#10BDD4]" />
-                                        </button>
+                                        @include('livewire.crm.utilities.detail-button', ['functionName' => 'showNote', 'id' => $note->id])
+
+                                   
                                         <button wire:click="edit({{ $note->id }})" title="Modifica"
                                             class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
                                             <flux:icon.pencil class="text-[#6C757D]" />
@@ -849,10 +838,9 @@
                                     </div> --}}
                                 </div>
                                 <div class="mt-4">
-                                    <button wire:click="showNote{{ $note->id }})" title="Dettaglio"
-                                        class=" text-gray-600 rounded  hover:cursor-pointer">
-                                        <flux:icon.eye class="text-[#10BDD4]" />
-                                    </button>
+                                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'showNote', 'id' => $note->id])
+
+                            
                                     <button wire:click="edit({{ $note->id }})" title="Modifica"
                                         class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
                                         <flux:icon.pencil class="text-[#6C757D]" />

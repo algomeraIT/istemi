@@ -73,10 +73,8 @@
                 </td>
                 </td>
                 <td class="">
-                    <button wire:click="show({{ $contact->id }})" title="Dettaglio"
-                        class=" text-gray-600 rounded  hover:cursor-pointer">
-                        <flux:icon.eye class="text-[#10BDD4]" />
-                    </button>
+                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $contact->id])
+
                     <button wire:click="delete({{ $contact->id }})" title="Cancella"
                         class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
                         <flux:icon.trash class="text-[#E63946]" />

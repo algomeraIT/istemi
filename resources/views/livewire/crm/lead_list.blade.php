@@ -76,12 +76,10 @@
                     </span>
                 </td>
                 <td class=" md:flex sm:flex">
-                    <button wire:click="show({{ $lead->id }})" title="Dettaglio"
-                        class=" text-gray-600 rounded  hover:cursor-pointer">
-                        <flux:icon.eye class="text-[#10BDD4]" />
-                    </button>
+                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $lead->id])
+              
                     <button wire:click="delete({{ $lead->id }})" title="Cancella"
-                        class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
+                        class=" text-gray-600   ml-[10px] hover:cursor-pointer">
                         <flux:icon.trash class="text-[#E63946]" />
                     </button>
                 </td>

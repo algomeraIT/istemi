@@ -41,10 +41,8 @@
                     </td>
                     <td class="border border-gray-300 px-4 py-2 text-center">{{ $referent->role }}</td> --}}
                         <td class="px-4 py-2">
-                        <button wire:click="goToDetail({{ $referent->id }})" title="Dettaglio"
-                            class="px-3 py-1  text-gray-600 rounded  hover:cursor-pointer">
-                            <flux:icon.eye />
-                        </button>
+                            @include('livewire.crm.utilities.detail-button', ['functionName' => 'goToDetail', 'id' => $referent->id])
+
                     </td>
                     <td>
                         <button @click="open = true; editing = true; referent = {{ $referent }}"

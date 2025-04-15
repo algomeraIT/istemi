@@ -58,9 +58,8 @@
                 </span>
             </p>
             <div class="mt-3 text-right">
-                <button wire:click="goToDetail({{ $client->id }})" title="Dettaglio" class="   hover:cursor-pointer">
-                    <flux:icon.eye class="text-[#10BDD4]" />
-                </button>
+                @include('livewire.crm.utilities.detail-button', ['functionName' => 'goToDetail', 'id' => $client->id])
+
                 <button wire:click="edit({{ $client->id }})" class="  ml-[10px]  hover:cursor-pointer">
                     <flux:icon.pencil-square />
                 </button>
