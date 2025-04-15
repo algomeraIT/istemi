@@ -591,10 +591,8 @@
                                             class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
                                             <flux:icon.pencil class="text-[#6C757D]" />
                                         </button>
-                                        <button wire:click="delete({{ $activity->id }})" title="Cancella"
-                                            class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
-                                            <flux:icon.trash class="text-[#E63946]" />
-                                        </button>
+                                        @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $activity->id])
+
                                     </div>
                                 </div>
                             </li>
@@ -674,10 +672,8 @@
                                             class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
                                             <flux:icon.pencil class="text-[#6C757D]" />
                                         </button>
-                                        <button wire:click="delete({{ $note->id }})" title="Cancella"
-                                            class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
-                                            <flux:icon.trash class="text-[#E63946]" />
-                                        </button>
+                                        @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $note->id])
+
                                     </div>
                                 </div>
                             </li>
@@ -845,10 +841,8 @@
                                         class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
                                         <flux:icon.pencil class="text-[#6C757D]" />
                                     </button>
-                                    <button wire:click="delete({{ $note->id }})" title="Cancella"
-                                        class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
-                                        <flux:icon.trash class="text-[#E63946]" />
-                                    </button>
+                                    @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $note->id])
+
                                 </div>
                             </div>
                         </li>

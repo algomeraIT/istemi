@@ -63,10 +63,8 @@
                 <button wire:click="edit({{ $client->id }})" class="  ml-[10px]  hover:cursor-pointer">
                     <flux:icon.pencil-square />
                 </button>
-                <button wire:click="delete({{ $client->id }})" title="Cancella"
-                    class="  ml-[10px] hover:cursor-pointer">
-                    <flux:icon.trash class="text-[#E63946]" />
-                </button>
+                @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $client->id])
+
             </div>
         </div>
         @endforeach

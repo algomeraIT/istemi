@@ -77,11 +77,9 @@
                 </td>
                 <td class=" md:flex sm:flex">
                     @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $lead->id])
-              
-                    <button wire:click="delete({{ $lead->id }})" title="Cancella"
-                        class=" text-gray-600   ml-[10px] hover:cursor-pointer">
-                        <flux:icon.trash class="text-[#E63946]" />
-                    </button>
+                    @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $lead->id])
+
+                 
                 </td>
                 {{-- <td class="text-left w-1">
                     <button wire:click="edit({{ $lead->id }})" title="Modifica"

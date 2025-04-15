@@ -51,10 +51,8 @@
                         </button>
                     </td>
                     <td>
-                        <button wire:click="delete({{ $referent->id }})" title="Cancella"
-                            class="px-3 py-1  text-gray-600 rounded  ml-2 hover:cursor-pointer">
-                            <flux:icon.x-mark />
-                        </button>
+                        @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $referent->id])
+
                     </td>
                 </tr>
                 @endforeach
