@@ -567,7 +567,7 @@
                                         </div>
                                         <div class="m-4 flex">
                                             <p> <span class="px-2 py-1  font-semibold rounded-[15px] border border-solid 
-                                                @if($activity->to_do == " Fatta") bg-[#EFF9F3] text-[#65C587]
+                                                @if($activity->to_do == "Fatta") bg-[#EFF9F3] text-[#65C587]
                                                     border-[#65C587] @elseif($activity->to_do == "Da Terminare")
                                                     bg-[] text-[#65C587] border-[#E63946]
                                                     @elseif($activity->to_do == "In sospeso")

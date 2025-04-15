@@ -20,7 +20,7 @@
 
 
             <div class="flex xl:lg:w-1/3 md:sm:w-full p-6 bg-white">
-                <div class=" w-md  bg-white border-2 border-dotted border-[#10BDD4] rounded-[2px] opacity-100">
+                <div class=" w-md  bg-white border-2 border-dotted border-[#10BDD4] rounded-[2px] opacity-100 mt-16">
                     <!-- Client Logo -->
                     <div
                         class="flex justify-center border-b border-t-0 border-l-0 border-r-0 border-2 h-[70px] border-dotted border-[#10BDD4] bg-[#F5FCFD]">

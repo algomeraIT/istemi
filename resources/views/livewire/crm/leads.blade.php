@@ -15,27 +15,7 @@
             </div>
 
             {{-- tab --}}
-            <div class="lg:xl:flex md:block sm:block w-1/3 border-gray-300 justify-center"
-                x-data="{ activeTab: @entangle('activeTab') }">
-                <div
-                    class=" h-7 bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
-                    <button wire:click="setTab('list')"
-                        class="flex w-[78px] h-7 text-[16px] m-[3px] text-[#B0B0B0] font-sans  opacity-100 focus:outline-none  transition-all duration-200 hover:cursor-pointer"
-                        :class="{ 'border-cyan-400 text-cyan-400': activeTab === 'list' }">
-                        <flux:icon.list-bullet class="w-[20px] ml-[10px] " /> Lista
-                    </button>
-                </div>
-
-                <div
-                    class=" h-7 bg-[#F5FCFD] border-[0.5px] border-[#10BDD4] rounded-tr-[1px] rounded-br-[1px] opacity-100">
-                    <button wire:click="setTab('kanban')"
-                        class="flex  w-[101px] h-7   text-[16px] m-[3px] text-[#B0B0B0] font-sans  opacity-100 focus:outline-none  transition-all duration-200 hover:cursor-pointer"
-                        :class="{ 'border-cyan-400 text-cyan-400': activeTab === 'kanban' }">
-                        <flux:icon.squares-2x2 class="w-[20px] ml-[10px] " /> Kanban
-                    </button>
-                </div>
-
-            </div>
+            @include('livewire.crm.utilities.tab')
             {{-- filtro --}}
             <div class="lg:xl:flex md:block sm:block space-x-4 w-1/3">
                 <select wire:model.live="status"
@@ -48,8 +28,8 @@
 
                 {{-- <input type="date" wire:model.live="date" class="border-gray-300  p-2 " />--}}
                 <input type="number" wire:model.live="year"
-                    class="border-gray-200 xl:w-60 lg:w-52 md:w-40 sm:w-[90%]  h-7 text-[#B0B0B0] border placeholder:font-medium" min="1900"
-                    max="2099" step="1" placeholder="Tutte le date di acquisizione" />
+                    class="border-gray-200 xl:w-60 lg:w-52 md:w-40 sm:w-[90%]  h-7 text-[#B0B0B0] border placeholder:font-medium"
+                    min="1900" max="2099" step="1" placeholder="Tutte le date di acquisizione" />
 
                 {{-- <button wire:click="resetFilters" class="bg-gray-200 px-3 py-1  hover:cursor-pointer">
                     Reset Filtri
