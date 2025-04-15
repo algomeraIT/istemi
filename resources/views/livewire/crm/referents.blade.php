@@ -587,10 +587,8 @@
                                         @include('livewire.crm.utilities.detail-button', ['functionName' => 'showActivity', 'id' => $activity->id])
 
                                    
-                                        <button wire:click="edit({{ $activity->id }})" title="Modifica"
-                                            class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
-                                            <flux:icon.pencil class="text-[#6C757D]" />
-                                        </button>
+                                        @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $activity->id])
+
                                         @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $activity->id])
 
                                     </div>
@@ -668,10 +666,8 @@
                                         @include('livewire.crm.utilities.detail-button', ['functionName' => 'showNote', 'id' => $note->id])
 
                                    
-                                        <button wire:click="edit({{ $note->id }})" title="Modifica"
-                                            class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
-                                            <flux:icon.pencil class="text-[#6C757D]" />
-                                        </button>
+                                        @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $note->id])
+
                                         @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $note->id])
 
                                     </div>
@@ -835,12 +831,7 @@
                                 </div>
                                 <div class="mt-4">
                                     @include('livewire.crm.utilities.detail-button', ['functionName' => 'showNote', 'id' => $note->id])
-
-                            
-                                    <button wire:click="edit({{ $note->id }})" title="Modifica"
-                                        class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
-                                        <flux:icon.pencil class="text-[#6C757D]" />
-                                    </button>
+                                    @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $note->id])
                                     @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $note->id])
 
                                 </div>

@@ -80,12 +80,7 @@
                 </td>
                 <td class="font-medium text-[18px] text-[#232323] tracking-normal text-left">
                     @include('livewire.crm.utilities.detail-button', ['functionName' => 'goToDetail', 'id' => $client->id])
-
-                
-                    <button wire:click="edit({{ $client->id }})" title="Modifica"
-                        class="px-3 py-1  text-gray-600 rounded  hover:cursor-pointer">
-                        <flux:icon.pencil-square />
-                    </button>
+                    @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $client->id])
                     @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $client->id])
 
                

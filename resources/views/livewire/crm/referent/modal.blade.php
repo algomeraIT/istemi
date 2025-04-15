@@ -170,10 +170,8 @@
                     </span></p>
 
                 <div class="flex space-x-2">
-                    <button wire:click="edit({{ $note->id }})" title="Modifica"
-                        class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer flex">
-                        <flux:icon.pencil class="text-[#6C757D]" /> Modifica
-                    </button>
+                    @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $note->id])
+
                     @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $note->id])
 
                 </div>

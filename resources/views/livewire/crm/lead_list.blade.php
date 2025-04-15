@@ -82,10 +82,8 @@
                  
                 </td>
                 {{-- <td class="text-left w-1">
-                    <button wire:click="edit({{ $lead->id }})" title="Modifica"
-                        class="px-3 py-1  text-gray-600 rounded  hover:cursor-pointer">
-                        <flux:icon.pencil-square />
-                    </button>
+                     @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $lead->id])
+
                 </td> --}}
 
             </tr>
