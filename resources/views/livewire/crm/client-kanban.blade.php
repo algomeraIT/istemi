@@ -69,6 +69,17 @@
                             ])
                         </div>
                     </div>
+
+                    {{-- City --}}
+                    <div>
+                        <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
+                            <flux:icon.map-pin class="w-4" /> Sede:
+                        </p>
+                        <div class="flex items-center gap-2 mt-1 font-light italic text-[#B0B0B0]">
+                            {{ $client->city }}
+                        
+                        </div>
+                    </div>
                 </div>
 
                 {{-- Status Badge --}}
@@ -83,6 +94,10 @@
                 <div class="mt-4 m-3 text-right flex justify-end gap-2">
                     @include('livewire.crm.utilities.detail-button', [
                         'functionName' => 'goToDetail',
+                        'id' => $client->id,
+                    ])
+                    @include('livewire.crm.utilities.edit-button', [
+                        'functionName' => 'edit',
                         'id' => $client->id,
                     ])
                     @include('livewire.crm.utilities.delete-button', [
