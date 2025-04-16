@@ -1,4 +1,4 @@
-<div class="lg:xl:flex md:block sm:block w-1/3 border-gray-300 justify-center"
+<div class="flex  xl:lg:md:w-1/7 sm:1/3 border-gray-300 justify-center"
 x-data="{ activeTab: @entangle('activeTab') }">
 <div
     class=" h-9 border-[0.5px] border-[#10BDD4] opacity-100">

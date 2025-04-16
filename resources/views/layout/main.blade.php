@@ -10,13 +10,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-{{--     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
- --}}    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
     @push('styles')
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     @endpush
-    
+
     @stack('styles')
 </head>
 
@@ -24,14 +23,15 @@
     @include('flash-message')
     @include('layout.navbar')
 
-    <div class="bg-[#F5FCFD]">
+    <div class="bg-[#F5FCFD] ">
         @yield('content')
     </div>
 
     @livewireScripts
 </body>
 @push('scripts')
-<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 @endpush
 @stack('scripts')
+
 </html>

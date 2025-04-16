@@ -1,7 +1,8 @@
 <section class="">
     <nav class=" w-full h-[100px] bg-white border-b border-gray-200 shadow-sm opacity-100 flex justify-between items-center z-[1]">
         <div class="w-2/6">
-            @livewire('collapsible-menu')
+             @livewire('collapsible-menu') 
+            {{-- <x-mega-menu /> --}}
         </div>
         <div class="flex text-center justify-center mt-5 mb-8 w-2/6">
             <img class="absolute top-8  w-24 h-9 opacity-100 " src="{{ asset('icon/logo.svg') }}" alt="Logo">
@@ -36,7 +37,7 @@
                     <img src="{{ Auth::user()->profile_photo_url }}" alt="User" class="w-8 h-8 rounded-full">
                     @else
                     <div class="w-10 h-10 bg-[#F5FCFD] rounded-4xl flex">
-                        <image alt="utente" class="w-4.5 h-4.5 m-2.5" src="{{ asset('icon/navbar/user.svg') }}" />
+                        <image alt="utente" class="w-5 h-4.5 m-2.5" src="{{ asset('icon/navbar/user.svg') }}" />
                     </div>
 
                     @endif

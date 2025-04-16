@@ -1,4 +1,6 @@
-<button wire:click="{{$functionName}}({{ $id }})" title="Cancella"
-    class=" text-gray-600 rounded  ml-[10px] hover:cursor-pointer">
-    <flux:icon.trash class="text-[#E63946]" />
-</button>
+<span class="w-6 h-6  rounded-3xl hover:bg-gray-100">
+    <button wire:click="{{ $functionName }}({{ $id }})" title="Cancella"
+        class=" text-gray-600 rounded mr-2.5 hover:cursor-pointer">
+        <flux:icon.trash class="text-[#E63946]" />
+    </button>
+</span>

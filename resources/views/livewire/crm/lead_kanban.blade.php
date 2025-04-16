@@ -13,7 +13,7 @@
                 $status = $statusMap[$lead->status] ?? ['label' => 'Sconosciuto', 'bg' => 'bg-gray-100', 'text' => 'text-gray-600', 'border' => 'border-gray-600'];
             @endphp
 
-            <div class="bg-white border border-gray-300 p-4 text-sm rounded shadow-sm">
+            <div class="bg-white border border-gray-300 p-4 text-sm">
                 {{-- Company Name --}}
                 <h3 class="text-lg font-bold text-[#232323]">{{ $lead->company_name }}</h3>
 
@@ -24,13 +24,13 @@
                 </div>
 
                 {{-- Contact Info --}}
-                <div class="flex flex-col gap-4 md:flex-row md:justify-between">
+                <div class="flex flex-col gap-4 md:flex-row">
                     {{-- Email --}}
                     <div>
                         <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
                             <flux:icon.at-symbol class="w-4" /> E-mail:
                         </p>
-                        <div class="flex items-center gap-2 mt-1 font-semibold text-[#232323]">
+                        <div class="flex items-center gap-2 mt-1 font-semibold text-[#B0B0B0]">
                             {{ $lead->email }}
                             <button onclick="copyToClipboard('{{ $lead->email }}')">
                                 <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
@@ -43,7 +43,7 @@
                         <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
                             <flux:icon.phone class="w-4" /> Telefono:
                         </p>
-                        <div class="flex items-center gap-2 mt-1 font-semibold text-[#232323]">
+                        <div class="flex items-center gap-2 mt-1 font-semibold text-[#B0B0B0]">
                             {{ $lead->first_telephone }}
                             <button onclick="copyToClipboard('{{ $lead->first_telephone }}')">
                                 <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
@@ -60,7 +60,7 @@
                 </div>
 
                 {{-- Action Buttons --}}
-                <div class="mt-4 text-right flex justify-end gap-2">
+                <div class="mt-4 m-3 text-right flex justify-end gap-2">
                     @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $lead->id])
                     @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $lead->id])
                     {{-- @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $lead->id]) --}}
@@ -68,11 +68,6 @@
             </div>
         @endforeach
     </div>
-
-    {{-- Pagination (Optional) --}}
-    {{-- <div class="mt-4">
-        {{ $leads->links() }}
-    </div> --}}
 </div>
 
 <script>
