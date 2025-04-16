@@ -41,6 +41,11 @@ class Contacts extends Component
         $this->resetPage();
     }
 
+    public function goToDetail($contactId)
+    {
+        return redirect()->route('crm.contact-detail', ['id' => $contactId]);
+    }
+
     public function updatingStatus()
     {
         $this->resetPage();

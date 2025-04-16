@@ -79,7 +79,7 @@
                         {{-- Actions --}}
                         <td class="flex gap-2 mt-2.5 justify-end">
                             @include('livewire.crm.utilities.detail-button', [
-                                'functionName' => 'show',
+                                'functionName' => 'goToDetail',
                                 'id' => $contact->id,
                             ])
                             @include('livewire.crm.utilities.delete-button', [

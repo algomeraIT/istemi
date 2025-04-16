@@ -12,7 +12,7 @@
                 $status = $statusMap[$contact->status] ?? $statusMap[0];
             @endphp
 
-            <div class="bg-white border border-gray-300 p-4 rounded shadow-sm text-sm">
+            <div class="bg-white border border-gray-300 p-4 text-sm mt-5">
                 {{-- Company Name --}}
                 <h3 class="text-lg font-bold text-[#232323]">{{ $contact->company_name }}</h3>
 
@@ -60,7 +60,7 @@
 
                 {{-- Action Buttons --}}
                 <div class="mt-4 text-right flex justify-end gap-2">
-                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'show', 'id' => $contact->id])
+                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'goToDetail', 'id' => $contact->id])
                     @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $contact->id])
                 </div>
             </div>

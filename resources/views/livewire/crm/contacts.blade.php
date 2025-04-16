@@ -21,9 +21,8 @@
                 <select wire:model.live="status"
                     class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] contacting-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
                     <option value="">Tutti gli stati</option>
-                    <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
-                    <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
-                    <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
+                    <option value="0" class="bg-cyan-400 text-cyan-800">In contatto</option>
+                    <option value="1" class="bg-purple-400 text-purple-800">Non idoneo</option>
                 </select>
 
                 <input type="number" wire:model.live="year"
