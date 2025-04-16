@@ -1,5 +1,5 @@
 <!-- resources/views/components/mega-menu.blade.php -->
-<div class="relative w-[270px]" x-data="{
+<div class="relative w-full sm:w-[270px]" x-data="{
     isMenuOpen: false,
     isExpanded: false,
     toggleMenu() {
@@ -36,7 +36,7 @@
             this.isExpanded = !this.isExpanded;
         }
     }" @click.away="isExpanded = false" id="mega-menu-container"
-        class="absolute bg-white transition-all duration-300 overflow-hidden  border-gray-300 w-[1900px] cursor-pointer select-none z-10 border-b-0"
+        class="absolute bg-white transition-all duration-300 overflow-hidden border-gray-300 w-full md:w-[1900px] cursor-pointer select-none z-10 border-b-0"
         x-show="isMenuOpen" x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100"
         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100"
@@ -44,7 +44,7 @@
         x-bind:style="isExpanded ? 'height: 768px' : 'height: 420px'">
         <div class=" overflow-auto">
             <!-- Initial Menu Content (Horizontal Layout) -->
-            <div id="menu-content" class="flex flex-col md:flex-row md:space-x-6  justify-center mt-[47px]"
+            <div id="menu-content" class="flex flex-col md:flex-row md:space-x-6 justify-center mt-[47px]"
                 x-bind:style="isExpanded ? 'justify-self: center; height: 700px;' : ''">
                 <div class="menu-rows flex items-start w-max-[1980px]"
                     x-bind:class="{ 'list-item list-none': isExpanded }">
@@ -52,8 +52,7 @@
                     <!-- Menu Item 1 -->
                     <div class=""
                         :class="isExpanded ? 'h-30 border-b-2 border-gray-200 p-5 pl-10' : 'menu-item w-max-52 mr-5 flex'"
-                        :style="isExpanded ? '' : 'display:flex;'"
-                        @click="selected = 'dashboard'">
+                        :style="isExpanded ? '' : 'display:flex;'" @click="selected = 'dashboard'">
                         <a href="#" class="block group ml-4 h-[32px]">
                             <div class="w-5">
                                 <img x-show="!isExpanded"
@@ -152,7 +151,9 @@
 
                     <!-- Menu Item 3 - Operazioni e risorse -->
                     <div class="menu-item w-max-52 mr-5"
-                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' : 'h-88 border-l-2 border-gray-200'"
+                        :class="isExpanded ?
+                            'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' :
+                            'h-88 border-l-2 border-gray-200'"
                         x-bind:style="isExpanded ? 'display: flex' : ''">
 
                         <!-- Collapsed View -->
@@ -196,7 +197,9 @@
                     <!-- Menu Item 4-->
                     <!-- Menu Item - Dipendenti -->
                     <div class="menu-item w-max-52 mr-5"
-                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' : 'h-88 border-l-2 border-gray-200'"
+                        :class="isExpanded ?
+                            'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' :
+                            'h-88 border-l-2 border-gray-200'"
                         x-bind:style="isExpanded ? 'display: flex' : ''">
 
                         <!-- Collapsed View -->
@@ -244,7 +247,9 @@
 
                     <!-- Menu Item - Amministrazione -->
                     <div class="menu-item w-max-52 mr-5"
-                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' : 'h-88 border-l-2 border-gray-200'"
+                        :class="isExpanded ?
+                            'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' :
+                            'h-88 border-l-2 border-gray-200'"
                         x-bind:style="isExpanded ? 'display: flex' : ''">
 
                         <!-- Collapsed View -->
@@ -309,7 +314,9 @@
 
                     <!-- Menu Item - CRM -->
                     <div class="menu-item w-max-52 mr-5"
-                        :class="isExpanded ? 'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' : 'h-88 border-l-2 border-gray-200'"
+                        :class="isExpanded ?
+                            'h-30 border-b-2 border-gray-200 flex flex-row flex-nowrap content-around justify-start items-center' :
+                            'h-88 border-l-2 border-gray-200'"
                         x-bind:style="isExpanded ? 'display: flex' : ''">
 
                         <!-- Collapsed View -->

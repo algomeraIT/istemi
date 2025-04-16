@@ -1,63 +1,61 @@
-<div class="ml-24 mr-24 relative top-14">
-    <div class=" bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100 p-9">
-        <h2 class=" text-[24px]  font-bold text-[#232323] font-sans opacity-100">
-            Contatti</h2>
-        <!-- Add Lead Button -->
-        <div class="flex  w-full">
-
+<div class="ml-24 mr-24 relative top-14 overflow-auto">
+    <div class="bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100 p-9">
+        <h2 class="text-2xl mb-3 font-bold text-[#232323] font-sans opacity-100">
+            Contatti
+        </h2>
+        <!-- Add contact Button / Header Row -->
+        <div class="flex justify-between space-x-3">
             {{-- pulsante crea --}}
-            {{-- <button wire:click="create"
-                class="relative left-[50px] px-1 py-1 min-w-[56px] h-[32px] bg-[#10BDD4] rounded-[1px] text-white opacity-100 hover:bg-[#0da9be] transition duration-200">
-                Crea
-            </button> --}}
-
-            <div class="w-1/3">
+            <div class="xl:lg:w-3/7 md:sm:w-1/3 mb-8">
+           {{--      <flux:button wire:click="create"
+                    class="p-2.5! bg-[#10BDD4]! rounded-none! text-lg! text-white! opacity-100 hover:bg-[#0da9be]! transition duration-200">
+                    Crea
+                </flux:button> --}}
             </div>
+
             {{-- tab --}}
             @include('livewire.crm.utilities.tab')
 
             {{-- filtro --}}
-            <div class="xl:lg:flex  md:sm:block w-1/3  space-x-4 justify-end">
+            <div class="flex md:flex-col xl:flex-row xl:lg:w-3/7 md:sm:w-1/3 space-x-4 justify-center">
                 <select wire:model.live="status"
-                    class="border-gray-200 border h-7 text-[16px] text-[#B0B0B0] font-medium opacity-100 md:sm:w-11/12">
+                    class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] contacting-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
                     <option value="">Tutti gli stati</option>
-                    <option value="1" class="text-[#FEC106]">In contatto</option>
-                    <option value="0" class="text-[#6C757D]">Non idoneo</option>
+                    <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
+                    <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
+                    <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
                 </select>
 
-                {{-- <input type="date" wire:model.live="date" class="border-gray-300  p-2 " />--}}
                 <input type="number" wire:model.live="year"
-                    class="border-gray-200   h-7 text-[#B0B0B0] border placeholder:font-medium md:sm:w-11/12"
+                    class="md:w-full xl:w-80 border-gray-200 p-2.5 h-9 text-[#B0B0B0] border placeholder:font-medium placeholder:text-[16px] placeholder:contacting-[20px] placeholder:text-[#B0B0B0] placeholder:opacity-100"
                     min="1900" max="2099" step="1" placeholder="Tutte le date di acquisizione" />
 
-                {{-- <button wire:click="resetFilters" class="bg-gray-200 px-3 py-1  hover:cursor-pointer">
-                    Reset Filtri
-                </button> --}}
-
-                <div class="relative xl:w-40 lg:w-32 md:w-40 sm:w-36 ">
-                    <span class="absolute inset-y-0 left-0 flex items-center pointer-events-none h-5 p-3.5">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pointer-events-none h-9 p-3.5">
                         <flux:icon.magnifying-glass class="w-4 h-4 text-gray-300" />
                     </span>
-
                     <input type="text" wire:model.live="query" placeholder="Cerca..."
-                        class="pl-9 border border-gray-200 h-7 md:sm:w-full focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
+                        class="md:w-full pl-9 border border-gray-200 h-9 focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
                 </div>
-
             </div>
         </div>
 
-        <div class="">
-            @if ($activeTab === 'list')
-            @include('livewire.crm.contact-list')
-            @elseif ($activeTab === 'kanban')
-            @include('livewire.crm.contact-kanban')
-            @endif
-        </div>
-
-
-        <!-- Modal for Adding/Editing Lead -->
-        @if ($isOpen)
-        @include('livewire.crm.contact-modal')
+        <!-- Conditional Content: List or Kanban -->
+        @if ($activeTab === 'list')
+            <div>
+                @include('livewire.crm.contact-list')
+            </div>
+        @elseif ($activeTab === 'kanban')
+            <div>
+                @include('livewire.crm.contact-kanban')
+            </div>
         @endif
+
+        <!-- Modals for Adding/Editing and Details -->
+        @if ($isOpen)
+            @include('livewire.crm.contact-modal')
+        @endif
+
+
     </div>
 </div>

@@ -31,9 +31,9 @@
                         </p>
                         <div class="flex items-center gap-2 mt-1 font-semibold text-[#232323]">
                             {{ $contact->email }}
-                            <button onclick="copyToClipboard('{{ $contact->email }}')">
-                                <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
-                            </button>
+                            @include('livewire.crm.utilities.copy-this-text-button', [
+                                'content' => $contact->email,
+                            ])
                         </div>
                     </div>
 
@@ -44,9 +44,9 @@
                         </p>
                         <div class="flex items-center gap-2 mt-1 font-semibold text-[#232323]">
                             {{ $contact->first_telephone }}
-                            <button onclick="copyToClipboard('{{ $contact->first_telephone }}')">
-                                <flux:icon.document-duplicate class="text-[#10BDD4] w-6 h-6" />
-                            </button>
+                            @include('livewire.crm.utilities.copy-this-text-button', [
+                                'content' => $contact->first_telephone,
+                            ])
                         </div>
                     </div>
                 </div>
