@@ -1,8 +1,7 @@
 <div class="w-full overflow-x-auto">
     @if ($clients)
         <div class="mx-auto">
-     
-            <table class=" w-full min-w-[798px] font-inter text-sm text-left">
+            <table class="w-full min-w-[798px] font-inter text-sm text-left">
                 <thead class="text-[#B0B0B0] font-light text-[14px]">
                     <tr class="border-b h-10">
                         <th class="w-[calc(100%/8)] whitespace-nowrap">ID</th>
@@ -37,13 +36,14 @@
                         @php
                             $status = $statusMap[$client->status] ?? $statusMap[0];
                         @endphp
-                    <tr class="border-b h-12 text-[#232323] font-medium xl:text-lg lg:text-base md:text-sm sm:text-xs">
-                        <!-- ID -->
+                        <tr class="border-b h-12 text-[#232323] font-medium xl:text-lg lg:text-base md:text-sm sm:text-xs">
+                            <!-- ID -->
                             <td class="font-medium whitespace-nowrap">{{ $client->id }}</td>
                             <!-- Logo -->
                             <td class="whitespace-nowrap">
-                                <img src="{{ $client->logo_path ?: asset('images/default-logo.webp') }}"
-                                     class="w-10 h-10 rounded" />
+                                <img src="{{ $client->logo_path ?: asset('icon/logo.svg') }}"
+                                onerror="this.onerror=null;this.src='{{ asset('icon/logo.svg') }}';"
+                                class="w-10 h-10 rounded" alt="Logo" />
                             </td>
                             <!-- Ragione Sociale -->
                             <td class="font-medium">
@@ -71,14 +71,14 @@
                             </td>
                             <!-- Sede -->
                             <td class="font-medium whitespace-nowrap">{{ $client->city }}</td>
-                            <!-- Etichette -->
+                            <!-- Etichette (Status) -->
                             <td class="whitespace-nowrap">
-                                <div class="max-w-[200px] break-words whitespace-normal">
-                                    {{ $client->labels ?? 'N/A' }}
-                                </div>
+                                <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $status['bg'] }} {{ $status['text'] }} {{ $status['border'] }}">
+                                    {{ $status['label'] }}
+                                </span>
                             </td>
                             <!-- Azioni -->
-                            <td class="flex gap-2 whitespace-nowrap justify-end">
+                            <td class="flex gap-2 mt-2.5 justify-end">
                                 @include('livewire.crm.utilities.detail-button', [
                                     'functionName' => 'goToDetail',
                                     'id' => $client->id,
