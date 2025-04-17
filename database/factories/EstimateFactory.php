@@ -2,7 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Clients;
 use App\Models\Estimate;
+use App\Models\Referent;
+use App\Models\Users;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EstimateFactory extends Factory
@@ -11,8 +14,27 @@ class EstimateFactory extends Factory
 
     public function definition(): array
     {
+        $client = Clients::inRandomOrder()->first() ?: Clients::factory()->create();
+        $user = Users::inRandomOrder()->first() ?: Users::factory()->create();
+        $referent = Referent::inRandomOrder()->first() ?: Referent::factory()->create();
+
         return [
-            'serial_number' => $this->faker->unique()->word,
+            'client_id' => $client->id,
+            'user_id' => $user->id,
+            'referent_id' => $referent->id,
+            'address_invoice' => $this->faker->streetAddress,
+            'city' => $this->faker->city,
+            'cap' => $this->faker->postcode,
+            'country' => $this->faker->country,
+            'has_same_address_for_delivery' => $this->faker->boolean(80),
+            'price_list' => $this->faker->randomElement(['Standard', 'Premium', 'Custom']),
+            'expiration' => $this->faker->dateTimeBetween('+1 week', '+1 month'),
+            'term_pay' => $this->faker->randomElement(['30 giorni', '60 giorni', 'Pagamento anticipato']),
+            'method_pay' => $this->faker->randomElement(['Bonifico', 'Carta di credito', 'PayPal']),
+            'title_service' => $this->faker->words(3, true),
+            'service' => $this->faker->paragraph,
+            'note_service' => $this->faker->optional()->sentence,
+            'serial_number' => strtoupper($this->faker->bothify('SN-####')),
             'date_expiration' => $this->faker->date,
             'status_expiration' => $this->faker->randomElement(['expired', 'valid', 'pending']),
             'price' => $this->faker->randomFloat(2, 50, 500),
