@@ -17,3 +17,4 @@ Route::get('/clients', [ClientsController::class, 'index'])->name('crm.clients')
 Route::get('/clients/{id}', [ClientsController::class, 'show'])->name('crm.client-detail');
 Route::get('/contacts/{id}', [ContactController::class, 'goToDetail'])->name('crm.contact-detail');
 });
+

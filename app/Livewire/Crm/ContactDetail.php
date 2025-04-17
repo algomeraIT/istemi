@@ -1,38 +1,55 @@
 <?php
 
-namespace App\Livewire\Crm;
+namespace App\Http\Livewire\Crm;
 
 use App\Models\Contact;
+use App\Models\Clients;
 use App\Models\Estimate;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ContactDetail extends Component
 {
-    public $contact;
-    public $estimates;
+    use WithPagination;
 
-    // Livewire will inject the {id} route param here
+    public Clients $client;
+
+    public string $query_estimate  = '';
+    public string $status_estimate = '';
+
+    public bool $isEstimateModalOpen = false;
+
     public function mount($id)
     {
-        $this->contact = Contact::findOrFail($id);
+        $this->client = $client_id->id;
+    }
 
-        // load only this contact’s estimates
-        $estimateQuery = Estimate::query()
-        ->where('status', '!=', 0)
-        ->when($this->status !== "", fn($q) => $q->where('status', $this->status))
-        ->when($this->year,         fn($q) => $q->whereYear('created_at', $this->year))
-        ->when($this->query,        fn($q) => $q->where('company_name', 'like', "%{$this->query}%"));
+    public function updatingQueryEstimate()   { $this->resetPage(); }
+    public function updatingStatusEstimate()  { $this->resetPage(); }
 
-        $this->estimates = $estimateQuery
-            ->latest()
-            ->paginate(12);
+    public function openNewEstimateModal()
+    {
+        $this->resetValidation();
+        $this->isEstimateModalOpen = true;
+    }
+
+    public function closeEstimateModal()
+    {
+        $this->isEstimateModalOpen = false;
     }
 
     public function render()
     {
-        return view('livewire.crm.contact-detail', [
-            'contact'   => $this->contact,
-            'estimates' => $this->estimates,
-        ]);
+        $estimates = Estimate::where('client_id', $this->client->id)
+            ->when($this->query_estimate, fn($q) =>
+                $q->where('serial_number', 'like', '%'.$this->query_estimate.'%')
+            )
+            ->when($this->status_estimate !== '', fn($q) =>
+                $q->where('status', $this->status_estimate)
+            )
+            ->latest()
+            ->paginate(10);
+
+        return view('livewire.crm.contact-detail', compact('estimates'));
     }
 }

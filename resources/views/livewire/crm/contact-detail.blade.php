@@ -1,231 +1,273 @@
 @extends('layout.main')
 
 @section('content')
-    <div class="flex flex-col lg:flex-row px-6 lg:px-24 pt-12">
-        <!-- Left: Referents -->
-        <div class="w-full lg:w-2/3 p-6">
-            <a href="{{ url()->previous() }}" class="block mb-6 text-lg font-light text-gray-400">
-                &larr; Torna indietro
-            </a>
-            <div class="bg-white p-6 rounded shadow">
-             
-                <div>
+    <div class="px-6 lg:px-24 pt-12">
+        <!-- Single wrapper card -->
+        <div class="bg-white rounded shadow p-6">
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Left Column -->
+                <div class="w-full lg:w-2/3 ">
+                    <a href="{{ url()->previous() }}" class="text-lg font-light text-gray-400 block">
+                        &larr; Torna indietro
+                    </a>
 
-                    <div x-data="{ activeTab: 'history' }">
-                        <!-- Tab Buttons -->
-                        <div class="flex space-x-4 ml-[10px]">
-                            <button @click="activeTab = 'history'" :class="{ ' bg-[#FBFBFB] text-cyan-600': activeTab === 'history' }"
-                                class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
+                    <div class="bg-white" x-data="{ mainTab: 'history', commTab: 'sales' }">
+                        {{-- Tab Buttons --}}
+                        <nav class="flex space-x-4 border-b">
+                            <button @click="mainTab='history'"
+                                :class="mainTab === 'history' ? 'border-b-2 border-cyan-500 text-cyan-600' : 'text-gray-600'"
+                                class="py-2 px-4 font-medium">
                                 Storico
                             </button>
-                
-                            <button @click="activeTab = 'communication';"
-                                :class="{ ' bg-[#FBFBFB] text-cyan-600': activeTab === 'communication' }"
-                                class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
+                            <button @click="mainTab='communication'"
+                                :class="mainTab === 'communication' ? 'border-b-2 border-cyan-500 text-cyan-600' :
+                                    'text-gray-600'"
+                                class="py-2 px-4 font-medium">
                                 Comunicazione
                             </button>
-                
-                            <button @click="activeTab = 'estimate';" :class="{ ' bg-[#FBFBFB] text-cyan-600': activeTab === 'estimate' }"
-                                class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
+                            <button @click="mainTab='estimate'"
+                                :class="mainTab === 'estimate' ? 'border-b-2 border-cyan-500 text-cyan-600' : 'text-gray-600'"
+                                class="py-2 px-4 font-medium">
                                 Preventivi
                             </button>
+                        </nav>
+
+                        {{-- History Tab --}}
+                        <div x-show="mainTab === 'history'" x-cloak class="mt-4 space-y-4 p-2.5">
+
+                            @include('livewire.crm.utilities.historycontact', [
+                                'histories' => $histories,
+                            ])
                         </div>
-                
-                        <div class="mt-4">
-                            <!-- Referents Tab -->
-                            <div x-show="activeTab === 'history'" x-cloak>
-                                <div>
-                                    <div class="flex place-content-between">
-                                        <!-- Buttons -->
-                                        <button wire:click="openModalReferent"
-                                            class="bg-[#10BDD4] w-[88px] h-[32px] text-white text-sm hover:bg-cyan-700  ml-[22px] text-[16px] leading-[20px] font-medium  text-center opacity-100 font-inter">Aggiungi</button>
-                
-                                        <input type="text" wire:model.live="query_referent" placeholder="Cerca"
-                                            class="border p-2 rounded " />
-                
-                
-                                    </div>
-                
-                                    <!-- Referents Table -->
-                                    TABLE
-                
-                                </div>
-                            </div>
-                
-                            <!-- Sales Tab (Lazy Loaded) -->
-                            <div x-show="activeTab === 'communication'" x-cloak>
-                                <div x-data="{ activeTabSales: 'sales' }">
-                                    <div class="flex  place-content-between">
-                                        <div class="flex  pt-[10px] pl-[40px] pb-[20px] h-[65px]">
-                                            <button @click="activeTabSales = 'sales'"
-                                                :class="{ ' text-[#10BDD4]': activeTabSales === 'sales' }"
-                                                class="flex p-1 border-1 border-[#10BDD4] text-[16px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                                                <flux:icon.arrow-up-right class="w-3 ml-1.5 mr-2" /> Vendite
-                                            </button>
-                
-                                            <button @click="activeTabSales = 'acquisitions';"
-                                                :class="{ ' text-[#10BDD4]': activeTabSales === 'acquisitions' }"
-                                                class="flex p-1 border-1 border-[#10BDD4] text-[16px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                                                <flux:icon.arrow-down-right class="w-3 ml-1.5 mr-2 " /> Acquisti
-                                            </button>
-                                        </div>
-                
-                
-                                        <div class="" x-show="activeTabSales === 'sales'" x-cloak>
-                
-                                            <div class="flex h-14 p-2">
-                                                <select wire:model.live="status_sales" class=" border-1 ">
-                                                    <option value="" selected>Filtro</option>
-                                                    <option value="0">In transito</option>
-                                                    <option value="1">Consegnato</option>
-                                                </select>
-                                                <input type="text" wire:model.live="query_sales" placeholder="Cerca"
-                                                    class="border" />
-                                            </div>
-                                        </div>
-                
-                                        <div class="" x-show="activeTabSales === 'acquisitions'" x-cloak>
-                
-                                            <div class="">
-                                                <select wire:model.live="acquisition_sales"
-                                                    class=" border-1 h-[40px] p-[10px] w-[130px]">
-                                                    <option value="" selected>Filtro</option>
-                                                    <option value="0">In arrivo</option>
-                                                    <option value="1">Ricevuta</option>
-                                                </select>
-                                                <input type="text" wire:model.live="query_acquisitions" placeholder="Cerca"
-                                                    class="border p-2" />
-                                            </div>
-                                        </div>
-                                    </div>
-                
-                                    <div class="mt-2 " x-show="activeTabSales === 'sales'" x-cloak>
-                                        table sales
-                
-                                    </div>
-                
-                                    <div class="mt-2 " x-show="activeTabSales === 'acquisitions'" x-cloak>
-                                        table acquisitions
-                
-                                    </div>
-                
-                                </div>
-                            </div>
-                            <div x-show="activeTab === 'estimate'" x-data="{ activeTabAccounting: 'orders' }" x-cloak>
-                
-                                <div class="flex  pt-[10px] pl-[40px] pb-[20px] h-[65px]">
-                
-                
-                                    <div class="">
-                                        <select wire:model.live="status_invoices" class="ml-[300px] border-1 h-[40px] p-[10px]">
-                                            <option value="" selected>Filtro</option>
-                                            <option value="0">Pagata</option>
-                                            <option value="1">Da pagare</option>
-                                            <option value="2">Scaduta</option>
-                
-                                        </select>
-                                        <input type="text" wire:model.live="query_invoices" placeholder="Cerca"
-                                            class="border p-2 rounded w-[280px] mb-4 ml-[40px]" />
-                                    </div>
-                
-                                </div>
-                
-                
-                                <div class="mt-2">
-                                    @include('livewire.crm.utilities.estimate-sub-table', [
-                                        'estimates' => $estimates,
-                                    ])
-                
+
+                        {{-- Communication Tab --}}
+                        <div x-show="mainTab === 'communication'" x-cloak class="mt-4 space-y-4">
+                            @php
+                                // your full history array or collection
+                                $history = [
+                                    [
+                                        'type' => 'note',
+                                        'name' => 'Miss Melyna Bruen',
+                                        'last_name' => 'Gerhold',
+                                        'role' => 'admin',
+                                        'note' => 'Amet optio ullam eveniet cupiditate.',
+                                    ],
+                                    [
+                                        'type' => 'e-mail',
+                                        'name' => 'Wilmer',
+                                        'last_name' => 'Wisozk',
+                                        'role' => 'user',
+                                        'note' => 'Contatto via email inviato.',
+                                    ],
+                                    [
+                                        'type' => 'note',
+                                        'name' => 'Kenny',
+                                        'last_name' => 'Murazik',
+                                        'role' => 'client',
+                                        'note' => 'Nostrum saepe rerum ut rerum.',
+                                    ],
+                                    [
+                                        'type' => 'attività',
+                                        'name' => 'Sammy Tremblay',
+                                        'last_name' => 'Okuneva',
+                                        'role' => 'manager',
+                                        'note' => 'Rerum et id iure eum.',
+                                    ],
+                                    [
+                                        'type' => 'note',
+                                        'name' => 'Queen',
+                                        'last_name' => 'Bechtelar',
+                                        'role' => 'admin',
+                                        'note' => null,
+                                    ],
+                                    [
+                                        'type' => 'e-mail',
+                                        'name' => 'Alex',
+                                        'last_name' => 'Smith',
+                                        'role' => 'user',
+                                        'note' => "Risposto all'email.",
+                                    ],
+                                ];
+                            @endphp
+
+                            <div x-data="{ tab: 'attività' }" class="bg-white rounded shadow p-6">
+                                {{-- Tabs --}}
+                                <nav class="flex space-x-4 border-b border-gray-200 mb-6">
+                                    <button @click="tab='attività'"
+                                        :class="tab === 'attività' ? 'border-b-2 border-cyan-500 text-cyan-600' :
+                                            'text-gray-600'"
+                                        class="inline-flex items-center py-2 px-4 font-medium hover:text-cyan-600 transition">
+                                        <flux:icon.archive-box class="w-5 h-5 mr-2" /> Attività
+                                    </button>
+
+                                    <button @click="tab='e-mail'"
+                                        :class="tab === 'e-mail' ? 'border-b-2 border-cyan-500 text-cyan-600' :
+                                            'text-gray-600'"
+                                        class="inline-flex items-center py-2 px-4 font-medium hover:text-cyan-600 transition">
+                                        <flux:icon.at-symbol class="w-5 h-5 mr-2" /> E‑mail
+                                    </button>
+
+                                    <button @click="tab='note'"
+                                        :class="tab === 'note' ? 'border-b-2 border-cyan-500 text-cyan-600' :
+                                            'text-gray-600'"
+                                        class="inline-flex items-center py-2 px-4 font-medium hover:text-cyan-600 transition">
+                                        <flux:icon.document-text class="w-5 h-5 mr-2" /> Note
+                                    </button>
+                                </nav>
+
+                                {{-- Content Panels --}}
+                                <div class="relative pl-8">
+                                    {{-- vertical line --}}
+                                    <div class="absolute left-3 top-0 bottom-0 w-px bg-gray-200"></div>
+
+                                    <ul class="space-y-8">
+                                        {{-- Attività --}}
+                                        <template x-if="tab==='attività'">
+                                            @foreach (collect($history)->where('type', 'attività') as $item)
+                                                <li class="relative flex items-start">
+                                                    <div
+                                                        class="absolute left-0 bg-white border border-gray-200 rounded-full p-1">
+                                                        <flux:icon.archive-box class="w-4 h-4 text-green-600" />
+                                                    </div>
+                                                    <div class="ml-6">
+                                                        <p class="font-semibold text-gray-800">
+                                                            {{ $item['name'] }} {{ $item['last_name'] }}
+                                                            <span
+                                                                class="ml-2 text-sm text-gray-500 capitalize">({{ $item['role'] }})</span>
+                                                        </p>
+                                                        <p class="mt-1 text-gray-600">{{ $item['note'] ?? '—' }}</p>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </template>
+
+                                        {{-- E‑mail --}}
+                                        <template x-if="tab==='e-mail'">
+                                            @foreach (collect($history)->where('type', 'e-mail') as $item)
+                                                <li class="relative flex items-start">
+                                                    <div
+                                                        class="absolute left-0 bg-white border border-gray-200 rounded-full p-1">
+                                                        <flux:icon.at-symbol class="w-4 h-4 text-blue-600" />
+                                                    </div>
+                                                    <div class="ml-6">
+                                                        <p class="font-semibold text-gray-800">
+                                                            {{ $item['name'] }} {{ $item['last_name'] }}
+                                                            <span
+                                                                class="ml-2 text-sm text-gray-500 capitalize">({{ $item['role'] }})</span>
+                                                        </p>
+                                                        <p class="mt-1 text-gray-600">{{ $item['note'] ?? '—' }}</p>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </template>
+
+                                        {{-- Note --}}
+                                        <template x-if="tab==='note'">
+                                            @foreach (collect($history)->where('type', 'note') as $item)
+                                                <li class="relative flex items-start">
+                                                    <div
+                                                        class="absolute left-0 bg-white border border-gray-200 rounded-full p-1">
+                                                        <flux:icon.document-text class="w-4 h-4 text-gray-600" />
+                                                    </div>
+                                                    <div class="ml-6">
+                                                        <p class="font-semibold text-gray-800">
+                                                            {{ $item['name'] }} {{ $item['last_name'] }}
+                                                            <span
+                                                                class="ml-2 text-sm text-gray-500 capitalize">({{ $item['role'] }})</span>
+                                                        </p>
+                                                        <p class="mt-1 text-gray-600">{{ $item['note'] ?? '—' }}</p>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </template>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                
+                        {{-- Estimates Tab --}}
+                        <div x-show="mainTab === 'estimate'" x-cloak class="mt-4">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 mb-4">
+                                <div class="flex gap-4 items-center">
+                                    <select wire:model.live="status_estimate" class=" border rounded p-2">
+                                        <option value="">Filtro</option>
+                                        <option value="0">In scadenza</option>
+                                        <option value="1">Valido</option>
+                                        <option value="2">Scaduto</option>
+                                    </select>
+
+                                    <input type="text" wire:model.live="query_estimate" placeholder="Cerca…"
+                                        class="border rounded p-2 flex-1 max-w-sm" />
+                                </div>
+                            </div>
+
+                            @include('livewire.crm.utilities.estimate-sub-table', [
+                                'estimates' => $estimates,
+                            ])
+                        </div>
+
                     </div>
                 </div>
-                
-                
-                {{--     @include('livewire.crm.referent.modal', [
-                        'showModalActivity' => $showModalActivity,
-                        'isOpenEmail' => $isOpenEmail,
-                        'isOpenActivity' => $isOpenActivity,
-                        'showModalInvoice' => $showModalInvoice,
-                        'showModalSale' => $showModalSale,
-                        'showModal' => $showModal,
-                        'isOpenReferent' => $isOpenReferent,
-                    ]) --}}
-            </div>
-        </div>
 
-        <!-- Right: Client Summary -->
-        <div class="w-full lg:w-1/3 p-6">
-            <div class="mx-auto bg-white border-2 border-dotted border-cyan-300 rounded p-6">
+                <!-- Right Column -->
+                <div class="w-full lg:w-1/3 ">
+                    <div class="bg-white rounded-lg border-2 border-dashed border-cyan-300 p-6 space-y-4">
+                        <h2 class="text-2xl font-bold flex items-center space-x-2">
+                            <flux:icon.briefcase class="w-6 h-6" />
+                            <span>{{ $client->company_name }}</span>
+                        </h2>
 
-                <!-- Details -->
-                <h2 class="mt-4 text-2xl font-bold flex mr-4">
-                    <flux:icon.briefcase />{{ $client->company_name }}
-                </h2>
+                        @php
+                            $statusMap = [
+                                0 => [
+                                    'label' => 'Call center',
+                                    'bg' => 'bg-[#FEF7EF]',
+                                    'text' => 'text-[#F5AD65]',
+                                    'border' => 'border-[#F5AD65]',
+                                ],
+                                1 => [
+                                    'label' => 'Censimento',
+                                    'bg' => 'bg-[#E3F1F4]',
+                                    'text' => 'text-[#2A8397]',
+                                    'border' => 'border-[#2A8397]',
+                                ],
+                            ];
+                            $fields = [
+                                'E-mail' => $client->email,
+                                'Telefono' => $client->first_telephone,
+                                'Servizio' => $client->service,
+                                'Data acquisizione' => \Carbon\Carbon::parse($client->created_at)->format('d/m/Y'),
+                                'Commerciale' => $client->tax_code,
+                                'Stato' => $client->status,
+                            ];
+                        @endphp
 
-                @php
-                    $statusMap = [
-                        0 => [
-                            'label' => 'Call center',
-                            'bg' => 'bg-[#FEF7EF]',
-                            'text' => 'text-[#F5AD65]',
-                            'border' => 'border-[#F5AD65]',
-                        ],
-                        1 => [
-                            'label' => 'Censimento',
-                            'bg' => 'bg-[#E3F1F4]',
-                            'text' => 'text-[#2A8397]',
-                            'border' => 'border-[#2A8397]',
-                        ],
-                    ];
-
-                    $fields = [
-                        'E-mail' => $client->email,
-                        'Telefono' => $client->first_telephone,
-                        'Servizio' => $client->service,
-                        'Data acquisizione' => \Carbon\Carbon::parse($client->created_at)->format('d/m/Y'),
-                        'Commerciale' => $client->tax_code,
-                        'Stato' => $client->status,
-                    ];
-                @endphp
-
-                <div class="mt-4 space-y-3 text-gray-600 font-inter">
-                    @foreach ($fields as $label => $value)
-                        <div class="flex justify-between">
-                            <span class="text-gray-400">{{ $label }}:</span>
-
-                            @if ($label === 'Stato')
-                                @php
-                                    $s = $statusMap[$value] ?? [
-                                        'label' => 'Sconosciuto',
-                                        'bg' => 'bg-gray-100',
-                                        'text' => 'text-gray-600',
-                                        'border' => 'border-gray-600',
-                                    ];
-                                @endphp
-                                <span
-                                    class="inline-block px-2 py-1 text-xs font-semibold rounded-full border {{ $s['bg'] }} {{ $s['text'] }} {{ $s['border'] }}">
-                                    {{ $s['label'] }}
-                                </span>
-                            @else
-                                <span class="font-semibold">{{ $value }}</span>
-                            @endif
-
+                        <div class="space-y-3 text-gray-600 font-inter">
+                            @foreach ($fields as $label => $value)
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">{{ $label }}:</span>
+                                    @if ($label === 'Stato')
+                                        @php $s = $statusMap[$value] ?? ['label'=>'Sconosciuto','bg'=>'bg-gray-100','text'=>'text-gray-600','border'=>'border-gray-600']; @endphp
+                                        <span
+                                            class="inline-block px-2 py-1 text-xs font-semibold rounded-full border {{ $s['bg'] }} {{ $s['text'] }} {{ $s['border'] }}">
+                                            {{ $s['label'] }}
+                                        </span>
+                                    @else
+                                        <span class="font-semibold">{{ $value }}</span>
+                                    @endif
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
+
+
+                        <button wire:click="openNewEstimateModal"
+                            class="bg-cyan-500 hover:bg-cyan-600 text-white py-2 px-4 rounded">
+                            Crea preventivo
+                        </button>
+
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-    </div>
-
-    <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text)
-                .then(() => alert(`Copiato: ${text}`))
-                .catch(console.error);
-        }
-    </script>
 @endsection

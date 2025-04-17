@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Clients;
 use App\Models\Estimate;
-use Illuminate\Http\Request;
+use App\Models\HistoryContact;
 
 class ContactController extends Controller
 {
@@ -13,18 +13,22 @@ class ContactController extends Controller
         return view('crm.contacts');
     }
 
-    public function goToDetail($contactId)
+    public function goToDetail($clientId)
     {
-        $client = Clients::with('referents')->findOrFail($contactId);
+        $client = Clients::with('referents')->findOrFail($clientId);
 
-        $estimates = Estimate::where('status', '!=', 0)
-                             ->latest()
-                             ->get();
+        $estimates = Estimate::where('client_id', $clientId)
+            ->latest()
+            ->get();
 
-        // return a blade (not a Livewire view) called resources/views/crm/contact-detail.blade.php
+        $histories = HistoryContact::where('client_id', $clientId)
+            ->latest()
+            ->get();
+
         return view('livewire.crm.contact-detail', [
-            'client'    => $client,
+            'client' => $client,
             'estimates' => $estimates,
+            'histories' => $histories,
         ]);
     }
 }

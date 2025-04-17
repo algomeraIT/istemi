@@ -36,7 +36,7 @@ class EstimateFactory extends Factory
             'note_service' => $this->faker->optional()->sentence,
             'serial_number' => strtoupper($this->faker->bothify('SN-####')),
             'date_expiration' => $this->faker->date,
-            'status_expiration' => $this->faker->randomElement(['expired', 'valid', 'pending']),
+            'status_expiration' => $this->faker->randomElement(['Scaduto', 'Valido', 'In scadenza']),
             'price' => $this->faker->randomFloat(2, 50, 500),
             'total' => $this->faker->randomFloat(2, 100, 1000),
             'status' => $this->faker->numberBetween(0, 1),

@@ -59,7 +59,6 @@ class Contacts extends Component
     public function render()
     {
         $baseQuery = Contact::query()
-            ->where('status', '!=', 0)
             ->when($this->status !== "", fn($q) => $q->where('status', $this->status))
             ->when(!empty($this->year), fn($q) => $q->whereYear('created_at', $this->year))
             ->when($this->query, fn($q) => $q->where('company_name', 'like', '%' . $this->query . '%'));
