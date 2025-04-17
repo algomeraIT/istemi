@@ -4,18 +4,18 @@
         <!-- Tab Buttons -->
         <div class="flex space-x-4 ml-[10px]">
             <button @click="activeTab = 'history'" :class="{ ' bg-[#FBFBFB] text-cyan-600': activeTab === 'history' }"
-                class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
+                class="px-4 py-2 text-sm bg-gray-200 rounded mr-2">
                 Storico
             </button>
 
             <button @click="activeTab = 'communication';"
                 :class="{ ' bg-[#FBFBFB] text-cyan-600': activeTab === 'communication' }"
-                class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
+                class="px-4 py-2 text-sm bg-gray-200 rounded mr-2">
                 Comunicazione
             </button>
 
             <button @click="activeTab = 'estimate';" :class="{ ' bg-[#FBFBFB] text-cyan-600': activeTab === 'estimate' }"
-                class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
+                class="px-4 py-2 text-sm bg-gray-200 rounded mr-2">
                 Preventivi
             </button>
 

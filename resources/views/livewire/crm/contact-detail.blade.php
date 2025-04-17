@@ -13,21 +13,20 @@
 
                     <div class="bg-white" x-data="{ mainTab: 'history', commTab: 'sales' }">
                         {{-- Tab Buttons --}}
-                        <nav class="flex space-x-4 border-b">
+                        <nav class="flex mb-4">
                             <button @click="mainTab='history'"
-                                :class="mainTab === 'history' ? 'border-b-2 border-cyan-500 text-cyan-600' : 'text-gray-600'"
-                                class="py-2 px-4 font-medium">
+                                :class="mainTab === 'history' ? 'bg-[#FBFBFB] text-cyan-600' : 'text-gray-400'"
+                                class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
                                 Storico
                             </button>
                             <button @click="mainTab='communication'"
-                                :class="mainTab === 'communication' ? 'border-b-2 border-cyan-500 text-cyan-600' :
-                                    'text-gray-600'"
-                                class="py-2 px-4 font-medium">
+                                :class="mainTab === 'communication' ? 'bg-[#FBFBFB] text-cyan-400' : 'text-gray-400'"
+                                class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
                                 Comunicazione
                             </button>
                             <button @click="mainTab='estimate'"
-                                :class="mainTab === 'estimate' ? 'border-b-2 border-cyan-500 text-cyan-600' : 'text-gray-600'"
-                                class="py-2 px-4 font-medium">
+                                :class="mainTab === 'estimate' ? 'bg-[#FBFBFB] text-cyan-600' : 'text-gray-400'"
+                                class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
                                 Preventivi
                             </button>
                         </nav>
@@ -42,76 +41,31 @@
 
                         {{-- Communication Tab --}}
                         <div x-show="mainTab === 'communication'" x-cloak class="mt-4 space-y-4">
-                            @php
-                                // your full history array or collection
-                                $history = [
-                                    [
-                                        'type' => 'note',
-                                        'name' => 'Miss Melyna Bruen',
-                                        'last_name' => 'Gerhold',
-                                        'role' => 'admin',
-                                        'note' => 'Amet optio ullam eveniet cupiditate.',
-                                    ],
-                                    [
-                                        'type' => 'e-mail',
-                                        'name' => 'Wilmer',
-                                        'last_name' => 'Wisozk',
-                                        'role' => 'user',
-                                        'note' => 'Contatto via email inviato.',
-                                    ],
-                                    [
-                                        'type' => 'note',
-                                        'name' => 'Kenny',
-                                        'last_name' => 'Murazik',
-                                        'role' => 'client',
-                                        'note' => 'Nostrum saepe rerum ut rerum.',
-                                    ],
-                                    [
-                                        'type' => 'attività',
-                                        'name' => 'Sammy Tremblay',
-                                        'last_name' => 'Okuneva',
-                                        'role' => 'manager',
-                                        'note' => 'Rerum et id iure eum.',
-                                    ],
-                                    [
-                                        'type' => 'note',
-                                        'name' => 'Queen',
-                                        'last_name' => 'Bechtelar',
-                                        'role' => 'admin',
-                                        'note' => null,
-                                    ],
-                                    [
-                                        'type' => 'e-mail',
-                                        'name' => 'Alex',
-                                        'last_name' => 'Smith',
-                                        'role' => 'user',
-                                        'note' => "Risposto all'email.",
-                                    ],
-                                ];
-                            @endphp
 
-                            <div x-data="{ tab: 'attività' }" class="bg-white rounded shadow p-6">
+
+
+                            <div x-data="{ tab: 'attività' }" class="bg-white p-6">
                                 {{-- Tabs --}}
-                                <nav class="flex space-x-4 border-b border-gray-200 mb-6">
+                                <nav class="flex  border-b border-gray-200 mb-6">
                                     <button @click="tab='attività'"
-                                        :class="tab === 'attività' ? 'border-b-2 border-cyan-500 text-cyan-600' :
+                                        :class="tab === 'attività' ? 'bg-gray-100' :
                                             'text-gray-600'"
-                                        class="inline-flex items-center py-2 px-4 font-medium hover:text-cyan-600 transition">
-                                        <flux:icon.archive-box class="w-5 h-5 mr-2" /> Attività
+                                        class="flex p-[4px] border-1 border-[#10BDD4] text-[16px] leading-[25px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
+                                        <flux:icon.archive-box class="w-3 h-3 mr-2 mt-2" /> Attività
                                     </button>
 
                                     <button @click="tab='e-mail'"
-                                        :class="tab === 'e-mail' ? 'border-b-2 border-cyan-500 text-cyan-600' :
+                                        :class="tab === 'e-mail' ? 'bg-gray-100' :
                                             'text-gray-600'"
-                                        class="inline-flex items-center py-2 px-4 font-medium hover:text-cyan-600 transition">
-                                        <flux:icon.at-symbol class="w-5 h-5 mr-2" /> E‑mail
+                                        class="flex p-[4px] border-1 border-[#10BDD4] text-[16px] leading-[25px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
+                                        <flux:icon.at-symbol class="w-3 h-3 mr-2 mt-2" /> E‑mail
                                     </button>
 
                                     <button @click="tab='note'"
-                                        :class="tab === 'note' ? 'border-b-2 border-cyan-500 text-cyan-600' :
+                                        :class="tab === 'note' ? 'bg-gray-100' :
                                             'text-gray-600'"
-                                        class="inline-flex items-center py-2 px-4 font-medium hover:text-cyan-600 transition">
-                                        <flux:icon.document-text class="w-5 h-5 mr-2" /> Note
+                                        class="flex p-[4px] border-1 border-[#10BDD4] text-[16px] leading-[25px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
+                                        <flux:icon.document-text class="w-3 h-3 mr-2 mt-2" /> Note
                                     </button>
                                 </nav>
 
@@ -123,7 +77,7 @@
                                     <ul class="space-y-8">
                                         {{-- Attività --}}
                                         <template x-if="tab==='attività'">
-                                            @foreach (collect($history)->where('type', 'attività') as $item)
+                                            @foreach (collect($histories)->where('type', 'attività') as $item)
                                                 <li class="relative flex items-start">
                                                     <div
                                                         class="absolute left-0 bg-white border border-gray-200 rounded-full p-1">
@@ -143,7 +97,7 @@
 
                                         {{-- E‑mail --}}
                                         <template x-if="tab==='e-mail'">
-                                            @foreach (collect($history)->where('type', 'e-mail') as $item)
+                                            @foreach (collect($histories)->where('type', 'e-mail') as $item)
                                                 <li class="relative flex items-start">
                                                     <div
                                                         class="absolute left-0 bg-white border border-gray-200 rounded-full p-1">
@@ -163,7 +117,7 @@
 
                                         {{-- Note --}}
                                         <template x-if="tab==='note'">
-                                            @foreach (collect($history)->where('type', 'note') as $item)
+                                            @foreach (collect($histories)->where('type', 'note') as $item)
                                                 <li class="relative flex items-start">
                                                     <div
                                                         class="absolute left-0 bg-white border border-gray-200 rounded-full p-1">
