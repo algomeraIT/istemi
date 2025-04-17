@@ -6,6 +6,7 @@ use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ReferentController;
 use App\Http\Controllers\SalesController;
 
+Route::middleware(['auth'])->group(function () {
 Route::post('/referents/store', [ReferentController::class, 'store'])->name('referents.store');
 Route::put('/referents/update/{id}', [ReferentController::class, 'update'])->name('referents.update');
 Route::post('/sales/store', [SalesController::class, 'store'])->name('sales.store');
@@ -15,3 +16,4 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('crm.contacts
 Route::get('/clients', [ClientsController::class, 'index'])->name('crm.clients');
 Route::get('/clients/{id}', [ClientsController::class, 'show'])->name('crm.client-detail');
 Route::get('/contacts/{id}', [ContactController::class, 'goToDetail'])->name('crm.contact-detail');
+});

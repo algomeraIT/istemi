@@ -105,33 +105,7 @@
             <div x-show="activeTab === 'estimate'" x-data="{ activeTabAccounting: 'orders' }" x-cloak>
 
                 <div class="flex  pt-[10px] pl-[40px] pb-[20px] h-[65px]">
-                    <button @click="activeTabAccounting = 'orders'"
-                        :class="{ ' text-[#10BDD4]': activeTabAccounting === 'orders' }"
-                        class="flex p-[4px] border-1 border-[#10BDD4] text-[16px] leading-[25px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                        <flux:icon.briefcase class="w-[12px] ml-[6px] mr-[10px] " /> Ordini
-                    </button>
 
-                    <button @click="activeTabAccounting = 'invoices';"
-                        :class="{ ' text-[#10BDD4]': activeTabAccounting === 'invoices' }"
-                        class="flex p-[4px] border-1 border-[#10BDD4] text-[16px] leading-[25px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                        <flux:icon.document class="w-[12px] ml-[6px] mr-[10px] " /> Fatture
-                    </button>
-
-                    <div class="" x-show="activeTabAccounting === 'orders'" x-cloak>
-
-                        <div class="">
-                            <select wire:model.live="status_orders" class="ml-[300px] border-1 h-[40px] p-[10px]">
-                                <option value="" selected>Filtro</option>
-                                <option value="0">In corso</option>
-                                <option value="1">Evaso</option>
-                                <option value="2">Annullato</option>
-
-                            </select>
-                            <input type="text" wire:model.debounce.300ms="query_orders" placeholder="Cerca"
-                                class="border p-2 rounded w-[280px] mb-4 ml-[40px]" />
-                        </div>
-                    </div>
-                    <div class="" x-show="activeTabAccounting === 'invoices'" x-cloak>
 
                         <div class="">
                             <select wire:model.live="status_invoices" class="ml-[300px] border-1 h-[40px] p-[10px]">
@@ -144,16 +118,14 @@
                             <input type="text" wire:model.live="query_invoices" placeholder="Cerca"
                                 class="border p-2 rounded w-[280px] mb-4 ml-[40px]" />
                         </div>
-                    </div>
+                  
                 </div>
 
 
-                <div class="mt-2" x-show="activeTabAccounting === 'orders'" x-cloak>
-                    table orders
-
-                </div>
-                <div class="mt-2" x-show="activeTabAccounting === 'invoices'" x-cloak>
-                    table invoice
+                <div class="mt-2" >
+                    @include('livewire.crm.utilities.estimate-sub-table', [
+                        'estimates' => $estimates
+                      ])
 
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clients;
+use App\Models\Estimate;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -16,6 +17,14 @@ class ContactController extends Controller
     {
         $client = Clients::with('referents')->findOrFail($contactId);
 
-        return view('livewire.crm.contact-detail', ['id' => $contactId, 'client' => $client]);
+        $estimates = Estimate::where('status', '!=', 0)
+                             ->latest()
+                             ->get();
+
+        // return a blade (not a Livewire view) called resources/views/crm/contact-detail.blade.php
+        return view('livewire.crm.contact-detail', [
+            'client'    => $client,
+            'estimates' => $estimates,
+        ]);
     }
 }

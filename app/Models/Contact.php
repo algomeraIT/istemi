@@ -10,6 +10,9 @@ class Contact extends Model
     use HasFactory;
 
     protected $fillable = [
+        'client_id',
+        'user_id',
+        'estimate_id',
         'company_name',
         'email',
         'pec',
@@ -21,15 +24,15 @@ class Contact extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Users::class, 'user_id_creation');
+        return $this->belongsTo(Users::class, 'user_id');
     }
 
     public function referents()
     {
         return $this->hasMany(Referent::class, 'client_id');
     }
-    public function communication()
+    public function estimate()
     {
-        return $this->hasMany(Communication::class, 'client_id');
+        return $this->hasMany(Estimate::class, 'estimate_id');
     }
 }

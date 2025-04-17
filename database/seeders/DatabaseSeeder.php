@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             AttachSeeder::class,
             ClientsSeeder::class,
             CommunicationSeeder::class,
-            ContactSeeder::class,
             EmailCommunicationClientHistorySeeder::class,
             EstimateSeeder::class,
             HistorySeeder::class,
@@ -35,7 +34,8 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             ReferentSeeder::class,
             SaleSeeder::class,
-            UsersTableSeeder::class
+            UsersTableSeeder::class,
+            ContactSeeder::class,
         ]);
     }
 }

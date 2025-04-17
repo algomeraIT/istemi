@@ -3,6 +3,7 @@
 namespace App\Livewire\Crm;
 
 use App\Models\Contact;
+use App\Models\Estimate;
 use Livewire\Component;
 use Livewire\WithPagination;
 

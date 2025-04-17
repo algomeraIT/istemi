@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-
+    
         <!-- Conditional Content: List or Kanban -->
         @if ($activeTab === 'list')
             <div>
