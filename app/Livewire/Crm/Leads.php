@@ -15,13 +15,24 @@ class Leads extends Component
 
     public $isOpen, $isOpenShow = false;
     protected $paginationTheme = 'tailwind';
-
+    public bool $isModalOpen = false;
     public $activeTab = 'list';
     public $status = '';
     public $date = '';
     public $query = '';
     public $year = '';
     public $lead = '';
+
+    protected function rules()
+    {
+        return [
+            'company_name'    => 'required|string',
+            'first_telephone' => 'required|string',
+            'email'           => 'required|email',
+        ];
+    }
+
+    
 
     public function resetFilters()
     {
