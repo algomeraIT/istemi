@@ -7,6 +7,7 @@ use App\Models\Project;
 use Livewire\WithPagination;
 use App\Models\Phase;
 use App\Models\Users;
+use App\Models\Referent;
 
 class Projects extends Component
 {
@@ -164,9 +165,9 @@ class Projects extends Component
     }
     public function render()
     {
-        $admins = Users::whereHas('role', function ($query) {
+      /*   $admins = Users::whereHas('role', function ($query) {
             $query->where('name', 'admin');
-        })->get();
+        })->get(); */
 
         $phases = ["Non Definito", "Avvio", "Pianificazione", "Esecuzione", "Verifica", "Chiusura"];
 
@@ -198,6 +199,8 @@ class Projects extends Component
                 }
             }
         }
+
+        $referents = Referent::paginate(10);
 
     return view('livewire.projects.project', compact('projects', 'referents'));
     }
