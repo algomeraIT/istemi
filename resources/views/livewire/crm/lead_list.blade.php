@@ -3,13 +3,13 @@
         <table class=" w-full min-w-[798px] font-inter text-sm text-left">
             <thead class="text-[#B0B0B0] font-light text-[14px]">
                 <tr class="border-b h-10">
-                    <th class="w-[calc(100%/7)]">ID</th>
-                    <th class="w-[calc(100%/6)]">Ragione Sociale</th>
-                    <th class="w-[calc(100%/6)]">E-mail</th>
-                    <th class="w-[calc(100%/6)]">Telefono</th>
+                    <th class="w-[calc(100%/9)]">ID</th>
+                    <th class="w-[calc(100%/5)]">Ragione Sociale</th>
+                    <th class="w-[calc(100%/5)]">E-mail</th>
+                    <th class="w-[calc(100%/5)]">Telefono</th>
                     <th class="w-[calc(100%/6)]">Acquisizione</th>
-                    <th >Stato</th>
-                    <th class="flex justify-end">Azioni</th>
+                    <th class="w-[calc(100%/6)]">Stato</th>
+                    <th class=" flex justify-end">Azioni</th>
                 </tr>
             </thead>
             <tbody>

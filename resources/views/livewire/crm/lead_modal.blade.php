@@ -117,7 +117,7 @@
       <!-- This is where Quill will render -->
       <div 
         x-ref="quillEditor"
-        class="bg-white border border-gray-200 rounded h-[200px] mb-4 p-2 overflow-y-auto">
+        class="bg-white border border-gray-200 h-[200px] mb-4 p-2 overflow-y-auto">
       </div>
     
       <!-- Hidden field Livewire listens to -->
@@ -125,13 +125,18 @@
     </div>
 
     <style>
+        .ql-toolbar{
+            background-color: #F5FCFD;
+            height: 35px;
+            padding: 2px;
+        }
        .ql-snow.ql-toolbar button, .ql-snow .ql-toolbar {
           width: 60px;
           font-size: 0.75rem;
           white-space: normal;
-          padding: 0.25em;
+          padding: 4px;
           display: flex;
-         
+        
         }
       </style>
 
