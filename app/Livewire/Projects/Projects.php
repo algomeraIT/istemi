@@ -3,53 +3,65 @@
 namespace App\Livewire\Projects;
 
 use Livewire\Component;
-use App\Models\Project;
 use Livewire\WithPagination;
-use App\Models\Phase;
-use App\Models\Users;
+use App\Models\Project;
+use App\Models\User;
 use App\Models\Referent;
 
 class Projects extends Component
 {
     use WithPagination;
-    public $isOpen = false;
-    public $currentTab = 1;
 
-    public $formData = [
-        'general_info' => '',
-        'n_file' => '',
-        'name_project' => '',
-        'client_name' => '',
-        'client_type' => '',
-        'client_status' => '',
-        'is_from_agent' => false,
-        'total_budget' => '',
-        'chief_area' => '',
-        'chief_project' => '',
-        'start_at' => '',
-        'end_at' => '',
-        'starting_price' => '',
-        'discount_percentage' => '',
-        'discounted' => '',
-        'n_firms' => '',
-        'firms_and_percentage' => '',
-        'note' => '',
-        'goals' => '',
-        'project_scope' => '',
-        'expected_results' => '',
-        'stackholder_id' => '',
-        'agreement' => false,
+    // default values for a new project
+    private const DEFAULT_FORM = [
+        'general_info'          => '',
+        'n_file'                => '',
+        'name_project'          => '',
+        'client_name'           => '',
+        'client_type'           => '',
+        'client_status'         => '',
+        'is_from_agent'         => false,
+        'total_budget'          => '',
+        'chief_area'            => '',
+        'chief_project'         => '',
+        'start_at'              => '',
+        'end_at'                => '',
+        'starting_price'        => '',
+        'discount_percentage'   => '',
+        'discounted'            => '',
+        'n_firms'               => '',
+        'firms_and_percentage'  => '',
+        'note'                  => '',
+        'goals'                 => '',
+        'project_scope'         => '',
+        'expected_results'      => '',
+        'stackholder_id'        => '',
+        'agreement'             => false,
     ];
 
+    // possible phases
+    private const PHASES = [
+        'Non Definito', 'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura'
+    ];
+
+    // UI state
+    public bool  $isOpen       = false;
+    public int   $currentTab   = 1;
+    public array $formData     = self::DEFAULT_FORM;
+    public string $activeTab   = 'list';
+    public string $search      = '';
+    public string $sortField   = 'n_file';
+    public string $sortDirection = 'asc';
+    public string $activePhase = '';
+
     protected $paginationTheme = 'tailwind';
-    public $search = '';
-    public $activeTab = 'list';
-    public $status = '';
-    public $date = '';
-    protected $listeners = ['updatePhase'];
-    public $sortField = 'n_file';
-    public $sortDirection = 'asc';
-    public $activePhase = '';
+    protected $listeners       = ['updatePhase'];
+
+    // reset pagination whenever search or tab changes
+    public function updatingSearch()       { $this->resetPage(); }
+    public function updatingActiveTab()    { $this->resetPage(); }
+    public function updatingSortField()    { $this->resetPage(); }
+    public function updatingSortDirection(){ $this->resetPage(); }
 
     public function create()
     {
@@ -62,146 +74,113 @@ class Projects extends Component
         $this->resetForm();
         $this->isOpen = false;
     }
-    public function resetForm()
+
+    private function resetForm(): void
     {
-        $this->formData = [
-            'general_info' => '',
-            'n_file' => '',
-            'name_project' => '',
-            'client_name' => '',
-            'client_type' => '',
-            'client_status' => '',
-            'is_from_agent' => false,
-            'total_budget' => '',
-            'chief_area' => '',
-            'chief_project' => '',
-            'start_at' => '',
-            'end_at' => '',
-            'starting_price' => '',
-            'discount_percentage' => '',
-            'discounted' => '',
-            'n_firms' => '',
-            'firms_and_percentage' => '',
-            'note' => '',
-            'goals' => '',
-            'project_scope' => '',
-            'expected_results' => '',
-            'stackholder_id' => '',
-            'agreement' => false,
-        ];
+        $this->formData   = self::DEFAULT_FORM;
         $this->currentTab = 1;
     }
 
-    public function nextTab()
+    public function nextTab(): void
     {
-        if ($this->currentTab < 4) {
-            $this->currentTab++;
-        }
+        $this->currentTab = min($this->currentTab + 1, 4);
     }
 
-    public function prevTab()
+    public function prevTab(): void
     {
-        if ($this->currentTab > 1) {
-            $this->currentTab--;
-        }
+        $this->currentTab = max($this->currentTab - 1, 1);
     }
+
     public function save()
     {
         $this->validate([
-            'formData.general_info' => 'required',
-            'formData.name_project' => 'required',
-            'formData.client_name' => 'required',
-            'formData.total_budget' => 'required|numeric',
-            'formData.starting_price' => 'required|numeric',
+            'formData.general_info'        => 'required',
+            'formData.name_project'        => 'required',
+            'formData.client_name'         => 'required',
+            'formData.total_budget'        => 'required|numeric',
+            'formData.starting_price'      => 'required|numeric',
             'formData.discount_percentage' => 'nullable|numeric',
-            'formData.n_firms' => 'nullable|numeric',
-            'formData.firms_and_percentage' => 'nullable|string',
-            'formData.goals' => 'nullable|string',
-            'formData.project_scope' => 'nullable|string',
-            'formData.expected_results' => 'nullable|string',
-            'formData.stackholder_id' => 'nullable|integer',
-            'formData.agreement' => 'accepted',
+            'formData.n_firms'             => 'nullable|numeric',
+            'formData.firms_and_percentage'=> 'nullable|string',
+            'formData.goals'               => 'nullable|string',
+            'formData.project_scope'       => 'nullable|string',
+            'formData.expected_results'    => 'nullable|string',
+            'formData.stackholder_id'      => 'nullable|integer',
+            'formData.agreement'           => 'accepted',
         ]);
 
         Project::create($this->formData);
-        session()->flash('message', 'Project Created Successfully!');
+
+        session()->flash('message', 'Project created successfully!');
         $this->close();
     }
-    public function sortBy($field, $phase)
-    {
-        // Set the active phase for sorting
-        $this->activePhase = $phase;
 
+    public function sortBy(string $field, string $phase): void
+    {
+        $this->activePhase = $phase;
         if ($this->sortField === $field) {
             $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
         } else {
-            $this->sortField = $field;
+            $this->sortField     = $field;
             $this->sortDirection = 'asc';
         }
     }
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-    public function search()
-    {
-        $this->resetPage();
-    }
-    public function setTab($tab)
+
+    public function setTab(string $tab): void
     {
         $this->activeTab = $tab;
-        $this->isOpen = false;
-        $this->resetPage();
+        $this->isOpen    = false;
     }
-    public function updatePhase($projectId, $newPhase)
-    {
-        $projectId = intval($projectId);
 
-        $project = Project::find($projectId);
-        if ($project) {
+    public function updatePhase(int $projectId, string $newPhase): void
+    {
+        if ($project = Project::find($projectId)) {
             $project->update(['current_phase' => $newPhase]);
-            $this->dispatch('projects-updated');
+            $this->dispatchBrowserEvent('projects-updated');
         }
     }
+
+    private function buildProjectQuery()
+    {
+        return Project::when($this->search, fn($q) =>
+                $q->where(fn($sub) =>
+                    $sub->where('n_file', 'like', "%{$this->search}%")
+                        ->orWhere('name_client', 'like', "%{$this->search}%")
+                )
+            );
+    }
+
     public function render()
     {
-      /*   $admins = Users::whereHas('role', function ($query) {
-            $query->where('name', 'admin');
-        })->get(); */
+        $referents = Referent::paginate(10);
 
-        $phases = ["Non Definito", "Avvio", "Pianificazione", "Esecuzione", "Verifica", "Chiusura"];
-
-        if ($this->activeTab == 'list') {
-            $projects = Project::when($this->search, function ($query) {
-                return $query->where(function ($q) {
-                    $q->where('n_file', 'like', '%' . $this->search . '%')
-                        ->orWhere('name_client', 'like', '%' . $this->search . '%');
-                });
-            })
-                ->orderBy('created_at')
-                ->paginate();
+        if ($this->activeTab === 'list') {
+            $projects = $this->buildProjectQuery()
+                ->orderBy('created_at', 'desc')
+                ->paginate(15);
         } else {
-            $projects = Project::when($this->search, function ($query) {
-                return $query->where(function ($q) {
-                    $q->where('n_file', 'like', '%' . $this->search . '%')
-                        ->orWhere('name_client', 'like', '%' . $this->search . '%');
-                });
-            })
+            $grouped = $this->buildProjectQuery()
                 ->orderBy($this->sortField, $this->sortDirection)
                 ->get()
                 ->groupBy('current_phase')
                 ->toArray();
 
-            // controllo che tutte le fasi esistano
-            foreach ($phases as $phase) {
-                if (!isset($projects[$phase])) {
-                    $projects[$phase] = [];
+            // ensure every phase key exists
+            foreach (self::PHASES as $phase) {
+                if (!isset($grouped[$phase])) {
+                    $grouped[$phase] = [];
                 }
             }
+
+            $projects = $grouped;
         }
 
-        $referents = Referent::paginate(10);
+        return view('livewire.projects.project', [
+            'projects'  => $projects,
+            'referents' => $referents,
+            'phases'    => self::PHASES,
+            'statuses' => Project::select('status')->distinct()->pluck('status'),
 
-    return view('livewire.projects.project', compact('projects', 'referents'));
+        ]);
     }
 }
