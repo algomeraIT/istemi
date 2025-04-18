@@ -18,20 +18,35 @@
             @include('livewire.crm.utilities.tab')
             {{-- filtro --}}
             <div class="flex md:flex-col xl:flex-row  xl:lg:w-3/7 md:sm:w-1/3 space-x-4 justify-center">
-                <select wire:model.live="status"
-                    class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
+                <select wire:model.live="query_project" class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
                     <option value="">Tutti i progetti</option>
-                    <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
-                    <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
-                    <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
-                </select>
-                <select wire:model.live="status"
-                    class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
-                    <option value="">Tutti i responsabili</option>
-                    <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
-                    <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
-                    <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
-                </select>
+                    <option value="Pubblico">Pubblico</option>
+                    <option value="Privato">Privato</option>
+                  </select>
+                 
+
+                  
+
+
+                <div class="flex flex-col md:flex-row gap-4 items-start">
+                    <div class="w-full max-w-sm">
+                        <label for="responsible‐combo" class="sr-only">Filtra referente</label>
+                        <input id="responsible‐combo" type="text" list="responsibles-list" wire:model.live="query"
+                            placeholder="Tutti i referenti"
+                            class="md:w-full xl:w-48 border-gray-200 border h-9 p-1.5 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36" />
+                        <datalist id="responsibles-list" class="">
+                            <option value="">Tutti i referenti</option>
+                            @foreach ($responsibles as $resp)
+                                <option value="{{ $resp }}"></option>
+                            @endforeach
+                        </datalist>
+                    </div>
+                </div>
+
+
+
+
+
                 <select wire:model.live="status"
                     class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
                     <option value="">Tutte le fasi</option>

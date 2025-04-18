@@ -4,7 +4,7 @@
             <thead class="text-[#B0B0B0] font-light text-[14px]">
                 <tr class="border-b h-10">
                     <th class="w-[calc(100%/6)]">Preventivo</th>
-                    <th class="w-[calc(100%/6)]">Cliente</th>
+                    <th class="w-[calc(100%/3)]">Cliente</th>
                     <th class="w-[calc(100%/6)]">Tipo Cliente</th>
                     <th class="w-[calc(100%/6)]">Fase Progettuale</th>
                     <th class="w-[calc(100%/6)]">Responsabile</th>
@@ -22,7 +22,7 @@
                             <p>
 
                                 <span
-                                    class="px-2 py-1 text-xs font-semibold rounded {{ $project->client_type === 'Pubblico' ? 'bg-[#F6F3F9]' : 'bg-[#F2F5F9]' }}">
+                                    class="px-2 py-1 text-xs font-semibold border-1 {{ $project->client_type === 'Pubblico' ? 'bg-[#F6F3F9] text-[#4D1A87] border-[#4D1B86]' : 'bg-[#F2F5F9] text-[#08468B] border-[#08468B]' }}">
                                     {{ $project->client_type }}
                                 </span>
 
@@ -52,7 +52,7 @@
                                     }
                                 @endphp
                                 <span class="px-2 py-1 text-xs font-semibold rounded {{ $bgColor }}">
-                                    {{ $project->current_phase }}
+                                    {{ $project->current_phase ?? 'Non definito' }}
                                 </span>
                             </p>
                         </td>
