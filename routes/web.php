@@ -20,9 +20,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/change-password', function () {
-    return view('change-password');
-})->name('change-password')->middleware('auth');
+
 
 
 //Route::get('/login', \App\Livewire\Auth\Login::class)->name('login')->middleware('guest');
@@ -32,6 +30,10 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/change-password', function () {
+        return view('change-password');
+    })->name('change-password')->middleware('auth');
+    
     Route::post('/logout', function () {
         auth()->logout();
         session()->invalidate();
