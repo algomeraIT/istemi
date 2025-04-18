@@ -5,9 +5,7 @@
     <!-- Left Section: Referents -->
     <div class="w-full lg:w-2/3 p-6 bg-white">
         <div class="mx-auto my-3">
-            <a href="{{ url()->previous() }}" class="text-[20px] font-light text-[#A0A0A0] text-left">
-                &larr; Torna indietro
-            </a>
+           @include('livewire.general.goback')
             <div class="mt-8">
                 @livewire('crm.referents', ['client' => $client])
             </div>

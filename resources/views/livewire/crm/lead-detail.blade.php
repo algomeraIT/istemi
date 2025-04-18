@@ -1,9 +1,6 @@
 <div class="fixed inset-0 bg-[oklch(0.97_0_0_/_0.5)] bg-opacity-20 flex justify-end z-50">
     <div class="w-1/3 bg-white shadow-md border border-gray-200 p-4 overflow-y-auto h-full">
-        <button wire:click="closeModal"
-            class="px-3 py-1.5 text-sm float-right bg-white text-[#B0B0B0] hover:bg-gray-500 transition">
-            x Chiudi
-        </button>
+        @include('livewire.general.cancel')
         <div class="bg-white pt-2.5 border-none h-full">
 
             <!-- Ragione Sociale -->

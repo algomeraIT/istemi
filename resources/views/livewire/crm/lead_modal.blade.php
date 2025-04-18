@@ -1,9 +1,6 @@
 <div class="fixed inset-0 bg-[oklch(0.97_0_0_/_0.5)] bg-opacity-20 flex justify-end z-50">
     <div class="w-1/3 bg-white shadow-md border border-gray-200 overflow-y-auto h-full  pl-[95px] pr-[95px] pt-[30px] ">
-        <button wire:click="closeModal"
-            class="px-3 py-1.5 text-sm float-right bg-white text-[#B0B0B0]  hover:bg-gray-500 transition">
-            x Annulla
-        </button>
+   @include('livewire.general.cancel')
 
         <h2 class="text-lg font-semibold mb-3 ">{{ $lead_id ? 'Modifica Lead' : 'Crea Lead' }}</h3>
         <div class=" h-full pt-14">

@@ -18,7 +18,7 @@
             @include('livewire.crm.utilities.tab')
             {{-- filtro --}}
             <div class="flex md:flex-col xl:flex-row  xl:lg:w-3/7 md:sm:w-1/3 space-x-4 justify-center">
-                <select wire:model.live="status" class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
+                <select wire:model.live="status" class="pl-2.5 md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
                   <option value="">Tutti gli stati</option>
                   <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
                   <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>

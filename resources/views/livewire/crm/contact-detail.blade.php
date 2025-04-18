@@ -7,9 +7,8 @@
             <div class="flex flex-col lg:flex-row gap-6">
                 <!-- Left Column -->
                 <div class="w-full lg:w-2/3 ">
-                    <a href="{{ url()->previous() }}" class="text-lg font-light text-gray-400 block">
-                        &larr; Torna indietro
-                    </a>
+                    @include('livewire.general.goback')
+
 
                     <div class="bg-white" x-data="{ mainTab: 'history', commTab: 'sales' }">
                         {{-- Tab Buttons --}}

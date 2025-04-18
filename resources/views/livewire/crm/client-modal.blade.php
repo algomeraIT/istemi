@@ -1,10 +1,12 @@
 <div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 bg-opacity-50 p-4">
     <div class="bg-white shadow w-full  overflow-auto">
         <div class="p-6">
-            <h3 class="text-2xl font-semibold mb-6">
-                {{ $client_id ? 'Modifica Cliente' : 'Crea Cliente' }}
-            </h3>
-
+            <div class="flex justify-between mb-16">
+                <h3 class="text-2xl font-semibold mb-6">
+                    {{ $client_id ? 'Modifica Cliente' : 'Crea Cliente' }}
+                </h3>
+                @include('livewire.general.cancel')
+            </div>
             <form>
                 <div class="md:flex-row gap-6">
                     {{-- LEFT: All inputs --}}

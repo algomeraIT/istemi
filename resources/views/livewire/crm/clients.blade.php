@@ -19,7 +19,7 @@
             {{-- Filters --}}
             <div class="flex md:flex-col xl:flex-row xl:lg:w-3/7 md:sm:w-1/3 space-x-4 justify-center">
                 <select wire:model.live="city"
-                    class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-32">
+                    class="pl-2.5 md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-32">
                     <option value="" selected>Tutti le sedi</option>
                     @if($cities->isNotEmpty())
                         @foreach($cities as $city)
@@ -31,7 +31,7 @@
                 </select>
 
                 <select wire:model.live="status"
-                    class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100">
+                    class="pl-2.5 md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100">
                     <option value="">Tutte le etichette</option>
                     <option value="0" class="bg-cyan-400 text-cyan-800">Call center</option>
                     <option value="1" class="bg-purple-400 text-purple-800">Censimento</option>

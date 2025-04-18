@@ -2,8 +2,10 @@
 @if($isOpenReferent)
 <div class="fixed inset-0 flex justify-end z-50">
     <div class="bg-white p-6 rounded shadow-lg w-1/2">
+        <div class="flex justify-between">
         <h2 class="text-lg font-bold">{{ $editing ? 'Modifica Referente' : 'Nuovo Referente' }}</h2>
-
+        @include('livewire.general.cancel')
+        </div>
         <input type="text" wire:model="name" placeholder="Nome" class="border p-2 w-full my-2">
         <input type="text" wire:model="last_name" placeholder="Cognome" class="border p-2 w-full my-2">
         <input type="email" wire:model="email" placeholder="Email" class="border p-2 w-full my-2">
@@ -14,7 +16,6 @@
         <input type="text" wire:model="note" placeholder="Nota" class="border p-2 w-full my-2">
 
         <button wire:click="save" class="bg-cyan-500 text-white p-2">Salva</button>
-        <button wire:click="closeModal" class="bg-gray-500 text-white p-2">Annulla</button>
     </div>
 </div>
 @endif
@@ -27,9 +28,7 @@
         style="right: 0;">
         <div class="p-4 border-b flex justify-between items-center">
             <h2 class="text-xl font-semibold">Dettaglio Referente</h2>
-            <button wire:click="closeModal" class="text-gray-500 hover:text-gray-700">
-                ✖
-            </button>
+            @include('livewire.general.cancel')
         </div>
 
         <div class="p-6">
@@ -103,7 +102,10 @@
 @if($isOpenActivity)
 <div class="fixed inset-0 flex justify-end z-50">
     <div class="bg-white p-6 rounded shadow-lg w-1/2">
+        <div class="flex justify-between">
         <h2 class="text-lg font-bold">{{ $editing ? 'Modifica Attività' : 'Nuova Attività' }}</h2>
+        @include('livewire.general.cancel')
+        </div>
         @if ($errors->any())
         <div class="bg-red-100 text-red-600 p-2 rounded mb-2">
             <ul>
@@ -128,7 +130,6 @@
         <input type="date" wire:model="expire_at" placeholder="Scadenza" class="border p-2 w-full my-2">
 
         <button wire:click="saveActivity" class="bg-cyan-500 text-white p-2">Salva</button>
-        <button wire:click="closeModal" class="bg-gray-500 text-white p-2">Annulla</button>
     </div>
 </div>
 @endif
@@ -355,8 +356,10 @@
 
         <div class="fixed inset-0 flex justify-end z-50">
             <div class="bg-white p-6 rounded shadow-lg w-1/2">
+                <div class="flex justify-between">
                 <h2 class="text-lg font-semibold mb-4">Nuova Nota</h2>
-
+                @include('livewire.general.cancel')
+                </div>
                 @if (session()->has('message'))
                 <div class="text-green-600 mb-2">{{ session('message') }}</div>
                 @endif
@@ -413,7 +416,6 @@
 
                         <div class="mt-4 flex justify-end">
                             <button type="submit" class="bg-cyan-500 text-white p-2">Salva</button>
-                            <button wire:click="closeModal" class="bg-gray-500 text-white p-2">Annulla</button>
                         </div>
                 </form>
             </div>
