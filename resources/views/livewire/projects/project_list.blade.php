@@ -77,7 +77,7 @@
         </table>
         <!-- Pagination Links -->
         <div class="mt-4">
-            {{ $projects->links() }}
+            {{ $projects->links('customPagination') }}
         </div>
     @else
         <p class="text-gray-500">Nessun elemento da mostrare</p>

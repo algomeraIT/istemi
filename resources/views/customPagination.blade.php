@@ -3,39 +3,47 @@
 @endphp
 
 @if ($paginator->hasPages())
-    <nav role="navigation" aria-label="Pagination" class="flex ">
-        <div>
-            <p class="text-sm text-gray-700 leading-5 dark:text-gray-400">
-                {!! __('Mostrati') !!}
-                @if ($paginator->firstItem())
-                    <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                    {!! __('di') !!}
-                    <span class="font-medium">{{ $paginator->lastItem() }}</span>
-                @else
-                    {{ $paginator->count() }}
-                @endif
-            </p>
-        </div>
+<nav role="navigation" aria-label="Pagination" class="flex flex-col md:flex-row items-center  p-4 bg-white shadow rounded">
+    <!-- Summary -->
+    <div class="text-sm text-gray-700">
+        {!! __('Mostrati') !!}
+        @if ($paginator->firstItem())
+            <span class="font-medium">{{ $paginator->firstItem() }}</span>
+            {!! __('di') !!}
+            <span class="font-medium">{{ $paginator->lastItem() }}</span>
+        @else
+            {{ $paginator->count() }}
+        @endif
+    </div>
 
-        {{-- Previous Page Link --}}
+    <!-- Controls -->
+    <div class="flex items-center space-x-4 mt-2 md:mt-0 ml-[30%]">
+        {{-- Previous --}}
         @if ($paginator->onFirstPage())
-            <span class="px-4 py-2 text-gray-400 cursor-not-allowed rounded-md ml-[33rem]">Precedente</span>
+            <span class="text-gray-400 cursor-not-allowed px-3 py-1">← Precedente</span>
         @else
-            <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="px-4 py-2 text-gray-400  ml-[36rem] rounded-md hover:cursor-pointer"><- Precedente</a>
+            <a
+              href="{{ $paginator->previousPageUrl() }}"
+              rel="prev"
+              class="text-gray-600 hover:underline px-3 py-1"
+            >← Precedente</a>
         @endif
 
-        {{-- Pagination Elements --}}
-        <div class="flex ">
-            <span class="py-2 px-4 text-gray-700">
-                Pagina {{ $paginator->currentPage() }} di {{ $paginator->lastPage() }}
-            </span>
-        </div>
+        {{-- Page X of Y --}}
+        <span class="text-gray-700 px-3 py-1">
+            Pagina {{ $paginator->currentPage() }} di {{ $paginator->lastPage() }}
+        </span>
 
-        {{-- Next Page Link --}}
+        {{-- Next --}}
         @if ($paginator->hasMorePages())
-            <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="px-4 py-2 text-gray-400  rounded-md hover:cursor-pointer">Successiva -></a>
+            <a
+              href="{{ $paginator->nextPageUrl() }}"
+              rel="next"
+              class="text-gray-600 hover:underline px-3 py-1"
+            >Successiva →</a>
         @else
-            <span class="px-4 py-2 text-gray-400 cursor-not-allowed  rounded-md">Successiva</span>
+            <span class="text-gray-400 cursor-not-allowed px-3 py-1">Successiva →</span>
         @endif
-    </nav>
+    </div>
+</nav>
 @endif
