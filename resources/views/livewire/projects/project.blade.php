@@ -24,10 +24,6 @@
                     <option value="Privato">Privato</option>
                   </select>
                  
-
-                  
-
-
                 <div class="flex flex-col md:flex-row gap-4 items-start">
                     <div class="w-full max-w-sm">
                         <label for="responsible‐combo" class="sr-only">Filtra referente</label>
@@ -43,23 +39,23 @@
                     </div>
                 </div>
 
-
-
-
-
-                <select wire:model.live="status"
+                <select wire:model.live="query_phase"
                     class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
                     <option value="">Tutte le fasi</option>
-                    <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
-                    <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
-                    <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
+                    <option value="0" class="bg-cyan-400 text-cyan-800">Non definito</option>
+                    <option value="1" class="bg-purple-400 text-purple-800">Avvio</option>
+                    <option value="2" class="bg-red-400 text-red-800">Pianificazione</option>
+                    <option value="1" class="bg-purple-400 text-purple-800">Esecuzione</option>
+                    <option value="2" class="bg-red-400 text-red-800">Verifica</option>
+                    <option value="2" class="bg-red-400 text-red-800">Chiusura</option>
+
                 </select>
 
                 <div class="relative ">
                     <span class="absolute inset-y-0 left-0 flex items-center pointer-events-none h-9 p-3.5">
                         <flux:icon.magnifying-glass class="w-4 h-4 text-gray-300" />
                     </span>
-                    <input type="text" wire:model.live="query" placeholder="Cerca..."
+                    <input type="text" wire:model.live="query_search" placeholder="Cerca..."
                         class="md:w-full pl-9 border border-gray-200 h-9  focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
                 </div>
             </div>

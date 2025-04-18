@@ -50,6 +50,8 @@ class Projects extends Component
     public string $activeTab = 'list';
     public string $query = '';
     public string $query_project = '';
+    public string $query_phase = '';
+    public string $query_search = '';
     public string $search = '';
     public string $sortField = 'n_file';
     public string $sortDirection = 'asc';
@@ -169,7 +171,10 @@ class Projects extends Component
             ->when($this->search, fn($q) => $q->where('n_file', 'like', "%{$this->search}%"))
             ->when($this->query, fn($q) => $q->where('responsible', 'like', '%' . $this->query . '%'))
             ->when($this->query_project, fn($q) => $q->where('client_type', 'like', '%' . $this->query_project . '%'))
-            ->when($this->status, fn($q) => $q->where('status', $this->status));
+            ->when($this->query_phase, fn($q) => $q->where('current_phase', 'like', '%' . $this->query_phase . '%'))
+            ->when($this->query_search, fn($q) => $q->where('client_name', 'like', '%' . $this->query_search . '%'))
+/*             ->when($this->query_search, fn($q) => $q->where('n_file', 'like', '%' . $this->query_search . '%'))
+ */            ->when($this->status, fn($q) => $q->where('status', $this->status));
     }
 
     public function render()
@@ -204,5 +209,5 @@ class Projects extends Component
             'responsibles' => Project::select('responsible')->distinct()->pluck('responsible'),
         ]);
     }
-    
+
 }
