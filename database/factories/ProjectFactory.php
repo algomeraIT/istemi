@@ -16,18 +16,19 @@ class ProjectFactory extends Factory
     {
         return [
                 'general_info' => $this->faker->paragraph(),
-                'n_file' => $this->faker->unique()->numerify('FILE-####'),
+                'n_file' => $this->faker->unique()->numerify('PRT-########'),
                 'name_project' => $this->faker->sentence(3),
                 'id_client' => Clients::factory(), 
                 'client_name' => $this->faker->company,
                 'logo_path_client' => $this->faker->imageUrl(),
-                'client_type' => $this->faker->randomElement(['Corporate', 'Individual']),
+                'client_type' => $this->faker->randomElement(['Privato', 'Pubblico']),
                 'note_client' => $this->faker->paragraph(),
                 'address_client' => $this->faker->address(),
                 'client_status' => $this->faker->randomElement(['Active', 'Inactive']),
                 'is_from_agent' => $this->faker->boolean(),
                 'total_budget' => $this->faker->randomFloat(2, 50000, 1000000),
                 'chief_area' => $this->faker->name(),
+                'responsible' => $this->faker->name(),
                 'chief_project' => $this->faker->name(),
                 'start_at' => $this->faker->dateTimeBetween('-1 year', '+1 year'),
                 'end_at' => $this->faker->dateTimeBetween('+1 month', '+2 years'),
@@ -48,7 +49,7 @@ class ProjectFactory extends Factory
                 'expected_results' => $this->faker->paragraph(),
                 'stackholder_id' => Stackholder::factory(),
                 'phase_id' => Phase::factory()->create()->id,
-                'phase' => $this->faker->randomElement(['Prima Fase', 'Seconda Fase', 'Terza Fase']),
+                'phase' => $this->faker->randomElement(['Non definito', 'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura']),
                 'estimate' => $this->faker->randomElement(['Prima Stima', 'Seconda Stima']),
             ];
     }

@@ -18,28 +18,39 @@
             @include('livewire.crm.utilities.tab')
             {{-- filtro --}}
             <div class="flex md:flex-col xl:flex-row  xl:lg:w-3/7 md:sm:w-1/3 space-x-4 justify-center">
-                <select wire:model.live="status" class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
-                  <option value="">Tutti gli stati</option>
-                  <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
-                  <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
-                  <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
+                <select wire:model.live="status"
+                    class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
+                    <option value="">Tutti i progetti</option>
+                    <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
+                    <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
+                    <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
                 </select>
-              
-                <input type="number" wire:model.live="year" 
-                       class="md:w-full xl:w-80 border-gray-200  p-2.5 h-9 text-[#B0B0B0] border placeholder:font-medium placeholder:text-[16px] placeholder:leading-[20px] placeholder:text-[#B0B0B0] placeholder:opacity-100"
-                       min="1900" max="2099" step="1" placeholder="Tutte le date di acquisizione" />
-              
+                <select wire:model.live="status"
+                    class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
+                    <option value="">Tutti i responsabili</option>
+                    <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
+                    <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
+                    <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
+                </select>
+                <select wire:model.live="status"
+                    class="md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
+                    <option value="">Tutte le fasi</option>
+                    <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
+                    <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
+                    <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
+                </select>
+
                 <div class="relative ">
                     <span class="absolute inset-y-0 left-0 flex items-center pointer-events-none h-9 p-3.5">
                         <flux:icon.magnifying-glass class="w-4 h-4 text-gray-300" />
                     </span>
                     <input type="text" wire:model.live="query" placeholder="Cerca..."
-                           class="md:w-full pl-9 border border-gray-200 h-9  focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
+                        class="md:w-full pl-9 border border-gray-200 h-9  focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
                 </div>
-              </div>
+            </div>
         </div>
 
-    
+
 
         <div class=>
             @if ($activeTab === 'list')
