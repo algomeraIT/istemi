@@ -4,29 +4,29 @@
             <table class="w-full min-w-[798px] font-inter text-sm text-left">
                 <thead class="text-[#B0B0B0] font-light text-[14px]">
                     <tr class="border-b h-10">
-                        <th class="w-[calc(100%/8)] whitespace-nowrap">ID</th>
-                        <th class="w-[calc(100%/8)] whitespace-nowrap">Logo</th>
-                        <th class="w-[calc(100%/8)] whitespace-nowrap">Ragione Sociale</th>
-                        <th class="w-[calc(100%/8)] whitespace-nowrap">E-mail</th>
-                        <th class="w-[calc(100%/8)] whitespace-nowrap">Telefono</th>
-                        <th class="w-[calc(100%/8)] whitespace-nowrap">Sede</th>
-                        <th class="w-[calc(100%/8)] whitespace-nowrap">Etichette</th>
-                        <th class="flex justify-end whitespace-nowrap">Azioni</th>
+                        <th class="w-[calc(100%/5)] ">ID</th>
+                        <th class="w-[calc(100%/8)] ">Logo</th>
+                        <th class="w-[calc(100%/8)] ">Ragione Sociale</th>
+                        <th class="w-[calc(100%/8)] ">E-mail</th>
+                        <th class="w-[calc(100%/8)] ">Telefono</th>
+                        <th class="w-[calc(100%/6)] ">Sede</th>
+                        <th class="w-[calc(100%/6)]">Etichette</th>
+                        <th class="flex justify-end">Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
                         $statusMap = [
                             0 => [
-                                'label'  => 'Call center',
+                                'text'  => 'Call center',
                                 'bg'     => 'bg-[#FEF7EF]',
-                                'text'   => 'text-[#F5AD65]',
+                                'textColor'   => 'text-[#F5AD65]',
                                 'border' => 'border-[#F5AD65]',
                             ],
                             1 => [
-                                'label'  => 'Censimento',
+                                'text'  => 'Censimento',
                                 'bg'     => 'bg-[#E3F1F4]',
-                                'text'   => 'text-[#2A8397]',
+                                'textColor'   => 'text-[#2A8397]',
                                 'border' => 'border-[#2A8397]',
                             ]
                         ];
@@ -73,9 +73,12 @@
                             <td class="font-medium whitespace-nowrap">{{ $client->city }}</td>
                             <!-- Etichette (Status) -->
                             <td class="whitespace-nowrap">
-                                <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $status['bg'] }} {{ $status['text'] }} {{ $status['border'] }}">
-                                    {{ $status['label'] }}
-                                </span>
+                                @include('livewire.crm.utilities.span-status', [
+                                    'bg' => $status['bg'],
+                                    'textColor' => $status['textColor'],
+                                    'border' => $status['border'],
+                                    'text' => $status['text'],
+                                ])
                             </td>
                             <!-- Azioni -->
                             <td class="flex gap-2 mt-2.5 justify-end">

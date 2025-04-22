@@ -1,4 +1,3 @@
-
 <div class="w-full overflow-x-auto mt-10">
     @if ($contacts)
         <table class="w-full min-w-[798px] font-inter text-sm text-left">
@@ -10,85 +9,90 @@
                     <th class="w-[calc(100%/6)]">E-mail</th>
                     <th class="w-[calc(100%/6)]">Telefono</th>
                     <th class="w-[calc(100%/6)]">Acquisizione</th>
-                    <th class="w-[calc(100%/6)]">Stato</th>
+                    <th class="w-[calc(100%/5)]">Stato</th>
                     <th class="flex justify-end">Azioni</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($contacts as $contact)
-                @include('livewire.crm.utilities.tr-body-table')
-                <td>{{ $contact->id }}</td>
-                        <td>
-                            <div class="max-w-[200px] break-words whitespace-normal">
-                                {{ $contact->company_name }}
-                            </div>
-                        </td>
+                    @include('livewire.crm.utilities.tr-body-table')
+                    <td>{{ $contact->id }}</td>
+                    <td>
+                        <div class="max-w-[200px] break-words whitespace-normal">
+                            {{ $contact->company_name }}
+                        </div>
+                    </td>
 
-                        {{-- Email --}}
-                        <td>
-                            <div class="flex min-w-[200px] break-words whitespace-normal">
-                                {{ $contact->email }}
-                                @include('livewire.crm.utilities.copy-this-text-button', [
-                                    'content' => $contact->email,
-                                ])
-                            </div>
-                        </td>
-
-                        {{-- Phone --}}
-                        <td>
-                            <div class="flex min-w-[200px] break-words whitespace-normal">
-                                {{ $contact->first_telephone }}
-                                @include('livewire.crm.utilities.copy-this-text-button', [
-                                    'content' => $contact->first_telephone,
-                                ])
-                            </div>
-                        </td>
-
-                        {{-- Acquisition Date --}}
-                        <td>{{ \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y') }}</td>
-
-                        {{-- Status --}}
-                        <td>
-                            @php
-                                $statusMap = [
-                                    0 => [
-                                        'text' => 'In contatto',
-                                        'bg' => 'bg-[#FFF9E5]',
-                                        'textColor' => 'text-[#FEC106]',
-                                        'border' => 'border-[#FFC107]',
-                                    ],
-                                    1 => [
-                                        'text' => 'Non idoneo',
-                                        'bg' => 'bg-[#F0F1F2]',
-                                        'textColor' => 'text-[#6C757D]',
-                                        'border' => 'border-[#6C757D]',
-                                    ],
-                                ];
-                                $status = $statusMap[$contact->status] ?? [
-                                    'text' => 'Sconosciuto',
-                                    'bg' => 'bg-gray-100',
-                                    'textColor' => 'text-gray-600',
-                                    'border' => 'border-gray-600',
-                                ];
-                            @endphp
-                            <span class="px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $status['bg'] }} {{ $status['textColor'] }} {{ $status['border'] }}">
-                                {{ $status['text'] }}
-                            </span>
-                        </td>
-
-                        {{-- Actions --}}
-                        <td class="flex gap-2 mt-2.5 justify-end">
-                            @include('livewire.crm.utilities.detail-button', [
-                                'functionName' => 'goToDetail',
-                                'id' => $contact->id,
+                    {{-- Email --}}
+                    <td>
+                        <div class="flex min-w-[200px] break-words whitespace-normal">
+                            {{ $contact->email }}
+                            @include('livewire.crm.utilities.copy-this-text-button', [
+                                'content' => $contact->email,
                             ])
-                            @include('livewire.crm.utilities.delete-button', [
-                                'functionName' => 'delete',
-                                'id' => $contact->id,
+                        </div>
+                    </td>
+
+                    {{-- Phone --}}
+                    <td>
+                        <div class="flex min-w-[200px] break-words whitespace-normal">
+                            {{ $contact->first_telephone }}
+                            @include('livewire.crm.utilities.copy-this-text-button', [
+                                'content' => $contact->first_telephone,
                             ])
-                            {{-- Optional: Edit Button --}}
-                            {{-- @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $contact->id]) --}}
-                        </td>
+                        </div>
+                    </td>
+
+                    {{-- Acquisition Date --}}
+                    <td>{{ \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y') }}</td>
+
+                    {{-- Status --}}
+                    <td>
+                        @php
+                            $statusMap = [
+                                0 => [
+                                    'text' => 'In contatto',
+                                    'bg' => 'bg-[#FFF9E5]',
+                                    'textColor' => 'text-[#FEC106]',
+                                    'border' => 'border-[#FFC107]',
+                                ],
+                                1 => [
+                                    'text' => 'Non idoneo',
+                                    'bg' => 'bg-[#F0F1F2]',
+                                    'textColor' => 'text-[#6C757D]',
+                                    'border' => 'border-[#6C757D]',
+                                ],
+                            ];
+                            $status = $statusMap[$contact->status] ?? [
+                                'text' => 'Sconosciuto',
+                                'bg' => 'bg-gray-100',
+                                'textColor' => 'text-gray-600',
+                                'border' => 'border-gray-600',
+                            ];
+                        @endphp
+                        @include('livewire.crm.utilities.span-status', [
+                            'bg' => $status['bg'],
+                            'textColor' => $status['textColor'],
+                            'border' => $status['border'],
+                            'text' => $status['text'],
+                        ])
+
+
+                    </td>
+
+                    {{-- Actions --}}
+                    <td class="flex gap-2 mt-2.5 justify-end">
+                        @include('livewire.crm.utilities.detail-button', [
+                            'functionName' => 'goToDetail',
+                            'id' => $contact->id,
+                        ])
+                        @include('livewire.crm.utilities.delete-button', [
+                            'functionName' => 'delete',
+                            'id' => $contact->id,
+                        ])
+                        {{-- Optional: Edit Button --}}
+                        {{-- @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $contact->id]) --}}
+                    </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -15,87 +15,88 @@
             <tbody>
                 @foreach ($leads as $lead)
                     @include('livewire.crm.utilities.tr-body-table')
-                        <td>{{ $lead->id }}</td>
-                        <td>
-                            <div class="max-w-[200px] break-words whitespace-normal">
-                                {{ $lead->company_name }}
-                            </div>
-                        </td>
+                    <td>{{ $lead->id }}</td>
+                    <td>
+                        <div class="max-w-[200px] break-words whitespace-normal">
+                            {{ $lead->company_name }}
+                        </div>
+                    </td>
 
-                        {{-- Email --}}
-                        <td>
-                            <div class="flex min-w-[200px] break-words whitespace-normal">
-                                {{ $lead->email }}
-                                @include('livewire.crm.utilities.copy-this-text-button', [
-                                    'content' => $lead->email,
-                                ])
-                            </div>
-
-                        </td>
-
-                        {{-- Phone --}}
-                        <td>
-                            <div class="flex min-w-[200px] break-words whitespace-normal">
-                                {{ $lead->first_telephone }}
-                                @include('livewire.crm.utilities.copy-this-text-button', [
-                                    'content' => $lead->first_telephone,
-                                ])
-                            </div>
-
-                        </td>
-
-                        {{-- Acquisition Date --}}
-                        <td>{{ \Carbon\Carbon::parse($lead->created_at)->format('d/m/Y') }}</td>
-
-                        {{-- Status --}}
-                        <td>
-                            @php
-                                $statusMap = [
-                                    0 => [
-                                        'text' => 'Nuovo',
-                                        'bg' => 'bg-cyan-100',
-                                        'textColor' => 'text-[#0C7BFF]',
-                                        'border' => 'border-[#0C7BFF]',
-                                    ],
-                                    1 => [
-                                        'text' => 'Assegnato',
-                                        'bg' => 'bg-purple-100',
-                                        'textColor' => 'text-[#6F42C1]',
-                                        'border' => 'border-[#6F42C1]',
-                                    ],
-                                    2 => [
-                                        'text' => 'Da riassegnare',
-                                        'bg' => 'bg-red-100',
-                                        'textColor' => 'text-[#E63946]',
-                                        'border' => 'border-[#E63946]',
-                                    ],
-                                ];
-                                $status = $statusMap[$lead->status] ?? [
-                                    'text' => 'Sconosciuto',
-                                    'bg' => 'bg-gray-100',
-                                    'textColor' => 'text-gray-600',
-                                    'border' => 'border-gray-600',
-                                ];
-                            @endphp
-                            <span
-                                class="px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $status['bg'] }} {{ $status['textColor'] }} {{ $status['border'] }}">
-                                {{ $status['text'] }}
-                            </span>
-                        </td>
-
-                        {{-- Actions --}}
-                        <td class="flex gap-2 mt-2.5 justify-end">
-                            @include('livewire.crm.utilities.detail-button', [
-                                'functionName' => 'show',
-                                'id' => $lead->id,
+                    {{-- Email --}}
+                    <td>
+                        <div class="flex min-w-[200px] break-words whitespace-normal">
+                            {{ $lead->email }}
+                            @include('livewire.crm.utilities.copy-this-text-button', [
+                                'content' => $lead->email,
                             ])
-                            @include('livewire.crm.utilities.delete-button', [
-                                'functionName' => 'delete',
-                                'id' => $lead->id,
+                        </div>
+
+                    </td>
+
+                    {{-- Phone --}}
+                    <td>
+                        <div class="flex min-w-[200px] break-words whitespace-normal">
+                            {{ $lead->first_telephone }}
+                            @include('livewire.crm.utilities.copy-this-text-button', [
+                                'content' => $lead->first_telephone,
                             ])
-                            {{-- Optional: Edit Button --}}
-                            {{-- @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $lead->id]) --}}
-                        </td>
+                        </div>
+
+                    </td>
+
+                    {{-- Acquisition Date --}}
+                    <td>{{ \Carbon\Carbon::parse($lead->created_at)->format('d/m/Y') }}</td>
+
+                    {{-- Status --}}
+                    <td>
+                        @php
+                            $statusMap = [
+                                0 => [
+                                    'text' => 'Nuovo',
+                                    'bg' => 'bg-cyan-100',
+                                    'textColor' => 'text-[#0C7BFF]',
+                                    'border' => 'border-[#0C7BFF]',
+                                ],
+                                1 => [
+                                    'text' => 'Assegnato',
+                                    'bg' => 'bg-purple-100',
+                                    'textColor' => 'text-[#6F42C1]',
+                                    'border' => 'border-[#6F42C1]',
+                                ],
+                                2 => [
+                                    'text' => 'Da riassegnare',
+                                    'bg' => 'bg-red-100',
+                                    'textColor' => 'text-[#E63946]',
+                                    'border' => 'border-[#E63946]',
+                                ],
+                            ];
+                            $status = $statusMap[$lead->status] ?? [
+                                'text' => 'Sconosciuto',
+                                'bg' => 'bg-gray-100',
+                                'textColor' => 'text-gray-600',
+                                'border' => 'border-gray-600',
+                            ];
+                        @endphp
+                        @include('livewire.crm.utilities.span-status', [
+                            'bg' => $status['bg'],
+                            'textColor' => $status['textColor'],
+                            'border' => $status['border'],
+                            'text' => $status['text'],
+                        ]) </td>
+
+                    {{-- Actions --}}
+                    <td class="flex gap-2 mt-2.5 justify-end">
+                        @include('livewire.crm.utilities.detail-button', [
+                            'functionName' => 'show',
+                            'id' => $lead->id,
+                        ])
+                        @include('livewire.crm.utilities.delete-button', [
+                            'functionName' => 'delete',
+                            'id' => $lead->id,
+                        ])
+                        {{-- Optional: Edit Button --}}
+                        {{-- @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $lead->id]) --}}
+                    </td>
                     </tr>
                 @endforeach
             </tbody>
