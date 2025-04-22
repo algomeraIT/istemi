@@ -7,11 +7,42 @@
                 </h3>
                 @include('livewire.general.cancel')
             </div>
-            <form>
+            <form x-data="{
+                get isValid() {
+                    return [
+                        '{{ $tax_code }}',
+                        '{{ $company_name }}',
+                        '{{ $email }}',
+                        '{{ $pec }}',
+                        '{{ $first_telephone }}',
+                        '{{ $second_telephone }}',
+                        '{{ $registered_office_address }}',
+                        '{{ $address }}',
+                        '{{ $province }}',
+                        '{{ $city }}',
+                        '{{ $country }}',
+                        '{{ $sdi }}',
+                        '{{ $site }}',
+                        '{{ $name_user_creation }}',
+                        '{{ $last_name_user_creation }}',
+                        '{{ $status }}',
+                    ].every(v => v && v.trim().length > 0);
+                }
+            }">
                 <div class="md:flex-row gap-6">
                     {{-- LEFT: All inputs --}}
                     <div class="flex bg-[#F8FEFF] p-4">
                         <div class=" w-2/3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {{-- Ragione Sociale --}}
+                            <div>
+                                <label class="flex items-center text-sm font-medium text-gray-700">
+                                    <flux:icon.clipboard class="w-4 h-4 mr-2 text-gray-500" />
+                                    Ragione sociale
+                                </label>
+                                <input type="text" wire:model="company_name"
+                                    class="mt-1 w-full p-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300" />
+                            </div>
+
                             {{-- Partita IVA --}}
                             <div>
                                 <label class="flex items-center text-sm font-medium text-gray-700">
@@ -22,15 +53,7 @@
                                     class="mt-1 w-full p-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300" />
                             </div>
 
-                            {{-- Nome Compagnia --}}
-                            <div>
-                                <label class="flex items-center text-sm font-medium text-gray-700">
-                                    <flux:icon.clipboard class="w-4 h-4 mr-2 text-gray-500" />
-                                    Nome Compagnia
-                                </label>
-                                <input type="text" wire:model="company_name"
-                                    class="mt-1 w-full p-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-                            </div>
+
 
                             {{-- Email --}}
                             <div>
@@ -63,14 +86,14 @@
                             </div>
 
                             {{-- Secondo Telefono --}}
-                            <div>
+                      {{--       <div>
                                 <label class="flex items-center text-sm font-medium text-gray-700">
                                     <flux:icon.phone class="w-4 h-4 mr-2 text-gray-500" />
                                     Secondo Telefono
                                 </label>
                                 <input type="text" wire:model="second_telephone"
                                     class="mt-1 w-full p-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-                            </div>
+                            </div> --}}
 
                             {{-- Sede Legale --}}
                             <div>
@@ -142,45 +165,9 @@
                                     class="mt-1 w-full p-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300" />
                             </div>
 
-                            {{-- Utente Creatore --}}
-                            <div>
-                                <label class="flex items-center text-sm font-medium text-gray-700">
-                                    <flux:icon.plus class="w-4 h-4 mr-2 text-gray-500" />
-                                    Utente Creatore
-                                </label>
-                                <input type="text" wire:model="user_model_creation"
-                                    class="mt-1 w-full p-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-                            </div>
 
-                            {{-- Nome Creatore --}}
-                            <div>
-                                <label class="flex items-center text-sm font-medium text-gray-700">
-                                    <flux:icon.user class="w-4 h-4 mr-2 text-gray-500" />
-                                    Nome Creatore
-                                </label>
-                                <input type="text" wire:model="name_user_creation"
-                                    class="mt-1 w-full p-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-                            </div>
 
-                            {{-- Cognome Creatore --}}
-                            <div>
-                                <label class="flex items-center text-sm font-medium text-gray-700">
-                                    <flux:icon.user class="w-4 h-4 mr-2 text-gray-500" />
-                                    Cognome Creatore
-                                </label>
-                                <input type="text" wire:model="last_name_user_creation"
-                                    class="mt-1 w-full p-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300" />
-                            </div>
 
-                            {{-- Stato --}}
-                            <div class="pt-6">
-                                <label class="block text-sm font-medium text-gray-700">Stato</label>
-                                <select wire:model="status"
-                                    class="mt-1 w-full p-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300">
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
-                                </select>
-                            </div>
                         </div>
 
                         {{-- RIGHT: Uploader + Etichetta --}}
@@ -221,10 +208,15 @@
 
                     {{-- ACTIONS --}}
                     <div class="flex justify-end space-x-2 mt-6">
-                        <button type="button" wire:click="closeModal"
-                            class="px-4 py-2 bg-gray-400 text-white hover:bg-gray-500">Annulla</button>
-                        <button type="button" wire:click="store"
-                            class="px-4 py-2 bg-cyan-500 text-white hover:bg-cyan-600">Salva</button>
+
+                        <button type="button" wire:click="store" :disabled="!isValid"
+                            :class="{
+                                'bg-cyan-200  opacity-50 cursor-not-allowed': !isValid,
+                                'bg-cyan-500 hover:bg-cyan-600': isValid
+                            }"
+                            class="px-4 py-2 text-white transition rounded-md">
+                            Salva
+                        </button>
                     </div>
             </form>
         </div>

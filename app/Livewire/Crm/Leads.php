@@ -22,6 +22,7 @@ class Leads extends Component
     public $query = '';
     public $year = '';
     public $lead = '';
+    public $assigned_sales_manager = '';
 
     protected function rules()
     {
@@ -75,6 +76,7 @@ class Leads extends Component
             'leads_kanban' => (clone $baseQuery)->latest()->get(),
             'leads' => $baseQuery->latest()->paginate(12),
             'statuses' => Lead::select('status')->distinct()->pluck('status'),
+            'sale_managers' => Lead::select('sales_manager')->distinct()->pluck('sales_manager'),
         ]);
     }
 
@@ -106,6 +108,21 @@ class Leads extends Component
         //$this->acquisition_date = $lead->acquisition_date;
         $this->isOpen = true;
     }
+
+    public function storeSaleManager()
+{
+    $this->validate([
+        'assigned_sales_manager' => 'required|string|max:255', 
+    ]);
+
+    if ($this->lead) {
+        $this->lead->update([
+            'sales_manager' => $this->assigned_sales_manager,
+        ]);
+
+        session()->flash('success', 'Commerciale assegnato con successo.');
+    }
+}
 
     public function store()
     {
