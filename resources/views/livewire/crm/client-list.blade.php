@@ -36,8 +36,8 @@
                         @php
                             $status = $statusMap[$client->status] ?? $statusMap[0];
                         @endphp
-                        <tr class="border-b h-12 text-[#232323] font-medium xl:text-lg lg:text-base md:text-sm sm:text-xs">
-                            <!-- ID -->
+                    @include('livewire.crm.utilities.tr-body-table')
+                    <!-- ID -->
                             <td class="font-medium whitespace-nowrap">{{ $client->id }}</td>
                             <!-- Logo -->
                             <td class="whitespace-nowrap">

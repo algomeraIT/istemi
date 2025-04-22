@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 @foreach ($leads as $lead)
-                    <tr class="border-b h-12 text-[#232323] font-medium xl:text-lg lg:text-base md:text-sm sm:text-xs">
+                    @include('livewire.crm.utilities.tr-body-table')
                         <td>{{ $lead->id }}</td>
                         <td>
                             <div class="max-w-[200px] break-words whitespace-normal">
