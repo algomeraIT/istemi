@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\ActivityCommunicationClientHistory;
 use App\Models\Clients;
+use App\Models\Users;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ActivityCommunicationClientHistoryFactory extends Factory
