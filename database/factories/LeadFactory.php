@@ -12,6 +12,8 @@ class LeadFactory extends Factory
 
     public function definition(): array
     {
+        $salesManager = $this->faker->optional()->name;
+    
         return [
             'company_name' => $this->faker->company,
             'email' => $this->faker->unique()->safeEmail,
@@ -22,8 +24,10 @@ class LeadFactory extends Factory
             'first_telephone' => $this->faker->phoneNumber,
             'second_telephone' => $this->faker->optional()->phoneNumber,
             'note' => $this->faker->optional()->sentence,
-            'sales_manager' => $this->faker->name,
-            'status' => $this->faker->randomElement([1, 2, 3]),
+            'sales_manager' => $salesManager,
+            'status' => $salesManager === null
+                ? 3
+                : $this->faker->randomElement([1, 2]),
             'acquisition_date' => $this->faker->date,
         ];
     }

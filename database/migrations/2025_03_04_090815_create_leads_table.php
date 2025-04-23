@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('first_telephone');
             $table->string('second_telephone')->nullable();
             $table->string('note')->nullable();
-            $table->string('sales_manager');
+            $table->string('sales_manager')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->date('acquisition_date');
             $table->timestamps();

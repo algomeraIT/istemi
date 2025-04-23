@@ -7,30 +7,45 @@
             <div class=" ml-[105px] mb-[79px]">
                 <label class="flex text-xs  items-center gap-2 text-[24px] leading-[23px] font-bold text-[#232323]">
                 </label>
-                <p
-                    class="text-lg font-semibold mb-3 text-[24px]">
+                <p class="text-lg font-semibold mb-3 text-[24px]">
                     {{ $lead->company_name }}</p>
             </div>
             {{-- stato --}}
             <div class=" ml-[105px] mb-[79px]">
-                <span
-                    class="px-2 py-1 text-xs font-semibold rounded-[15px] border border-solid 
-                @if ($lead->status == 1) bg-purple-100 text-[#6F42C1] border-[#6F42C1]
-                @elseif($lead->status == 2)
-                    bg-red-100 text-[#E63946] border-[#E63946]
-                @elseif($lead->status == 0)
-                    bg-cyan-100 text-[#0C7BFF] border-[#0C7BFF]
-                @else
-                    bg-gray-100 text-gray-600 border-gray-600 @endif">
-                    @if ($lead->status == 1)
-                        Assegnato
-                    @elseif($lead->status == 2)
-                        Da riassegnare
-                    @elseif($lead->status == 0)
-                        Nuovo
-                    @else
-                        Unknown
-                    @endif
+                @php
+                    $statusMap = [
+                        1 => [
+                            'text' => 'Nuovo',
+                            'bg' => 'bg-[#339CFF]',
+                            'textColor' => 'text-white',
+                            'border' => 'border-[#339CFF]',
+                        ],
+                        2 => [
+                            'text' => 'Assegnato',
+                            'bg' => 'bg-[#8A63D2]',
+                            'textColor' => 'text-white',
+                            'border' => 'border-[#8A63D2]',
+                        ],
+                        3 => [
+                            'text' => 'Da riassegnare',
+                            'bg' => 'bg-[#F85C5C]',
+                            'textColor' => 'text-white',
+                            'border' => 'border-[#F85C5C]',
+                        ],
+                    ];
+                    $status = $statusMap[$lead->status] ?? [
+                        'text' => 'Sconosciuto',
+                        'bg' => 'bg-gray-100',
+                        'textColor' => 'text-gray-600',
+                        'border' => 'border-gray-600',
+                    ];
+                @endphp
+                @include('livewire.crm.utilities.span-status', [
+                    'bg' => $status['bg'],
+                    'textColor' => $status['textColor'],
+                    'border' => $status['border'],
+                    'text' => $status['text'],
+                ])
                 </span>
             </div>
             <div class="flex">
@@ -120,45 +135,44 @@
             @if ($lead->sales_manager)
                 <!-- Commerciale -->
                 <label
-                class="flex ml-[105px] text-xs items-center gap-2 mb-1 text-[13px] leading-[23px] font-light text-[#B0B0B0] tracking-[0px] text-left opacity-100">
-                <span class="text-gray-500 text-sm">
-                    <flux:icon.user class="w-[10px]" />
-                </span>
-                Commerciale
-            </label>
-            
-            <!-- Display sales manager name as plain text -->
-            <div class="ml-[105px] w-2/3 text-sm text-gray-800  mb-3">
-                {{ $lead->sales_manager }}
-            </div>
-                @else
+                    class="flex ml-[105px] text-xs items-center gap-2 mb-1 text-[13px] leading-[23px] font-light text-[#B0B0B0] tracking-[0px] text-left opacity-100">
+                    <span class="text-gray-500 text-sm">
+                        <flux:icon.user class="w-[10px]" />
+                    </span>
+                    Commerciale
+                </label>
+
+                <!-- Display sales manager name as plain text -->
+                <div class="mb-[20px] ml-[105px]">
+                    <div
+                        class="font-semibold text-[16px] leading-[20px] mt-[10px]  tracking-[0px] text-[#B0B0B0] text-left font-inter opacity-100">
+                        {{ $lead->sales_manager }}
+                    </div>
+                </div>
+            @else
                 <div x-data="{ selected: '' }" class="mb-[20px] ml-[105px] mt-[80px]">
                     <label class="flex text-xs items-center gap-2 text-[24px] leading-[23px] font-bold text-[#232323]">
                         Assegna Lead
                     </label>
-            
+
                     <!-- Select dropdown -->
                     <label
-                    class="flex mt-[40px] text-xs items-center gap-2 mb-1 text-[13px] leading-[23px] font-light text-[#B0B0B0] tracking-[0px] text-left opacity-100">
-                    <span class="text-gray-500 text-sm">
-                        <flux:icon.user class="w-[14px]" />
-                    </span>
-                    Commerciale
-                </label>
-                    <select
-                        x-model="selected"
-                        wire:model="assigned_sales_manager"
+                        class="flex mt-[40px] text-xs items-center gap-2 mb-1 text-[13px] leading-[23px] font-light text-[#B0B0B0] tracking-[0px] text-left opacity-100">
+                        <span class="text-gray-500 text-sm">
+                            <flux:icon.user class="w-[14px]" />
+                        </span>
+                        Commerciale
+                    </label>
+                    <select x-model="selected" wire:model="assigned_sales_manager"
                         class="w-full border border-gray-200 text-sm p-2 focus:outline-none ">
                         <option value="">Seleziona un commerciale</option>
                         @foreach ($sale_managers as $manager)
                             <option value="{{ $manager }}">{{ $manager }}</option>
                         @endforeach
                     </select>
-            
+
                     <!-- Assign button -->
-                    <button
-                        x-bind:disabled="!selected"
-                        wire:click="storeSaleManager"
+                    <button x-bind:disabled="!selected" wire:click="storeSaleManager"
                         class="mt-4 px-3 py-1.5 text-sm text-white transition rounded-md 
                                bg-cyan-400 hover:bg-cyan-500
                                disabled:opacity-50 disabled:cursor-not-allowed">

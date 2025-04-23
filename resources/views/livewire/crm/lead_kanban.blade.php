@@ -1,27 +1,6 @@
 <div>
     <div class="mt-4 grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
-        @php
-            $statusMap = [
-                0 => [
-                    'label' => 'Nuovo',
-                    'bg' => 'bg-cyan-100',
-                    'text' => 'text-[#0C7BFF]',
-                    'border' => 'border-[#0C7BFF]',
-                ],
-                1 => [
-                    'label' => 'Assegnato',
-                    'bg' => 'bg-purple-100',
-                    'text' => 'text-[#6F42C1]',
-                    'border' => 'border-[#6F42C1]',
-                ],
-                2 => [
-                    'label' => 'Da riassegnare',
-                    'bg' => 'bg-red-100',
-                    'text' => 'text-[#E63946]',
-                    'border' => 'border-[#E63946]',
-                ],
-            ];
-        @endphp
+
 
         @foreach ($leads_kanban as $lead)
             @php
@@ -74,10 +53,40 @@
 
                 {{-- Status Badge --}}
                 <div class="mt-3">
-                    <span
-                        class="inline-block px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $status['bg'] }} {{ $status['text'] }} {{ $status['border'] }}">
-                        {{ $status['label'] }}
-                    </span>
+                    @php
+                    $statusMap = [
+                        1 => [
+                            'text' => 'Nuovo',
+                            'bg' => 'bg-[#339CFF]',
+                            'textColor' => 'text-white',
+                            'border' => 'border-[#339CFF]',
+                        ],
+                        2 => [
+                            'text' => 'Assegnato',
+                            'bg' => 'bg-[#8A63D2]',
+                            'textColor' => 'text-white',
+                            'border' => 'border-[#8A63D2]',
+                        ],
+                        3 => [
+                            'text' => 'Da riassegnare',
+                            'bg' => 'bg-[#F85C5C]',
+                            'textColor' => 'text-white',
+                            'border' => 'border-[#F85C5C]',
+                        ],
+                    ];
+                    $status = $statusMap[$lead->status] ?? [
+                        'text' => 'Sconosciuto',
+                        'bg' => 'bg-gray-100',
+                        'textColor' => 'text-gray-600',
+                        'border' => 'border-gray-600',
+                    ];
+                @endphp
+                @include('livewire.crm.utilities.span-status', [
+                    'bg' => $status['bg'],
+                    'textColor' => $status['textColor'],
+                    'border' => $status['border'],
+                    'text' => $status['text'],
+                ]) 
                 </div>
 
                 {{-- Action Buttons --}}
