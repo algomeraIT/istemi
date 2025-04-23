@@ -155,7 +155,7 @@ class Projects extends Component
     {
         if ($project = Project::find($projectId)) {
             $project->update(['current_phase' => $newPhase]);
-            $this->dispatchBrowserEvent('projects-updated');
+            $this->dispatch('projects-updated');
         }
     }
 

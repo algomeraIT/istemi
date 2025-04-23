@@ -62,8 +62,8 @@
                                                     <p class="font-semibold">{{ $project["client_name"] }}</p>
                                                     <p>
                                                         @php
-                                                            $typeClientClass = $project['client_type'] ? 'bg-gray-400' : 'bg-purple-400';
-                                                            $valueTypeClient = $project['client_type'] ? 'Pubblico' : 'Privato';
+                                                            $typeClientClass = $project['client_type'] == 'Pubblico' ? 'bg-gray-400' : 'bg-purple-400';
+                                                            $valueTypeClient = $project['client_type'] == 'Pubblico' ? 'Pubblico' : 'Privato';
                                                         @endphp
                                                         <span class="px-2 py-1 text-xs font-semibold rounded {{ $typeClientClass }}">
                                                             {{ $valueTypeClient }}
