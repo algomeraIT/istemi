@@ -51,23 +51,23 @@
                     <td>
                         @php
                             $statusMap = [
-                                0 => [
-                                    'text' => 'Nuovo',
-                                    'bg' => 'bg-cyan-100',
-                                    'textColor' => 'text-[#0C7BFF]',
-                                    'border' => 'border-[#0C7BFF]',
-                                ],
                                 1 => [
-                                    'text' => 'Assegnato',
-                                    'bg' => 'bg-purple-100',
-                                    'textColor' => 'text-[#6F42C1]',
-                                    'border' => 'border-[#6F42C1]',
+                                    'text' => 'Nuovo',
+                                    'bg' => 'bg-[#339CFF]',
+                                    'textColor' => 'text-white',
+                                    'border' => 'border-[#339CFF]',
                                 ],
                                 2 => [
+                                    'text' => 'Assegnato',
+                                    'bg' => 'bg-[#8A63D2]',
+                                    'textColor' => 'text-white',
+                                    'border' => 'border-[#8A63D2]',
+                                ],
+                                3 => [
                                     'text' => 'Da riassegnare',
-                                    'bg' => 'bg-red-100',
-                                    'textColor' => 'text-[#E63946]',
-                                    'border' => 'border-[#E63946]',
+                                    'bg' => 'bg-[#F85C5C]',
+                                    'textColor' => 'text-white',
+                                    'border' => 'border-[#F85C5C]',
                                 ],
                             ];
                             $status = $statusMap[$lead->status] ?? [

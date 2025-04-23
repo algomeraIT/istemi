@@ -23,7 +23,7 @@ class LeadFactory extends Factory
             'second_telephone' => $this->faker->optional()->phoneNumber,
             'note' => $this->faker->optional()->sentence,
             'sales_manager' => $this->faker->name,
-            'status' => $this->faker->randomElement([0, 1]),
+            'status' => $this->faker->randomElement([1, 2, 3]),
             'acquisition_date' => $this->faker->date,
         ];
     }

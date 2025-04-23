@@ -32,11 +32,15 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('estimates', function (Blueprint $table) {
-            $table->dropForeign(['referent_id']);
-            $table->dropColumn('referent_id');
-        });
-        
+        if (Schema::hasTable('estimates')) {
+            Schema::table('estimates', function (Blueprint $table) {
+                if (Schema::hasColumn('estimates', 'referent_id')) {
+                    $table->dropForeign(['referent_id']);
+                    $table->dropColumn('referent_id');
+                }
+            });
+        }
+    
         Schema::dropIfExists('referents');
     }
 };

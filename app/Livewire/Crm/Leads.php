@@ -118,6 +118,7 @@ class Leads extends Component
     if ($this->lead) {
         $this->lead->update([
             'sales_manager' => $this->assigned_sales_manager,
+            'status' => 2
         ]);
 
         session()->flash('success', 'Commerciale assegnato con successo.');

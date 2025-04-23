@@ -35,30 +35,34 @@ return new class extends Migration
         if (!Schema::hasTable('estimates')) {
             return;
         }
-
+    
         Schema::table('estimates', function (Blueprint $table) {
+            // Drop foreign keys first
             if (Schema::hasColumn('estimates', 'client_id')) {
                 $table->dropForeign(['client_id']);
-                $table->dropColumn('client_id');
             }
-
+    
             if (Schema::hasColumn('estimates', 'user_id')) {
                 $table->dropForeign(['user_id']);
-                $table->dropColumn('user_id');
             }
-
+    
             if (Schema::hasColumn('estimates', 'referent_id')) {
                 $table->dropForeign(['referent_id']);
-                $table->dropColumn('referent_id');
             }
-
-
-            $table->dropColumn([
+    
+            // Then drop all columns once
+            $columnsToDrop = [
                 'note_service', 'service', 'title_service', 'method_pay',
                 'term_pay', 'expiration', 'price_list',
                 'has_same_address_for_delivery', 'country', 'cap', 'city', 'address_invoice',
                 'referent_id', 'user_id', 'client_id',
-            ]);
+            ];
+    
+            foreach ($columnsToDrop as $column) {
+                if (Schema::hasColumn('estimates', $column)) {
+                    $table->dropColumn($column);
+                }
+            }
         });
     }
 };
