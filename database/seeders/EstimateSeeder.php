@@ -9,6 +9,8 @@ class EstimateSeeder extends Seeder
 {
     public function run(): void
     {
+        Estimate::factory()->count(1)->fixed()->create();
+
         Estimate::factory()->count(30)->create();
     }
 }

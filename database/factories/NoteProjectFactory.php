@@ -17,4 +17,15 @@ class NoteProjectFactory extends Factory {
             'note' => $this->faker->paragraph(3),
         ];
     }
+
+    public function fixed(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'client_id' => 1,
+                'project_id' => Project::factory(),
+                'note' => $this->faker->paragraph(3),
+            ];
+        });
+    }
 }

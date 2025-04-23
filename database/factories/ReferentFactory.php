@@ -25,4 +25,22 @@ class ReferentFactory extends Factory
             'role' => $this->faker->word,
         ];
     }
+
+    public function fixed(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'client_id' => 1,
+                'name' => $this->faker->firstName,
+                'last_name' => $this->faker->lastName,
+                'title' => $this->faker->optional()->title,
+                'job_position' => $this->faker->optional()->jobTitle,
+                'email' => $this->faker->unique()->safeEmail,
+                'telephone' => $this->faker->phoneNumber,
+                'note' => $this->faker->optional()->text,
+                'status' => $this->faker->randomElement([1, 0]), 
+                'role' => $this->faker->word,
+            ];
+        });
+    }
 }

@@ -9,6 +9,8 @@ class ReferentSeeder extends Seeder
 {
     public function run(): void
     {
+        Referent::factory()->count(1)->fixed()->create();
+
         Referent::factory()->count(30)->create();
     }
 }

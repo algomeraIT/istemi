@@ -9,6 +9,8 @@ class AcquisitionSeeder extends Seeder
 {
     public function run(): void
     {
+        Acquisition::factory()->count(1)->fixed()->create();
+
         Acquisition::factory()->count(30)->create();
     }
 }
