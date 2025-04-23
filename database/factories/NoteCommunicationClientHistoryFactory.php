@@ -24,4 +24,18 @@ class NoteCommunicationClientHistoryFactory extends Factory
             //'id_note' => Note::factory(), 
         ];
     }
+
+    public function fixed(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'client_id' => 1,
+                'name_user' => $this->faker->name,
+                'last_name_user' => $this->faker->lastName,
+                'role_user' => $this->faker->word,
+                'attach_id' => $this->faker->optional()->randomDigit, 
+                'user_id' => 1
+            ];
+        });
+    }
 }

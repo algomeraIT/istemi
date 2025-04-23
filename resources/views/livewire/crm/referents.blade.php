@@ -167,11 +167,9 @@
 
                 </div>
             </div>
-
-
             <div x-show="activeTab === 'communication'" x-data="{ activeTabCommunication: 'activities' }" x-cloak>
 
-         
+
                 <div x-data="{ open: false }" class="relative inline-block text-left mb-8">
                     <!-- Trigger Button -->
                     <flux:button @click="open = !open"
@@ -224,24 +222,27 @@
                 @include('livewire.crm.utilities.activity-com-table', [
                     'activity_communications' => $activity_communications,
                 ])
-           
+
                 @include('livewire.crm.utilities.note-com-table', [
-                    'note_communications' => $note_communications,'activity_communications' => $activity_communications
+                    'note_communications' => $note_communications,
+                    'activity_communications' => $activity_communications,
                 ])
-          
+
                 @include('livewire.crm.utilities.email-com-table', [
-                    'email_communications' => $email_communications,'activity_communications' => $activity_communications
+                    'email_communications' => $email_communications,
+                    'activity_communications' => $activity_communications,
                 ])
-          
-     
-            @include('livewire.crm.utilities.call-com-table', [
-                'call_communications' => $note_communications,'activity_communications' => $activity_communications
-            ])
-      
-           
+
+
+                @include('livewire.crm.utilities.call-com-table', [
+                    'call_communications' => $note_communications,
+                    'activity_communications' => $activity_communications,
+                ])
+
+
+            </div>
         </div>
     </div>
-</div>
 
 
 @include('livewire.crm.referent.modal', [
