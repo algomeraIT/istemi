@@ -19,15 +19,15 @@
                         $statusMap = [
                             0 => [
                                 'text'  => 'Call center',
-                                'bg'     => 'bg-[#FEF7EF]',
-                                'textColor'   => 'text-[#F5AD65]',
-                                'border' => 'border-[#F5AD65]',
+                                'bg'     => 'bg-[#F6B663]',
+                                'textColor'   => 'text-white',
+                                'border' => 'border-[#F6B663]',
                             ],
                             1 => [
                                 'text'  => 'Censimento',
-                                'bg'     => 'bg-[#E3F1F4]',
-                                'textColor'   => 'text-[#2A8397]',
-                                'border' => 'border-[#2A8397]',
+                                'bg'     => 'bg-[#45AEBB]',
+                                'textColor'   => 'text-white',
+                                'border' => 'border-[#45AEBB]',
                             ]
                         ];
                     @endphp

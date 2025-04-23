@@ -52,22 +52,22 @@
                             $statusMap = [
                                 0 => [
                                     'text' => 'In contatto',
-                                    'bg' => 'bg-[#FFF9E5]',
-                                    'textColor' => 'text-[#FEC106]',
-                                    'border' => 'border-[#FFC107]',
+                                    'bg' => 'bg-[#F7C548]',
+                                    'textColor' => 'text-white',
+                                    'border' => 'border-[#F7C548]',
                                 ],
                                 1 => [
                                     'text' => 'Non idoneo',
-                                    'bg' => 'bg-[#F0F1F2]',
-                                    'textColor' => 'text-[#6C757D]',
-                                    'border' => 'border-[#6C757D]',
+                                    'bg' => 'bg-[#A0A7AF]',
+                                    'textColor' => 'text-white',
+                                    'border' => 'border-[#A0A7AF]',
                                 ],
                             ];
                             $status = $statusMap[$contact->status] ?? [
                                 'text' => 'Sconosciuto',
-                                'bg' => 'bg-gray-100',
-                                'textColor' => 'text-gray-600',
-                                'border' => 'border-gray-600',
+                                'bg' => 'bg-gray-400',
+                                'textColor' => 'text-white',
+                                'border' => 'border-gray-400',
                             ];
                         @endphp
                         @include('livewire.crm.utilities.span-status', [

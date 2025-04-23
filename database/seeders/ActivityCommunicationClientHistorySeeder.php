@@ -9,6 +9,8 @@ class ActivityCommunicationClientHistorySeeder extends Seeder
 {
     public function run(): void
     {
+        ActivityCommunicationClientHistory::factory()->count(1)->fixed()->create();
+
         ActivityCommunicationClientHistory::factory()->count(30)->create();
     }
 }

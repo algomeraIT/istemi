@@ -1,16 +1,8 @@
 <div>
     <div class="mt-4 grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
-        @php
-            $statusMap = [
-                1 => ['label' => 'In contatto', 'bg' => 'bg-[#FFF9E5]', 'text' => 'text-[#FEC106]', 'border' => 'border-[#FFC107]'],
-                0 => ['label' => 'Non idoneo', 'bg' => 'bg-[#F0F1F2]', 'text' => 'text-[#6C757D]', 'border' => 'border-[#6C757D]']
-            ];
-        @endphp
+
 
         @foreach ($contact_kanban as $contact)
-            @php
-                $status = $statusMap[$contact->status] ?? $statusMap[0];
-            @endphp
 
             <div class="bg-white border border-gray-300 p-4 text-sm mt-5">
                 {{-- Company Name --}}
@@ -52,10 +44,35 @@
                 </div>
 
                 {{-- Status Badge --}}
-                <div class="mt-3">
-                    <span class="inline-block px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $status['bg'] }} {{ $status['text'] }} {{ $status['border'] }}">
-                        {{ $status['label'] }}
-                    </span>
+                <div class="mt-5">
+                    @php
+                    $statusMap = [
+                        0 => [
+                            'text' => 'In contatto',
+                            'bg' => 'bg-[#F7C548]',
+                            'textColor' => 'text-white',
+                            'border' => 'border-[#F7C548]',
+                        ],
+                        1 => [
+                            'text' => 'Non idoneo',
+                            'bg' => 'bg-[#A0A7AF]',
+                            'textColor' => 'text-white',
+                            'border' => 'border-[#A0A7AF]',
+                        ],
+                    ];
+                    $status = $statusMap[$contact->status] ?? [
+                        'text' => 'Sconosciuto',
+                        'bg' => 'bg-gray-400',
+                        'textColor' => 'text-white',
+                        'border' => 'border-gray-400',
+                    ];
+                @endphp
+                @include('livewire.crm.utilities.span-status', [
+                    'bg' => $status['bg'],
+                    'textColor' => $status['textColor'],
+                    'border' => $status['border'],
+                    'text' => $status['text'],
+                ])
                 </div>
 
                 {{-- Action Buttons --}}

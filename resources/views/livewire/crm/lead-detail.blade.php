@@ -1,6 +1,6 @@
 <div class="fixed inset-0 bg-[oklch(0.97_0_0_/_0.5)] bg-opacity-20 flex justify-end z-50">
     <div class="w-1/3 bg-white shadow-md border border-gray-200 p-4 overflow-y-auto h-full">
-        @include('livewire.general.cancel')
+        @include('livewire.general.close')
         <div class="bg-white pt-2.5 border-none h-full">
 
             <!-- Ragione Sociale -->

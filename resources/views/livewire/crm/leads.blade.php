@@ -9,7 +9,7 @@
             {{-- pulsante crea --}}
             <div class=" xl:lg:w-3/7 md:sm:w-1/3 mb-8 ">
                 <flux:button wire:click="create"
-                    class=" p-2.5! bg-[#10BDD4]! rounded-none! text-lg! text-white! opacity-100 hover:bg-[#0da9be]! transition duration-200">
+                    class=" p-2.5! bg-[#10BDD4]! rounded-none! text-lg! text-white! opacity-100 hover:bg-[#00C0D9]! transition duration-200">
                     Crea
                 </flux:button>
             </div>
