@@ -22,7 +22,7 @@
 <body class="min-h-screen font-inter container contents">
 @include('flash-message')
 @include('layout.navbar')
-
+<div class="megamenu"></div>
 <div class="min-h-screen bg-[#F5FCFD] py-14">
     @yield('content')
 </div>

@@ -47,6 +47,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function getFullNameAttribute() {
+        return $this->name . ' ' . $this->last_name;
+    }
+
     /**
      * Get the user's initials
      */
