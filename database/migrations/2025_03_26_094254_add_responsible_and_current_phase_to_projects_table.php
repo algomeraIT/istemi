@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->string('responsible')->nullable()->after('phase');
-            $table->string('current_phase')->nullable()->after('responsible');
+            $table->tinyInteger('current_phase')->nullable()->after('responsible');
         });
     }
 

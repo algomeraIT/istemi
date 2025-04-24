@@ -50,7 +50,7 @@ class ProjectFactory extends Factory
                 'stackholder_id' => Stackholder::factory(),
                 'phase_id' => Phase::factory()->create()->id,
                 'phase' => '',
-                'current_phase' => $this->faker->randomElement(['Non definito', 'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura']),
+                'current_phase' => $this->faker->numberBetween(1, 6),
                 'estimate' => $this->faker->randomElement(['Prima Stima', 'Seconda Stima']),
             ];
     }

@@ -28,33 +28,40 @@
 
                             </p>
                         </td>
-                        <td class="  py-2">
-                            <p>
-                                @php
-                                    switch ($project->current_phase) {
-                                        case 'Avvio':
-                                            $bgColor = 'bg-blue-400';
-                                            break;
-                                        case 'Pianificazione':
-                                            $bgColor = 'bg-green-400';
-                                            break;
-                                        case 'Esecuzione':
-                                            $bgColor = 'bg-yellow-400';
-                                            break;
-                                        case 'Verifica':
-                                            $bgColor = 'bg-red-400';
-                                            break;
-                                        case 'Chiusura':
-                                            $bgColor = 'bg-gray-400';
-                                            break;
-                                        default:
-                                            $bgColor = 'bg-gray-400';
-                                    }
-                                @endphp
-                                <span class="px-2 py-1 text-xs font-semibold rounded {{ $bgColor }}">
-                                    {{ $project->current_phase ?? 'Non definito' }}
-                                </span>
-                            </p>
+                        @php
+                            $phaseMap = [
+                                1 => [
+                                    'label' => 'Avvio',
+                                    'bg' => 'bg-[#FFD500]',
+                                ],
+                                2 => [
+                                    'label' => 'Pianificazione',
+                                    'bg' => 'bg-[#FF6F61]',
+                                ],
+                                3 => [
+                                    'label' => 'Esecuzione',
+                                    'bg' => 'bg-[#FF6E0E]',
+                                ],
+                                4 => [
+                                    'label' => 'Verifica',
+                                    'bg' => 'bg-[#FF2F85]',
+                                ],
+                                5 => [
+                                    'label' => 'Chiusura',
+                                    'bg' => 'bg-[#019B00]',
+                                ],
+                            ];
+
+                            $phase = $phaseMap[$project->current_phase] ?? [
+                                'label' => 'Non definito',
+                                'bg' => 'bg-gray-400',
+                            ];
+                        @endphp
+                        <td class="py-2">
+                            <span class="px-2 py-1 text-xs text-white font-medium rounded {{ $phase['bg'] }}">
+                                {{ $phase['label'] }}
+                            </span>
+
                         </td>
                         <td class="  py-2">{{ $project->responsible }}</td>
                         <td class="flex gap-2 mt-2.5 justify-end">

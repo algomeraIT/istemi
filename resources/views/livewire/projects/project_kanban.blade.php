@@ -1,33 +1,36 @@
 <div wire:init="$refresh" wire:listener="projects-updated">
-    <div x-data="{ searchQuery: @entangle('search').live }">
-        <div class="mb-4">
-            <input type="text" x-model.live="searchQuery" placeholder="Cerca Pratica"
-                class="px-4 py-2 border rounded" />
-        </div>
-    </div>
+
     <div x-data="{ draggedItem: null }">
-        <div class="flex space-x-4 p-4">
+        <div class="flex overflow-x-auto">
             @php
-                $phases = ["Non Definito", "Avvio", "Pianificazione", "Esecuzione", "Verifica", "Chiusura"];
+                $phases = [
+                    0 => 'Non Definito',
+                    1 => 'Avvio',
+                    2 => 'Pianificazione',
+                    3 => 'Esecuzione',
+                    4 => 'Verifica',
+                    5 => 'Chiusura',
+                ];
             @endphp
 
-            @foreach($phases as $phase)
+            @foreach ($phases as $phaseId => $phaseLabel)
                 {{-- $nextTick() delays the execution of a function until after the DOM updates. --}}
-                <div class="w-1/5 bg-gray-100 p-4 rounded shadow-md h-[500px] overflow-y-auto" @dragover.prevent
+                <div class="w-full lg:w-1/5 min-w-[400px] p-4  h-[500px] overflow-x-auto overflow-y-auto space-y-4"
+                    @dragover.prevent
                     @drop.prevent="if(draggedItem) {   
-                                $nextTick(() => { 
-                                                      @this.call('updatePhase', draggedItem, '{{ $phase }}');
-                                            draggedItem = null;
-                                                }); 
-                                            }">
+                   $nextTick(() => { 
+                       @this.call('updatePhase', draggedItem, '{{ $phaseId }}');
+                       draggedItem = null;
+                   }); 
+                }">
 
-                    <h2 class="text-lg font-bold text-center mb-4">
-                        {{ $phase }}
+                    <h2 class="text-lg font-bold border-b-2 text-left text-[#6C757D] text-[19px] mb-4">
+                        {{ $phaseLabel }}
 
                         <!-- Sorting Button -->
-                        <button wire:click="sortBy('n_file', '{{ $phase }}')" class="ml-2 text-sm text-blue-500">
+                        <button wire:click="sortBy('n_file', '{{ $phaseId }}')" class="ml-2 text-sm text-blue-500">
                             <!-- Default icon when not sorted -->
-                            @if ($activePhase !== $phase || $sortField !== 'n_file')
+                            @if ($activePhase !== $phaseId || $sortField !== 'n_file')
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
@@ -49,28 +52,77 @@
                         </button>
                     </h2>
 
-                    <div class="space-y-2">
-
+                    <div class="grid sm:grid-cols-1 xl:grid-cols-1 gap-2">
                         @if (!isset($projects) || !is_array($projects))
                             <p class="text-red-500">Error: $projects is not defined or not an array.</p>
                         @endif
-                        @if(isset($projects[$phase]) && is_array($projects[$phase]))
-                                    @foreach($projects[$phase] ?? [] as $project)
-                                                <div class="bg-white p-3 rounded shadow cursor-pointer" draggable="true"
-                                                    @dragstart.self="draggedItem = parseInt('{{ $project["id"] }}')">
-                                                    <p class="font-semibold">{{ $project["n_file"] }}</p>
-                                                    <p class="font-semibold">{{ $project["client_name"] }}</p>
-                                                    <p>
-                                                        @php
-                                                            $typeClientClass = $project['client_type'] == 'Pubblico' ? 'bg-gray-400' : 'bg-purple-400';
-                                                            $valueTypeClient = $project['client_type'] == 'Pubblico' ? 'Pubblico' : 'Privato';
-                                                        @endphp
-                                                        <span class="px-2 py-1 text-xs font-semibold rounded {{ $typeClientClass }}">
-                                                            {{ $valueTypeClient }}
-                                                        </span>
-                                                    </p>
-                                                </div>
-                                    @endforeach
+
+                        @if (isset($projects[$phaseId]) && is_array($projects[$phaseId]))
+                            @foreach ($projects[$phaseId] ?? [] as $project)
+                                @php
+                                    $phaseMap = [
+                                        1 => [
+                                            'label' => 'Avvio',
+                                            'bg' => 'bg-[#FFD500]',
+                                        ],
+                                        2 => [
+                                            'label' => 'Pianificazione',
+                                            'bg' => 'bg-[#FF6F61]',
+                                        ],
+                                        3 => [
+                                            'label' => 'Esecuzione',
+                                            'bg' => 'bg-[#FF6E0E]',
+                                        ],
+                                        4 => [
+                                            'label' => 'Verifica',
+                                            'bg' => 'bg-[#FF2F85]',
+                                        ],
+                                        5 => [
+                                            'label' => 'Chiusura',
+                                            'bg' => 'bg-[#019B00]',
+                                        ],
+                                    ];
+
+                                    $phase = $phaseMap[$project['current_phase']] ?? [
+                                        'label' => 'Non definito',
+                                        'bg' => 'bg-gray-400',
+                                    ];
+                                @endphp
+
+                                <div class="bg-white border border-gray-300 p-4 text-sm rounded shadow cursor-pointer hover:shadow-lg transition w-[380px] h-[231px] overflow-hidden flex flex-col justify-between"
+                                    draggable="true" @dragstart.self="draggedItem = parseInt('{{ $project['id'] }}')">
+                                    {{-- Project Info --}}
+                                    <h3 class="text-lg font-bold text-[#232323]">{{ $project['n_file'] }}</h3>
+
+                                    {{-- Client Info --}}
+                                    <div class="flex justify-between text-[#B0B0B0] italic font-extralight mt-1 mb-3">
+                                        <span>{{ $project['client_name'] }}</span>
+                                    </div>
+
+                                    {{-- Phase Badge --}}
+                                    <div class="mb-3">
+                                        <span
+                                            class="px-2 py-1 text-xs text-white font-medium rounded {{ $phase['bg'] }}">
+                                            {{ $phase['label'] }}
+                                        </span>
+                                    </div>
+
+                                    {{-- Status + Actions --}}
+                                    <div class="flex justify-between items-center mt-2">
+                                        <span
+                                            class="px-2 py-1 text-xs font-semibold rounded {{ $project['status'] ? 'bg-green-400' : 'bg-red-400' }}">
+                                            {{ $project['status'] ? 'Attivo' : 'Archiviato' }}
+                                        </span>
+
+                                        <div class="flex gap-2 text-right">
+                                            <button wire:click="edit({{ $project['id'] }})"
+                                                class="text-gray-400 hover:text-gray-600 transition"><flux:icon.pencil-square /></button>
+                                            {{--  <button wire:click="delete({{ $project['id'] }})"
+                                                class="text-gray-400 hover:text-red-500 transition"><flux:icon.x-mark /></button> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         @endif
                     </div>
                 </div>

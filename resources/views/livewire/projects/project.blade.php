@@ -52,11 +52,15 @@
                 </select>
 
                 <div class="relative ">
-                    <span class="absolute inset-y-0 left-0 flex items-center pointer-events-none h-9 p-3.5">
-                        <flux:icon.magnifying-glass class="w-4 h-4 text-gray-300" />
-                    </span>
-                    <input type="text" wire:model.live="query_search" placeholder="Cerca..."
-                        class="md:w-full pl-9 border border-gray-200 h-9  focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
+            
+                        <div x-data="{ searchQuery: @entangle('search').live }">
+                            <div class="mb-4">
+                                <span class="absolute inset-y-0 left-0 flex items-center pointer-events-none h-9 p-3.5">
+                                    <flux:icon.magnifying-glass class="w-4 h-4 text-gray-300" />
+                                </span>
+                                <input type="text" x-model.live="searchQuery" placeholder="Cerca" class="md:w-full pl-9 border border-gray-200 h-9  focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
