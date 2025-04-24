@@ -3,7 +3,7 @@
 @endphp
 
 @if ($paginator->hasPages())
-<nav role="navigation" aria-label="Pagination" class="flex flex-col md:flex-row items-center  p-4 bg-white shadow rounded">
+<nav role="navigation" aria-label="Pagination" class="flex flex-col md:flex-row items-center p-4 bg-white shadow rounded">
     <!-- Summary -->
     <div class="text-sm text-gray-700">
         {!! __('Mostrati') !!}

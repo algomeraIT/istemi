@@ -61,6 +61,39 @@ select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
 
+[data-flux-button] {
+    @apply rounded-none shadow-none;
+    &[data-variant="primary"] {
+        @apply border-none;
+        &[data-color="teal"] {
+            @apply bg-[#10BDD4] text-white hover:bg-[#00C0D9];
+        }
+    }
+    &[data-variant="ghost"] {
+        &[data-rounded] {
+            @apply rounded-full;
+        }
+        &[data-color="teal"] {
+            @apply text-[#10BDD4] hover:bg-[#F5FCFD];
+        }
+        &[data-color="red"] {
+            @apply text-[#E63946] hover:bg-red-50;
+        }
+    }
+}
+
+[data-flux-badge] {
+    &[data-status="1"] {
+        @apply bg-[#339CFF] text-white;
+    }
+    &[data-status="2"] {
+        @apply bg-[#8A63D2] text-white;
+    }
+    &[data-status="3"] {
+        @apply bg-[#F85C5C] text-white;
+    }
+}
+
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */

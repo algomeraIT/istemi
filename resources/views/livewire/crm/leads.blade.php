@@ -1,17 +1,12 @@
-<div class="ml-24 mr-24 relative top-14 overflow-auto ">
-    <div class=" bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100 p-9 ">
-        <h2 class="text-2xl mb-3 font-bold text-[#232323] font-sans opacity-100">
-            Lead
-        </h2>
+<div class="container mx-auto">
+    <div class=" bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100 p-9">
+        <h2 class="text-2xl mb-3 font-bold text-[#232323] font-sans opacity-100">Lead</h2>
         <!-- Add Lead Button -->
-        <div class="flex justify-between space-x-3 ">
+        <div class="flex items-center justify-between space-x-3 mb-8">
 
             {{-- pulsante crea --}}
-            <div class=" xl:lg:w-3/7 md:sm:w-1/3 mb-8 ">
-                <flux:button wire:click="create"
-                    class=" p-2.5! bg-[#10BDD4]! rounded-none! text-lg! text-white! opacity-100 hover:bg-[#00C0D9]! transition duration-200">
-                    Crea
-                </flux:button>
+            <div class=" xl:lg:w-3/7 md:sm:w-1/3">
+                <flux:button wire:click="create" variant="primary" data-variant="primary" data-color="teal">Crea</flux:button>
             </div>
 
             {{-- tab --}}
@@ -24,11 +19,11 @@
                   <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
                   <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
                 </select>
-              
-                <input type="number" wire:model.live="year" 
+
+                <input type="number" wire:model.live="year"
                        class="md:w-full xl:w-80 border-gray-200  p-2.5 h-9 text-[#B0B0B0] border placeholder:font-medium placeholder:text-[16px] placeholder:leading-[20px] placeholder:text-[#B0B0B0] placeholder:opacity-100"
                        min="1900" max="2099" step="1" placeholder="Tutte le date di acquisizione" />
-              
+
                 <div class="relative ">
                     <span class="absolute inset-y-0 left-0 flex items-center pointer-events-none h-9 p-3.5">
                         <flux:icon.magnifying-glass class="w-4 h-4 text-gray-300" />
@@ -41,7 +36,7 @@
 
 
         @if ($activeTab === 'list')
-        <div class=" ">
+        <div>
             @include('livewire.crm.lead_list')
             @elseif ($activeTab === 'kanban')
             <div class=" ">

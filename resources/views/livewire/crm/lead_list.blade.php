@@ -1,108 +1,45 @@
 <div class="w-full overflow-x-auto">
     @if ($leads)
-        <table class=" w-full min-w-[798px] font-inter text-sm text-left">
-            <thead class="text-[#B0B0B0] font-light text-[14px]">
-                <tr class="border-b h-10">
-                    <th class="w-[calc(100%/9)]">ID</th>
-                    <th class="w-[calc(100%/5)]">Ragione Sociale</th>
-                    <th class="w-[calc(100%/5)]">E-mail</th>
-                    <th class="w-[calc(100%/5)]">Telefono</th>
-                    <th class="w-[calc(100%/6)]">Acquisizione</th>
-                    <th class="w-[calc(100%/6)]">Stato</th>
-                    <th class=" flex justify-end">Azioni</th>
-                </tr>
-            </thead>
-            <tbody>
+        <flux:table>
+            <flux:table.columns>
+                <flux:table.column>ID</flux:table.column>
+                <flux:table.column>Ragione Sociale</flux:table.column>
+                <flux:table.column>Email</flux:table.column>
+                <flux:table.column>Telefono</flux:table.column>
+                <flux:table.column>Acquisizione</flux:table.column>
+                <flux:table.column>Stato</flux:table.column>
+                <flux:table.column>Azioni</flux:table.column>
+            </flux:table.columns>
+
+            <flux:table.rows>
                 @foreach ($leads as $lead)
-                    @include('livewire.crm.utilities.tr-body-table')
-                    <td>{{ $lead->id }}</td>
-                    <td>
-                        <div class="max-w-[200px] break-words whitespace-normal">
-                            {{ $lead->company_name }}
-                        </div>
-                    </td>
+                    <flux:table.row :key="$lead->id">
+                        <flux:table.cell class="flex items-center gap-3">{{ $lead->id }}</flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">{{ $lead->company_name }}</flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">{{ $lead->email }}</flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">{{ $lead->first_telephone }}</flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">{{ \Carbon\Carbon::parse($lead->created_at)->format('d/m/Y') }}</flux:table.cell>
+                        <flux:table.cell>
+                            @php
+                                $text = match ($lead->status) {
+                                    1 => 'Nuovo',
+                                    2 => 'Assegnato',
+                                    3 => 'Da riassegnare',
+                                    default => 'Sconosciuto',
+                                };
+                            @endphp
+                            <flux:badge size="sm" data-status="{{$lead->status}}" inset="top bottom">{{ $text }}</flux:badge>
+                        </flux:table.cell>
 
-                    {{-- Email --}}
-                    <td>
-                        <div class="flex min-w-[200px] break-words whitespace-normal">
-                            {{ $lead->email }}
-                            @include('livewire.crm.utilities.copy-this-text-button', [
-                                'content' => $lead->email,
-                            ])
-                        </div>
-
-                    </td>
-
-                    {{-- Phone --}}
-                    <td>
-                        <div class="flex min-w-[200px] break-words whitespace-normal">
-                            {{ $lead->first_telephone }}
-                            @include('livewire.crm.utilities.copy-this-text-button', [
-                                'content' => $lead->first_telephone,
-                            ])
-                        </div>
-
-                    </td>
-
-                    {{-- Acquisition Date --}}
-                    <td>{{ \Carbon\Carbon::parse($lead->created_at)->format('d/m/Y') }}</td>
-
-                    {{-- Status --}}
-                    <td>
-                        @php
-                            $statusMap = [
-                                1 => [
-                                    'text' => 'Nuovo',
-                                    'bg' => 'bg-[#339CFF]',
-                                    'textColor' => 'text-white',
-                                    'border' => 'border-[#339CFF]',
-                                ],
-                                2 => [
-                                    'text' => 'Assegnato',
-                                    'bg' => 'bg-[#8A63D2]',
-                                    'textColor' => 'text-white',
-                                    'border' => 'border-[#8A63D2]',
-                                ],
-                                3 => [
-                                    'text' => 'Da riassegnare',
-                                    'bg' => 'bg-[#F85C5C]',
-                                    'textColor' => 'text-white',
-                                    'border' => 'border-[#F85C5C]',
-                                ],
-                            ];
-                            $status = $statusMap[$lead->status] ?? [
-                                'text' => 'Sconosciuto',
-                                'bg' => 'bg-gray-100',
-                                'textColor' => 'text-gray-600',
-                                'border' => 'border-gray-600',
-                            ];
-                        @endphp
-                        @include('livewire.crm.utilities.span-status', [
-                            'bg' => $status['bg'],
-                            'textColor' => $status['textColor'],
-                            'border' => $status['border'],
-                            'text' => $status['text'],
-                        ]) </td>
-
-                    {{-- Actions --}}
-                    <td class="flex gap-2 mt-2.5 justify-end">
-                        @include('livewire.crm.utilities.detail-button', [
-                            'functionName' => 'show',
-                            'id' => $lead->id,
-                        ])
-                        @include('livewire.crm.utilities.delete-button', [
-                            'functionName' => 'delete',
-                            'id' => $lead->id,
-                        ])
-                        {{-- Optional: Edit Button --}}
-                        {{-- @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $lead->id]) --}}
-                    </td>
-                    </tr>
+                        <flux:table.cell align="end">
+                            <flux:button wire:click="show({{ $lead->id }})" variant="ghost" data-variant="ghost" data-color="teal" data-rounded icon="eye" size="sm"/>
+                            <flux:button wire:click="delete({{ $lead->id }})" wire:confirm="Sei sicuro di voler eliminare questo lead?" variant="ghost" data-variant="ghost" data-color="red" data-rounded icon="trash" size="sm"/>
+                        </flux:table.cell>
+                    </flux:table.row>
                 @endforeach
-            </tbody>
-        </table>
-
-        <div class="mt-4">
+            </flux:table.rows>
+        </flux:table>
+        <div class="-mx-4 mt-4">
             {{ $leads->links('customPagination') }}
         </div>
     @else
