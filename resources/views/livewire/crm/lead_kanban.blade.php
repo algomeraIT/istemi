@@ -2,7 +2,7 @@
     <div class="mt-4 grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
 
 
-        @foreach ($leads_kanban as $lead)
+        @foreach ($leads as $lead)
             @php
                 $status = $statusMap[$lead->status] ?? [
                     'label' => 'Sconosciuto',

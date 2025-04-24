@@ -19,19 +19,19 @@
     @stack('styles')
 </head>
 
-<body class=" font-inter container  contents">
-    @include('flash-message')
-    @include('layout.navbar')
+<body class="min-h-screen font-inter container contents">
+@include('flash-message')
+@include('layout.navbar')
 
-    <div class="bg-[#F5FCFD] ">
-        @yield('content')
-    </div>
+<div class="min-h-screen bg-[#F5FCFD] py-14">
+    @yield('content')
+</div>
 
-    @livewireScripts
-</body>
+@fluxScripts
+@livewireScripts
 @push('scripts')
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 @endpush
 @stack('scripts')
-
+</body>
 </html>

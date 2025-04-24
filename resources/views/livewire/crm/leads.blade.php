@@ -1,58 +1,53 @@
 <div class="container mx-auto">
-    <div class=" bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100 p-9">
+    <flux:tab.group class=" bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100 p-9">
         <h2 class="text-2xl mb-3 font-bold text-[#232323] font-sans opacity-100">Lead</h2>
-        <!-- Add Lead Button -->
-        <div class="flex items-center justify-between space-x-3 mb-8">
 
-            {{-- pulsante crea --}}
-            <div class=" xl:lg:w-3/7 md:sm:w-1/3">
+        <div class="space-y-3">
+            <div class="flex items-center justify-between">
                 <flux:button wire:click="create" variant="primary" data-variant="primary" data-color="teal">Crea</flux:button>
+
+                <flux:tabs wire:model="activeTab" variant="segmented">
+                    <flux:tab name="list" icon="list-bullet">List</flux:tab>
+                    <flux:tab name="kanban" icon="squares-2x2">Kanban</flux:tab>
+                </flux:tabs>
             </div>
-
-            {{-- tab --}}
-            @include('livewire.crm.utilities.tab')
-            {{-- filtro --}}
-            <div class="flex md:flex-col xl:flex-row  xl:lg:w-3/7 md:sm:w-1/3 space-x-4 justify-center">
-                <select wire:model.live="status" class="pl-2.5 md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] leading-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
-                  <option value="">Tutti gli stati</option>
-                  <option value="0" class="bg-cyan-400 text-cyan-800">Nuovo</option>
-                  <option value="1" class="bg-purple-400 text-purple-800">Assegnato</option>
-                  <option value="2" class="bg-red-400 text-red-800">Da riassegnare</option>
-                </select>
-
-                <input type="number" wire:model.live="year"
-                       class="md:w-full xl:w-80 border-gray-200  p-2.5 h-9 text-[#B0B0B0] border placeholder:font-medium placeholder:text-[16px] placeholder:leading-[20px] placeholder:text-[#B0B0B0] placeholder:opacity-100"
-                       min="1900" max="2099" step="1" placeholder="Tutte le date di acquisizione" />
-
-                <div class="relative ">
-                    <span class="absolute inset-y-0 left-0 flex items-center pointer-events-none h-9 p-3.5">
-                        <flux:icon.magnifying-glass class="w-4 h-4 text-gray-300" />
-                    </span>
-                    <input type="text" wire:model.live="query" placeholder="Cerca..."
-                           class="md:w-full pl-9 border border-gray-200 h-9  focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
+            <div class="flex flex-col-reverse gap-2 items-center justify-between lg:flex-row">
+                <div class="w-full lg:max-w-lg">
+                    <flux:input wire:model.live="query" :loading="false" icon="magnifying-glass" placeholder="Cerca..."/>
                 </div>
-              </div>
-        </div>
+                <div class="w-full flex flex-col gap-2 lg:flex-row lg:w-auto">
+                    <div class="flex gap-2">
+                        <flux:select wire:model.live="status">
+                            <flux:select.option value="">Tutti gli stati</flux:select.option>
+                            <flux:select.option value="1">Nuovo</flux:select.option>
+                            <flux:select.option value="2">Assegnato</flux:select.option>
+                            <flux:select.option value="3">Da riassegnare</flux:select.option>
+                        </flux:select>
 
-
-        @if ($activeTab === 'list')
-        <div>
-            @include('livewire.crm.lead_list')
-            @elseif ($activeTab === 'kanban')
-            <div class=" ">
-                @include('livewire.crm.lead_kanban')
-                @endif
+                        <flux:select wire:model.live="year">
+                            <flux:select.option value="">Tutte le date di acquisizione</flux:select.option>
+                            @for($year = \Carbon\Carbon::now()->year; $year >= \Carbon\Carbon::now()->subYears(20)->year; $year--)
+                                <flux:select.option :value="$year">{{ $year }}</flux:select.option>
+                            @endfor
+                        </flux:select>
+                    </div>
+                </div>
             </div>
-
-
-
-            @if ($isOpen)
-            @include('livewire.crm.lead_modal')
-            @endif
-
-            @if ($isOpenShow)
-            @include('livewire.crm.lead-detail')
-            @endif
         </div>
-    </div>
+
+        <flux:tab.panel name="list">
+            @include('livewire.crm.lead_list', ['leads' => $this->leads])
+        </flux:tab.panel>
+        <flux:tab.panel name="kanban">
+            @include('livewire.crm.lead_kanban', ['leads' => $this->leads])
+        </flux:tab.panel>
+
+        @if ($isOpen)
+            @include('livewire.crm.lead_modal')
+        @endif
+
+        @if ($isOpenShow)
+            @include('livewire.crm.lead-detail')
+        @endif
+    </flux:tab.group>
 </div>

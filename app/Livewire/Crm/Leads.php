@@ -3,6 +3,8 @@
 namespace App\Livewire\Crm;
 
 use App\Models\Lead;
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Purifier;
@@ -16,6 +18,7 @@ class Leads extends Component
     public $isOpen, $isOpenShow = false;
     protected $paginationTheme = 'tailwind';
     public bool $isModalOpen = false;
+    #[Url(as: 'currentTab', except: 'list')]
     public $activeTab = 'list';
     public $status = '';
     public $date = '';
@@ -64,17 +67,29 @@ class Leads extends Component
     {
         $this->resetPage();
     }
-    public function render()
-    {
+
+    #[Computed]
+    public function leads() {
         $baseQuery = Lead::query()
             ->where('status', '!=', 0)
             ->when($this->status !== "", fn($q) => $q->where('status', $this->status))
             ->when(!empty($this->year), fn($q) => $q->whereYear('created_at', $this->year))
             ->when($this->query, fn($q) => $q->where('company_name', 'like', '%' . $this->query . '%'));
 
+        return $baseQuery->latest()->paginate(12);
+    }
+
+    public function render()
+    {
+//        $baseQuery = Lead::query()
+//            ->where('status', '!=', 0)
+//            ->when($this->status !== "", fn($q) => $q->where('status', $this->status))
+//            ->when(!empty($this->year), fn($q) => $q->whereYear('created_at', $this->year))
+//            ->when($this->query, fn($q) => $q->where('company_name', 'like', '%' . $this->query . '%'));
+
         return view('livewire.crm.leads', [
-            'leads_kanban' => (clone $baseQuery)->latest()->get(),
-            'leads' => $baseQuery->latest()->paginate(12),
+//            'leads_kanban' => (clone $baseQuery)->latest()->get(),
+//            'leads' => $baseQuery->latest()->paginate(12),
             'statuses' => Lead::select('status')->distinct()->pluck('status'),
             'sale_managers' => Lead::select('sales_manager')->distinct()->pluck('sales_manager'),
         ]);

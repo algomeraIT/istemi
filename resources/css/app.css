@@ -61,6 +61,13 @@ select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
 
+[data-flux-input] input {
+    @apply rounded-none shadow-none;
+}
+[data-flux-select-native] {
+    @apply rounded-none shadow-none;
+}
+
 [data-flux-button] {
     @apply rounded-none shadow-none;
     &[data-variant="primary"] {
