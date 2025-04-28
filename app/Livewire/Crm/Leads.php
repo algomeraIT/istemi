@@ -81,15 +81,7 @@ class Leads extends Component
 
     public function render()
     {
-//        $baseQuery = Lead::query()
-//            ->where('status', '!=', 0)
-//            ->when($this->status !== "", fn($q) => $q->where('status', $this->status))
-//            ->when(!empty($this->year), fn($q) => $q->whereYear('created_at', $this->year))
-//            ->when($this->query, fn($q) => $q->where('company_name', 'like', '%' . $this->query . '%'));
-
         return view('livewire.crm.leads', [
-//            'leads_kanban' => (clone $baseQuery)->latest()->get(),
-//            'leads' => $baseQuery->latest()->paginate(12),
             'statuses' => Lead::select('status')->distinct()->pluck('status'),
             'sale_managers' => Lead::select('sales_manager')->distinct()->pluck('sales_manager'),
         ]);

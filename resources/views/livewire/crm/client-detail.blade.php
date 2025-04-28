@@ -17,8 +17,11 @@
             <div class="mx-auto mt-8 lg:mt-16 bg-white border-2 border-dotted border-[#10BDD4] rounded-sm">
                 <!-- Client Logo -->
                 <div class="flex justify-center items-center border-b border-[#10BDD4] bg-[#F5FCFD] h-20">
-                    <img src="{{ asset($client->logo_path) }}" alt="Client Logo"
-                        class="w-24 h-24 object-cover rounded-full border-2 border-dotted border-[#10BDD4] mt-16 ml-[65%]">
+                    <img
+                                src="{{ $client->logo_path ?: asset('icon/logo.svg') }}"
+                                onerror="this.onerror=null;this.src='{{ asset('icon/logo.svg') }}';"
+                                class="w-24 h-24 object-cover rounded-full border-2 border-dotted border-[#10BDD4] mt-16 ml-[65%]" alt="Logo" />
+           
                 </div>
 
                 <!-- Client Details -->

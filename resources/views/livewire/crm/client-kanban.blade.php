@@ -2,13 +2,13 @@
     <div class="mt-4 grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
         @php
             $statusMap = [
-                0 => [
+                1 => [
                     'label' => 'Call center',
                     'bg' => 'bg-[#FEF7EF]',
                     'text' => 'text-[#F5AD65]',
                     'border' => 'border-[#F5AD65]',
                 ],
-                1 => [
+                2 => [
                     'label' => 'Censimento',
                     'bg' => 'bg-[#E3F1F4]',
                     'text' => 'text-[#2A8397]',
@@ -43,9 +43,9 @@
                 </div>
 
                 {{-- Contact Info --}}
-                <div class="flex flex-col gap-4 md:flex-row">
+                <div class="flex flex-col gap-4  mt-2 mb-4">
                     {{-- Email --}}
-                    <div>
+                    <div class="font-extralight">
                         <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
                             <flux:icon.at-symbol class="w-4" /> E-mail:
                         </p>
@@ -58,7 +58,7 @@
                     </div>
 
                     {{-- Phone --}}
-                    <div>
+                    <div class="font-extralight">
                         <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
                             <flux:icon.phone class="w-4" /> Telefono:
                         </p>
@@ -71,7 +71,7 @@
                     </div>
 
                     {{-- City --}}
-                    <div>
+                    <div class="font-extralight">
                         <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
                             <flux:icon.map-pin class="w-4" /> Sede:
                         </p>
@@ -84,26 +84,26 @@
 
                 {{-- Status Badge --}}
                 <div class="mt-3">
-                    <span
-                        class="inline-block px-2 py-1 text-xs font-semibold rounded-[15px] border {{ $status['bg'] }} {{ $status['text'] }} {{ $status['border'] }}">
-                        {{ $status['label'] }}
-                    </span>
+                    @php
+                    $text = match ($client->status) {
+                        1 => 'Call center',
+                        2 => 'Censimento',
+                        default => 'Sconosciuto',
+                    };
+                @endphp
+                <flux:badge size="sm" data-statusClient="{{ $client->status }}" inset="top bottom">
+                    {{ $text }}</flux:badge>
                 </div>
 
                 {{-- Action Buttons --}}
-                <div class="mt-4 m-3 text-right flex justify-end gap-2">
-                    @include('livewire.crm.utilities.detail-button', [
-                        'functionName' => 'goToDetail',
-                        'id' => $client->id,
-                    ])
-                    @include('livewire.crm.utilities.edit-button', [
-                        'functionName' => 'edit',
-                        'id' => $client->id,
-                    ])
-                    @include('livewire.crm.utilities.delete-button', [
-                        'functionName' => 'delete',
-                        'id' => $client->id,
-                    ])
+                <div class="mt-4 text-right flex justify-end gap-2">
+                    <flux:button wire:click="goToDetail({{ $client->id }})" variant="ghost"
+                        data-variant="ghost" data-color="teal" data-rounded icon="eye" size="sm" />
+                        <flux:button wire:click="edit({{ $client->id }})" variant="ghost"
+                            data-variant="ghost" data-color="gray" data-rounded icon="pencil" size="sm" />
+                    <flux:button wire:click="delete({{ $client->id }})"
+                        wire:confirm="Sei sicuro di voler eliminare questo client?" variant="ghost"
+                        data-variant="ghost" data-color="red" data-rounded icon="trash" size="sm" />
                     {{-- Optionally, you can include an edit button here if needed --}}
                 </div>
             </div>

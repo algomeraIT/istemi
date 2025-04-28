@@ -1,104 +1,46 @@
-<div class="w-full overflow-x-auto mt-10">
+
+
+<div class="w-full overflow-x-auto">
     @if ($contacts)
-        <table class="w-full min-w-[798px] font-inter text-sm text-left">
-            <thead class="text-[#B0B0B0] font-light text-[14px]">
-                <tr class="border-b h-10">
-                    <!-- Each <th> gets equal width using Tailwind v4 arbitrary value utility -->
-                    <th class="w-[calc(100%/8)]">ID</th>
-                    <th class="w-[calc(100%/6)]">Ragione Sociale</th>
-                    <th class="w-[calc(100%/6)]">E-mail</th>
-                    <th class="w-[calc(100%/6)]">Telefono</th>
-                    <th class="w-[calc(100%/6)]">Acquisizione</th>
-                    <th class="w-[calc(100%/5)]">Stato</th>
-                    <th class="flex justify-end">Azioni</th>
-                </tr>
-            </thead>
-            <tbody>
+        <flux:table>
+            <flux:table.columns>
+                <flux:table.column>ID</flux:table.column>
+                <flux:table.column>Ragione Sociale</flux:table.column>
+                <flux:table.column>Email</flux:table.column>
+                <flux:table.column>Telefono</flux:table.column>
+                <flux:table.column>Acquisizione</flux:table.column>
+                <flux:table.column>Stato</flux:table.column>
+                <flux:table.column data-th-action>Azioni</flux:table.column>
+            </flux:table.columns>
+
+            <flux:table.rows>
                 @foreach ($contacts as $contact)
-                    @include('livewire.crm.utilities.tr-body-table')
-                    <td>{{ $contact->id }}</td>
-                    <td>
-                        <div class="max-w-[200px] break-words whitespace-normal">
-                            {{ $contact->company_name }}
-                        </div>
-                    </td>
+                    <flux:table.row :key="$contact->id">
+                        <flux:table.cell class="flex items-center gap-3">{{ $contact->id }}</flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">{{ $contact->company_name }}</flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">{{ $contact->email }}</flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">{{ $contact->first_telephone }}</flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">{{ \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y') }}</flux:table.cell>
+                        <flux:table.cell>
+                            @php
+                                $text = match ($contact->status) {
+                                    1 => 'In contatto',
+                                    2 => 'Non idoneo',
+                                    default => 'Sconosciuto',
+                                };
+                            @endphp
+                            <flux:badge size="sm" data-status="{{$contact->status}}" inset="top bottom">{{ $text }}</flux:badge>
+                        </flux:table.cell>
 
-                    {{-- Email --}}
-                    <td>
-                        <div class="flex min-w-[200px] break-words whitespace-normal">
-                            {{ $contact->email }}
-                            @include('livewire.crm.utilities.copy-this-text-button', [
-                                'content' => $contact->email,
-                            ])
-                        </div>
-                    </td>
-
-                    {{-- Phone --}}
-                    <td>
-                        <div class="flex min-w-[200px] break-words whitespace-normal">
-                            {{ $contact->first_telephone }}
-                            @include('livewire.crm.utilities.copy-this-text-button', [
-                                'content' => $contact->first_telephone,
-                            ])
-                        </div>
-                    </td>
-
-                    {{-- Acquisition Date --}}
-                    <td>{{ \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y') }}</td>
-
-                    {{-- Status --}}
-                    <td>
-                        @php
-                            $statusMap = [
-                                0 => [
-                                    'text' => 'In contatto',
-                                    'bg' => 'bg-[#F7C548]',
-                                    'textColor' => 'text-white',
-                                    'border' => 'border-[#F7C548]',
-                                ],
-                                1 => [
-                                    'text' => 'Non idoneo',
-                                    'bg' => 'bg-[#A0A7AF]',
-                                    'textColor' => 'text-white',
-                                    'border' => 'border-[#A0A7AF]',
-                                ],
-                            ];
-                            $status = $statusMap[$contact->status] ?? [
-                                'text' => 'Sconosciuto',
-                                'bg' => 'bg-gray-400',
-                                'textColor' => 'text-white',
-                                'border' => 'border-gray-400',
-                            ];
-                        @endphp
-                        @include('livewire.crm.utilities.span-status', [
-                            'bg' => $status['bg'],
-                            'textColor' => $status['textColor'],
-                            'border' => $status['border'],
-                            'text' => $status['text'],
-                        ])
-
-
-                    </td>
-
-                    {{-- Actions --}}
-                    <td class="flex gap-2 mt-2.5 justify-end">
-                        @include('livewire.crm.utilities.detail-button', [
-                            'functionName' => 'goToDetail',
-                            'id' => $contact->id,
-                        ])
-                        @include('livewire.crm.utilities.delete-button', [
-                            'functionName' => 'delete',
-                            'id' => $contact->id,
-                        ])
-                        {{-- Optional: Edit Button --}}
-                        {{-- @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $contact->id]) --}}
-                    </td>
-                    </tr>
+                        <flux:table.cell align="end">
+                            <flux:button wire:click="goToDetail({{ $contact->id }})" variant="ghost" data-variant="ghost" data-color="teal" data-rounded icon="eye" size="sm"/>
+                            <flux:button wire:click="delete({{ $contact->id }})" wire:confirm="Sei sicuro di voler eliminare questo contact?" variant="ghost" data-variant="ghost" data-color="red" data-rounded icon="trash" size="sm"/>
+                        </flux:table.cell>
+                    </flux:table.row>
                 @endforeach
-            </tbody>
-        </table>
-
-        <div class="mt-4">
+            </flux:table.rows>
+        </flux:table>
+        <div class="-mx-4 mt-4">
             {{ $contacts->links('customPagination') }}
         </div>
     @else

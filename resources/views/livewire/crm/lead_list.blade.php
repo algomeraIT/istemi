@@ -8,7 +8,7 @@
                 <flux:table.column>Telefono</flux:table.column>
                 <flux:table.column>Acquisizione</flux:table.column>
                 <flux:table.column>Stato</flux:table.column>
-                <flux:table.column>Azioni</flux:table.column>
+                <flux:table.column data-th-action>Azioni</flux:table.column>
             </flux:table.columns>
 
             <flux:table.rows>

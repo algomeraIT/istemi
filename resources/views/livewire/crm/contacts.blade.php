@@ -1,60 +1,61 @@
-<div class="ml-24 mr-24 relative top-14 overflow-auto">
-    <div class="bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100 p-9">
+<div class="container mx-auto relative top-14 overflow-auto">
+    <flux:tab.group class="bg-white shadow-sm shadow-black/10 rounded-[1px] opacity-100 p-9">
         <h2 class="text-2xl mb-3 font-bold text-[#232323] font-sans opacity-100">
             Contatti
         </h2>
-        <!-- Add contact Button / Header Row -->
-        <div class="flex justify-between space-x-3">
-            {{-- pulsante crea --}}
-            <div class="xl:lg:w-3/7 md:sm:w-1/3 mb-8">
-           {{--      <flux:button wire:click="create"
-                    class="p-2.5! bg-[#10BDD4]! rounded-none! text-lg! text-white! opacity-100 hover:bg-[#0da9be]! transition duration-200">
+
+        <div class="space-y-3 lg:space-y-0 lg:flex lg:items-center lg:justify-between lg:flex-wrap gap-2">
+            <!-- Crea Button -->
+            <div>
+                <flux:button wire:click="create" variant="primary" data-variant="primary" data-color="teal">
                     Crea
-                </flux:button> --}}
+                </flux:button>
             </div>
 
-            {{-- tab --}}
-            @include('livewire.crm.utilities.tab')
+            <!-- Tabs -->
+            <div class="lg:pl-[37%]">
+                <flux:tabs wire:model="activeTab" variant="segmented">
+                    <flux:tab name="list" icon="list-bullet">Lista</flux:tab>
+                    <flux:tab name="kanban" icon="squares-2x2">Kanban</flux:tab>
+                </flux:tabs>
+            </div>
 
-            {{-- filtro --}}
-            <div class="flex md:flex-col xl:flex-row xl:lg:w-3/7 md:sm:w-1/3 space-x-4 justify-center">
-                <select wire:model.live="status"
-                    class="pl-2.5 md:w-full xl:w-48 border-gray-200 border h-9 text-[16px] contacting-[20px] text-[#B0B0B0] font-medium opacity-100 w-36">
-                    <option value="">Tutti gli stati</option>
-                    <option value="0" class="bg-cyan-400 text-cyan-800">In contatto</option>
-                    <option value="1" class="bg-purple-400 text-purple-800">Non idoneo</option>
-                </select>
+            <!-- Filters and Search -->
+            <div class="flex gap-2">
+                <!-- Status Filter -->
+                <flux:select wire:model.live="status" data-variant="status">
+                    <flux:select.option value="">Tutti gli stati</flux:select.option>
+                    <flux:select.option value="0">In contatto</flux:select.option>
+                    <flux:select.option value="1">Non idoneo</flux:select.option>
+                </flux:select>
 
-                <input type="number" wire:model.live="year"
-                    class="md:w-full xl:w-80 border-gray-200 p-2.5 h-9 text-[#B0B0B0] border placeholder:font-medium placeholder:text-[16px] placeholder:contacting-[20px] placeholder:text-[#B0B0B0] placeholder:opacity-100"
-                    min="1900" max="2099" step="1" placeholder="Tutte le date di acquisizione" />
+                <!-- Year Filter -->
+                <flux:select wire:model.live="year">
+                    <flux:select.option value="">Tutte le date di acquisizione</flux:select.option>
+                    @for ($year = \Carbon\Carbon::now()->year; $year >= \Carbon\Carbon::now()->subYears(20)->year; $year--)
+                        <flux:select.option :value="$year">{{ $year }}</flux:select.option>
+                    @endfor
+                </flux:select>
 
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 flex items-center pointer-events-none h-9 p-3.5">
-                        <flux:icon.magnifying-glass class="w-4 h-4 text-gray-300" />
-                    </span>
-                    <input type="text" wire:model.live="query" placeholder="Cerca..."
-                        class="md:w-full pl-9 border border-gray-200 h-9 focus:outline-none focus:ring text-sm placeholder:text-gray-300 placeholder:font-extralight" />
+                <!-- Search -->
+                <div class="w-full lg:w-auto lg:max-w-xs">
+                    <flux:input wire:model.live="query" data-variant="search" :loading="false" icon="magnifying-glass" placeholder="Cerca..." />
                 </div>
             </div>
         </div>
-    
-        <!-- Conditional Content: List or Kanban -->
-        @if ($activeTab === 'list')
-            <div>
-                @include('livewire.crm.contact-list')
-            </div>
-        @elseif ($activeTab === 'kanban')
-            <div>
-                @include('livewire.crm.contact-kanban')
-            </div>
-        @endif
 
-        <!-- Modals for Adding/Editing and Details -->
+        <!-- Tab Panels -->
+        <flux:tab.panel name="list">
+            @include('livewire.crm.contact-list')
+        </flux:tab.panel>
+
+        <flux:tab.panel name="kanban">
+            @include('livewire.crm.contact-kanban')
+        </flux:tab.panel>
+
+        <!-- Modals -->
         @if ($isOpen)
             @include('livewire.crm.contact-modal')
         @endif
-
-
-    </div>
+    </flux:tab.group>
 </div>

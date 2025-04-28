@@ -52,7 +52,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -62,27 +62,46 @@ select:focus[data-flux-control] {
 }
 
 [data-flux-input] input {
-    @apply rounded-none shadow-none;
+    @apply rounded-none shadow-none h-9;
+    &[data-variant="search"]{
+        @apply lg:w-40;
+    }
+    &[data-variant="list"]{
+        @apply lg:w-40;
+    }
 }
+
 [data-flux-select-native] {
-    @apply rounded-none shadow-none;
+    @apply rounded-none shadow-none text-[#B0B0B0] font-semibold h-9;
+    &[data-variant="status"]{
+        @apply lg:w-40;
+    }
 }
 
 [data-flux-button] {
     @apply rounded-none shadow-none;
+
     &[data-variant="primary"] {
         @apply border-none;
+
         &[data-color="teal"] {
             @apply bg-[#10BDD4] text-white hover:bg-[#00C0D9];
         }
     }
+
     &[data-variant="ghost"] {
         &[data-rounded] {
             @apply rounded-full;
         }
+
         &[data-color="teal"] {
             @apply text-[#10BDD4] hover:bg-[#F5FCFD];
         }
+
+        &[data-color="gray"] {
+            @apply text-[#6C757D] hover:bg-[#6C757D1A];
+        }
+
         &[data-color="red"] {
             @apply text-[#E63946] hover:bg-red-50;
         }
@@ -93,12 +112,49 @@ select:focus[data-flux-control] {
     &[data-status="1"] {
         @apply bg-[#339CFF] text-white;
     }
+
     &[data-status="2"] {
         @apply bg-[#8A63D2] text-white;
     }
+
     &[data-status="3"] {
         @apply bg-[#F85C5C] text-white;
     }
+
+    &[data-statusClient="1"] {
+        @apply bg-[#F6B663] text-white;
+    }
+
+    &[data-statusClient="2"] {
+        @apply bg-[#45AEBB] text-white;
+    }
+}
+
+[data-flux-tabs] {
+    @apply bg-white ;
+
+}
+
+[data-flux-tab] {
+    @apply bg-white border-1 rounded-none border-[#10BDD4] text-[#B0B0B0]  font-semibold ;
+    font-size: 16px;
+    &[data-active] {
+        @apply bg-[#F5FCFD] text-[#10BDD4]
+    }
+}
+
+[data-flux-column] {
+    @apply font-medium;
+    color: #B0B0B0;
+    &[data-th-action]{
+        @apply flex justify-end;
+    }
+}
+
+[data-flux-cell]{
+    @apply font-medium;
+    color: #232323;
+    font-size: 18px;
 }
 
 /* \[:where(&)\]:size-4 {

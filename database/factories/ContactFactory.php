@@ -24,7 +24,7 @@ class ContactFactory extends Factory
             'registered_office_address' => $this->faker->address,
             'first_telephone' => $this->faker->phoneNumber,
             'second_telephone' => $this->faker->optional()->phoneNumber,
-            'status' => $this->faker->boolean(80),
+            'status' => $this->faker->randomElement([1, 2]),
         ];
     }
 
@@ -41,7 +41,7 @@ class ContactFactory extends Factory
                 'registered_office_address' => $this->faker->address,
                 'first_telephone' => $this->faker->phoneNumber,
                 'second_telephone' => $this->faker->optional()->phoneNumber,
-                'status' => $this->faker->boolean(80),
+                'status' => 1,
             ];
         });
     }

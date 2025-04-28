@@ -33,7 +33,7 @@ class ClientsFactory extends Factory
             'last_name_user_creation' => $this->faker->lastName,
             'has_referent' => $this->faker->boolean,
             'has_sales' => $this->faker->boolean,
-            'status' => $this->faker->randomElement([0, 1]),
+            'status' => $this->faker->randomElement([1, 2]),
         ];
     }
 }
