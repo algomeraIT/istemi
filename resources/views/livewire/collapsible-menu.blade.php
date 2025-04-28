@@ -51,11 +51,11 @@
                  x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100"
                  x-transition:leave-end="opacity-0 transform scale-95"
                  x-bind:style="isExpanded ? 'height: 768px' : 'height: 420px'">
-                <div class=" overflow-auto">
+                <div class=" overflow-auto ">
                     <!-- Initial Menu Content (Horizontal Layout) -->
-                    <div id="menu-content" class="flex flex-col md:flex-row md:space-x-6 justify-center mt-[47px]"
+                    <div id="menu-content" class="container mt-[47px]"
                          x-bind:style="isExpanded ? 'justify-self: center; height: 700px;' : ''">
-                        <div class="menu-rows flex items-start w-max-[1980px]"
+                        <div class="menu-rows flex"
                              x-bind:class="{ 'list-item list-none': isExpanded }">
 
                             <!-- Menu Item 1 -->
@@ -89,7 +89,7 @@
 
                             <div class="menu-item w-max-52 mr-5"
                                  :class="isExpanded ? 'h-30 border-b-2 border-gray-200' : 'h-88 border-l-2 border-gray-200'"
-                                 :style="isExpanded ? 'display: flex;' : ''">
+                                 :style="isExpanded ? 'display: flex; justify-content:center;' : ''">
 
                                 <!-- Main Label -->
                                 <a href="#" class="block group ml-2.5 h-[32px]">

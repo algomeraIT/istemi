@@ -1,9 +1,6 @@
 <div>
     <div class="mt-4 grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
-
-
         @foreach ($contact_kanban as $contact)
-
             <div class="bg-white border border-gray-300 p-4 text-sm mt-5">
                 {{-- Company Name --}}
                 <h3 class="text-lg font-bold text-[#232323]">{{ $contact->company_name }}</h3>
@@ -46,39 +43,24 @@
                 {{-- Status Badge --}}
                 <div class="mt-5">
                     @php
-                    $statusMap = [
-                        0 => [
-                            'text' => 'In contatto',
-                            'bg' => 'bg-[#F7C548]',
-                            'textColor' => 'text-white',
-                            'border' => 'border-[#F7C548]',
-                        ],
-                        1 => [
-                            'text' => 'Non idoneo',
-                            'bg' => 'bg-[#A0A7AF]',
-                            'textColor' => 'text-white',
-                            'border' => 'border-[#A0A7AF]',
-                        ],
-                    ];
-                    $status = $statusMap[$contact->status] ?? [
-                        'text' => 'Sconosciuto',
-                        'bg' => 'bg-gray-400',
-                        'textColor' => 'text-white',
-                        'border' => 'border-gray-400',
-                    ];
+                    $text = match ($contact->status) {
+                        1 => 'In contatto',
+                        2 => 'Non idoneo',
+                        default => 'Sconosciuto',
+                    };
                 @endphp
-                @include('livewire.crm.utilities.span-status', [
-                    'bg' => $status['bg'],
-                    'textColor' => $status['textColor'],
-                    'border' => $status['border'],
-                    'text' => $status['text'],
-                ])
+                <flux:badge size="sm" data-status="{{$contact->status}}" inset="top bottom">{{ $text }}</flux:badge>
                 </div>
 
                 {{-- Action Buttons --}}
                 <div class="mt-4 text-right flex justify-end gap-2">
-                    @include('livewire.crm.utilities.detail-button', ['functionName' => 'goToDetail', 'id' => $contact->id])
-                    @include('livewire.crm.utilities.delete-button', ['functionName' => 'delete', 'id' => $contact->id])
+                    <flux:button wire:click="goToDetail({{ $contact->id }})" variant="ghost" data-variant="ghost"
+                        data-color="teal" data-rounded icon="eye" size="sm" />
+           {{--          <flux:button wire:click="edit({{ $contact->id }})" variant="ghost" data-variant="ghost"
+                        data-color="gray" data-rounded icon="pencil" size="sm" /> --}}
+                    <flux:button wire:click="delete({{ $contact->id }})"
+                        wire:confirm="Sei sicuro di voler eliminare questo contatto?" variant="ghost"
+                        data-variant="ghost" data-color="red" data-rounded icon="trash" size="sm" />
                 </div>
             </div>
         @endforeach
