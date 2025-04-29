@@ -180,29 +180,27 @@ class Projects extends Component
     public function render()
     {
         $referents = Referent::paginate(10);
-
-        if ($this->activeTab === 'list') {
-            $projects = $this->buildProjectQuery()
-                ->orderBy('created_at', 'desc')
-                ->paginate(15);
-        } else {
-            $grouped = $this->buildProjectQuery()
-                ->orderBy($this->sortField, $this->sortDirection)
-                ->get()
-                ->groupBy('current_phase')
-                ->toArray();
-
-            foreach (self::PHASES as $phase) {
-                if (!isset($grouped[$phase])) {
-                    $grouped[$phase] = [];
-                }
+    
+        // Always prepare both datasets separately
+        $listProjects = $this->buildProjectQuery()
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
+    
+        $kanbanProjects = $this->buildProjectQuery()
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->get()
+            ->groupBy('current_phase')
+            ->toArray();
+    
+        foreach (self::PHASES as $phase) {
+            if (!isset($kanbanProjects[$phase])) {
+                $kanbanProjects[$phase] = [];
             }
-
-            $projects = $grouped;
         }
-
+    
         return view('livewire.projects.project', [
-            'projects' => $projects,
+            'listProjects' => $listProjects,
+            'kanbanProjects' => $kanbanProjects,
             'referents' => $referents,
             'phases' => self::PHASES,
             'statuses' => Project::select('status')->distinct()->pluck('status'),

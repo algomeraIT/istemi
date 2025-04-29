@@ -21,7 +21,7 @@
             </div>
 
             <!-- Filters and Search -->
-            <div class="flex lg:flex-nowrap flex-wrap gap-2 lg:w-auto lg:max-w-xs ">
+            <div class="flex 2xl:flex-nowrap flex-wrap gap-2 lg:w-auto lg:max-w-xs ">
                 <!-- Project Type Filter -->
                 <flux:select wire:model.live="query_project" data-variant="status">
                     <flux:select.option value="">Tutti i progetti</flux:select.option>
@@ -60,11 +60,11 @@
 
         <!-- Tab Panels -->
         <flux:tab.panel name="list">
-            @include('livewire.projects.project_list')
+            @include('livewire.projects.project_list', ['projects' => $listProjects])
         </flux:tab.panel>
 
         <flux:tab.panel name="kanban">
-            @include('livewire.projects.project_kanban')
+            @include('livewire.projects.project_kanban', ['projects' => $kanbanProjects])
         </flux:tab.panel>
 
         <!-- Modal -->
