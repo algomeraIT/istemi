@@ -116,7 +116,8 @@
 
 
                                         {{-- Phase Badge --}}
-                                        <div class="mb-3 mt-3 ml-2">
+                                        {{-- todo mettere il badge flux!!! --}}
+                                        <div class="mb-3 ">
                                             <span
                                                 class="px-2 py-1 text-xs text-white font-medium rounded {{ $phase['bg'] }}">
                                                 {{ $phase['label'] }}
