@@ -11,4 +11,13 @@ class ProjectController extends Controller
     {
         return view('projects.project');
     }
+
+/*     public function goToDetail($projectId)
+    {
+        $project = Project::findOrFail($projectId);
+
+        return view('livewire.projects.project-detail', [
+            'project' => $project,
+        ]);
+    } */
 }

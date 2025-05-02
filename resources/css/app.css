@@ -139,7 +139,10 @@ select:focus[data-flux-control] {
     @apply bg-white border-1 rounded-none border-[#10BDD4] text-[#B0B0B0]  font-semibold ;
     font-size: 16px;
     &[data-active] {
-        @apply bg-[#F5FCFD] text-[#10BDD4]
+        @apply bg-[#F5FCFD] text-[#10BDD4];
+    }
+    &[data-variant="detail"] {
+        @apply  border-none;
     }
 }
 

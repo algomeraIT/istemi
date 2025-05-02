@@ -14,7 +14,7 @@
 
             <!-- Tabs -->
             <div class="lg:pl-[34%]">
-                <div x-data="{ tab: @entangle('activeTab') }" class="flex align-middle items-center justify-center ">
+                <div x-data="{ tab: @entangle('activeTab') }" class="md:flex 2xl:flex-nowrap align-middle items-center justify-center ">
                     <!-- Tabs -->
                     <flux:tabs wire:model="activeTab" variant="segmented">
                         <flux:tab name="list" icon="list-bullet">Lista</flux:tab>
@@ -59,7 +59,7 @@
                     </div>
             
                     <!-- Filters: KANBAN -->
-                    <div x-show="tab === 'kanban'" x-cloak class="flex gap-2">
+                    <div x-show="tab === 'kanban'" x-cloak class="flex 2xl:flex-nowrap flex-wrap gap-2 align-middle items-center">
                         <div class="flex justify-center items-center ml-5">
                             <p class="text-[#B0B0B0] text-[15px] font-extralight">Raggruppa per </p>
                             <flux:tabs wire:model="kanbanTab" variant="segmented">
@@ -67,8 +67,13 @@
                                 <flux:tab wire:click="$set('kanbanTab', 'responsible')" name="responsible">Responsabile</flux:tab>
                             </flux:tabs>
                         </div>
+                        <flux:select wire:model.live="query_project" data-variant="status">
+                            <flux:select.option value="">Tutti gli stati</flux:select.option>
+                            <flux:select.option value="Pubblico">Pubblico</flux:select.option>
+                            <flux:select.option value="Privato">Privato</flux:select.option>
+                        </flux:select>
                         <div class="w-full lg:w-auto lg:max-w-xs relative">
-                            <flux:input wire:model.live="search" data-variant="search" placeholder="ciao..." icon="magnifying-glass" :loading="false" />
+                            <flux:input wire:model.live="search" data-variant="search" placeholder="Cerca..." icon="magnifying-glass" :loading="false" />
                         </div>
                     </div>
                 </div>

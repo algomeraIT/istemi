@@ -52,6 +52,8 @@ class Projects extends Component
     public string $activeTab = 'list';
     #[Url( as :'currentTab', except: 'list')]
     public string $kanbanTab = 'current_phase';
+    public string $detailTab = 'task';
+    public string $detailActiveTab = 'detail-list';
     public string $query = '';
     public string $query_project = '';
     public string $query_phase = '';
@@ -79,6 +81,10 @@ class Projects extends Component
         $this->resetPage();
     }
     public function updatingKanbanTab()
+    {
+        $this->resetPage();
+    }
+    public function updatingDetailTab($value)
     {
         $this->resetPage();
     }
@@ -120,6 +126,11 @@ class Projects extends Component
         $this->currentTab = max($this->currentTab - 1, 1);
     }
 
+    public function goToDetail($projectId)
+    {
+        return redirect()->route('projects.project-detail', ['id' => $projectId]);
+    }
+
     public function save()
     {
         $this->validate([
@@ -158,6 +169,7 @@ class Projects extends Component
     public function setTab(string $tab): void
     {
         $this->activeTab = $tab;
+        $this->detailTab = $tab;
         $this->isOpen = false;
     }
 
@@ -176,7 +188,6 @@ class Projects extends Component
             $this->dispatch('projects-updated');
         }
     }
-
 
     public function updatingResponsibleQuery()
     {
@@ -205,14 +216,14 @@ class Projects extends Component
             ->orderBy('created_at', 'desc')
             ->paginate(15);
 
-            $validGroupFields = ['current_phase', 'responsible'];
-            $groupField = in_array($this->kanbanTab, $validGroupFields) ? $this->kanbanTab : 'current_phase';
-            
-            $kanbanProjects = $this->buildProjectQuery()
-                ->orderBy($this->sortField, $this->sortDirection)
-                ->get()
-                ->groupBy($groupField)
-                ->toArray();
+        $validGroupFields = ['current_phase', 'responsible'];
+        $groupField = in_array($this->kanbanTab, $validGroupFields) ? $this->kanbanTab : 'current_phase';
+
+        $kanbanProjects = $this->buildProjectQuery()
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->get()
+            ->groupBy($groupField)
+            ->toArray();
 
         return view('livewire.projects.project', [
             'listProjects' => $listProjects,
