@@ -26,6 +26,7 @@ class Client extends Component
     protected $paginationTheme = 'tailwind';
 
     public $activeTab = 'list';
+    #[Url(as: 'currentTab', except: 'list')]
     //public $status = '';
     public $date = '';
     public $query = '';

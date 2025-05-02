@@ -62,7 +62,7 @@ select:focus[data-flux-control] {
 }
 
 [data-flux-input] input {
-    @apply rounded-none shadow-none h-9;
+    @apply rounded-none shadow-none h-8;
     &[data-variant="search"]{
         @apply lg:w-40;
     }
@@ -72,7 +72,7 @@ select:focus[data-flux-control] {
 }
 
 [data-flux-select-native] {
-    @apply rounded-none shadow-none text-[#B0B0B0] font-semibold h-9;
+    @apply rounded-none shadow-none text-[#B0B0B0] font-semibold h-8;
     &[data-variant="status"]{
         @apply lg:w-40;
     }

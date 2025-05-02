@@ -26,24 +26,19 @@
 
                             @php
                                 $phaseMap = [
-                                    1 => [
-                                        'label' => 'Avvio',
+                                    'Avvio' => [
                                         'bg' => 'bg-[#FFD500]',
                                     ],
-                                    2 => [
-                                        'label' => 'Pianificazione',
+                                    'Pianificazione' => [
                                         'bg' => 'bg-[#FF6F61]',
                                     ],
-                                    3 => [
-                                        'label' => 'Esecuzione',
+                                    'Esecuzione' => [
                                         'bg' => 'bg-[#FF6E0E]',
                                     ],
-                                    4 => [
-                                        'label' => 'Verifica',
+                                    'Verifica' => [
                                         'bg' => 'bg-[#FF2F85]',
                                     ],
-                                    5 => [
-                                        'label' => 'Chiusura',
+                                    'Chiusura' => [
                                         'bg' => 'bg-[#019B00]',
                                     ],
                                 ];
@@ -54,7 +49,7 @@
                                 ];
                             @endphp
                             <span class="px-2 py-1 text-xs text-white font-medium rounded {{ $phase['bg'] }}">
-                                {{ $phase['label'] }}
+                                {{ $project->current_phase }}
                             </span>
                         </flux:table.cell>
 

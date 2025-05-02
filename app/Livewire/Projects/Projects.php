@@ -45,9 +45,13 @@ class Projects extends Component
 
     // UI state
     public bool $isOpen = false;
+    public bool $showListFilters = true;
+    public bool $showKanbanFilters = false;
     public int $currentTab = 1;
     public array $formData = self::DEFAULT_FORM;
     public string $activeTab = 'list';
+    #[Url( as :'currentTab', except: 'list')]
+    public string $kanbanTab = 'current_phase';
     public string $query = '';
     public string $query_project = '';
     public string $query_phase = '';
@@ -65,13 +69,19 @@ class Projects extends Component
 
     ];
     protected $paginationTheme = 'tailwind';
-    protected $listeners = ['updatePhase'];
+    protected $listeners = ['updatePhase', 'updatePhaseResponsible'];
 
     // reset pagination whenever search or tab changes
     public function updatingSearch()
     {$this->resetPage();}
-    public function updatingActiveTab()
-    {$this->resetPage();}
+    public function updatingActiveTab($value)
+    {
+        $this->resetPage();
+    }
+    public function updatingKanbanTab()
+    {
+        $this->resetPage();
+    }
     public function updatingSortField()
     {$this->resetPage();}
     public function updatingSortDirection()
@@ -159,6 +169,15 @@ class Projects extends Component
         }
     }
 
+    public function updatePhaseResponsible(int $projectId, string $newResponsible): void
+    {
+        if ($project = Project::find($projectId)) {
+            $project->update(['responsible' => $newResponsible]);
+            $this->dispatch('projects-updated');
+        }
+    }
+
+
     public function updatingResponsibleQuery()
     {
         $this->resetPage();
@@ -174,30 +193,27 @@ class Projects extends Component
             ->when($this->query_phase, fn($q) => $q->where('current_phase', 'like', '%' . $this->query_phase . '%'))
             ->when($this->query_search, fn($q) => $q->where('client_name', 'like', '%' . $this->query_search . '%'))
 /*             ->when($this->query_search, fn($q) => $q->where('n_file', 'like', '%' . $this->query_search . '%'))
- */            ->when($this->status, fn($q) => $q->where('status', $this->status));
+ */    ->when($this->status, fn($q) => $q->where('status', $this->status));
     }
 
     public function render()
     {
         $referents = Referent::paginate(10);
-    
+
         // Always prepare both datasets separately
         $listProjects = $this->buildProjectQuery()
             ->orderBy('created_at', 'desc')
             ->paginate(15);
-    
-        $kanbanProjects = $this->buildProjectQuery()
-            ->orderBy($this->sortField, $this->sortDirection)
-            ->get()
-            ->groupBy('current_phase')
-            ->toArray();
-    
-        foreach (self::PHASES as $phase) {
-            if (!isset($kanbanProjects[$phase])) {
-                $kanbanProjects[$phase] = [];
-            }
-        }
-    
+
+            $validGroupFields = ['current_phase', 'responsible'];
+            $groupField = in_array($this->kanbanTab, $validGroupFields) ? $this->kanbanTab : 'current_phase';
+            
+            $kanbanProjects = $this->buildProjectQuery()
+                ->orderBy($this->sortField, $this->sortDirection)
+                ->get()
+                ->groupBy($groupField)
+                ->toArray();
+
         return view('livewire.projects.project', [
             'listProjects' => $listProjects,
             'kanbanProjects' => $kanbanProjects,

@@ -43,14 +43,14 @@ class ProjectFactory extends Factory
                 ]),
                 'note' => $this->faker->text(),
                 'is_archived' => $this->faker->boolean(),
-                'status' => $this->faker->randomElement([0, 1, 2]),
+                'status' => $this->faker->randomElement(['Pubblico', 'Privato']),
                 'goals' => $this->faker->paragraph(),
                 'project_scope' => $this->faker->paragraph(),
                 'expected_results' => $this->faker->paragraph(),
                 'stackholder_id' => Stackholder::factory(),
                 'phase_id' => Phase::factory()->create()->id,
                 'phase' => '',
-                'current_phase' => $this->faker->numberBetween(1, 6),
+                'current_phase' => $this->faker->randomElement([ 'Non Definito', 'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura']),
                 'estimate' => $this->faker->randomElement(['Prima Stima', 'Seconda Stima']),
             ];
     }

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('address_client');
             $table->string('client_status');
             $table->text('note')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->string('status');
             $table->boolean('is_archived')->default(false);
             $table->timestamps();
         });
