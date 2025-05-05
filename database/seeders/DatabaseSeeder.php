@@ -36,7 +36,8 @@ class DatabaseSeeder extends Seeder
             SaleSeeder::class,
             UsersTableSeeder::class,
             ContactSeeder::class,
-            HistoryContactsTableSeeder::class
+            HistoryContactsTableSeeder::class,
+            ProjectStartSeeder::class,
         ]);
     }
 }
