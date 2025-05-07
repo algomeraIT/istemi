@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             HistoryContactsTableSeeder::class,
             ProjectStartSeeder::class,
+            TaskProjectStartSeeder::class
         ]);
     }
 }
