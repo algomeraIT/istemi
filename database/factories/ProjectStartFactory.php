@@ -14,43 +14,65 @@ class ProjectStartFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
-        return [
+        $fields = [
+            'contract_ver',
+            'cme_ver',
+            'reserves',
+            'expiring_date_project',
+            'communication_plan',
+            'extension',
+            'sal',
+            'warranty',
+        ];
+        
+        $labels = [
+            'contract_ver' => 'Verifica contratto',
+            'cme_ver' => 'Verifica CME',
+            'reserves' => 'Riserve',
+            'expiring_date_project' => 'Impostare data di scadenza progetto',
+            'communication_plan' => 'Definizione del piano di comunicazione',
+            'extension' => 'Proroga',
+            'sal' => 'Possibilità di produrre dei SAL',
+            'warranty' => 'Garanzia definitiva',
+        ];
+        
+          $trueField = $this->faker->randomElement($fields);
+
+          $data = [];
+          foreach ($fields as $field) {
+              $data[$field] = $field === $trueField;
+          }
+    
+        return array_merge($data, [
             'client_id' => \App\Models\Clients::factory(),
             'project_id' => \App\Models\Project::factory(),
+            'name_phase' => $labels[$trueField],
     
-            'contract_ver' => $this->faker->boolean,
-            'user_contract_ver' => $this->faker->word,
+            'user_contract_ver' => fake()->name(),
             'status_contract_ver' => 'pending',
     
-            'cme_ver' => $this->faker->boolean,
-            'user_cme_ver' => $this->faker->word,
+            'user_cme_ver' => fake()->name(),
             'status_cme_ver' => 'approved',
     
-            'reserves' => $this->faker->boolean,
-            'user_reserves' => $this->faker->word,
+            'user_reserves' => fake()->name(),
             'status_reserves' => 'rejected',
     
-            'expiring_date_project' => $this->faker->boolean,
             'user_expiring_date_project' => $this->faker->date(),
             'status_expiring_date_project' => 'pending',
     
-            'communication_plan' => $this->faker->boolean,
-            'user_communication_plan' => $this->faker->word,
+            'user_communication_plan' => fake()->name(),
             'status_communication_plan' => 'pending',
     
-            'extension' => $this->faker->boolean,
-            'user_extension' => $this->faker->word,
+            'user_extension' => fake()->name(),
             'status_extension' => 'pending',
     
-            'sal' => $this->faker->boolean,
-            'user_sal' => $this->faker->word,
+            'user_sal' => fake()->name(),
             'status_sal' => 'approved',
     
-            'warranty' => $this->faker->boolean,
-            'user_warranty' => $this->faker->word,
+            'user_warranty' => fake()->name(),
             'status_warranty' => 'approved',
-        ];
+        ]);
     }
 }

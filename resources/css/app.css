@@ -87,7 +87,12 @@ select:focus[data-flux-control] {
         &[data-color="teal"] {
             @apply bg-[#10BDD4] text-white hover:bg-[#00C0D9];
         }
+        &[data-color="small"] {
+            @apply bg-[#10BDD4] text-white font-extralight hover:bg-[#00C0D9] w-24 h-6;
+        }
+        
     }
+
 
     &[data-variant="ghost"] {
         &[data-rounded] {
@@ -106,6 +111,8 @@ select:focus[data-flux-control] {
             @apply text-[#E63946] hover:bg-red-50;
         }
     }
+
+
 }
 
 [data-flux-badge] {
@@ -144,6 +151,10 @@ select:focus[data-flux-control] {
     &[data-variant="detail"] {
         @apply  border-none;
     }
+    
+    &[data-variant="projectDetail"] {
+        @apply  bg-white;
+    }
 }
 
 [data-flux-column] {
@@ -158,6 +169,23 @@ select:focus[data-flux-control] {
     @apply font-medium;
     color: #232323;
     font-size: 18px;
+
+    &[data-detail="detail"]{
+        font-size: 12px;
+        justify-items: center;
+        padding: 0;
+        text-align: center;
+    }
+}
+
+[data-flux-column]{
+
+    &[data-detail="detailColumn"]{
+        font-size: 12px;
+        justify-items: center;
+        padding: 10px;
+        text-align: center;
+    }
 }
 
 /* \[:where(&)\]:size-4 {

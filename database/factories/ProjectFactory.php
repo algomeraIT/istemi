@@ -51,7 +51,7 @@ class ProjectFactory extends Factory
                 'phase_id' => Phase::factory()->create()->id,
                 'phase' => '',
                 'current_phase' => $this->faker->randomElement([ 'Non Definito', 'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura']),
-                'estimate' => $this->faker->randomElement(['Prima Stima', 'Seconda Stima']),
+                'estimate' => strtoupper($this->faker->bothify('PRT-########')),
             ];
     }
 }

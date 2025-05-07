@@ -19,8 +19,22 @@ class ProjectDetail extends Component
         $this->projectStart = ProjectStart::where("project_id", $id)->get(); 
     }
 
+    public function addTask(){
+        
+    }
     public function render()
     {
-        return view('livewire.projects.project-detail')->layout('layout.main');
+        $boolColumns = [
+            'contract_ver' => 'Verifica contratto',
+            'cme_ver' => 'CME Verifica',
+            'reserves' => 'Riserve',
+            'expiring_date_project' => 'Data scadenza progetto',
+            'communication_plan' => 'Piano comunicazione',
+            'extension' => 'Proroga',
+            'sal' => 'SAL',
+            'warranty' => 'Garanzia',
+        ];
+
+        return view('livewire.projects.project-detail', compact('boolColumns'))->layout('layout.main');
     }
 }
