@@ -20,7 +20,7 @@
         "mews/purifier": "^3.4",
         "nesbot/carbon": "^3.9",
         "spatie/laravel-medialibrary": "^11.12",
-        "wire-elements/modal": "^2.0"
+        "wire-elements/modal": "^3.0.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",

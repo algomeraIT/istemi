@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import "./safelist.css";
 @import '../../vendor/livewire/flux/dist/flux.css';
 
 @source "../views";
@@ -49,9 +50,9 @@
 
 @layer utilities {
     [x-cloak] {
-      display: none;
+        display: none;
     }
-  }  
+}
 
 [data-flux-field] {
     @apply grid gap-2;
@@ -69,17 +70,20 @@ select:focus[data-flux-control] {
 
 [data-flux-input] input {
     @apply rounded-none shadow-none h-8;
-    &[data-variant="search"]{
+
+    &[data-variant="search"] {
         @apply lg:w-40;
     }
-    &[data-variant="list"]{
+
+    &[data-variant="list"] {
         @apply lg:w-40;
     }
 }
 
 [data-flux-select-native] {
     @apply rounded-none shadow-none text-[#B0B0B0] font-semibold h-8;
-    &[data-variant="status"]{
+
+    &[data-variant="status"] {
         @apply lg:w-40;
     }
 }
@@ -93,9 +97,11 @@ select:focus[data-flux-control] {
         &[data-color="teal"] {
             @apply bg-[#10BDD4] text-white hover:bg-[#00C0D9];
         }
+
         &[data-color="small"] {
             @apply bg-[#10BDD4] text-white font-extralight hover:bg-[#00C0D9] w-24 h-6;
         }
+
         &[data-color="project"] {
             @apply bg-[#10BDD4] text-white text-[16px] font-light hover:bg-[#00C0D9] w-16 h-8;
         }
@@ -127,21 +133,27 @@ select:focus[data-flux-control] {
     &[data-step="nuovo"] {
         @apply bg-[#339CFF] text-white;
     }
+
     &[data-step="assegnato"] {
         @apply bg-[#8A63D2] text-white;
     }
+
     &[data-step="da riassegnare"] {
         @apply bg-[#F85C5C] text-white;
     }
+
     &[data-step="in contatto"] {
         @apply bg-[#F7C548] text-white;
     }
+
     &[data-step="non idoneo"] {
         @apply bg-[#A0A7AF] text-white;
     }
+
     &[data-step="call center"] {
         @apply bg-[#F6B663] text-white;
     }
+
     &[data-step="censimento"] {
         @apply bg-[#45AEBB] text-white;
     }
@@ -155,32 +167,35 @@ select:focus[data-flux-control] {
 [data-flux-tab] {
     @apply bg-white border-1 rounded-none border-[#10BDD4] text-[#B0B0B0]  font-semibold ;
     font-size: 16px;
+
     &[data-active] {
         @apply bg-[#F5FCFD] text-[#10BDD4];
     }
+
     &[data-variant="detail"] {
-        @apply  border-none;
+        @apply border-none;
     }
-    
+
     &[data-variant="projectDetail"] {
-        @apply  bg-white;
+        @apply bg-white;
     }
 }
 
 [data-flux-column] {
     @apply font-medium;
     color: #B0B0B0;
-    &[data-th-action]{
+
+    &[data-th-action] {
         @apply flex justify-end;
     }
 }
 
-[data-flux-cell]{
+[data-flux-cell] {
     @apply font-medium py-1;
     color: #232323;
     font-size: 18px;
 
-    &[data-detail="detail"]{
+    &[data-detail="detail"] {
         font-size: 12px;
         justify-items: center;
         padding: 0;
@@ -188,9 +203,9 @@ select:focus[data-flux-control] {
     }
 }
 
-[data-flux-column]{
+[data-flux-column] {
 
-    &[data-detail="detailColumn"]{
+    &[data-detail="detailColumn"] {
         font-size: 12px;
         justify-items: center;
         padding: 10px;
