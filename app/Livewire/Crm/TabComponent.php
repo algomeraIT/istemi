@@ -10,7 +10,7 @@ use App\Models\Referent;
 use App\Models\Sale;
 use App\Models\Accounting;
 use App\Models\Communication;
-use App\Models\Clients; // 
+use App\Models\Client; // 
 
 class TabComponent extends Component
 {

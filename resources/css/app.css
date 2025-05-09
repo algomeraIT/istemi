@@ -47,6 +47,12 @@
     }
 }
 
+@layer utilities {
+    [x-cloak] {
+      display: none;
+    }
+  }  
+
 [data-flux-field] {
     @apply grid gap-2;
 }
@@ -116,23 +122,25 @@ select:focus[data-flux-control] {
 }
 
 [data-flux-badge] {
-    &[data-status="1"] {
+    &[data-step="nuovo"] {
         @apply bg-[#339CFF] text-white;
     }
-
-    &[data-status="2"] {
+    &[data-step="assegnato"] {
         @apply bg-[#8A63D2] text-white;
     }
-
-    &[data-status="3"] {
+    &[data-step="da riassegnare"] {
         @apply bg-[#F85C5C] text-white;
     }
-
-    &[data-statusClient="1"] {
+    &[data-step="in contatto"] {
+        @apply bg-[#F7C548] text-white;
+    }
+    &[data-step="non idoneo"] {
+        @apply bg-[#A0A7AF] text-white;
+    }
+    &[data-step="call center"] {
         @apply bg-[#F6B663] text-white;
     }
-
-    &[data-statusClient="2"] {
+    &[data-step="censimento"] {
         @apply bg-[#45AEBB] text-white;
     }
 }
@@ -166,7 +174,7 @@ select:focus[data-flux-control] {
 }
 
 [data-flux-cell]{
-    @apply font-medium;
+    @apply font-medium py-1;
     color: #232323;
     font-size: 18px;
 

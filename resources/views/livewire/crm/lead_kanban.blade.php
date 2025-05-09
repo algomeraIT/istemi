@@ -2,9 +2,9 @@
     <div class="mt-4 grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
 
 
-        @foreach ($leads as $lead)
+        @foreach ($clients as $client)
             @php
-                $status = $statusMap[$lead->status] ?? [
+                $status = $statusMap[$client->status] ?? [
                     'label' => 'Sconosciuto',
                     'bg' => 'bg-gray-100',
                     'text' => 'text-gray-600',
@@ -14,12 +14,12 @@
 
             <div class="bg-white border border-gray-300 p-4 text-sm">
                 {{-- Company Name --}}
-                <h3 class="text-lg font-bold text-[#232323]">{{ $lead->company_name }}</h3>
+                <h3 class="text-lg font-bold text-[#232323]">{{ $client->name }}</h3>
 
                 {{-- Acquisition Info --}}
                 <div class="flex gap-2 mt-2 mb-4 text-[#B0B0B0] italic font-extralight text-base">
-                    <span>ID: {{ $lead->id }}</span> -
-                    <span>Acquisizione: {{ \Carbon\Carbon::parse($lead->created_at)->format('d/m/Y') }}</span>
+                    <span>ID: {{ $client->id }}</span> -
+                    <span>Acquisizione: {{ \Carbon\Carbon::parse($client->created_at)->format('d/m/Y') }}</span>
                 </div>
 
                 {{-- Contact Info --}}
@@ -30,9 +30,9 @@
                             <flux:icon.at-symbol class="w-4" /> E-mail:
                         </p>
                         <div class="flex items-center gap-2 mt-1 font-semibold text-[#B0B0B0]">
-                            {{ $lead->email }}
+                            {{ $client->email }}
                             @include('livewire.crm.utilities.copy-this-text-button', [
-                                'content' => $lead->email,
+                                'content' => $client->email,
                             ])
                         </div>
                     </div>
@@ -43,9 +43,9 @@
                             <flux:icon.phone class="w-4" /> Telefono:
                         </p>
                         <div class="flex items-center gap-2 mt-1 font-semibold text-[#B0B0B0]">
-                            {{ $lead->first_telephone }}
+                            {{ $client->first_telephone }}
                             @include('livewire.crm.utilities.copy-this-text-button', [
-                                'content' => $lead->first_telephone,
+                                'content' => $client->first_telephone,
                             ])
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             'border' => 'border-[#F85C5C]',
                         ],
                     ];
-                    $status = $statusMap[$lead->status] ?? [
+                    $status = $statusMap[$client->status] ?? [
                         'text' => 'Sconosciuto',
                         'bg' => 'bg-gray-100',
                         'textColor' => 'text-gray-600',
@@ -93,13 +93,13 @@
                 <div class="mt-4 m-3 text-right flex justify-end gap-2">
                     @include('livewire.crm.utilities.detail-button', [
                         'functionName' => 'show',
-                        'id' => $lead->id,
+                        'id' => $client->id,
                     ])
                     @include('livewire.crm.utilities.delete-button', [
                         'functionName' => 'delete',
-                        'id' => $lead->id,
+                        'id' => $client->id,
                     ])
-                    {{-- @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $lead->id]) --}}
+                    {{-- @include('livewire.crm.utilities.edit-button', ['functionName' => 'edit', 'id' => $client->id]) --}}
                 </div>
             </div>
         @endforeach

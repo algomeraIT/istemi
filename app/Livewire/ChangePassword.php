@@ -64,7 +64,7 @@ class ChangePassword extends Component
         } catch (Exception $e) {
             Log::error("Errore password modificata utente:  {$user->email}. Errore: " . $e->getMessage());
             DB::rollBack();
-            return redirect()->route('login')->with('error', 'Errore nel cambiare la password, per favore prova di nuovo...');
+            return redirect()->route('home')->with('error', 'Errore nel cambiare la password, per favore prova di nuovo...');
 
         }
     }

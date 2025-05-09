@@ -41,7 +41,7 @@ class ProjectStart extends Model
     // Relationships
     public function client()
     {
-        return $this->belongsTo(Clients::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function project()

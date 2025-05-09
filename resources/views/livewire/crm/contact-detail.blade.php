@@ -14,7 +14,7 @@
           <div class="bg-white rounded-lg border-2 border-dashed border-cyan-300 p-6 space-y-4">
             <h2 class="text-2xl font-bold flex items-center space-x-2">
               <flux:icon.briefcase class="w-6 h-6" />
-              <span>{{ $client->company_name }}</span>
+              <span>{{ $client->name }}</span>
             </h2>
 
             @php
@@ -85,7 +85,6 @@
 
                     {{-- History Tab --}}
                     <div x-show="mainTab === 'history'" x-cloak class="mt-4 space-y-4 p-2.5">
-
                         @include('livewire.crm.utilities.historycontact', [
                             'histories' => $histories,
                         ])

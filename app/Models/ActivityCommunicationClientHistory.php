@@ -28,16 +28,16 @@ class ActivityCommunicationClientHistory extends Model
 
     public function client()
     {
-        return $this->belongsTo(Clients::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function assignee()
     {
-        return $this->belongsTo(Users::class, 'id_assignee');
+        return $this->belongsTo(User::class, 'id_assignee');
     }
 
     public function user()
     {
-        return $this->belongsTo(Users::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

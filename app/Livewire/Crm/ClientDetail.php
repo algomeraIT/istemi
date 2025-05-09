@@ -1,7 +1,7 @@
 <?php
 
 use Livewire\Component;
-use App\Models\Clients;
+use App\Models\Client;
 use App\Models\Sale;
 
 class ClientDetail extends Component
@@ -12,7 +12,7 @@ class ClientDetail extends Component
     public function mount($clientId)
     {
         $this->clientId = $clientId;
-        $this->client = Clients::findOrFail($clientId);
+        $this->client = Client::findOrFail($clientId);
     }
 
     public function render()

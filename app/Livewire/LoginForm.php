@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use App\Notifications\ChangePassword;
 use Livewire\Component;
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +52,7 @@ class LoginForm extends Component
 
         if (!Auth::attempt(['email' => $validatedData['email'], 'password' => $validatedData['password']])) {
             // Separate error messages
-            if (!Users::where('email', $validatedData['email'])->exists()) {
+            if (!User::where('email', $validatedData['email'])->exists()) {
                 $this->messageEmail = "L'email inserita non è registrata.";
             } else {
                 $this->messageEmailValid = "Valida";
@@ -74,7 +74,7 @@ class LoginForm extends Component
             'forgotPasswordEmail' => 'required|email'
         ]);
 
-        return Users::changeForgottenPassword($validatedData);
+        return User::changeForgottenPassword($validatedData);
     }
 
     /**

@@ -46,7 +46,7 @@ class ProjectStartFactory extends Factory
           }
     
         return array_merge($data, [
-            'client_id' => \App\Models\Clients::factory(),
+            'client_id' => \App\Models\Client::factory(),
             'project_id' => \App\Models\Project::factory(),
             'name_phase' => $labels[$trueField],
     

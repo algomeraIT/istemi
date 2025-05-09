@@ -1,9 +1,9 @@
 <div x-data="{
-    company_name: @entangle('company_name'),
+    name: @entangle('name'),
     first_telephone: @entangle('first_telephone'),
     email: @entangle('email'),
     get isValid() {
-        return this.company_name.trim().length > 0 &&
+        return this.name.trim().length > 0 &&
             this.first_telephone.trim().length > 0 &&
             /\S+@\S+\.\S+/.test(this.email);
     }
@@ -22,7 +22,7 @@
                     <flux:icon.building-office class="w-[10px] text-gray-500" />
                     Ragione Sociale
                 </label>
-                <input type="text" wire:model="company_name"
+                <input type="text" wire:model="name"
                     class="w-full border border-gray-200 text-sm p-2 focus:outline-none" />
             </div>
 

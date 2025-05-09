@@ -1,120 +1,87 @@
-<div>
-    <div class="mt-4 grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
-        @php
-            $statusMap = [
-                1 => [
-                    'label' => 'Call center',
-                    'bg' => 'bg-[#FEF7EF]',
-                    'text' => 'text-[#F5AD65]',
-                    'border' => 'border-[#F5AD65]',
-                ],
-                2 => [
-                    'label' => 'Censimento',
-                    'bg' => 'bg-[#E3F1F4]',
-                    'text' => 'text-[#2A8397]',
-                    'border' => 'border-[#2A8397]',
-                ],
-            ];
-        @endphp
-
-        @foreach ($clients as $client)
-            @php
-                $status = $statusMap[$client->status] ?? [
-                    'label' => 'Sconosciuto',
-                    'bg' => 'bg-gray-100',
-                    'text' => 'text-gray-600',
-                    'border' => 'border-gray-600',
-                ];
-            @endphp
-
-            <div class="bg-white border border-gray-300 p-4 text-sm">
-                {{-- Company Name --}}
-                <div class="flex justify-between">
-                    <h3 class="text-lg font-bold text-[#232323]">{{ $client->company_name }}</h3>
-                    <img src="{{ $client->logo_path ?: asset('icon/logo.svg') }}"
-                        onerror="this.onerror=null;this.src='{{ asset('icon/logo.svg') }}';" class="w-10 h-10 rounded"
-                        alt="Logo" />
-                </div>
-                {{-- Acquisition Info --}}
-                <div class="flex gap-2 mt-2 mb-4 text-[#B0B0B0] italic font-extralight text-base">
-                    <span>{{ $client->id }}</span>
-                    {{--                     <span> - Acquisizione: {{ \Carbon\Carbon::parse($client->created_at)->format('d/m/Y') }}</span>
- --}}
-                </div>
-
-                {{-- Contact Info --}}
-                <div class="flex flex-col gap-4  mt-2 mb-4">
-                    {{-- Email --}}
-                    <div class="font-extralight">
-                        <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
-                            <flux:icon.at-symbol class="w-4" /> E-mail:
-                        </p>
-                        <div class="flex items-center gap-2 mt-1 font-semibold text-[#B0B0B0]">
-                            {{ $client->email }}
-                            @include('livewire.crm.utilities.copy-this-text-button', [
-                                'content' => $client->email,
-                            ])
-                        </div>
-                    </div>
-
-                    {{-- Phone --}}
-                    <div class="font-extralight">
-                        <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
-                            <flux:icon.phone class="w-4" /> Telefono:
-                        </p>
-                        <div class="flex items-center gap-2 mt-1 font-semibold text-[#B0B0B0]">
-                            {{ $client->first_telephone }}
-                            @include('livewire.crm.utilities.copy-this-text-button', [
-                                'content' => $client->first_telephone,
-                            ])
-                        </div>
-                    </div>
-
-                    {{-- City --}}
-                    <div class="font-extralight">
-                        <p class="flex items-center gap-1 text-[#B0B0B0] font-light">
-                            <flux:icon.map-pin class="w-4" /> Sede:
-                        </p>
-                        <div class="flex items-center gap-2 mt-1 font-light italic text-[#B0B0B0]">
-                            {{ $client->city }}
-                        
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Status Badge --}}
-                <div class="mt-3">
-                    @php
-                    $text = match ($client->status) {
-                        1 => 'Call center',
-                        2 => 'Censimento',
-                        default => 'Sconosciuto',
-                    };
-                @endphp
-                <flux:badge size="sm" data-statusClient="{{ $client->status }}" inset="top bottom">
-                    {{ $text }}</flux:badge>
-                </div>
-
-                {{-- Action Buttons --}}
-                <div class="mt-4 text-right flex justify-end gap-2">
-                    <flux:button wire:click="goToDetail({{ $client->id }})" variant="ghost"
-                        data-variant="ghost" data-color="teal" data-rounded icon="eye" size="sm" />
-                        <flux:button wire:click="edit({{ $client->id }})" variant="ghost"
-                            data-variant="ghost" data-color="gray" data-rounded icon="pencil" size="sm" />
-                    <flux:button wire:click="delete({{ $client->id }})"
-                        wire:confirm="Sei sicuro di voler eliminare questo client?" variant="ghost"
-                        data-variant="ghost" data-color="red" data-rounded icon="trash" size="sm" />
-                    {{-- Optionally, you can include an edit button here if needed --}}
-                </div>
+<div class="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
+    @foreach ($client_cards as $client)
+        <div class="border border-gray-300 p-4 text-sm">
+            {{-- Company Name --}}
+            <div class="flex justify-between">
+                <h3 class="text-lg font-bold text-[#232323]">{{ $client->name }}</h3>
+                <img src="{{ optional($client)->logo_path ? asset($client->logo_path) : asset('icon/logo.svg') }}"
+                    class="w-10 h-10 rounded" alt="Logo" />
             </div>
-        @endforeach
-    </div>
-</div>
 
-<script>
-    function copyToClipboard(text) {
-        navigator.clipboard.writeText(text)
-            .then(() => alert("Copiato: " + text))
-            .catch(err => console.error("Clipboard error", err));
-    }
-</script>
+            {{-- Acquisition Info --}}
+            <div class="flex gap-2 mb-4 text-[#B0B0B0] italic text-base">
+                <span>{{ $client->id }}</span>
+                @if ($clientStatus !== 'cliente')
+                    <span>- Acquisizione: {{ dateItFormat($client->created_at) }}</span>
+                @endif
+            </div>
+
+            {{-- Contact Info --}}
+            <div class="grid grid-cols-2 gap-4  mt-2 mb-4 text-[#B0B0B0]">
+                {{-- Email --}}
+                <div>
+                    <p class="flex items-center gap-1">
+                        <flux:icon.at-symbol class="size-4" />
+                        <span class="text-xs font-extralight">E-mail:</span>
+                    </p>
+                    <div class="flex items-center gap-2 mt-1 font-semibold">
+                        {{ $client->email }}
+
+                        <button title="Copia" wire:click="copy('{{ $client->email }}')"
+                            x-on:click="$flux.toast('Mail copiata.')" class="cursor-pointer">
+                            <flux:icon.document-duplicate class="size-4 text-[#10BDD4]" />
+                        </button>
+                    </div>
+                </div>
+
+                {{-- Phone --}}
+                <div>
+                    <p class="flex items-center gap-1">
+                        <flux:icon.phone class="size-4" />
+                        <span class="text-xs font-extralight">Telefono:</span>
+                    </p>
+                    <div class="flex items-center gap-2 mt-1 font-semibold">
+                        {{ $client->first_telephone }}
+
+                        <button title="Copia" wire:click="copy('{{ $client->first_telephone }}')"
+                            x-on:click="$flux.toast('Contatto telefonico copiato.')" class="cursor-pointer">
+                            <flux:icon.document-duplicate class="size-4 text-[#10BDD4]" />
+                        </button>
+                    </div>
+                </div>
+
+                {{-- City --}}
+                @if ($clientStatus === 'cliente')
+                    <div class="col-span-2">
+                        <p class="flex items-center gap-1">
+                            <flux:icon.map-pin class="size-4" />
+                            <span class="text-xs font-extralight">Sede:</span>
+                        </p>
+                        <div class="flex items-center gap-2 mt-1 italic text-[#B0B0B0]">
+                            {{ $client->city }}
+                        </div>
+                    </div>
+                @endif
+            </div>
+
+            {{-- Status Badge --}}
+            <div class="mt-3">
+                <flux:badge size="sm" data-step="{{ $client->step }}">
+                    {{ ucfirst($client->step) }}</flux:badge>
+            </div>
+
+            {{-- Action Buttons --}}
+            <div class="text-right flex justify-end gap-2">
+                <flux:button wire:click="goToDetail({{ $client->id }})" variant="ghost" data-variant="ghost"
+                    data-color="teal" data-rounded icon="eye" size="sm" />
+                @if ($clientStatus === 'cliente')
+                    <flux:button wire:click="edit({{ $client->id }})" variant="ghost" data-variant="ghost"
+                        data-color="gray" data-rounded icon="pencil" size="sm" />
+                @endif
+                <flux:button wire:click="delete({{ $client->id }})"
+                    wire:confirm="Sei sicuro di voler eliminare questo client?" variant="ghost" data-variant="ghost"
+                    data-color="red" data-rounded icon="trash" size="sm" />
+            </div>
+        </div>
+    @endforeach
+</div>

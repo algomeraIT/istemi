@@ -5,8 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Users;
-class UsersTableSeeder extends Seeder
+use App\Models\User;
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -34,6 +34,6 @@ class UsersTableSeeder extends Seeder
             'remember_me' => 0,
         ]);
 
-        Users::factory()->count(30)->create();
+        User::factory()->count(30)->create();
     }
 }

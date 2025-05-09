@@ -5,9 +5,9 @@ namespace Database\Factories;
 use App\Models\Communication;
 use App\Models\Attach;
 use App\Models\Note;
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Clients;
+use App\Models\Client;
 
 
 class CommunicationFactory extends Factory
@@ -18,7 +18,7 @@ class CommunicationFactory extends Factory
     {
         return [
             'task' => $this->faker->sentence,
-            'client_id' => Clients::factory(), 
+            'client_id' => Client::factory(), 
 
             'assigned_to' => $this->faker->name,
             'deadline' => $this->faker->date(),
@@ -29,7 +29,7 @@ class CommunicationFactory extends Factory
             'has_multiple_attaches' => $this->faker->boolean,
             'id_multiple_attaches' => $this->faker->uuid,
             'notes' => Note::factory(),
-            'user_id' => Users::factory(),
+            'user_id' => User::factory(),
             'name_user' => $this->faker->firstName,
             'last_name_user' => $this->faker->lastName,
             'job_position_user' => $this->faker->jobTitle,

@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\History;
-use App\Models\Users;
+use App\Models\User;
 use App\Models\Note;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,7 +14,7 @@ class HistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => Users::factory(),
+            'user_id' => User::factory(),
             'name_user' => $this->faker->firstName,
             'last_name_user' => $this->faker->lastName,
             'job_position_user' => $this->faker->jobTitle,

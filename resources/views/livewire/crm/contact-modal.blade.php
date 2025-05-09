@@ -3,7 +3,7 @@
         <h3 class="text-xl font-semibold mb-4">{{ $lead_id ? 'Modifica Contatto' : 'Crea Contatto' }}</h3>
 
         <label class="block text-sm font-small">Ragione Sociale</label>
-        <input type="text" wire:model="company_name" class="w-full border rounded p-2 mb-2">
+        <input type="text" wire:model="name" class="w-full border rounded p-2 mb-2">
 
         <label class="block text-sm font-small">Telefono</label>
         <input type="email" wire:model="first_telephone" class="w-full border rounded p-2 mb-2">

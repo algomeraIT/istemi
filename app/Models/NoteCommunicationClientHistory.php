@@ -25,12 +25,12 @@ class NoteCommunicationClientHistory extends Model implements HasMedia
 
     public function client()
     {
-        return $this->belongsTo(Clients::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function user()
     {
-        return $this->belongsTo(Users::class);
+        return $this->belongsTo(User::class);
     }
 
     public function note()

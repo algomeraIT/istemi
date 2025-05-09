@@ -28,7 +28,7 @@
                 <tbody>
                     @foreach($sales as $sale)
                         <tr class="bg-gray-100 even:bg-gray-200 text-gray-800">
-                            <td class="border border-gray-300 px-4 py-2">{{ $sale->client->company_name }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ $sale->client->name }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $sale->invoice }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ $sale->price }}</td>
                             <td class="border border-gray-300 px-4 py-2">{{ ucfirst($sale->status) }}</td>

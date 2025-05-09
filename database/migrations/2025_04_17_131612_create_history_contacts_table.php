@@ -10,15 +10,14 @@ class CreateHistoryContactsTable extends Migration
     {
         Schema::create('history_contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('type');               
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete();
+            $table->foreignId('estimate_id')->nullable()->constrained('estimates')->nullOnDelete();
+            $table->string('type');               
             $table->string('name');               
             $table->string('last_name');
             $table->string('role');              
-            $table->foreignId('client_id')->constrained('clients')->cascadeOnDelete();
-            $table->foreignId('contact_id')->constrained('contacts')->cascadeOnDelete();
             $table->string('action');            
-            $table->foreignId('estimate_id')->nullable()->constrained('estimates')->nullOnDelete();
             $table->text('note')->nullable();
             $table->string('update_status_from_to')->nullable();
             $table->tinyInteger('status')->default(1);

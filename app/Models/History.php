@@ -22,7 +22,7 @@ class History extends Model
 
     public function user()
     {
-        return $this->belongsTo(Users::class);
+        return $this->belongsTo(User::class);
     }
 
     public function note()

@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\AccountingOrder;
-use App\Models\Clients;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AccountingOrderFactory extends Factory
@@ -13,7 +13,7 @@ class AccountingOrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'client_id' => Clients::factory(),
+            'client_id' => Client::factory(),
             'order_number' => $this->faker->unique()->numerify('ORD-#####'),
             'date' => $this->faker->date,
             'country' => $this->faker->country,

@@ -33,7 +33,7 @@
             x-transition:leave="transition ease-in duration-300"
             x-transition:leave-start="opacity-100 transform scale-100"
             x-transition:leave-end="opacity-0 transform scale-95" @click.away.stop="isExpanded = false"
-            class="absolute left-0 right-0 w-full bg-white z-30">
+            class="absolute left-0 right-0 w-full bg-white z-30 shadow">
             <div x-data="{
                 selected: '{{ Route::currentRouteName() }}',
                 isExpanded: false,
@@ -188,7 +188,8 @@
                                             <!-- Main Label -->
                                             <a href="#" class="block group lg:ml-2.5 h-[32px]">
                                                 <div class="flex  h-[17px]" x-show="!isExpanded">
-                                                    <img src="/icon/menu/operazioni e risorse.svg" alt="Operazioni & risorse"
+                                                    <img src="/icon/menu/operazioni e risorse.svg"
+                                                        alt="Operazioni & risorse"
                                                         class="mt-[4px] object-cover transition duration-300 group-hover:scale-105">
                                                     <p
                                                         class="font-thin text-[15px] text-[#C7C7C7]  ml-[10px]  font-inter">
@@ -422,9 +423,9 @@
                                             <!-- Expanded View Items -->
                                             <template
                                                 x-for="item in [
-                                                                    { label: 'Lead', icon: '/icon/menu_exploded/lead.svg', route: '{{ route('crm.leads') }}' },
-                                                                    { label: 'Contatti', icon: '/icon/menu_exploded/contatti.svg', route: '{{ route('crm.contacts') }}' },
-                                                                    { label: 'Clienti', icon: '/icon/menu_exploded/clienti.svg', route: '{{ route('crm.clients') }}' },
+                                                                    { label: 'Lead', icon: '/icon/menu_exploded/lead.svg', route: '{{ route('crm.client.index', 'lead') }}' },
+                                                                    { label: 'Contatti', icon: '/icon/menu_exploded/contatti.svg', route: '{{ route('crm.client.index', 'contatto') }}' },
+                                                                    { label: 'Clienti', icon: '/icon/menu_exploded/clienti.svg', route: '{{ route('crm.client.index', 'cliente') }}' },
                                                                     { label: 'Vendite', icon: '/icon/menu_exploded/vendite.svg', route: '#' },
                                                                     { label: 'Servizi & prezzi', icon: '/icon/menu_exploded/servizi e prezzi.svg', route: '#' }
                                                             ]"

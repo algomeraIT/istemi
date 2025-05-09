@@ -8,7 +8,7 @@
                 <label class="flex text-xs  items-center gap-2 text-[24px] leading-[23px] font-bold text-[#232323]">
                 </label>
                 <p class="text-lg font-semibold mb-3 text-[24px]">
-                    {{ $lead->company_name }}</p>
+                    {{ $lead->name }}</p>
             </div>
             {{-- stato --}}
             <div class=" ml-[105px] mb-[79px]">

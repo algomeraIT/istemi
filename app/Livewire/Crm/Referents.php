@@ -11,7 +11,7 @@ use App\Models\EmailCommunicationClientHistory;
 use App\Models\NoteCommunicationClientHistory;
 use App\Models\Referent;
 use App\Models\Sale;
-use App\Models\Users;
+use App\Models\User;
 use Auth;
 use Carbon\Carbon;
 use DB;
@@ -445,7 +445,7 @@ class Referents extends Component
                 ->when($this->query_notes, fn($q) => $q->where('note', 'like', '%' . $this->query_notes . '%'))
                 ->orderBy('created_at', 'desc')->paginate(10),
 
-            'email_all_users' => Users::pluck('email')->toArray(),
+            'email_all_users' => User::pluck('email')->toArray(),
         ]);
     }
 }

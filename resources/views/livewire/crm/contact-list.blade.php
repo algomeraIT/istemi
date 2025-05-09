@@ -1,7 +1,7 @@
 
 
 <div class="w-full overflow-x-auto">
-    @if ($contacts)
+    @if ($clients)
         <flux:table>
             <flux:table.columns>
                 <flux:table.column>ID</flux:table.column>
@@ -14,10 +14,10 @@
             </flux:table.columns>
 
             <flux:table.rows>
-                @foreach ($contacts as $contact)
+                @foreach ($clients as $contact)
                     <flux:table.row :key="$contact->id">
                         <flux:table.cell class="flex items-center gap-3">{{ $contact->id }}</flux:table.cell>
-                        <flux:table.cell class="whitespace-nowrap">{{ $contact->company_name }}</flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">{{ $contact->name }}</flux:table.cell>
                         <flux:table.cell class="whitespace-nowrap">{{ $contact->email }}</flux:table.cell>
                         <flux:table.cell class="whitespace-nowrap">{{ $contact->first_telephone }}</flux:table.cell>
                         <flux:table.cell class="whitespace-nowrap">{{ \Carbon\Carbon::parse($contact->created_at)->format('d/m/Y') }}</flux:table.cell>
@@ -41,7 +41,7 @@
             </flux:table.rows>
         </flux:table>
         <div class="-mx-4 mt-4">
-            {{ $contacts->links('customPagination') }}
+            {{ $clients->links('customPagination') }}
         </div>
     @else
         <p class="text-gray-500">Nessun elemento da mostrare</p>

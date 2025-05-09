@@ -11,7 +11,7 @@ class Contacts extends Component
 {
     use WithPagination;
 
-    public $lead_id, $company_name, $email, $pec, $registered_office_address, $first_telephone, $second_telephone;
+    public $lead_id, $name, $email, $pec, $registered_office_address, $first_telephone, $second_telephone;
 
     public $isOpen = false;
     protected $paginationTheme = 'tailwind';
@@ -62,7 +62,7 @@ class Contacts extends Component
         $baseQuery = Contact::query()
             ->when($this->status !== "", fn($q) => $q->where('status', $this->status))
             ->when(!empty($this->year), fn($q) => $q->whereYear('created_at', $this->year))
-            ->when($this->query, fn($q) => $q->where('company_name', 'like', '%' . $this->query . '%'));
+            ->when($this->query, fn($q) => $q->where('name', 'like', '%' . $this->query . '%'));
 
         return view('livewire.crm.contacts', [
             'contact_kanban' => (clone $baseQuery)->latest()->get(),
@@ -81,7 +81,7 @@ class Contacts extends Component
     {
         $contacts = Contact::findOrFail($id);
         $this->lead_id = $id;
-        $this->company_name = $contacts->company_name;
+        $this->name = $contacts->name;
         $this->email = $contacts->email;
         $this->pec = $contacts->pec;
         $this->registered_office_address = $contacts->registered_office_address;
@@ -93,7 +93,7 @@ class Contacts extends Component
     public function store()
     {
         Contact::updateOrCreate(['id' => $this->lead_id], [
-            'company_name' => $this->company_name,
+            'name' => $this->name,
             'email' => $this->email,
             'pec' => $this->pec,
             'registered_office_address' => $this->registered_office_address,
@@ -122,7 +122,7 @@ class Contacts extends Component
     private function resetFields()
     {
         $this->lead_id = null;
-        $this->company_name = '';
+        $this->name = '';
         $this->email = '';
         $this->registered_office_address = '';
         $this->first_telephone = '';

@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Clients;
+use App\Models\Client;
 use App\Models\Estimate;
 use App\Models\Referent;
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EstimateFactory extends Factory
@@ -14,8 +14,8 @@ class EstimateFactory extends Factory
 
     public function definition(): array
     {
-        $client = Clients::inRandomOrder()->first() ?: Clients::factory()->create();
-        $user = Users::inRandomOrder()->first() ?: Users::factory()->create();
+        $client = Client::inRandomOrder()->first() ?: Client::factory()->create();
+        $user = User::inRandomOrder()->first() ?: User::factory()->create();
         $referent = Referent::inRandomOrder()->first() ?: Referent::factory()->create();
 
         return [

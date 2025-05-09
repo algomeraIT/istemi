@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Project;
-use App\Models\Clients;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Stackholder;
 use App\Models\Phase;
@@ -18,7 +18,7 @@ class ProjectFactory extends Factory
                 'general_info' => $this->faker->paragraph(),
                 'n_file' => $this->faker->unique()->numerify('PRT-########'),
                 'name_project' => $this->faker->sentence(3),
-                'id_client' => Clients::factory(), 
+                'id_client' => Client::factory(), 
                 'client_name' => $this->faker->company,
                 'logo_path_client' => $this->faker->imageUrl(),
                 'client_type' => $this->faker->randomElement(['Privato', 'Pubblico']),

@@ -1,5 +1,5 @@
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-100 bg-opacity-50 p-4">
-    <div class="bg-white shadow w-full  overflow-auto">
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4">
+    <div class="bg-white shadow w-full overflow-auto">
         <div class="p-6">
             <div class="flex justify-between mb-16">
                 <h3 class="text-2xl font-semibold mb-6">
@@ -11,7 +11,7 @@
                 get isValid() {
                     return [
                         '{{ $tax_code }}',
-                        '{{ $company_name }}',
+                        '{{ $name }}',
                         '{{ $email }}',
                         '{{ $pec }}',
                         '{{ $first_telephone }}',
@@ -39,7 +39,7 @@
                                     <flux:icon.clipboard class="w-4 h-4 mr-2 text-gray-500" />
                                     Ragione sociale
                                 </label>
-                                <input type="text" wire:model="company_name"
+                                <input type="text" wire:model="name"
                                     class="mt-1 w-full p-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-cyan-300" />
                             </div>
 

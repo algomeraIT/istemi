@@ -3,7 +3,7 @@
         @foreach ($contact_kanban as $contact)
             <div class="bg-white border border-gray-300 p-4 text-sm mt-5">
                 {{-- Company Name --}}
-                <h3 class="text-lg font-bold text-[#232323]">{{ $contact->company_name }}</h3>
+                <h3 class="text-lg font-bold text-[#232323]">{{ $contact->name }}</h3>
 
                 {{-- Info Line --}}
                 <div class="flex flex-wrap mt-2 mb-4 gap-2 text-[#B0B0B0] italic font-extralight text-base">

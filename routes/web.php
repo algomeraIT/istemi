@@ -11,12 +11,12 @@ use App\Livewire\ChangePassword;
 Route::middleware('web')
     ->group(base_path('routes/crm.php'))
     ->group(base_path('routes/project.php'));
-    
+
 //login
 Route::middleware('guest')->group(function () {
-Route::get('/', function () {
-    return view('login');
-})->name('home');
+    Route::get('/', function () {
+        return view('login');
+    })->name('home');
 });
 
 
@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/change-password', function () {
         return view('change-password');
     })->name('change-password')->middleware('auth');
-    
+
     Route::post('/logout', function () {
         auth()->logout();
         session()->invalidate();

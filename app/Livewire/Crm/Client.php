@@ -2,19 +2,19 @@
 
 namespace App\Livewire\Crm;
 
-use App\Models\Clients;
-use DB;
 use Exception;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
-use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Models\Client as ModelClient;
 
 class Client extends Component
 {
     use WithPagination, WithFileUploads;
 
-    public $client_id, $logo_path, $tax_code, $company_name, $email, $pec, $first_telephone, $second_telephone, $registered_office_address, $sales_manager, $address, $country,$province, $sdi, $site, $user_id_creation, $name_user_creation, $last_name_user_creation, $has_referent, $has_sales;
+    public $client_id, $logo_path, $tax_code, $name, $email, $pec, $first_telephone, $second_telephone, $registered_office_address, $sales_manager, $address, $country,$province, $sdi, $site, $user_id_creation, $name_user_creation, $last_name_user_creation, $has_referent, $has_sales;
 
     public $status = '';
     public $city = '';
@@ -64,17 +64,17 @@ class Client extends Component
     public function render()
     {
        
-        $baseQuery = Clients::query()
+        $baseQuery = ModelClient::query()
             ->when($this->status !== "", fn($q) => $q->where('status', $this->status))
             ->when($this->city !== "", fn($q) => $q->where('city', $this->city))
             ->when(!empty($this->year), fn($q) => $q->whereYear('created_at', $this->year))
-            ->when($this->query, fn($q) => $q->where('company_name', 'like', '%' . $this->query . '%'));
+            ->when($this->query, fn($q) => $q->where('name', 'like', '%' . $this->query . '%'));
 
         return view('livewire.crm.clients', [
             'client_kanban' => (clone $baseQuery)->get(),
             'clients' => $baseQuery->paginate(12),
-            'statuses' => Clients::select('status')->distinct()->pluck('status'),
-            'cities' => Clients::select('city')->distinct()->pluck('city'),
+            'statuses' => ModelClient::select('status')->distinct()->pluck('status'),
+            'cities' => ModelClient::select('city')->distinct()->pluck('city'),
         ]);
 
     }
@@ -91,11 +91,11 @@ class Client extends Component
     }
     public function edit($id)
     {
-        $client = Clients::findOrFail($id);
+        $client = ModelClient::findOrFail($id);
         $this->client_id = $id;
         $this->logo_path = $client->logo_path;
         $this->tax_code = $client->tax_code;
-        $this->company_name = $client->company_name;
+        $this->name = $client->name;
         $this->email = $client->email;
         $this->pec = $client->pec;
         $this->first_telephone = $client->first_telephone;
@@ -133,7 +133,7 @@ class Client extends Component
         try {
             $this->validateClientData();
 
-            $client = Clients::updateOrCreate(
+            $client = ModelClient::updateOrCreate(
                 ['id' => $this->client_id],
                 $this->getClientData()
             );
@@ -176,7 +176,7 @@ class Client extends Component
     {
         return [
             'tax_code' => $this->tax_code,
-            'company_name' => $this->company_name,
+            'name' => $this->name,
             'email' => $this->email,
             'pec' => $this->pec,
             'first_telephone' => $this->first_telephone,
@@ -201,7 +201,7 @@ class Client extends Component
 
     public function delete($id)
     {
-        if ($client = Clients::find($id)) {
+        if ($client = ModelClient::find($id)) {
             $client->delete();
             session()->flash('message', 'Elemento cancellato con successo!');
         } else {
@@ -222,7 +222,7 @@ class Client extends Component
         $this->client_id = null;
         $this->logo_path = '';
         $this->tax_code = '';
-        $this->company_name = '';
+        $this->name = '';
         $this->email = '';
         $this->pec = '';
         $this->first_telephone = '';

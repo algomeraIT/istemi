@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Clients;
+use App\Models\Client;
 use App\Models\Estimate;
 use App\Models\HistoryContact;
 
@@ -15,7 +15,7 @@ class ContactController extends Controller
 
     public function goToDetail($clientId)
     {
-        $client = Clients::with('referents')->findOrFail($clientId);
+        $client = Client::with('referents')->findOrFail($clientId);
 
         $estimates = Estimate::where('client_id', $clientId)
             ->latest()

@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\ActivityCommunicationClientHistory;
-use App\Models\Clients;
-use App\Models\Users;
+use App\Models\Client;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ActivityCommunicationClientHistoryFactory extends Factory
@@ -14,7 +14,7 @@ class ActivityCommunicationClientHistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'client_id' => Clients::factory(),
+            'client_id' => Client::factory(),
             'name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'role' => $this->faker->jobTitle,
@@ -23,7 +23,7 @@ class ActivityCommunicationClientHistoryFactory extends Factory
             'activities' => $this->faker->paragraph,
             'assignee' => $this->faker->name,
             'expire_at' => $this->faker->optional()->date(),
-            'user_id' => Users::factory()
+            'user_id' => User::factory()
         ];
     }
 

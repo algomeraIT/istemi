@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\NoteProject;
 use App\Models\Project;
-use App\Models\Clients;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class NoteProjectFactory extends Factory {
@@ -13,7 +13,7 @@ class NoteProjectFactory extends Factory {
     public function definition() {
         return [
             'project_id' => Project::factory(),
-            'client_id' => Clients::factory(),
+            'client_id' => Client::factory(),
             'note' => $this->faker->paragraph(3),
         ];
     }

@@ -1,5 +1,5 @@
 @extends('layout.main')
 
-@section('content')
+{{-- @section('content')
 
-@endsection
+@endsection --}}

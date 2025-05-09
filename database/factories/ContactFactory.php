@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Contact;
-use App\Models\Clients;
-use App\Models\Users;
+use App\Models\Client;
+use App\Models\User;
 use App\Models\Estimate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,10 +15,10 @@ class ContactFactory extends Factory
     public function definition(): array
     {
         return [
-            'client_id' => Clients::inRandomOrder()->first()->id,
-            'user_id' => Users::inRandomOrder()->first()->id,
+            'client_id' => Client::inRandomOrder()->first()->id,
+            'user_id' => User::inRandomOrder()->first()->id,
             'estimate_id' => Estimate::inRandomOrder()->first()->id,
-            'company_name' => $this->faker->company,
+            'name' => $this->faker->company,
             'email' => $this->faker->unique()->safeEmail,
             'pec' => $this->faker->optional()->domainName,
             'registered_office_address' => $this->faker->address,
@@ -35,7 +35,7 @@ class ContactFactory extends Factory
                 'client_id' => 1,
                 'user_id' => 1,
                 'estimate_id' => Estimate::inRandomOrder()->first()->id,
-                'company_name' => $this->faker->company,
+                'name' => $this->faker->company,
                 'email' => $this->faker->unique()->safeEmail,
                 'pec' => $this->faker->optional()->domainName,
                 'registered_office_address' => $this->faker->address,

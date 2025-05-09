@@ -13,7 +13,7 @@ class Contact extends Model
         'client_id',
         'user_id',
         'estimate_id',
-        'company_name',
+        'name',
         'email',
         'pec',
         'registered_office_address',
@@ -24,7 +24,7 @@ class Contact extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Users::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function referents()

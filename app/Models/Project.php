@@ -49,7 +49,7 @@ class Project extends Model
     // A project belongs to a client
     public function client()
     {
-        return $this->belongsTo(Clients::class, 'clients_id');
+        return $this->belongsTo(Client::class, 'clients_id');
     }
 
     // A project belongs to a stackholder

@@ -15,7 +15,7 @@ class LeadFactory extends Factory
         $salesManager = $this->faker->optional()->name;
     
         return [
-            'company_name' => $this->faker->company,
+            'name' => $this->faker->company,
             'email' => $this->faker->unique()->safeEmail,
             'pec' => $this->faker->optional()->companyEmail,
             'service' => $this->faker->word,

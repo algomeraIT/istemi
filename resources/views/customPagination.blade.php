@@ -3,7 +3,7 @@
 @endphp
 
 @if ($paginator->hasPages())
-<nav role="navigation" aria-label="Pagination" class="flex flex-col md:flex-row items-center p-4 bg-white shadow rounded">
+<nav role="navigation" aria-label="Pagination" class="flex flex-col md:flex-row items-center p-4 pb-0">
     <!-- Summary -->
     <div class="text-sm text-gray-700">
         {!! __('Mostrati') !!}
@@ -22,7 +22,7 @@
         @if ($paginator->onFirstPage())
             <span class="text-gray-400 cursor-not-allowed px-3 py-1">← Precedente</span>
         @else
-            <a
+            <a wire:navigate
               href="{{ $paginator->previousPageUrl() }}"
               rel="prev"
               class="text-gray-600 hover:underline px-3 py-1"
@@ -36,7 +36,7 @@
 
         {{-- Next --}}
         @if ($paginator->hasMorePages())
-            <a
+            <a wire:navigate
               href="{{ $paginator->nextPageUrl() }}"
               rel="next"
               class="text-gray-600 hover:underline px-3 py-1"

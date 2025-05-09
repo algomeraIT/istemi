@@ -8,16 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Clients extends Model implements HasMedia
+class Client extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
-    protected $table = 'clients';
 
     protected $fillable = [
         'id',
         'logo_path',
         'tax_code',
-        'company_name',
+        'name',
         'email',
         'pec',
         'first_telephone',
@@ -41,18 +40,29 @@ class Clients extends Model implements HasMedia
     /**
      * Get the user who created this client.
      */
+    public function parents()
+    {
+        return $this->hasMany(Client::class, 'parent_id');
+    }
+
     public function user(): BelongsTo
     {
-        return $this->belongsTo(Users::class, 'user_id_creation');
+        return $this->belongsTo(User::class);
+    }
+
+    public function estimate()
+    {
+        return $this->hasMany(Estimate::class);
     }
 
     public function referents()
     {
-        return $this->hasMany(Referent::class, 'client_id');
+        return $this->hasMany(Referent::class);
     }
+    
     public function communication()
     {
-        return $this->hasMany(Communication::class, 'client_id');
+        return $this->hasMany(Communication::class);
     }
 
     public function registerMediaCollections(): void

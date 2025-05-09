@@ -19,6 +19,6 @@ class Sale extends Model
 
     public function client()
     {
-        return $this->belongsTo(Clients::class);
+        return $this->belongsTo(Client::class);
     }
 }

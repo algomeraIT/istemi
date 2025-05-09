@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Acquisition;
-use App\Models\Clients;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AcquisitionFactory extends Factory
@@ -13,7 +13,7 @@ class AcquisitionFactory extends Factory
     public function definition(): array
     {
         return [
-            'client_id' => Clients::factory(),
+            'client_id' => Client::factory(),
             'invoice' => $this->faker->unique()->numerify('INV-#####'),
             'total_price' => $this->faker->randomFloat(2, 100, 10000),
             'status' => $this->faker->randomElement([0, 1, 2]),

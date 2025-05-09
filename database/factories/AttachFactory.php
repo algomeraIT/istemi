@@ -2,7 +2,7 @@
 namespace Database\Factories;
 
 use App\Models\Attach;
-use App\Models\Users;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AttachFactory extends Factory
@@ -30,7 +30,7 @@ class AttachFactory extends Factory
         ]);
 
         return [
-            'user_id' => Users::factory(),
+            'user_id' => User::factory(),
             'path' => 'default/' . $file['filename'],
             'disk_path' => 'public/default/',
             'real_name' => $file['filename'],
@@ -45,7 +45,7 @@ class AttachFactory extends Factory
         $uuid = $this->faker->uuid;
 
         return [
-        'user_id' => Users::factory(),
+        'user_id' => User::factory(),
         'path' => 'uploads/' . $uuid . '.' . $extension,
         'disk_path' => 'storage/uploads/',
         'real_name' => $this->faker->word . '.' . $extension,

@@ -35,7 +35,7 @@ class EmailCommunicationClientHistory extends Model implements HasMedia
     // Relationships
     public function client()
     {
-        return $this->belongsTo(Clients::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function attach()
@@ -45,6 +45,6 @@ class EmailCommunicationClientHistory extends Model implements HasMedia
 
     public function user()
     {
-        return $this->belongsTo(Users::class);
+        return $this->belongsTo(User::class);
     }
 }

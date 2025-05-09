@@ -26,7 +26,7 @@
 
                 <!-- Client Details -->
                 <div class="mt-10 p-6">
-                    <h2 class="text-2xl font-bold text-left">{{ $client->company_name }}</h2>
+                    <h2 class="text-2xl font-bold text-left">{{ $client->name }}</h2>
 
                     @php
                         $details = [

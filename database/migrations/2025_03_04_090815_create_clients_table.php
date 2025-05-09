@@ -9,28 +9,33 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->id(); 
+            $table->id();
+            $table->foreignId('parent_id')->nullable()->constrained('clients')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('estimate_id')->nullable()->constrained('estimates')->nullOnDelete();
+            $table->boolean('is_company');
             $table->string('logo_path')->nullable();
-            $table->string('tax_code');
-            $table->string('company_name');
+            $table->string('name');
             $table->string('email')->unique();
             $table->string('pec')->nullable();
             $table->string('first_telephone');
             $table->string('second_telephone')->nullable();
-            $table->string('registered_office_address');
-            $table->string('address');
-            $table->string('province');
-            $table->string('city');
             $table->string('country');
+            $table->string('city');
+            $table->string('province');
+            $table->string('address');
+            $table->string('tax_code');
             $table->string('sdi');
             $table->string('site')->nullable();
             $table->string('label')->nullable();
-            $table->foreignId('user_id_creation')->constrained('users')->onDelete('cascade');
-            $table->string('name_user_creation');
-            $table->string('last_name_user_creation');
+            $table->text('note')->nullable();
+            $table->string('service')->nullable();
+            $table->string('provenance')->nullable();
+            $table->string('registered_office_address');
+            $table->string('sales_manager')->nullable();
             $table->boolean('has_referent')->default(false);
-            $table->boolean('has_sales')->default(false);
-            $table->tinyInteger('status')->default(1);
+            $table->string('status');
+            $table->string('step');
             $table->timestamps();
         });
     }
