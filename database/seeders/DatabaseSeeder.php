@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             // ContactSeeder::class,
             UserTableSeeder::class,
             NoteProjectSeeder::class,
-            ContactSeeder::class,
+            // ContactSeeder::class,
             HistoryContactsTableSeeder::class,
             ProjectStartSeeder::class,
             TaskProjectStartSeeder::class,

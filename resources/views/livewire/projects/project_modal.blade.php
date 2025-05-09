@@ -116,7 +116,7 @@
                                     <select id="id_client" wire:model="formData.id_client"
                                         class="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white">
                                         @foreach ($clients as $client)
-                                            <option value="{{ $client['id'] }}">{{ $client['company_name'] }}</option>
+                                            <option value="{{ $client['id'] }}">{{ $client['name'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>

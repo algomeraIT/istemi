@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Projects;
 
-use App\Models\Clients;
+use App\Models\Client;
 use App\Models\Estimate;
 use App\Models\Project;
 use App\Models\Referent;
@@ -81,7 +81,7 @@ class Projects extends Component
 
     public function mount()
     {
-        $this->clients = Clients::select('id', 'company_name')
+        $this->clients = Client::select('id', 'name')
             ->get()->toArray();
 
         $this->estimates = Estimate::select('id', 'serial_number')
