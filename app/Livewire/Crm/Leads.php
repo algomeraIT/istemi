@@ -35,7 +35,6 @@ class Leads extends Component
             'email'           => 'required|email',
         ];
     }
-
     
 
     public function resetFilters()
@@ -145,7 +144,7 @@ class Leads extends Component
             'first_telephone' => $this->first_telephone,
             'second_telephone' => $this->second_telephone,
             'sales_manager' => $this->sales_manager,
-            //'acquisition_date' => $this->acquisition_date,
+            'acquisition_date' => now(),
         ]);
 
         session()->flash('message', $this->lead_id ? 'Lead modificato con successo!' : 'Lead creato con successo!');

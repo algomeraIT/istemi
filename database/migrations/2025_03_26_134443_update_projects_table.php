@@ -90,7 +90,7 @@ return new class extends Migration {
 
             if (!Schema::hasColumn('projects', 'phase_id')) {
                 $table->unsignedBigInteger('phase_id')->nullable();
-            }
+            } 
 
             // Modify existing columns
             $table->text('note_client')->nullable()->change();
@@ -104,9 +104,9 @@ return new class extends Migration {
                 $table->foreign('stackholder_id')->references('id')->on('stackholders')->onDelete('cascade');
             }
     
-            if (Schema::hasTable('phases')) {
+         /*    if (Schema::hasTable('phases')) {
                 $table->foreign('phase_id')->references('id')->on('phases')->onDelete('cascade');
-            }
+            } */
         });
     }
 
