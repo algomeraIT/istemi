@@ -34,9 +34,9 @@
         </main>
     </div>
 
+    @fluxScripts
     @livewireScripts
     @livewire('wire-elements-modal')
-    @fluxScripts
 
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     @stack('scripts')
