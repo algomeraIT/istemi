@@ -10,6 +10,8 @@
                 <flux:button wire:click="create" variant="primary" data-variant="primary" data-color="project">
                     Crea
                 </flux:button>
+                <button wire:click="$dispatch('openModal', { component: 'projects.modals.create' })">New Project</button>
+
             </div>
 
             <!-- Tabs -->

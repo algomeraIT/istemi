@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6cb3c12f401fd2e9f10a863a3fd8bc88",
+    "content-hash": "da469b3a1b5c0620130334225063d3da",
     "packages": [
         {
             "name": "brick/math",
@@ -2497,78 +2497,6 @@
                 }
             ],
             "time": "2025-04-12T22:26:52+00:00"
-        },
-        {
-            "name": "livewire/volt",
-            "version": "v1.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/livewire/volt.git",
-                "reference": "ba3e609fd4c71f8b5783f024baf51715e48e93a6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/livewire/volt/zipball/ba3e609fd4c71f8b5783f024baf51715e48e93a6",
-                "reference": "ba3e609fd4c71f8b5783f024baf51715e48e93a6",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^10.38.2|^11.0|^12.0",
-                "livewire/livewire": "^3.6.1",
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "laravel/folio": "^1.1",
-                "mockery/mockery": "^1.6",
-                "orchestra/testbench": "^8.15.0|^9.0|^10.0",
-                "pestphp/pest": "^2.9.5|^3.0",
-                "phpstan/phpstan": "^1.10"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Livewire\\Volt\\VoltServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "functions.php"
-                ],
-                "psr-4": {
-                    "Livewire\\Volt\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                },
-                {
-                    "name": "Nuno Maduro",
-                    "email": "nuno@laravel.com"
-                }
-            ],
-            "description": "An elegantly crafted functional API for Laravel Livewire.",
-            "homepage": "https://github.com/livewire/volt",
-            "keywords": [
-                "laravel",
-                "livewire",
-                "volt"
-            ],
-            "support": {
-                "issues": "https://github.com/livewire/volt/issues",
-                "source": "https://github.com/livewire/volt"
-            },
-            "time": "2025-04-08T15:13:36+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -6916,16 +6844,16 @@
         },
         {
             "name": "wire-elements/modal",
-            "version": "2.0.13",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wire-elements/modal.git",
-                "reference": "65d9db80a0befaa38ae99a47a26818e784aa7101"
+                "reference": "4e955ca73f5913501d76ba05fe5f7cdaf4022946"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wire-elements/modal/zipball/65d9db80a0befaa38ae99a47a26818e784aa7101",
-                "reference": "65d9db80a0befaa38ae99a47a26818e784aa7101",
+                "url": "https://api.github.com/repos/wire-elements/modal/zipball/4e955ca73f5913501d76ba05fe5f7cdaf4022946",
+                "reference": "4e955ca73f5913501d76ba05fe5f7cdaf4022946",
                 "shasum": ""
             },
             "require": {
@@ -6968,7 +6896,7 @@
             ],
             "support": {
                 "issues": "https://github.com/wire-elements/modal/issues",
-                "source": "https://github.com/wire-elements/modal/tree/2.0.13"
+                "source": "https://github.com/wire-elements/modal/tree/3.0.1"
             },
             "funding": [
                 {
@@ -6976,7 +6904,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-20T13:07:12+00:00"
+            "time": "2025-03-23T05:09:13+00:00"
         }
     ],
     "packages-dev": [
