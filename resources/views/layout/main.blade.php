@@ -12,35 +12,33 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    
+
     @vite('resources/css/app.css')
-    @livewireStyles
     @stack('styles')
 </head>
 
 <body>
-    @include('flash-message')
-    @include('layout.navbar')
+@include('flash-message')
+@include('layout.navbar')
 
-    <div class="megamenu"></div>
+<div class="megamenu"></div>
 
-    <div class="h-[calc(100vh-103px)] bg-[#F5FCFD] py-14">
-        @yield('content')
+<div class="h-[calc(100vh-103px)] bg-[#F5FCFD] py-14">
+    @yield('content')
 
-        <main class="grid grid-cols-12 gap-[30px] mx-10 lg:mx-[105px]">
-            <div class="col-span-12">
-                {{ $slot ?? null }}
-            </div>
-        </main>
-    </div>
-    @fluxScripts
-    @livewireScripts
-    @livewire('wire-elements-modal')
- 
+    <main class="grid grid-cols-12 gap-[30px] mx-10 lg:mx-[105px]">
+        <div class="col-span-12">
+            {{ $slot ?? null }}
+        </div>
+    </main>
+</div>
 
-    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-    @stack('scripts')
-    <flux:toast position="top right" />
+@fluxScripts
+@livewire('wire-elements-modal')
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+@stack('scripts')
+<flux:toast position="top right"/>
 </body>
 
 </html>

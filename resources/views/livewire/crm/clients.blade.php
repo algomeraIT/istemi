@@ -4,8 +4,8 @@
 
     <div class="space-y-3 lg:space-y-0 lg:flex lg:items-center lg:justify-between lg:flex-wrap gap-2">
         <!-- Crea Button -->
-        <flux:button wire:click="create" size="sm" variant="primary" data-variant="primary" data-color="teal">
-            Crea
+        <flux:button wire:click="$dispatch('openModal', { component: 'modals.crm.client.create' })" size="sm" variant="primary" data-variant="primary" data-color="teal">
+            Nuovo cliente
         </flux:button>
 
         <!-- Tabs -->
