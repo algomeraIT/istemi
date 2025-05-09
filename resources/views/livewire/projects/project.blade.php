@@ -7,13 +7,13 @@
         <div class="space-y-3 lg:space-y-0 lg:flex lg:items-center flex-wrap gap-2">
             <!-- Create Button -->
             <div>
-                <flux:button wire:click="create" variant="primary" data-variant="primary" data-color="teal">
+                <flux:button wire:click="create" variant="primary" data-variant="primary" data-color="project">
                     Crea
                 </flux:button>
             </div>
 
             <!-- Tabs -->
-            <div class="lg:pl-[34%]">
+            <div class="lg:pl-[33%]">
                 <div x-data="{ tab: @entangle('activeTab') }" class="md:flex 2xl:flex-nowrap align-middle items-center justify-center ">
                     <!-- Tabs -->
                     <flux:tabs wire:model="activeTab" variant="segmented">

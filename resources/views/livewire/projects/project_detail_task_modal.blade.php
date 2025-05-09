@@ -7,12 +7,14 @@
             this.first_telephone.trim().length > 0 &&
             /\S+@\S+\.\S+/.test(this.email);
     }
-}" class="fixed inset-0 bg-gray-100 bg-opacity-20 flex justify-end z-50">
+}" x-show="$wire.isOpen" x-transition
+x-init="$watch('$wire.isOpen', value => value && $nextTick(() => {}))"
+    class="fixed inset-0 bg-gray-100 bg-opacity-20 flex justify-end z-50">
     <div class="w-1/3 bg-white shadow-md border border-gray-200 overflow-y-auto h-full pl-[95px] pr-[95px] pt-[30px]">
         @include('livewire.general.cancel')
 
         <h2 class="text-lg font-semibold mb-3 text-[24px]">
-            {{ $lead_id ? 'Modifica Task' : 'Crea Task' }}
+            {{ $selectedProjectStartId ? 'Modifica Task' : 'Crea Task' }}
         </h2>
 
         <div class="h-full pt-14 space-y-6">
@@ -36,15 +38,15 @@
                     class="w-full border border-gray-200 text-sm p-2 focus:outline-none" />
             </div>
 
-                   <!-- Conoscenza -->
-                   <div>
-                    <label class="text-xs flex items-center gap-2 mb-1 text-[#B0B0B0]">
-                        <flux:icon.at-symbol class="w-[10px] text-gray-500" />
-                        Conoscenza
-                    </label>
-                    <input type="email" wire:model="email"
-                        class="w-full border border-gray-200 text-sm p-2 focus:outline-none" />
-                </div>
+            <!-- Conoscenza -->
+            <div>
+                <label class="text-xs flex items-center gap-2 mb-1 text-[#B0B0B0]">
+                    <flux:icon.at-symbol class="w-[10px] text-gray-500" />
+                    Conoscenza
+                </label>
+                <input type="email" wire:model="email"
+                    class="w-full border border-gray-200 text-sm p-2 focus:outline-none" />
+            </div>
 
             <!-- Scadenza -->
             <div>
@@ -125,7 +127,7 @@
                 }
             </style>
 
-   
+
 
 
 

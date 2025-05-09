@@ -27,7 +27,7 @@ return new class extends Migration
         // Drop the foreign key constraint in the 'projects' table before dropping the 'phases' table
         Schema::table('projects', function (Blueprint $table) {
             // Drop the foreign key constraint
-            $table->dropForeign('projects_phase_id_foreign');
+            /* $table->dropForeign('projects_phase_id_foreign'); */
         });
 
         // Now drop the 'phases' table

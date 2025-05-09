@@ -96,7 +96,9 @@ select:focus[data-flux-control] {
         &[data-color="small"] {
             @apply bg-[#10BDD4] text-white font-extralight hover:bg-[#00C0D9] w-24 h-6;
         }
-        
+        &[data-color="project"] {
+            @apply bg-[#10BDD4] text-white text-[16px] font-light hover:bg-[#00C0D9] w-16 h-8;
+        }
     }
 
 

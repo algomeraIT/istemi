@@ -28,15 +28,19 @@ class DatabaseSeeder extends Seeder
             // LeadSeeder::class,
             NoteCommunicationClientHistorySeeder::class,
             NoteCommunicationClientSeeder::class,
-            NoteProjectSeeder::class,
             NoteSeeder::class,
             PhaseSeeder::class,
             ProjectSeeder::class,
             ReferentSeeder::class,
             SaleSeeder::class,
             // ContactSeeder::class,
+            UserTableSeeder::class,
+            NoteProjectSeeder::class,
+            ContactSeeder::class,
             HistoryContactsTableSeeder::class,
             ProjectStartSeeder::class,
+            TaskProjectStartSeeder::class,
+            DocumentProjectSeeder::class,
         ]);
     }
 }

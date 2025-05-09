@@ -6,18 +6,20 @@
                 <div class="mx-auto my-3">
                     @include('livewire.general.goback')
                 </div>
+
                 <div class="w-full flex  xl:flex-row flex-col-reverse ">
 
                     <div class="lg:flex lg:flex-nowrap xl:w-3/4">
 
-                        <flux:tab.group class="bg-white  p-2 w-full">
+                        <flux:tab.group wire:model="datasheetHideDiv" class="bg-white  p-2 w-full">
 
                             <div class="md:flex xl:justify-between items-baseline">
+
                                 <flux:tabs class="flex 2xl:flex-nowrap flex-wrap gap-2 align-middle border-none">
-                                    <flux:tab data-variant="detail" name="task">Task</flux:tab>
-                                    <flux:tab data-variant="detail" name="document">Documenti</flux:tab>
-                                    <flux:tab data-variant="detail" name="note">Note</flux:tab>
-                                    <flux:tab data-variant="detail" name="data-sheet">Scheda tecnica</flux:tab>
+                                    <flux:tab data-variant="detail" name="task" wire:click.native="$set('datasheetHideDiv','task')">Task</flux:tab>
+                                    <flux:tab data-variant="detail" name="document" wire:click.native="$set('datasheetHideDiv','document')">Documenti</flux:tab>
+                                    <flux:tab data-variant="detail" name="note" wire:click.native="$set('datasheetHideDiv','note')">Note</flux:tab>
+                                    <flux:tab data-variant="detail" name="data-sheet" wire:click.native="$set('datasheetHideDiv','data-sheet')">Scheda tecnica</flux:tab>
                                 </flux:tabs>
 
                                 <div class="sm:flex md:flex-wrap lg:flex-nowrap gap-4 p-1">
@@ -57,7 +59,9 @@
                                                         <div class="flex space-x-2">
 
                                                             <p class="text-[#B0B0B0] text-[13px]">
-                                                                {{ count($this->projectStart) }} task <div class="w-1 h-1 bg-gray-400 rounded-4xl self-center"></div></p>
+                                                                {{ count($this->projectStart) }} task
+                                                            <div class="w-1 h-1 bg-gray-400 rounded-4xl self-center"></div>
+                                                            </p>
                                                             <p class="text-[#FDC106] text-[13px]">
                                                                 {{ $this->projectStart->where('status_contract_ver', false)->count() }}
                                                                 in attesa</p>
@@ -80,7 +84,8 @@
                                                 <div x-show="open" x-transition
                                                     class="flex-1 px-6 py-4 mt-8 overflow-auto text-purple-700 text-lg bg-[#5A2C8E03] border">
 
-                                                    <flux:table class="bg-white border rounded-md text-sm  border-l-3 border-l-[#4D1B83] border-l-solid">
+                                                    <flux:table
+                                                        class="bg-white border rounded-md text-sm  border-l-3 border-l-[#4D1B83] border-l-solid">
                                                         <flux:table.columns class="">
                                                             <flux:table.column class="border px-4 py-2 text-center"
                                                                 data-detail="detailColumn">Task
@@ -108,7 +113,7 @@
 
                                                                 <flux:table.cell class="whitespace-nowrap border "
                                                                     data-detail="detail">
-                                                                    <flux:button wire:click="addTask({{ $start->id }})"
+                                                                    <flux:button wire:click="show({{ $start->id }})"
                                                                         variant="ghost" data-variant="ghost"
                                                                         data-color="teal" data-rounded icon="plus"
                                                                         size="sm" />
@@ -162,17 +167,167 @@
 
                                     </flux:tab.panel>
                                     <flux:tab.panel name="kanban">
-                                        kanban
+                                        <div class="w-1/5 max-h-screen overflow-y-auto bg-white p-4">
+                                            {{-- Title with counts --}}
+                                            <div>
+                                                <h2 class="text-[#08468B] text-[14px] font-medium">Avvio progetto
+                                                </h2>
+                                                <div class="flex space-x-2">
+
+                                                    <p class="text-[#B0B0B0] text-[13px]">
+                                                        {{ count($this->projectStart) }} task
+                                                    <div class="w-1 h-1 bg-gray-400 rounded-4xl self-center"></div>
+                                                    </p>
+                                                    <p class="text-[#FDC106] text-[13px]">
+                                                        {{ $this->projectStart->where('status_contract_ver', false)->count() }}
+                                                        in attesa</p>
+                                                    <p class="text-[#28A745] text-[13px]">
+                                                        {{ $this->projectStart->where('status_contract_ver', true)->count() }}
+                                                        svolti </p>
+                                                </div>
+                                            </div>
+
+
+                                            {{-- Vertical list --}}
+                                            <ul class="space-y-3">
+                                                @foreach ($projectStart as $start)
+                                                    <li class="border-l-4 border-[#08468B] border-0.5 shadow pl-3 p-4">
+                                                        <div class="text-sm font-medium text-gray-800">
+                                                            {{ $start->name_phase }}
+                                                        </div>
+                                                        <div class="text-xs text-gray-600 mt-0.5">
+                                                            Assegnato a: {{ $start->user_contract_ver }}
+                                                        </div>
+                                                        <div class="text-xs text-gray-600">
+                                                            Stato:
+                                                            <span
+                                                                class="font-semibold {{ $start->status_contract_ver ? 'text-green-600' : 'text-yellow-600' }}">
+                                                                {{ $start->status_contract_ver ? 'Svolto' : 'In attesa' }}
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <flux:button wire:click="edit({{ $start->id }})"
+                                                                variant="ghost" data-variant="ghost" data-color="gray"
+                                                                data-rounded icon="pencil" size="sm" />
+                                                            <flux:button wire:click="delete({{ $start->id }})"
+                                                                wire:confirm="Sei sicuro di voler eliminare questa fase?"
+                                                                variant="ghost" data-variant="ghost" data-color="red"
+                                                                data-rounded icon="trash" size="sm" />
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </flux:tab.panel>
 
 
                                 </flux:tab.group>
+                            </flux:tab.panel>
+
+                            <flux:tab.panel name="document">
+                                <div class="w-full overflow-x-auto">
+                                    @if ($this->document)
+                                        <flux:table>
+                                            <flux:table.columns>
+                                                <flux:table.column>Nome documento</flux:table.column>
+                                                <flux:table.column>Data caricamento</flux:table.column>
+                                                <flux:table.column>Fase progettuale</flux:table.column>
+                                                <flux:table.column>Caricato da</flux:table.column>
+                                                <flux:table.column data-th-action>Azioni</flux:table.column>
+                                            </flux:table.columns>
+
+                                            <flux:table.rows>
+                                                @foreach ($this->document as $doc)
+                                                    <flux:table.row :key="$doc->id">
+
+                                                        <flux:table.cell class="whitespace-nowrap">
+                                                            {{ $doc->document_name }}</flux:table.cell>
+                                                        <flux:table.cell class="whitespace-nowrap">
+                                                            {{ \Carbon\Carbon::parse($doc->created_at)->format('d/m/Y') }}
+                                                        </flux:table.cell>
+                                                        <flux:table.cell class="whitespace-nowrap">
+                                                            {{ $doc->phase }}</flux:table.cell>
+                                                        <flux:table.cell class="whitespace-nowrap">
+                                                            {{ $doc->user_name }}</flux:table.cell>
+                                                        <flux:table.cell align="end">
+                                                            <flux:button wire:click="show({{ $doc->id }})"
+                                                                variant="ghost" data-variant="ghost" data-color="teal"
+                                                                data-rounded icon="eye" size="sm" />
+                                                        </flux:table.cell>
+                                                    </flux:table.row>
+                                                @endforeach
+                                            </flux:table.rows>
+                                        </flux:table>
+                                        {{--       <div class="-mx-4 mt-4">
+                                            {{ $start->links('customPagination') }}
+                                        </div> --}}
+                                    @else
+                                        <p class="text-gray-500">Nessun elemento da mostrare</p>
+                                    @endif
+                                </div>
+
+                                <script>
+                                    function copyToClipboard(text) {
+                                        navigator.clipboard.writeText(text).then(() => {
+                                            alert("Copiato: " + text);
+                                        }).catch(err => {
+                                            console.error('Clipboard error:', err);
+                                        });
+                                    }
+                                </script>
+
+                            </flux:tab.panel>
+                            <flux:tab.panel name="note">
+                                <flux:button>Scrivi nota</flux:button>
+                                @if ($notes->isNotEmpty())
+                                  
+                                    @foreach ($notes->groupBy(fn($note) => $note->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $monthNotes)
+                                        <div class="mt-8 mb-4 flex items-center">
+                                            <span
+                                                class="bg-[#F5FCFD] text-[#10BDD4] px-3 py-1 border-[#E8E8E8] border-1 text-[13px] font-semibold ml-12">
+                                                {{ $month }}
+                                            </span>
+                                            <div class="h-px bg-gray-300 flex-1 "></div>
+                                        </div>
+
+                                        {{-- All notes in this month --}}
+                                        @foreach ($monthNotes as $note)
+                                            <div class="border w-full p-4 mb-6">
+                                                <div class="flex items-start space-x-3">
+                                                    <div
+                                                        class="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
+                                                        <flux:icon.user variant="micro" />
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <div class="flex items-center space-x-2 text-sm">
+                                                            <span>{{ $note->user_name }}</span>
+                                                            <div class="w-2 h-px bg-gray-400"></div>
+                                                            <span class="text-gray-500">{{ $note->role }}</span>
+                                                        </div>
+                                                        <div class="flex items-center text-xs text-gray-600 mt-1">
+                                                            <span class="italic">ha scritto una nota</span>
+                                                            <div class="w-1 h-1 bg-gray-400 rounded-full mx-2"></div>
+                                                            <span>{{ $note->created_at->diffForHumans() }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-4 text-base font-light text-gray-800">
+                                                    {{ $note->note }}
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endforeach
+                                @endif
+                            </flux:tab.panel>
+                            <flux:tab.panel name="data-sheet">
+                                scheda tecnica
                             </flux:tab.panel>
                         </flux:tab.group>
 
 
 
                     </div>
+                    @unless($datasheetHideDiv === 'data-sheet')
                     <div class="xl:w-1/4">
                         <div class="mx-auto  bg-white border-2 border-dotted border-[#A0A0A0] rounded-sm ">
 
@@ -217,7 +372,9 @@
                             </div>
                         </div>
                     </div>
+                    @endunless
                 </div>
+
             </div>
         </div>
     @endsection
