@@ -169,31 +169,31 @@ public function updated($propertyName)
             if($this->formData['id_client']){
                 $getClient = Client::select('id', 'name', 'address', 'status')->where('id', $this->formData['id_client'])->get()->toArray();
             }
-            
+
             $this->formData['stackholder_id'] = 1;
             $this->formData['phase'] = "ok";
             $this->formData['estimate'] = $this->formData['n_file'];
             $this->formData['address_client'] = $getClient['address'];
             $this->formData['client_status'] = $getClient['status'];
             $this->formData['status'] = $this->formData['client_type'];
+
             $project = Project::create($this->formData);
 
             DB::commit();
 
-            session()->flash('success', 'Progetto creato con successo!');
+            Flux::toast('Progetto creato con successo!');
 
             $this->close();
 
         } catch (QueryException $e) {
             DB::rollBack();
-            dd($e->getMessage());
 
-            $this->addError('save_error', 'Errore di database, contatta l’amministratore.');
+            Flux::toast('Errore di database, contatta l’amministratore.');
 
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e->getMessage());
-            $this->addError('save_error', 'Errore imprevisto: ' . $e->getMessage());
+
+            Flux::toast('Errore imprevisto: ' . $e->getMessage());
         }
     }
 
