@@ -7,10 +7,9 @@
         <div class="space-y-3 lg:space-y-0 lg:flex lg:items-center flex-wrap gap-2">
             <!-- Create Button -->
             <div>
-                <flux:button wire:click="create" variant="primary" data-variant="primary" data-color="project">
+                <flux:button wire:click="$dispatch('openModal', { component: 'projects.modals.create' })" variant="primary" data-variant="primary" data-color="project">
                     Crea
                 </flux:button>
-                <button wire:click="$dispatch('openModal', { component: 'projects.modals.create' })">New Project</button>
 
             </div>
 

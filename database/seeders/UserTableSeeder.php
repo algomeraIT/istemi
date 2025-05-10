@@ -27,13 +27,13 @@ class UserTableSeeder extends Seeder
             'province' => null,
             'cap' => null,
             'role' => 'admin',
-            'job_position' => null,
+            'job_position' => 'Fullstack Developer',
             'status' => 1, //1 == active, 0 == disable
             'created_at' => now(),
             'updated_at' => now(),
             'remember_me' => 0,
         ]);
-
+  
         User::factory()->count(30)->create();
     }
 }

@@ -16,31 +16,7 @@ class Projects extends Component
     use WithPagination;
 
     // default values for a new project
-    private const DEFAULT_FORM = [
-        'n_file' => '',
-        'name_project' => '',
-        'id_client' => '',
-        'client_type' => '',
-        'is_from_agent' => false,
-        'total_budget' => '',
-        'chief_area' => '',
-        'chief_project' => '',
-        'start_at' => '',
-        'end_at' => '',
-        'starting_price' => '',
-        'discount_percentage' => '',
-        'discounted' => '',
-        'n_firms' => '',
-        'firms_and_percentage' => '',
-        'note' => '',
-        'goals' => '',
-        'project_scope' => '',
-        'expected_results' => '',
-        'stackholder_id' => '',
-        'stackholders' => [],
-        'agreement' => false,
-        'selectedAreas' => [],
-    ];
+
 
     // possible phases
     private const PHASES = [
@@ -53,7 +29,7 @@ class Projects extends Component
     public bool $showListFilters = true;
     public bool $showKanbanFilters = false;
     public int $currentTab = 1;
-    public array $formData = self::DEFAULT_FORM;
+ 
     public string $activeTab = 'list';
     #[Url( as :'currentTab', except: 'list')]
     public string $kanbanTab = 'current_phase';
@@ -139,75 +115,14 @@ class Projects extends Component
         $this->currentTab = 1;
     }
 
-    public function nextTab(): void
-    {
-        $this->currentTab = min($this->currentTab + 1, 5);
-    }
 
-    public function prevTab(): void
-    {
-        $this->currentTab = max($this->currentTab - 1, 1);
-    }
 
     public function goToDetail($projectId)
     {
         return redirect()->route('projects.project-detail', ['project' => $projectId]);
     }
 
-    public function save()
-    {
 
-        $this->validate([
-            'formData.n_file' => 'required|exists:estimates,id',
-            'formData.name_project' => 'required|string',
-            'formData.id_client' => 'required|exists:clients,id',
-            'formData.client_type' => 'required|in:0,1',
-            'formData.is_from_agent' => 'boolean',
-            'formData.total_budget' => 'required|numeric',
-            'formData.chief_area' => 'nullable|string',
-            'formData.chief_project' => 'nullable|string',
-            'formData.start_at' => 'nullable|date',
-            'formData.end_at' => 'nullable|date|after_or_equal:formData.start_at',
-            'formData.starting_price' => 'nullable|numeric',
-            'formData.discount_percentage' => 'nullable|numeric',
-            'formData.discounted' => 'nullable|numeric',
-            'formData.n_firms' => 'nullable|integer',
-            'formData.firms_and_percentage' => 'nullable|string',
-            'formData.note' => 'nullable|string',
-            'formData.goals' => 'nullable|string',
-            'formData.project_scope' => 'nullable|string',
-            'formData.expected_results' => 'nullable|string',
-            'formData.stackholder_id' => 'nullable|integer',
-            'formData.stackholders' => 'array',
-            'formData.stackholders.*.name' => 'required|string',
-            'formData.stackholders.*.role' => 'required|in:Admin,User',
-            'formData.stackholders.*.email' => 'required|email',
-            'formData.agreement' => 'accepted',
-        ]);
-
-        DB::beginTransaction();
-
-        try {
-            $project = Project::create($this->formData);
-
-            DB::commit();
-
-            session()->flash('success', 'Progetto creato con successo!');
-
-            $this->close();
-
-        } catch (QueryException $e) {
-            DB::rollBack();
-            dd($e->getMessage());
-
-            $this->addError('save_error', 'Errore di database, contatta l’amministratore.');
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-            dd($e->getMessage());
-            $this->addError('save_error', 'Errore imprevisto: ' . $e->getMessage());
-        }
-    }
 
     public function edit()
     {

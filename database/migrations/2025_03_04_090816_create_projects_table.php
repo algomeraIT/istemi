@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id(); // This automatically creates an auto-incrementing primary key
-            $table->string('phase');
+            $table->id(); // This automatically creates an auto-incrementing primary key         
             $table->string('estimate');
             $table->foreignId('id_client')->constrained('clients')->onDelete('cascade');
             $table->string('client_name')->nullable();

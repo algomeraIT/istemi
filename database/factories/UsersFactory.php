@@ -24,7 +24,7 @@ class UserFactory extends Factory
             'city' => fake()->city(),
             'province' => fake()->state(),
             'cap' => fake()->postcode(),
-            'role' => fake()->randomElement(['admin', 'user', 'client']),
+            'role' => fake()->randomElement(['admin', 'user', 'client', 'area', 'project']),
             'job_position' => fake()->jobTitle(),
             'status' => fake()->randomElement([0, 1]),
             'remember_me' => fake()->boolean(50),
