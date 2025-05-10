@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('estimates', function (Blueprint $table) {
-            $table->id(); // This automatically creates an auto-incrementing primary key
+            $table->id();
             $table->string('serial_number');
             $table->date('date_expiration');
             $table->string('status_expiration');

@@ -3,10 +3,10 @@
 namespace Database\Factories;
 
 use App\Models\Client;
-use App\Models\User;
 use App\Models\Phase;
 use App\Models\Project;
 use App\Models\Stackholder;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProjectFactory extends Factory
@@ -51,7 +51,9 @@ class ProjectFactory extends Factory
             'goals' => $this->faker->paragraph(),
             'project_scope' => $this->faker->paragraph(),
             'expected_results' => $this->faker->paragraph(),
-            'stackholder_id' => Stackholder::factory(),
+            'stackholder_id' => function () {
+                return Stackholder::factory()->count(3)->create()->pluck('id')->toJson();
+            },
             'phase_id' => Phase::factory()->create()->id,
             'current_phase' => $this->faker->randomElement(['Non Definito', 'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura']),
 

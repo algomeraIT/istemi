@@ -45,6 +45,7 @@ class Create extends ModalComponent
         'stackholders' => [],
         'agreement' => false,
         'selectedAreas' => [],
+        'selectedPhases' => [],
         'address_client' => 'ok',
         'client_status' => "ok",
         'status' => ''
@@ -56,7 +57,7 @@ class Create extends ModalComponent
         $this->clients = Client::select('id', 'name')
             ->get()->toArray();
 
-        $this->estimates = Estimate::select('id', 'serial_number')
+        $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)
             ->get()->toArray();
 
             $this->area = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->get()->toArray();
@@ -81,8 +82,6 @@ public function updated($propertyName)
     $this->validateOnly($propertyName);
 /*     $this->canProceed = $this->getCanProceedProperty();
  */}
-
-
 
     public function getValidationRules()
     {
@@ -124,7 +123,6 @@ public function updated($propertyName)
         }
     }
 
-
     public function close()
     {
         $this->isOpen = false;
@@ -157,7 +155,7 @@ public function updated($propertyName)
     public function save()
     {    
         DB::beginTransaction();
-dd($this->formData);
+
         try {
             if($this->formData['id_chief_area']){
                 $getNameArea = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->where('id', $this->formData['id_chief_area'])->get()->toArray();
@@ -178,6 +176,7 @@ dd($this->formData);
                     'name' => $stackholder['name'],
                     'email' => $stackholder['email'],
                     'role' => $stackholder['role'],
+                    'is_archived' => 0,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -185,18 +184,13 @@ dd($this->formData);
                 $stackholderIds[] = $id;
             }
             
-            $project->update([
-                'id_stackholder' => json_encode($stackholderIds)
-            ]);
-
-            /* prondo gli estremi dello/degli stackholder e li inserisco nella loro tabella, poi metto stackholder_id */
-
             $this->formData['stackholder_id'] = 1;
             $this->formData['phase'] = "ok";
             $this->formData['estimate'] = $this->formData['n_file'];
             $this->formData['address_client'] = $getClient['address'];
             $this->formData['client_status'] = $getClient['status'];
             $this->formData['status'] = $this->formData['client_type'];
+            $this->formData['stackholder_id'] = json_encode($stackholderIds);
 
             $project = Project::create($this->formData);
 

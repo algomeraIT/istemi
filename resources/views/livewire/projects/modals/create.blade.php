@@ -537,301 +537,260 @@
                                 </label>
                                 <!-- project_start fields -->
                                 <h3>Avvio progetto</h3>
-                                <ul class="ml-5">
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="contract_ver" name="fields[]"
-                                            value="contract_ver" x-ref="fields">
+                                <ul class="ml-5 space-y-1">
+                                    {{-- This is Livewire’s two-way binding. It means: when this checkbox is checked, its value (contract_ver) will be added to the array formData.selectedPhases. If it’s unchecked, Livewire will remove it from the array. --}}
+                                    <li>
+                                        <input type="checkbox" id="contract_ver" value="contract_ver" data-phase wire:model="formData.selectedPhases">
                                         <label for="contract_ver">Verifica contratto</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="cme_ver" name="fields[]" value="cme_ver">
+                                    <li>
+                                        <input type="checkbox" id="cme_ver" value="cme_ver" data-phase wire:model="formData.selectedPhases">
                                         <label for="cme_ver">Verifica CME - Piano d'indagine e capitolato</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="reserves" name="fields[]" value="reserves">
+                                    <li>
+                                        <input type="checkbox" id="reserves" value="reserves" data-phase wire:model="formData.selectedPhases">
                                         <label for="reserves">Riserve</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="expiring_date_project" name="fields[]"
-                                            value="expiring_date_project">
-                                        <label for="expiring_date_project">Impostare la data di scadenza del
-                                            progetto</label>
+                                    <li>
+                                        <input type="checkbox" id="expiring_date_project" value="expiring_date_project" data-phase wire:model="formData.selectedPhases">
+                                        <label for="expiring_date_project">Impostare la data di scadenza del progetto</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="communication_plan" name="fields[]"
-                                            value="communication_plan">
+                                    <li>
+                                        <input type="checkbox" id="communication_plan" value="communication_plan" data-phase wire:model="formData.selectedPhases">
                                         <label for="communication_plan">Definizione del piano di comunicazione</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="extension" name="fields[]" value="extension">
+                                    <li>
+                                        <input type="checkbox" id="extension" value="extension" data-phase wire:model="formData.selectedPhases">
                                         <label for="extension">Proroga</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="sal" name="fields[]" value="sal">
+                                    <li>
+                                        <input type="checkbox" id="sal" value="sal" data-phase wire:model="formData.selectedPhases">
                                         <label for="sal">Possibilità di produrre dei SAL</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="warranty" name="fields[]" value="warranty">
+                                    <li>
+                                        <input type="checkbox" id="warranty" value="warranty" data-phase wire:model="formData.selectedPhases">
                                         <label for="warranty">Garanzia definitiva</label>
                                     </li>
                                 </ul>
 
                                 <!-- invoices_sal fields -->
                                 <h3>Fatture acconto e SAL</h3>
-                                <ul class="ml-5">
-
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="emission_invoice" name="fields[]"
-                                            value="emission_invoice">
+                                <ul class="ml-5 space-y-1">
+                                    <li>
+                                        <input type="checkbox" id="emission_invoice" value="emission_invoice" data-phase wire:model="formData.selectedPhases">
                                         <label for="emission_invoice">Emissione fattura</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="payment_invoice" name="fields[]"
-                                            value="payment_invoice">
+                                    <li>
+                                        <input type="checkbox" id="payment_invoice" value="payment_invoice" data-phase wire:model="formData.selectedPhases">
                                         <label for="payment_invoice">Pagamento fattura</label>
                                     </li>
                                 </ul>
 
                                 <!-- construction_site_plane fields -->
                                 <h3>Pianificazione cantiere</h3>
-                                <ul class="ml-5">
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="construction_site_plane" name="fields[]"
-                                            value="construction_site_plane">
-                                        <label for="construction_site_plane">Verifica accesibilità e
-                                            sopralluogo</label>
+                                <ul class="ml-5 space-y-1">
+                                    <li>
+                                        <input type="checkbox" id="construction_site_plane" value="construction_site_plane" wire:model="formData.selectedPhases">
+                                        <label for="construction_site_plane">Verifica accesibilità e sopralluogo</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="travel" name="fields[]" value="travel">
+                                    <li>
+                                        <input type="checkbox" id="travel" value="travel" wire:model="formData.selectedPhases">
                                         <label for="travel">Organizzazione trasferte</label>
                                     </li>
-
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="site_pass" name="fields[]" value="site_pass">
+                                    <li>
+                                        <input type="checkbox" id="site_pass" value="site_pass" wire:model="formData.selectedPhases">
                                         <label for="site_pass">Permessi/pass accesso al sito</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="ztl" name="fields[]" value="ztl">
+                                    <li>
+                                        <input type="checkbox" id="ztl" value="ztl" wire:model="formData.selectedPhases">
                                         <label for="ztl">Permessi/pass ZTL</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="supplier" name="fields[]" value="supplier">
+                                    <li>
+                                        <input type="checkbox" id="supplier" value="supplier" wire:model="formData.selectedPhases">
                                         <label for="supplier">Selezione fornitori</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="timetable" name="fields[]" value="timetable">
+                                    <li>
+                                        <input type="checkbox" id="timetable" value="timetable" wire:model="formData.selectedPhases">
                                         <label for="timetable">Cronoprogramma</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="security" name="fields[]" value="security">
+                                    <li>
+                                        <input type="checkbox" id="security" value="security" wire:model="formData.selectedPhases">
                                         <label for="security">Sicurezza</label>
                                     </li>
                                 </ul>
 
                                 <!-- activities fields -->
                                 <h3>Esecuzione attività</h3>
-                                <ul class="ml-5">
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="activities" name="fields[]" value="activities">
-                                        <label for="activities">activities</label>
+                                <ul class="ml-5 space-y-1">
+                                    <li>
+                                        <input type="checkbox" id="activities" value="activities" wire:model="formData.selectedPhases">
+                                        <label for="activities">Activities</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="team" name="fields[]" value="team">
-                                        <label for="team">Selezione della squadra (caposquadra + altre
-                                            risorse)</label>
+                                    <li>
+                                        <input type="checkbox" id="team" value="team" wire:model="formData.selectedPhases">
+                                        <label for="team">Selezione della squadra (caposquadra + altre risorse)</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="field_activities" name="fields[]"
-                                            value="field_activities">
-                                        <label for="field_activities">Impartire indicazioni utili allo svolgimento
-                                            delle
-                                            attività in campo</label>
+                                    <li>
+                                        <input type="checkbox" id="field_activities" value="field_activities" wire:model="formData.selectedPhases">
+                                        <label for="field_activities">Impartire indicazioni utili allo svolgimento delle attività in campo</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="daily_check_activities" name="fields[]"
-                                            value="daily_check_activities">
-                                        <label for="daily_check_activities">Riepilogo giornaliero delle attività
-                                            eseguite</label>
+                                    <li>
+                                        <input type="checkbox" id="daily_check_activities" value="daily_check_activities" wire:model="formData.selectedPhases">
+                                        <label for="daily_check_activities">Riepilogo giornaliero delle attività eseguite</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="contruction_site_media" name="fields[]"
-                                            value="contruction_site_media">
-                                        <label for="contruction_site_media">Caricamento dati di cantiere
-                                            (foto/grafici/schizzi ecc...)</label>
+                                    <li>
+                                        <input type="checkbox" id="contruction_site_media" value="contruction_site_media" wire:model="formData.selectedPhases">
+                                        <label for="contruction_site_media">Caricamento dati di cantiere (foto/grafici/schizzi ecc...)</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="activity_validation" name="fields[]"
-                                            value="activity_validation">
-                                        <label for="activity_validation">Controllo avanzamento attività/budget
-                                            (PM)</label>
+                                    <li>
+                                        <input type="checkbox" id="activity_validation" value="activity_validation" wire:model="formData.selectedPhases">
+                                        <label for="activity_validation">Controllo avanzamento attività/budget (PM)</label>
                                     </li>
                                 </ul>
 
                                 <!-- data fields -->
                                 <h3>Elaborazione dati</h3>
-                                <ul class="ml-5">
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="data" name="fields[]" value="data">
-                                        <label for="data">data</label>
+                                <ul class="ml-5 space-y-1">
+                                    <li>
+                                        <input type="checkbox" id="data" value="data" wire:model="formData.selectedPhases">
+                                        <label for="data">Data</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="foreman_docs" name="fields[]"
-                                            value="foreman_docs">
-                                        <label for="foreman_docs">Controllo documentazione fornita dal
-                                            Caposquadra</label>
+                                    <li>
+                                        <input type="checkbox" id="foreman_docs" value="foreman_docs" wire:model="formData.selectedPhases">
+                                        <label for="foreman_docs">Controllo documentazione fornita dal Caposquadra</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="sanding_sample_lab" name="fields[]"
-                                            value="sanding_sample_lab">
+                                    <li>
+                                        <input type="checkbox" id="sanding_sample_lab" value="sanding_sample_lab" wire:model="formData.selectedPhases">
                                         <label for="sanding_sample_lab">Spedizione campione ai laboratori</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="data_validation" name="fields[]"
-                                            value="data_validation">
+                                    <li>
+                                        <input type="checkbox" id="data_validation" value="data_validation" wire:model="formData.selectedPhases">
                                         <label for="data_validation">Avvio attività di analisi dati</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="internal_validation" name="fields[]"
-                                            value="internal_validation">
-                                        <label for="internal_validation">Validazione interna degli elaborati
-                                            prodotti</label>
+                                    <li>
+                                        <input type="checkbox" id="internal_validation" value="internal_validation" wire:model="formData.selectedPhases">
+                                        <label for="internal_validation">Validazione interna degli elaborati prodotti</label>
                                     </li>
                                 </ul>
 
                                 <!-- Report fields -->
                                 <h3>trasmissione report</h3>
-                                <ul class="ml-5">
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="Report" name="fields[]" value="Report">
+                                <ul class="ml-5 space-y-1">
+                                    <li>
+                                        <input type="checkbox" id="Report" value="Report" wire:model="formData.selectedPhases">
                                         <label for="Report">Report</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="create_note" name="fields[]" value="create_note">
+                                    <li>
+                                        <input type="checkbox" id="create_note" value="create_note" wire:model="formData.selectedPhases">
                                         <label for="create_note">Predisposizione di nota di trasmissione</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="sending_note" name="fields[]"
-                                            value="sending_note">
+                                    <li>
+                                        <input type="checkbox" id="sending_note" value="sending_note" wire:model="formData.selectedPhases">
                                         <label for="sending_note">Invio nota di trasmissione</label>
                                     </li>
                                 </ul>
 
                                 <!-- accounting fields -->
                                 <h3>Contabilità</h3>
-                                <ul class="ml-5">
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="accounting" name="fields[]" value="accounting">
+                                <ul class="ml-5 space-y-1">
+                                    <li>
+                                        <input type="checkbox" id="accounting" value="accounting" wire:model="formData.selectedPhases">
                                         <label for="accounting">accounting</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="accounting_dec" name="fields[]"
-                                            value="accounting_dec">
-                                        <label for="accounting_dec">Predisporre la contabilità delle attività eseguite
-                                            ed
-                                            inviarla al DEC</label>
+                                    <li>
+                                        <input type="checkbox" id="accounting_dec" value="accounting_dec" wire:model="formData.selectedPhases">
+                                        <label for="accounting_dec">Predisporre la contabilità delle attività eseguite ed inviarla al DEC</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="create_cre" name="fields[]" value="create_cre">
+                                    <li>
+                                        <input type="checkbox" id="create_cre" value="create_cre" wire:model="formData.selectedPhases">
                                         <label for="create_cre">Produrre riciesta CRE</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="expense_allocation" name="fields[]"
-                                            value="expense_allocation">
+                                    <li>
+                                        <input type="checkbox" id="expense_allocation" value="expense_allocation" wire:model="formData.selectedPhases">
                                         <label for="expense_allocation">Riparto spese</label>
                                     </li>
                                 </ul>
 
                                 <!-- external_validation fields -->
-                                <h3>External Validation</h3>
-                                <ul class="ml-5">
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="external_validation" name="fields[]"
-                                            value="external_validation">
+                                <h3>Conferma esterna</h3>
+                                <ul class="ml-5 space-y-1">
+                                    <li>
+                                        <input type="checkbox" id="external_validation" value="external_validation" wire:model="formData.selectedPhases">
                                         <label for="external_validation">external_validation</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="cre" name="fields[]" value="cre">
+                                    <li>
+                                        <input type="checkbox" id="cre" value="cre" wire:model="formData.selectedPhases">
                                         <label for="cre">CRE</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="liquidation" name="fields[]" value="liquidation">
+                                    <li>
+                                        <input type="checkbox" id="liquidation" value="liquidation" wire:model="formData.selectedPhases">
                                         <label for="liquidation">Liquidazione</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="balance_invoice" name="fields[]"
-                                            value="balance_invoice">
+                                    <li>
+                                        <input type="checkbox" id="balance_invoice" value="balance_invoice" wire:model="formData.selectedPhases">
                                         <label for="balance_invoice">Predisposizione della fattura di saldo</label>
                                     </li>
                                 </ul>
 
                                 <!-- accounting_validation fields -->
                                 <h3>Verifica tecnico contabile</h3>
-                                <ul class="ml-5">
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="accounting_validation" name="fields[]"
-                                            value="accounting_validation">
+                                <ul class="ml-5 space-y-1">
+                                    <li>
+                                        <input type="checkbox" id="accounting_validation" value="accounting_validation" wire:model="formData.selectedPhases">
                                         <label for="accounting_validation">accounting_validation</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="balance" name="fields[]" value="balance">
+                                    <li>
+                                        <input type="checkbox" id="balance" value="balance" wire:model="formData.selectedPhases">
                                         <label for="balance">Saldo</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="cre_archiving" name="fields[]"
-                                            value="cre_archiving">
+                                    <li>
+                                        <input type="checkbox" id="cre_archiving" value="cre_archiving" wire:model="formData.selectedPhases">
                                         <label for="cre_archiving">Archiviazione CRE</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="pay_suppliers" name="fields[]"
-                                            value="pay_suppliers">
+                                    <li>
+                                        <input type="checkbox" id="pay_suppliers" value="pay_suppliers" wire:model="formData.selectedPhases">
                                         <label for="pay_suppliers">Pagamento fornitori</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="pay_allocation_expenses" name="fields[]"
-                                            value="pay_allocation_expenses">
+                                    <li>
+                                        <input type="checkbox" id="pay_allocation_expenses" value="pay_allocation_expenses" wire:model="formData.selectedPhases">
                                         <label for="pay_allocation_expenses">Pagamento riparto spese</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="learned_lesson" name="fields[]"
-                                            value="learned_lesson">
+                                    <li>
+                                        <input type="checkbox" id="learned_lesson" value="learned_lesson" wire:model="formData.selectedPhases">
                                         <label for="learned_lesson">Lezioni apprese</label>
                                     </li>
                                 </ul>
 
                                 <!-- non_compliance_management fields -->
                                 <h3>Non-Compliance Management</h3>
-                                <ul class="ml-5">
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="non_compliance_management" name="fields[]"
-                                            value="non_compliance_management">
+                                <ul class="ml-5 space-y-1">
+                                    <li>
+                                        <input type="checkbox" id="non_compliance_management" value="non_compliance_management" wire:model="formData.selectedPhases">
                                         <label for="non_compliance_management">non_compliance_management</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="sa" name="fields[]" value="sa">
+                                    <li>
+                                        <input type="checkbox" id="sa" value="sa" wire:model="formData.selectedPhases">
                                         <label for="sa">Accogliere le richieste/integrazioni della S.A.</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="integrate_doc" name="fields[]"
-                                            value="integrate_doc">
-                                        <label for="integrate_doc">Produrre ed inviare documentazione
-                                            integrativa</label>
+                                    <li>
+                                        <input type="checkbox" id="integrate_doc" value="integrate_doc" wire:model="formData.selectedPhases">
+                                        <label for="integrate_doc">Produrre ed inviare documentazione integrativa</label>
                                     </li>
                                 </ul>
 
                                 <!-- activity fields -->
                                 <h3>Chiusura attività</h3>
-                                <ul class="ml-5">
-                                    <li class="mt-1" class="mt-1">
-                                        <input type="checkbox" id="close_activity" name="fields[]"
-                                            value="close activity">
+                                <ul class="ml-5 space-y-1">
+                                    <li>
+                                        <input type="checkbox" id="close_activity" value="close_activity" wire:model="formData.selectedPhases">
                                         <label for="close_activity">close activity</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="sale" name="fields[]" value="sale">
+                                    <li>
+                                        <input type="checkbox" id="sale" value="sale" wire:model="formData.selectedPhases">
                                         <label for="sale">Fatturato specifico</label>
                                     </li>
-                                    <li class="mt-1">
-                                        <input type="checkbox" id="release" name="fields[]" value="release">
+                                    <li>
+                                        <input type="checkbox" id="release" value="release" wire:model="formData.selectedPhases">
                                         <label for="release">Svincolo della polizza</label>
                                     </li>
                                 </ul>

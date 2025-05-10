@@ -85,7 +85,7 @@ return new class extends Migration {
             }
 
             if (!Schema::hasColumn('projects', 'stackholder_id')) {
-                $table->unsignedBigInteger('stackholder_id')->nullable();
+                $table->json('stackholder_id')->nullable();
             }
 
             if (!Schema::hasColumn('projects', 'phase_id')) {
@@ -97,12 +97,6 @@ return new class extends Migration {
             $table->text('note')->nullable()->change();
             $table->string('logo_path_client')->nullable()->change();
         
-
-
-    
-            if (Schema::hasTable('stackholders')) {
-                $table->foreign('stackholder_id')->references('id')->on('stackholders')->onDelete('cascade');
-            }
     
          /*    if (Schema::hasTable('phases')) {
                 $table->foreign('phase_id')->references('id')->on('phases')->onDelete('cascade');

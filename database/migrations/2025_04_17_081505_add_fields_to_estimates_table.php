@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('estimates', function (Blueprint $table) {
-            $table->foreignId('client_id')->after('id')->constrained('clients')->cascadeOnDelete();
+            $table->foreignId('client_id')->nullable()->after('id')->constrained('clients')->cascadeOnDelete();
             $table->foreignId('user_id')->after('client_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('referent_id')->after('user_id')->constrained('referents')->cascadeOnDelete();
 

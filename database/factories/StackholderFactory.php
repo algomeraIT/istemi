@@ -17,8 +17,7 @@ class StackholderFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
+            'name' => $this->faker->name(),
             'role' => $this->faker->jobTitle(),
             'email' => $this->faker->unique()->safeEmail(),
             'project_id' => $this->faker->numberBetween(1,30), 

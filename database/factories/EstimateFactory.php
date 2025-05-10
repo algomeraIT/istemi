@@ -19,7 +19,7 @@ class EstimateFactory extends Factory
         $referent = Referent::inRandomOrder()->first() ?: Referent::factory()->create();
 
         return [
-            'client_id' => $client->id,
+            'client_id' => rand(1, 10) <= 7 ? $client->id : null, 
             'user_id' => $user->id,
             'referent_id' => $referent->id,
             'address_invoice' => $this->faker->streetAddress,
