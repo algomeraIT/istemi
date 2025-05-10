@@ -133,7 +133,7 @@ public function updated($propertyName)
 
     public function nextTab()
     {
-        $this->validate($this->getValidationRules());
+       
         $this->currentTab++;
         $this->recheckCanProceed();
     }
@@ -157,7 +157,7 @@ public function updated($propertyName)
     public function save()
     {    
         DB::beginTransaction();
-
+dd($this->formData);
         try {
             if($this->formData['id_chief_area']){
                 $getNameArea = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->where('id', $this->formData['id_chief_area'])->get()->toArray();
@@ -169,6 +169,27 @@ public function updated($propertyName)
             if($this->formData['id_client']){
                 $getClient = Client::select('id', 'name', 'address', 'status')->where('id', $this->formData['id_client'])->get()->toArray();
             }
+
+            $stackholderIds = [];
+
+            foreach ($this->formData['stackholders'] as $stackholder) {
+                $id = DB::table('stackholders')->insertGetId([
+                    'project_id' => $project->id,
+                    'name' => $stackholder['name'],
+                    'email' => $stackholder['email'],
+                    'role' => $stackholder['role'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            
+                $stackholderIds[] = $id;
+            }
+            
+            $project->update([
+                'id_stackholder' => json_encode($stackholderIds)
+            ]);
+
+            /* prondo gli estremi dello/degli stackholder e li inserisco nella loro tabella, poi metto stackholder_id */
 
             $this->formData['stackholder_id'] = 1;
             $this->formData['phase'] = "ok";
@@ -187,12 +208,9 @@ public function updated($propertyName)
 
         } catch (QueryException $e) {
             DB::rollBack();
-
             Flux::toast('Errore di database, contatta l’amministratore.');
-
         } catch (\Exception $e) {
             DB::rollBack();
-
             Flux::toast('Errore imprevisto: ' . $e->getMessage());
         }
     }

@@ -462,88 +462,66 @@
                                     </div>
                                     {{-- stackholder --}}
                                     {{-- quando clicco in avanti devo già inviare i dati al component inviare usare @entangle --}}
-                                    {{--     <div class="p-4 flex-1">
-                                        <div x-data="{
-                                            newStack: { name: '', role: 'Admin', email: '' },
-                                            stackholders: @entangle('formData.stackholders').defer || [],
-                                            add() {
-                                                // simple validation
-                                                if (!this.newStack.name.trim() || !this.newStack.email.trim()) return;
-                                                this.stackholders.push({ ...this.newStack });
-                                                this.newStack.name = '';
-                                                this.newStack.role = 'Admin';
-                                                this.newStack.email = '';
-                                            },
-                                            remove(idx) {
-                                                this.stackholders.splice(idx, 1);
-                                            }
-                                        }" class="p-4 border-none mt-6">
-                                            <!-- Header -->
+                                        <div class="p-4 flex-1">
+                                            <div
+                                            x-data="{
+                                                newStack: { name: '', role: '', email: '' },
+                                                stackholders: @entangle('formData.stackholders').live,
+                                                add() {
+                                                    if (!this.newStack.name.trim() || !this.newStack.email.trim() || !this.newStack.role) return;
+                                                    this.stackholders.push({ ...this.newStack });
+                                                    this.newStack = { name: '', role: '', email: '' };
+                                                },
+                                                remove(idx) {
+                                                    this.stackholders.splice(idx, 1);
+                                                }
+                                            }"
+                                            class="p-4 border-none mt-6"
+                                        >
                                             <div class="flex items-center space-x-2 mb-4">
                                                 <flux:icon.user class="w-5 h-5 text-gray-600" />
-                                                <h3 class="text-sm font-medium text-gray-700">Stackholder coinvolti
-                                                </h3>
+                                                <h3 class="text-sm font-medium text-gray-700">Stackholder coinvolti</h3>
                                             </div>
-
-                                            <!-- Inputs + Add Button -->
+                                        
                                             <div class="lg:flex lg:items-end lg:space-x-4 space-y-3 lg:space-y-0">
-                                                <!-- Full Name -->
-                                                <div class="flex-1">
-                                                    <input type="text" x-model="newStack.name"
-                                                        placeholder="Nome e cognome"
-                                                        class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white rounded" />
-                                                </div>
-
-                                                <!-- Role -->
-                                                <div class="flex-1">
-                                                    <select x-model="newStack.role"
-                                                        class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white rounded">
-                                                        <option selected>Ruolo</option>
-                                                        <option value="1">Admin</option>
-                                                        <option value="2">User</option>
-                                                    </select>
-                                                </div>
-
-                                                <!-- Email -->
-                                                <div class="flex-1">
-                                                    <input type="email" x-model="newStack.email"
-                                                        placeholder="E-mail"
-                                                        class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white rounded" />
-                                                </div>
-
-                                                <!-- Add Button -->
-                                                <button type="button" @click="add()"
-                                                    class="w-10 h-10 flex items-center justify-center bg-cyan-600 text-white rounded hover:bg-cyan-700"
-                                                    title="Aggiungi">
+                                                <input type="text" x-model="newStack.name" placeholder="Nome e cognome"
+                                                    class="w-full border border-gray-200 text-sm p-2 rounded" />
+                                                <input type="email" x-model="newStack.email" placeholder="Email"
+                                                    class="w-full border border-gray-200 text-sm p-2 rounded" />
+                                                <select x-model="newStack.role" class="w-full border border-gray-200 text-sm p-2 rounded">
+                                                    <option value="">Ruolo</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="User">User</option>
+                                                </select>
+                                                <button @click="add()" type="button"
+                                                    class="w-10 h-10 bg-cyan-600 text-white rounded hover:bg-cyan-700 flex items-center justify-center">
                                                     +
                                                 </button>
                                             </div>
-
-                                            <!-- List of Added Stackholders -->
-                                            <ul class="mt-6 space-y-2">
-                                                <template x-for="(stk, i) in stackholders" :key="i">
-                                                    <li
-                                                        class="flex items-center justify-between bg-gray-50 border border-gray-200 p-2 rounded">
-                                                        <div class="flex-1 text-sm text-gray-800">
-                                                            <span x-text="stk.name"></span> &mdash;
-                                                            <span x-text="stk.role"></span> &mdash;
-                                                            <span x-text="stk.email"></span>
+                                        
+                                            <!-- Render list and wire:model inputs -->
+                                            <template x-for="(stk, i) in stackholders" :key="i">
+                                                <div class="mt-4 bg-gray-50 p-2 border rounded">
+                                                    <div class="flex justify-between items-center">
+                                                        <div>
+                                                            <p class="text-sm"><strong x-text="stk.name"></strong> &mdash; <span x-text="stk.role"></span> &mdash; <span x-text="stk.email"></span></p>
                                                         </div>
-                                                        <button type="button" @click="remove(i)"
-                                                            class="text-red-500 hover:text-red-700 ml-4"
-                                                            title="Rimuovi">
-                                                            &times;
-                                                        </button>
-                                                    </li>
-                                                </template>
-                                                <li x-show="!stackholders.length"
-                                                    class="text-gray-400 text-sm italic">
-                                                    Nessun stackholder aggiunto
-                                                </li>
-                                            </ul>
+                                                        <button type="button" @click="remove(i)" class="text-red-500 hover:text-red-700">&times;</button>
+                                                    </div>
+                                        
+                                                    <!-- Livewire-compatible hidden fields -->
+                                                    <input type="hidden" :name="'formData.stackholders['+i+'][name]'" :value="stk.name" wire:model="formData.stackholders[i].name" />
+                                                    <input type="hidden" :name="'formData.stackholders['+i+'][email]'" :value="stk.email" wire:model="formData.stackholders[i].email" />
+                                                    <input type="hidden" :name="'formData.stackholders['+i+'][role]'" :value="stk.role" wire:model="formData.stackholders[i].role" />
+                                                </div>
+                                            </template>
+                                        
+                                            <div x-show="!stackholders.length" class="text-sm text-gray-400 mt-2 italic">
+                                                Nessun stackholder aggiunto
+                                            </div>
                                         </div>
 
-                                    </div> --}}
+                                    </div> 
                                 </div>
                             </div>
                         @elseif ($currentTab == 4)
