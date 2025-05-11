@@ -42,10 +42,6 @@
                                 </div>
                             </div>
                             <flux:tab.panel name="task">
-                                <select wire:change="updateStatusStart(1, $event.target.value)">
-                                    <option value="approved">Svolto</option>
-                                    <option value="pending">In attesa</option>
-                                </select>
                                 @include('livewire.projects.task-detail')
                             </flux:tab.panel>
 
