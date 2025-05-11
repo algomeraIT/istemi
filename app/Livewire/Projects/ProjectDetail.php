@@ -22,6 +22,7 @@ class ProjectDetail extends Component
     public Project $project;
     public $projectStart, $document, $notes, $accountingValidation, $closeActivity, $constructionSitePlane, $data, $externalValidation, $invoicesSal, $nonComplianceManagement, $report, $referent;
     public string $detailActiveTab = 'detail-kanban';
+    public string $tabListKanbaDetail = 'kanban';
     public string $subDetailActiveTab = 'sub-detail-kanban';
     public string $datasheettabs = 'info';
     public $isOpen = true;
