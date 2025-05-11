@@ -21,6 +21,8 @@ class ReportFactory extends Factory
             'project_id' => \App\Models\Project::factory(),
     
             'report' => $this->faker->boolean,
+            'user' => fake()->name(),
+            'status' => fake()->randomElement(['approved', 'pending']),
             'user_report' => \App\Models\User::factory(),
             'status_report' => $this->faker->randomElement(['pending', 'completed']),
     

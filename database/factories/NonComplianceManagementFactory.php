@@ -18,6 +18,8 @@ class NonComplianceManagementFactory extends Factory
             'client_id' => Client::factory(),
             'project_id' => Project::factory(),
             'non_compliance_management' => $this->faker->sentence(),
+            'user' => fake()->name(),
+            'status' => fake()->randomElement(['approved', 'pending']),
             'user_non_compliance_management' => User::factory(),
             'status_non_compliance_management' => 'pending',
 

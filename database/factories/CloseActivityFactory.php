@@ -18,6 +18,8 @@ class CloseActivityFactory extends Factory
             'client_id' => Client::factory(),
             'project_id' => Project::factory(),
             'close_activity' => $this->faker->sentence,
+            'user' => fake()->name(),
+            'status' => fake()->randomElement(['approved', 'pending']),
             'user_close_activity' => User::factory(),
             'status_close_activity' => 'completed',
             'sale' => $this->faker->sentence,

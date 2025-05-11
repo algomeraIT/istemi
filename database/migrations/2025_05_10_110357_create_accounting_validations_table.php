@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->nullable()->constrained('clients')->nullOnDelete();
             $table->foreignId('project_id')->nullable()->constrained('projects')->nullOnDelete();
+
+            $table->string('user')->nullable();
+            $table->string('status')->nullable();
         
             $table->boolean('accounting_validation')->default(false);
             $table->unsignedBigInteger('user_accounting_validation')->nullable();

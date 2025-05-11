@@ -13,6 +13,8 @@ class CloseActivity extends Model
         'client_id',
         'project_id',
         'close_activity',
+        'user',
+        'status',
         'user_close_activity',
         'status_close_activity',
         'sale',

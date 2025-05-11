@@ -12,6 +12,9 @@ return new class extends Migration {
             $table->foreignId('client_id')->nullable()->constrained('clients')->nullOnDelete();
             $table->foreignId('project_id')->nullable()->constrained('projects')->nullOnDelete();
 
+            $table->string('user')->nullable();
+            $table->string('status')->nullable();
+
             $table->text('close_activity')->nullable();
             $table->foreignId('user_close_activity')->nullable()->constrained('users')->nullOnDelete();
             $table->string('status_close_activity')->nullable();

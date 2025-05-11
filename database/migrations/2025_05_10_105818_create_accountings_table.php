@@ -12,6 +12,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('project_id')->nullable()->constrained()->nullOnDelete();
+
+            $table->string('user')->nullable();
+            $table->string('status')->nullable();
+            
             $table->text('accounting')->nullable();
             $table->unsignedBigInteger('user_accounting')->nullable();
             $table->string('status_accounting')->nullable();

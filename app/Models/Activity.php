@@ -14,7 +14,8 @@ class Activity extends Model
     protected $fillable = [
         'client_id',
         'project_id',
-
+        'user',
+        'status',
         'activities',
         'user_activities',
         'status_activities',

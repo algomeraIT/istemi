@@ -16,6 +16,8 @@ class InvoicesSalFactory extends Factory
             'project_id' => Project::factory(),
 
             'invoices_sal' => $this->faker->boolean,
+            'user' => fake()->name(),
+            'status' => fake()->randomElement(['approved', 'pending']),
             'user_invoices_sal' => User::factory(),
             'status_invoices_sal' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
 

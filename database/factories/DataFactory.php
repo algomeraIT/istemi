@@ -19,6 +19,8 @@ class DataFactory extends Factory
             'project_id' => Project::factory(),
 
             'data' => $this->faker->paragraph,
+            'user' => fake()->name(),
+            'status' => fake()->randomElement(['approved', 'pending']),
             'user_data' => User::factory(),
             'status_data' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
 

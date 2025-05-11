@@ -26,7 +26,7 @@ class ProjectStartFactory extends Factory
             'sal',
             'warranty',
         ];
-        
+
         $labels = [
             'contract_ver' => 'Verifica contratto',
             'cme_ver' => 'Verifica CME',
@@ -37,40 +37,42 @@ class ProjectStartFactory extends Factory
             'sal' => 'Possibilità di produrre dei SAL',
             'warranty' => 'Garanzia definitiva',
         ];
-        
-          $trueField = $this->faker->randomElement($fields);
 
-          $data = [];
-          foreach ($fields as $field) {
-              $data[$field] = $field === $trueField;
-          }
-    
+        $trueField = $this->faker->randomElement($fields);
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $field === $trueField;
+        }
+
         return array_merge($data, [
             'client_id' => \App\Models\Client::factory(),
             'project_id' => \App\Models\Project::factory(),
             'name_phase' => $labels[$trueField],
-    
+            'user' => fake()->name(),
+            'status' => fake()->randomElement(['approved', 'pending']),
+
             'user_contract_ver' => fake()->name(),
             'status_contract_ver' => 'pending',
-    
+
             'user_cme_ver' => fake()->name(),
             'status_cme_ver' => 'approved',
-    
+
             'user_reserves' => fake()->name(),
             'status_reserves' => 'rejected',
-    
+
             'user_expiring_date_project' => $this->faker->date(),
             'status_expiring_date_project' => 'pending',
-    
+
             'user_communication_plan' => fake()->name(),
             'status_communication_plan' => 'pending',
-    
+
             'user_extension' => fake()->name(),
             'status_extension' => 'pending',
-    
+
             'user_sal' => fake()->name(),
             'status_sal' => 'approved',
-    
+
             'user_warranty' => fake()->name(),
             'status_warranty' => 'approved',
         ]);

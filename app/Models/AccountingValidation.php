@@ -12,6 +12,8 @@ class AccountingValidation extends Model
     protected $fillable = [
         'client_id',
         'project_id',
+        'user',
+        'status',
         'accounting_validation',
         'user_accounting_validation',
         'status_accounting_validation',

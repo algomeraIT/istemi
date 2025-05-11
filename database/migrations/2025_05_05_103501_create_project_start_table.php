@@ -12,6 +12,9 @@ return new class extends Migration {
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->string('name_phase')->nullable();
+
+            $table->string('user')->nullable();
+            $table->string('status')->nullable();
             
             $table->boolean('contract_ver')->default(true);
             $table->string('user_contract_ver')->nullable();

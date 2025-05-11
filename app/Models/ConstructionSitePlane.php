@@ -14,7 +14,8 @@ class ConstructionSitePlane extends Model
     protected $fillable = [
         'client_id',
         'project_id',
-
+        'user',
+        'status',
         'construction_site_plane',
         'user_construction_site_plane',
         'status_construction_site_plane',

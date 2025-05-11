@@ -15,6 +15,8 @@ class NonComplianceManagement extends Model
         'client_id',
         'project_id',
         'non_compliance_management',
+        'user',
+        'status',
         'user_non_compliance_management',
         'status_non_compliance_management',
         'sa',

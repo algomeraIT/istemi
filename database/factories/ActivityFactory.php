@@ -16,6 +16,8 @@ class ActivityFactory extends Factory
             'project_id' => Project::factory(),
 
             'activities' => $this->faker->boolean,
+            'user' => fake()->name(),
+            'status' => fake()->randomElement(['approved', 'pending']),
             'user_activities' => User::factory(),
             'status_activities' => $this->faker->randomElement(['pending', 'completed']),
 

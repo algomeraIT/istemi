@@ -15,6 +15,8 @@ class Accounting extends Model
         'client_id',
         'project_id',
         'accounting',
+        'user',
+        'status',
         'user_accounting',
         'status_accounting',
         'accounting_dec',

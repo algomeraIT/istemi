@@ -14,7 +14,8 @@ class Data extends Model
     protected $fillable = [
         'client_id',
         'project_id',
-
+        'user',
+        'status',
         'data',
         'user_data',
         'status_data',

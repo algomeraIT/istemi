@@ -24,6 +24,8 @@ class AccountingValidationFactory extends Factory
             'project_id' => Project::factory(),
         
             'accounting_validation' => $this->faker->boolean,
+            'user' => fake()->name(),
+            'status' => fake()->randomElement(['approved', 'pending']),
             'user_accounting_validation' => User::factory(),
             'status_accounting_validation' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
         

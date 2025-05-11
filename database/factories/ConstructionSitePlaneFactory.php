@@ -16,6 +16,8 @@ class ConstructionSitePlaneFactory extends Factory
             'project_id' => Project::factory(),
 
             'construction_site_plane' => $this->faker->boolean,
+            'user' => fake()->name(),
+            'status' => fake()->randomElement(['approved', 'pending']),
             'user_construction_site_plane' => User::factory(),
             'status_construction_site_plane' => $this->faker->randomElement(['pending', 'completed']),
 

@@ -14,7 +14,8 @@ class InvoicesSal extends Model
     protected $fillable = [
         'client_id',
         'project_id',
-
+        'user',
+        'status',
         'invoices_sal',
         'user_invoices_sal',
         'status_invoices_sal',

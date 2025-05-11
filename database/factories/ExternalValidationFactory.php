@@ -24,6 +24,8 @@ class ExternalValidationFactory extends Factory
             'project_id' => Project::factory(),
     
             'external_validation' => $this->faker->boolean,
+            'user' => fake()->name(),
+            'status' => fake()->randomElement(['approved', 'pending']),
             'user_external_validation' => User::factory(),
             'status_external_validation' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
     
