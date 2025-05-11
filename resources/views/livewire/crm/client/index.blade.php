@@ -2,10 +2,10 @@
     <h2 class="text-2xl mb-3 font-bold text-[#232323] font-sans opacity-100 capitalize">
         {{ $this->clientStatusPlural }}</h2>
 
-    <div class="space-y-3 lg:space-y-0 lg:flex lg:items-center lg:justify-between lg:flex-wrap gap-2">
+    <div class="space-y-3 lg:space-y-0 lg:flex lg:items-center lg:justify-between lg:flex-wrap gap-2 pb-4">
         <!-- Crea Button -->
-        <flux:button wire:click="$dispatch('openModal', { component: 'modals.crm.client.create' })" size="sm" variant="primary" data-variant="primary" data-color="teal">
-            Nuovo cliente
+        <flux:button wire:click="$dispatch('openModal', { component: 'modals.crm.client.create-or-update', arguments: { clientStatus: '{{ $clientStatus }}'} })" size="sm" variant="primary" data-variant="primary" data-color="teal">
+            Nuovo {{ $clientStatus }}
         </flux:button>
 
         <!-- Tabs -->
@@ -59,12 +59,12 @@
         </div>
     </div>
 
-    <flux:tab.panel name="list" class="!pt-4">
-        @include('livewire.crm.client-list')
+    <flux:tab.panel name="list" class="!pt-0">
+        @include('livewire.crm.client.components.client-list')
     </flux:tab.panel>
 
-    <flux:tab.panel name="kanban" class="!pt-4">
-        @include('livewire.crm.client-kanban')
+    <flux:tab.panel name="kanban" class="!pt-0">
+        @include('livewire.crm.client.components.client-kanban')
     </flux:tab.panel>
 
 

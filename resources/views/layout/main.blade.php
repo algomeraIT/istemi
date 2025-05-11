@@ -18,27 +18,30 @@
 </head>
 
 <body>
-@include('flash-message')
-@include('layout.navbar')
+    @include('flash-message')
+    @include('layout.navbar')
 
-<div class="megamenu"></div>
+    <div class="megamenu"></div>
 
-<div class="h-[calc(100vh-103px)] bg-[#F5FCFD] py-14">
-    @yield('content')
+    <div class="h-[calc(100vh-103px)] bg-[#F5FCFD] py-14">
+        @yield('content')
 
-    <main class="grid grid-cols-12 gap-[30px] mx-10 lg:mx-[105px]">
-        <div class="col-span-12">
-            {{ $slot ?? null }}
-        </div>
-    </main>
-</div>
+        <main class="grid grid-cols-12 gap-[30px] mx-10 lg:mx-[105px]">
+            <div class="col-span-12">
+                {{ $slot ?? null }}
+            </div>
+        </main>
+    </div>
 
-@fluxScripts
-@livewire('wire-elements-modal')
+    @fluxScripts
+    @livewire('wire-elements-modal')
 
-<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-@stack('scripts')
-<flux:toast position="top right"/>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    @stack('scripts')
+    
+    @persist('toast')
+        <flux:toast position="top right" />
+    @endpersist
 </body>
 
 </html>

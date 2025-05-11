@@ -19,7 +19,7 @@
                     <flux:table.row key="{{ $client->id }}">
                         <flux:table.cell>{{ $client->id }}</flux:table.cell>
                         <flux:table.cell class="{{ $clientStatus == 'cliente' ? '' : 'hidden' }}">
-                            <img src="{{ optional($client)->logo_path ? asset($client->logo_path) : asset('icon/logo.svg') }}"
+                            <img src="{{ $client->getFirstMediaUrl('logos') ? $client->getFirstMediaUrl('logos') : asset('icon/logo.svg') }}"
                                 class="w-10 rounded" alt="Logo" />
                         </flux:table.cell>
                         <flux:table.cell class="whitespace-nowrap">{{ $client->name }}</flux:table.cell>
@@ -47,20 +47,23 @@
                             {{ dateItFormat($client->created_at) }}</flux:table.cell>
                         <flux:table.cell>{{ $client->city }}</flux:table.cell>
                         <flux:table.cell>
-                            <flux:badge size="sm" data-step="{{ $client->step }}">{{ ucfirst($client->step) }}
+                            @php
+                                $badge = $clientStatus == 'cliente' ? $client->label : $client->step;
+                            @endphp
+                            <flux:badge size="sm" data-step="{{ $badge }}">{{ ucfirst($badge) }}
                             </flux:badge>
                         </flux:table.cell>
 
                         {{-- Actions --}}
                         <flux:table.cell align="end">
-                            <flux:button wire:click="goToDetail({{ $client->id }})" variant="ghost"
+                            <flux:button href="{{ route('crm.client.show', [$clientStatus, $client->id] ) }}" variant="ghost"
                                 data-variant="ghost" data-color="teal" icon="eye" size="sm" />
                             @if ($clientStatus === 'cliente')
-                                <flux:button wire:click="edit({{ $client->id }})" variant="ghost"
+                                <flux:button wire:click="$dispatch('openModal', { component: 'modals.crm.client.create-or-update', arguments: { client: {{ $client->id }} } })" variant="ghost"
                                     data-variant="ghost" data-color="gray" icon="pencil" size="sm" />
                             @endif
                             <flux:button wire:click="delete({{ $client->id }})"
-                                wire:confirm="Sei sicuro di voler eliminare questo client?" variant="ghost"
+                                wire:confirm="Sei sicuro di voler eliminare questo {{$clientStatus}}?" variant="ghost"
                                 data-variant="ghost" data-color="red" icon="trash" size="sm" />
                         </flux:table.cell>
                     </flux:table.row>

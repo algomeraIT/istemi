@@ -54,42 +54,79 @@
     }
 }
 
+[data-color="teal"] {
+    @apply text-[#10BDD4];
+}
+
 [data-flux-field] {
-    @apply grid gap-2;
-}
+    @apply relative;
 
-[data-flux-label] {
-    @apply !mb-0 !leading-tight;
-}
+    &[data-input] {
+        div {
+            @apply flex items-center gap-0.5 mb-1;
+            
+            [data-flux-icon] {
+                @apply size-4 text-[#B0B0B0];
+            }
+            [data-flux-label] {
+                @apply !font-extralight !mb-0 text-[13px] !text-[#B0B0B0];
+            }
+        }
 
-input:focus[data-flux-control],
-textarea:focus[data-flux-control],
-select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
-}
+        [data-flux-input-group] {
+            @apply gap-0
+        }
 
-[data-flux-input] input {
-    @apply rounded-none shadow-none h-8;
+        [data-flux-input-group-prefix] {
+            @apply rounded-none shadow-none bg-white h-8 mb-0 px-2 font-light !text-[#B0B0B0] border-[#B0B0B0] border-r focus:!border-r-[#B0B0B0] z-10;
+        }
 
-    &[data-variant="search"] {
-        @apply lg:w-40;
-    }
-
-    &[data-variant="list"] {
-        @apply lg:w-40;
+        [data-flux-input] {
+            @apply mb-0;
+            input {
+                @apply rounded-none shadow-none h-8 !text-[#B0B0B0] border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0;
+            }
+        
+            &[data-variant="search"] {
+                @apply lg:w-40;
+            }
+        
+            &[data-variant="list"] {
+                @apply lg:w-40;
+            }
+        }
+        
+        [data-flux-select] {
+            button {
+                @apply rounded-none shadow-none h-8 !text-[#B0B0B0] border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0;
+            }
+        }
+        
+        [data-flux-error] {
+            @apply text-[10px] mt-1 absolute left-0
+        }
     }
 }
 
 [data-flux-select-native] {
-    @apply rounded-none shadow-none text-[#B0B0B0] font-semibold h-8;
+    @apply rounded-none shadow-none text-[#B0B0B0] font-light h-8 py-0 border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0 z-10;
 
     &[data-variant="status"] {
         @apply lg:w-40;
     }
 }
 
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden focus:ring-0 ring-offset-2 ring-offset-accent-foreground;
+}
+
+
+
 [data-flux-button] {
-    @apply rounded-none shadow-none;
+    @apply rounded-none shadow-none cursor-pointer;
 
     &[data-variant="primary"] {
         @apply border-none;
@@ -125,8 +162,6 @@ select:focus[data-flux-control] {
             @apply text-[#E63946] hover:bg-red-50;
         }
     }
-
-
 }
 
 [data-flux-badge] {
