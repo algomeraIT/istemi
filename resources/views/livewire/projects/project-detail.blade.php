@@ -293,7 +293,7 @@
                                 @endif
                             </flux:tab.panel>
                             <flux:tab.panel name="data-sheet">
-                                scheda tecnica
+                                @include('livewire.projects.project-datasheet')
                             </flux:tab.panel>
                         </flux:tab.group>
 

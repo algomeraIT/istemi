@@ -23,6 +23,7 @@ class ProjectDetail extends Component
     public $projectStart, $document, $notes, $accountingValidation, $closeActivity, $constructionSitePlane, $data, $externalValidation, $invoicesSal, $nonComplianceManagement, $report, $referent;
     public string $detailActiveTab = 'detail-kanban';
     public string $subDetailActiveTab = 'sub-detail-kanban';
+    public string $datasheettabs = 'info';
     public $isOpen = true;
     public $selectedProjectStartId = null;
     public $id;
@@ -32,7 +33,7 @@ class ProjectDetail extends Component
     {
         $this->project = Project::findOrFail($id);
       
-        $this->projectStart = ProjectStart::where("project_id", $id)->get(); 
+        $this->projectStart = ProjectStart::where("project_id", $id)->get();  
         $this->accountingValidation = AccountingValidation::where("project_id", $id)->get();
         $this->closeActivity = CloseActivity::where("project_id", $id)->get();
         $this->constructionSitePlane = ConstructionSitePlane::where("project_id", $id)->get();

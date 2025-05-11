@@ -20,9 +20,9 @@
 
 
     {{-- Vertical list --}}
-    <ul class="flex space-x-4 overflow-x-auto">
+    <ul class=" space-x-4 overflow-x-auto">
         @foreach ($elements as $element)
-            <li class="w-[400px] border-l-4 border-l-[#08468B] border-1 shadow pl-3 p-4">
+            <li class="w-[400px] border-l-4 border-l-[#08468B] border-1 shadow pl-3 p-4 mb-5">
                 <div class="text-sm font-medium text-gray-800">
                     {{ $nameSection }}
                 </div>
