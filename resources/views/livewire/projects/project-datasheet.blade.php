@@ -16,13 +16,213 @@
             </flux:tabs>
 
             <flux:tab.panel name="info">
-                Contenuto Informazioni Generali
+                {{-- first line --}}
+                <div class="flex">
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Pratica
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+                            {{ $this->project['estimate'] }}
+                        </p>
+
+                    </div>
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Nome progetto
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['name_project'] }}
+                        </p>
+                    </div>
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Cliente
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['client_name'] }}
+                        </p>
+                    </div>
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Tipo progetto
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['status'] }}
+                        </p>
+                    </div>
+                </div>
+                {{-- second line --}}
+                <div class="flex mt-4">
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Budget allocato
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['total_budget'] }}
+                        </p>
+                    </div>
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Responsabile di progetto
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['chief_project'] }}
+                        </p>
+                    </div>
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Responsabile di area
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['chief_area'] }}
+                        </p>
+                    </div>
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Data inizio
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['start_at'] }}
+                        </p>
+                    </div>
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Data fine
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['end_at'] }}
+                        </p>
+                    </div>
+                </div>
+
+                <flux:separator />
+
+                {{-- third line --}}
+                <div class="flex mt-4">
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Ribasso
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['discounted'] }}
+                        </p>
+                    </div>
+                </div>
+
+                {{-- fourth line --}}
+                <div class="flex mt-4">
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Componenti del raggruppamento
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['firms_and_percentage'] }}
+                        </p>
+                    </div>
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Percentuali dei raggruppati
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['firms_and_percentage'] }}
+                        </p>
+                    </div>
+
+                </div>
+
+                {{-- last line --}}
+                <div class="flex mt-4">
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Note di accordi extra contrattuali
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['note'] }}
+                        </p>
+                    </div>
+
+
+                </div>
+
+
             </flux:tab.panel>
             <flux:tab.panel name="desc">
-                <div class="text-sm">Contenuto Descrizione Progetto</div>
+                <div class="flex mt-4">
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Obiettivi
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['goals'] }}
+                        </p>
+                    </div>
+                </div>
+                <div class="flex mt-4">
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Ambito del progetto
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['project_scope'] }}
+                        </p>
+                    </div>
+                </div>
+                <div class="flex mt-4">
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Risultati attesi
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['expected_results'] }}
+                        </p>
+                    </div>
+                </div>
+                <div class="flex mt-4">
+                    <div class="font-light p-2.5">
+                        <p class="flex text-[13px] items-center">
+                            <flux:icon.document class="w-3 h-3" />Stackholder coinvolti
+                        </p>
+                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+
+                            {{ $this->project['stackholder_id'] }}
+                        </p>
+                    </div>
+                </div>
             </flux:tab.panel>
             <flux:tab.panel name="phases">
-                <div class="text-sm">Contenuto Fasi Previste</div>
+                @php
+                    $statusPhases = $this->getStatusPhasesList();
+                @endphp
+
+                @foreach ($statusPhases as $section => $phases)
+                    <p class="text-[13px] font-semibold mt-4">{{ $section }}</p>
+                    <ul class="ml-4 list-disc text-sm">
+                        @foreach ($phases as $phase => $status)
+                            <li class="font-semibold text-[#A0A0A0] text-[15px] list-none">
+                                {{ ucwords(str_replace('_', ' ', $phase)) }}:
+                       {{--          <span class="{{ $status === 'Svolto' ? 'text-green-600' : 'text-yellow-600' }}">
+                                    {{ $status }}
+                                </span> --}}
+                            </li>
+                        @endforeach
+                    </ul>
+                @endforeach
             </flux:tab.panel>
 
         </flux:tab.group>

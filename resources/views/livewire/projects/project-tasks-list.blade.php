@@ -11,7 +11,7 @@
           </div>
           <div class="flex space-x-2">
             <flux:button wire:click="$emitUp('showTask', {{ $t->id }})" icon="eye" size="sm" />
-            {{-- etc. --}}
+        
           </div>
         </li>
       @endforeach

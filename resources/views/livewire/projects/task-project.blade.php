@@ -6,11 +6,8 @@
     </flux:tabs>
 
     <flux:tab.panel name="list">
-        <select wire:change="updateStatusStart(1, $event.target.value)">
-            <option value="approved">Svolto</option>
-            <option value="pending">In attesa</option>
-        </select>
-        @if (count($this->projectStart) > 0)
+    
+        @if (count($elements) > 0)
             @include('livewire.projects.project-detail-list-component', [
                 'elements' => $this->projectStart,
                 'nameSection' => 'Avvio progetto',

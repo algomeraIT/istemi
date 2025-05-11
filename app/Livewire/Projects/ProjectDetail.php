@@ -13,8 +13,8 @@ use App\Models\NonComplianceManagement;
 use App\Models\NoteProject;
 use App\Models\Project;
 use App\Models\ProjectStart;
-use App\Models\Report;
 use App\Models\Referent;
+use App\Models\Report;
 use Livewire\Component;
 
 class ProjectDetail extends Component
@@ -33,8 +33,8 @@ class ProjectDetail extends Component
     public function mount($id)
     {
         $this->project = Project::findOrFail($id);
-      
-        $this->projectStart = ProjectStart::where("project_id", $id)->get();  
+
+        $this->projectStart = ProjectStart::where("project_id", $id)->get();
         $this->accountingValidation = AccountingValidation::where("project_id", $id)->get();
         $this->closeActivity = CloseActivity::where("project_id", $id)->get();
         $this->constructionSitePlane = ConstructionSitePlane::where("project_id", $id)->get();
@@ -43,8 +43,8 @@ class ProjectDetail extends Component
         $this->invoicesSal = InvoicesSal::where("project_id", $id)->get();
         $this->nonComplianceManagement = NonComplianceManagement::where("project_id", $id)->get();
         $this->report = Report::where("project_id", $id)->get();
-        $this->referent = Referent::get();
 
+        $this->referent = Referent::get();
         $this->document = DocumentProject::where("project_id", $id)->get();
         $this->notes = NoteProject::where("project_id", $id)->orderBy('created_at', 'desc')->get();
     }
@@ -53,6 +53,42 @@ class ProjectDetail extends Component
     {
         $this->selectedProjectStartId = $id;
         $this->isOpen = true;
+    }
+
+    public function getStatusPhasesList()
+    {
+        $collections = [
+            'Avvio progetto' => $this->projectStart,
+            'Verifica tecnico contabile' => $this->accountingValidation,
+            'Chiusura attività' => $this->closeActivity,
+            'Pianificazione cantiere' => $this->constructionSitePlane,
+            'Elaborazione dati' => $this->data,
+            'Verifica esterna' => $this->externalValidation,
+            'Fattura e acconto SAL' => $this->invoicesSal,
+            'Gestione non conformità' => $this->nonComplianceManagement,
+            'Report' => $this->report,
+        ];
+    
+        $result = [];
+    
+        foreach ($collections as $label => $items) {
+            $phases = [];
+    
+            foreach ($items as $item) {
+                foreach ($item->getAttributes() as $key => $value) {
+                    if (str_starts_with($key, 'status_')) {
+                        $phase = str_replace('status_', '', $key);
+                        $phases[$phase] = $value ? 'Svolto' : 'In attesa';
+                    }
+                }
+            }
+    
+            if (!empty($phases)) {
+                $result[$label] = $phases;
+            }
+        }
+    
+        return $result;
     }
 
     public function render()
