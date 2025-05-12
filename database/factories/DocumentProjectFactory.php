@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\DocumentProject;
-use App\Models\Project;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
 class DocumentProjectFactory extends Factory
 {
     protected $model = DocumentProject::class;
@@ -13,15 +13,23 @@ class DocumentProjectFactory extends Factory
     {
         return [
             'document_name' => $this->faker->words(3, true),
-            'project_id' => \App\Models\Project::factory(), 
-            'phase'         => $this->faker->randomElement([
-                'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura'
+            'project_id' => \App\Models\Project::factory(),
+            'phase' => $this->faker->randomElement([
+                'Avvio progetto',
+                'Fatture e acconto SAL',
+                'Elaborazione dati',
+                'Trasmissione report',
+                'Contabilità',
+                'Verifica esterna',
+                'Verifica tecnico contabile',
+                'Gestione non conformità',
+                'Chiusura attività',
             ]),
-            'user_id'       => \App\Models\User::factory(),      
-            'user_name'     => $this->faker->name(),
-            'status'        => $this->faker->randomElement(['loaded','deleted']),
-            'created_at'    => now(),
-            'updated_at'    => now(),
+            'user_id' => \App\Models\User::factory(),
+            'user_name' => $this->faker->name(),
+            'status' => $this->faker->randomElement(['loaded', 'deleted']),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
