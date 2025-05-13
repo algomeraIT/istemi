@@ -15,6 +15,53 @@ if (!function_exists('dateItFormat')) {
     }
 }
 
+if (!function_exists('countryList')) {
+    function countryList()
+    {
+        return [
+            'Italia',
+            'Francia',
+            'Germania',
+            'Spagna',
+            'Portogallo',
+            'Regno Unito',
+            'Irlanda',
+            'Paesi Bassi',
+            'Belgio',
+            'Lussemburgo',
+            'Svizzera',
+            'Austria',
+            'Polonia',
+            'Repubblica Ceca',
+            'Slovacchia',
+            'Ungheria',
+            'Slovenia',
+            'Croazia',
+            'Grecia',
+            'Svezia',
+            'Norvegia',
+            'Danimarca',
+            'Finlandia',
+            'Islanda',
+            'Stati Uniti',
+            'Canada',
+            'Australia',
+            'Nuova Zelanda',
+            'Giappone',
+            'Cina',
+            'India',
+            'Brasile',
+            'Argentina',
+            'Messico',
+            'Sudafrica',
+            'Egitto',
+            'Marocco',
+            'Tunisia',
+            'Turchia',
+        ];
+    }
+}
+
 
 if (!function_exists('badgeClient')) {
     function badgeClient($step)
@@ -52,3 +99,7 @@ if (!function_exists('badgeClient')) {
         return $bgColor;
     }
 }
+
+// $table->foreignId('created_by')->nullable()->references('id')->on('users');
+// $table->foreignId('updated_by')->nullable()->references('id')->on('users');
+// $table->foreignId('deleted_by')->nullable()->references('id')->on('users');

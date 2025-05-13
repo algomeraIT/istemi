@@ -13,18 +13,13 @@ return new class extends Migration
     {
         Schema::create('document_projects', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->on('users')->nullOnDelete();
+            $table->foreignId('project_id')->nullable()->on('projects')->onDelete('cascade');
             $table->string('document_name');
-            $table->unsignedBigInteger('project_id');
             $table->string('phase');
-    
-            $table->unsignedBigInteger('user_id');
-    
             $table->string('user_name');
             $table->string('status');
             $table->timestamps();
-    
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 

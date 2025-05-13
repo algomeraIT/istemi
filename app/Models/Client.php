@@ -5,37 +5,55 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
 
 class Client extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
-        'id',
-        'logo_path',
-        'tax_code',
+        'parent_id',
+        'user_id',
+        'estimate_id',
+        'sales_manager_id',
+        'is_company',
         'name',
         'email',
         'pec',
         'first_telephone',
         'second_telephone',
-        'registered_office_address',
-        'address',
-        'province',
-        'city',
         'country',
+        'city',
+        'province',
+        'address',
+        'tax_code',
+        'p_iva',
         'sdi',
         'site',
         'label',
-        'user_id_creation',
-        'name_user_creation',
-        'last_name_user_creation',
+        'note',
+        'service',
+        'provenance',
+        'registered_office_address',
         'has_referent',
-        'has_sales',
-        'status'
+        'status',
+        'step',
     ];
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        // Preview
+        $this->addMediaConversion('preview')
+            ->fit(Fit::Crop, 40, 40)
+            ->sharpen(10)
+            ->background('FFFFFF')
+            ->nonOptimized()
+            ->nonQueued();
+    }
 
     /**
      * Get the user who created this client.
@@ -50,6 +68,11 @@ class Client extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
+    public function salesManager(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'sales_manager_id');
+    }
+
     public function estimate()
     {
         return $this->hasMany(Estimate::class);
@@ -59,7 +82,7 @@ class Client extends Model implements HasMedia
     {
         return $this->hasMany(Referent::class);
     }
-    
+
     public function communication()
     {
         return $this->hasMany(Communication::class);
@@ -71,5 +94,4 @@ class Client extends Model implements HasMedia
             ->useDisk('public')
             ->singleFile();
     }
-
 }

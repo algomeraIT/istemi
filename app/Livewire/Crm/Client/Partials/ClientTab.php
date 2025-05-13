@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Crm;
+namespace App\Livewire\Crm\Client\Partials;
 
 use App\Models\AccountingInvoice;
 use App\Models\AccountingOrder;
@@ -21,7 +21,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
-class Referents extends Component
+class ClientTab extends Component
 {
     use WithPagination, WithFileUploads;
 
@@ -68,10 +68,9 @@ class Referents extends Component
         $this->client_id = $client->id;
     }
 
-    public function show($id)
+    public function setReferent($id)
     {
         $this->selectedReferent = Referent::findOrFail($id);
-        $this->showModal = true;
     }
 
     public function showSale($id)
@@ -399,15 +398,14 @@ class Referents extends Component
 
     public function render()
     {
-        return view('livewire.crm.referents', [
+        return view('livewire.crm.client.partials.client-tab', [
             'referents' => Referent::where('client_id', $this->client_id)
                 ->when($this->query_referent, fn($q) =>
                     $q->where(function ($query) {
                         $query->where('name', 'like', '%' . $this->query_referent . '%')
                             ->orWhere('last_name', 'like', '%' . $this->query_referent . '%');
                     })
-                )
-                ->paginate(10),
+                )->paginate(10),
 
             'sales' => Sale::where('client_id', $this->client_id)
                 ->when($this->query_sales, fn($q) => $q->where('invoice', 'like', '%' . $this->query_sales . '%'))

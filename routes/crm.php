@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Crm\Clients as ClientIndex;
+use App\Livewire\Crm\Client\Index as ClientIndex;
+use App\Livewire\Crm\Client\Show as ClientShow;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\ReferentController;
 use App\Http\Controllers\SalesController;
 
@@ -12,9 +12,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/referents/update/{id}', [ReferentController::class, 'update'])->name('referents.update');
     Route::post('/sales/store', [SalesController::class, 'store'])->name('sales.store');
     Route::put('/sales/update/{id}', [SalesController::class, 'update'])->name('sales.update');
+    // CRM
     Route::prefix('crm')->name('crm.')->group(function () {
-        Route::get('/{status}', ClientIndex::class)->name('client.index');
-        Route::get('/{client}/{id}', [ContactController::class, 'goToDetail'])->name('contact-detail');
+        Route::name('client.')->group(function () {
+            Route::get('/{status}', ClientIndex::class)->name('index');
+            Route::get('/{status}/{id}', ClientShow::class)->name('show');
+        });
     });
-    Route::get('/clients/{id}', [ClientsController::class, 'show'])->name('crm.client-detail');
 });
