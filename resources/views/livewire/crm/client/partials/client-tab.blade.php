@@ -152,6 +152,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
             </flux:button>
+
             <!-- Dropdown Items -->
             <div x-show="open" @click.away="open = false"
                 class="absolute mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50"

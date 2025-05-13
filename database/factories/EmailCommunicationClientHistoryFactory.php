@@ -14,8 +14,10 @@ class EmailCommunicationClientHistoryFactory extends Factory
 
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
-            'client_id' => Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'task' => $this->faker->sentence,
             'assigned_to' => $this->faker->name,
             'sender' => $this->faker->email,

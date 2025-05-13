@@ -15,12 +15,14 @@ class ProjectFactory extends Factory
 
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
             'estimate' => strtoupper($this->faker->numerify('PRT-########')),
             'general_info' => $this->faker->paragraph(),
             'n_file' => $this->faker->unique()->numerify('PRT-########'),
             'name_project' => $this->faker->sentence(3),
-            'id_client' => Client::factory(),
+            'id_client' => fake()->randomElement($clientIds),
             'client_name' => $this->faker->company,
             'logo_path_client' => $this->faker->imageUrl(),
             'client_type' => $this->faker->randomElement(['Privato', 'Pubblico']),

@@ -6,6 +6,7 @@ use Livewire\Form;
 use App\Models\Client;
 use Illuminate\Http\File;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class ClientForm extends Form
 {
@@ -99,7 +100,7 @@ class ClientForm extends Form
     {
         $this->verifyValidation();
         $validated = $this->validate();
-        unset($validated['logo_path']);
+        $this->user_id = Auth::id();
 
         $client = Client::create($validated);
 

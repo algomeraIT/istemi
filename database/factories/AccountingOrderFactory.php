@@ -12,8 +12,10 @@ class AccountingOrderFactory extends Factory
 
     public function definition(): array
     {
+        $clientIds = Client::where('status', 'cliente')->pluck('id')->toArray();
+
         return [
-            'client_id' => Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'order_number' => $this->faker->unique()->numerify('ORD-#####'),
             'date' => $this->faker->date,
             'country' => $this->faker->country,

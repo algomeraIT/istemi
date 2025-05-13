@@ -12,8 +12,10 @@ class SaleFactory extends Factory
 
     public function definition(): array
     {
+        $clientIds = Client::where('status', 'cliente')->pluck('id')->toArray();
+
         return [
-            'client_id' => Client::factory(), 
+            'client_id' => fake()->randomElement($clientIds), 
             'invoice' => $this->faker->unique()->word,
             'price' => $this->faker->randomFloat(2, 100, 1000), 
             'status' => $this->faker->randomElement([1, 0]),
@@ -21,16 +23,4 @@ class SaleFactory extends Factory
         ];
     }
 
-    public function fixed(): Factory
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'client_id' => 1,
-                'invoice' => $this->faker->unique()->word,
-                'price' => $this->faker->randomFloat(2, 100, 1000), 
-                'status' => $this->faker->randomElement([1, 0]),
-                'date' => $this->faker->date,
-            ];
-        });
-    }
 }

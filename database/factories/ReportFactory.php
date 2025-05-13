@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,10 @@ class ReportFactory extends Factory
      */
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
-            'client_id' => \App\Models\Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'project_id' => \App\Models\Project::factory(),
     
             'report' => $this->faker->boolean,

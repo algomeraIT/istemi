@@ -12,8 +12,7 @@
             <div class="border border-dashed border-[#10BDD4] rounded-sm">
                 <!-- Client Logo -->
                 <div class="border-b border-dashed border-[#10BDD4] bg-[#F5FCFD] h-18 relative">
-                    <div
-                        class="flex items-center justify-center w-24 h-24 p-2 rounded-full border border-dashed border-[#10BDD4] bg-white absolute right-10 -bottom-12">
+                    <div class="flex items-center justify-center w-24 h-24 overflow-hidden p-2 rounded-full border border-dashed border-[#10BDD4] bg-white absolute right-10 -bottom-12">
                         <img src="{{ $client->getFirstMediaUrl('logos') ? $client->getFirstMediaUrl('logos') : asset('icon/logo.svg') }}"
                             alt="Logo" />
                     </div>
@@ -39,7 +38,7 @@
                     <div class="w-full border-b border-dashed border-[#10BDD4] my-2"></div>
 
                     <x-field-data-client :label="'Sede di riferimento'" :data="$client->registered_office_address" />
-                    <x-field-data-client :label="'Creato da'" :data="$client->user->full_name" />
+                    <x-field-data-client :label="'Creato da'" :data="$client->user?->full_name" />
                     <x-field-data-client :label="'Data creazione'" :data="dateItFormat($client->created_at)" />
 
                     <div class="flex justify-between mt-2 mb-8 pr-2">

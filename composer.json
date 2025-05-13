@@ -19,8 +19,9 @@
         "livewire/livewire": "^3.6",
         "mews/purifier": "^3.4",
         "nesbot/carbon": "^3.9",
+        "richan-fongdasen/eloquent-blameable": "^1.11",
         "spatie/laravel-medialibrary": "^11.12",
-        "wire-elements/modal": "^2.0"
+        "wire-elements/modal": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",

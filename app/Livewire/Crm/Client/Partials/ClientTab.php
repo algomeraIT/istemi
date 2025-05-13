@@ -2,24 +2,24 @@
 
 namespace App\Livewire\Crm\Client\Partials;
 
-use App\Models\AccountingInvoice;
-use App\Models\AccountingOrder;
-use App\Models\Acquisition;
-use App\Models\ActivityCommunicationClientHistory;
-use App\Models\Communication;
-use App\Models\EmailCommunicationClientHistory;
-use App\Models\NoteCommunicationClientHistory;
-use App\Models\Referent;
+use Exception;
+use Carbon\Carbon;
 use App\Models\Sale;
 use App\Models\User;
-use Auth;
-use Carbon\Carbon;
-use DB;
-use Exception;
-use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
-use Livewire\WithFileUploads;
+use App\Models\Referent;
+use App\Models\Acquisition;
 use Livewire\WithPagination;
+use App\Models\Communication;
+use Livewire\WithFileUploads;
+use App\Models\AccountingOrder;
+use App\Models\AccountingInvoice;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Models\NoteCommunicationClientHistory;
+use App\Models\EmailCommunicationClientHistory;
+use App\Models\ActivityCommunicationClientHistory;
 
 class ClientTab extends Component
 {

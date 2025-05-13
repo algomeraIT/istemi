@@ -14,8 +14,10 @@ class NoteCommunicationClientFactory extends Factory
 
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
-            'client_id' => Client::factory(), 
+            'client_id' => fake()->randomElement($clientIds), 
             'user_id' => User::factory(), 
             'name_user' => $this->faker->firstName,
             'last_name_user' => $this->faker->lastName,

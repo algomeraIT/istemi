@@ -16,9 +16,11 @@ class CommunicationFactory extends Factory
 
     public function definition(): array
     {
+        $clientIds = Client::whereIn('status', ['cliente', 'contatto'])->pluck('id')->toArray();
+        
         return [
             'task' => $this->faker->sentence,
-            'client_id' => Client::factory(), 
+            'client_id' => fake()->randomElement($clientIds), 
 
             'assigned_to' => $this->faker->name,
             'deadline' => $this->faker->date(),

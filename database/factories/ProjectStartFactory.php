@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -45,8 +46,10 @@ class ProjectStartFactory extends Factory
             $data[$field] = $field === $trueField;
         }
 
+        $clientIds = Client::pluck('id')->toArray();
+
         return array_merge($data, [
-            'client_id' => \App\Models\Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'project_id' => \App\Models\Project::factory(),
             'name_phase' => $labels[$trueField],
             'user' => fake()->name(),

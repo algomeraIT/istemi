@@ -14,9 +14,11 @@ class NoteProjectFactory extends Factory
 
     public function definition()
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
             'project_id' => Project::factory(),
-            'client_id' => Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'note' => $this->faker->paragraph(3),
             'user_name' => $this->faker->name(),
             'user_id'    => User::factory(),

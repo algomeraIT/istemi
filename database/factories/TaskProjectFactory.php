@@ -20,9 +20,11 @@ class TaskProjectFactory extends Factory
 {
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
             'project_id' => Project::factory(),
-            'client_id' => Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'project_start_id' => Project::factory(),
             'user_id' => User::factory(),
             'user_name' => $this->faker->name(),

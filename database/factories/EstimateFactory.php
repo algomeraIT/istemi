@@ -14,12 +14,12 @@ class EstimateFactory extends Factory
 
     public function definition(): array
     {
-        $client = Client::inRandomOrder()->first() ?: Client::factory()->create();
+        $clientIds = Client::pluck('id')->toArray();
         $user = User::inRandomOrder()->first() ?: User::factory()->create();
         $referent = Referent::inRandomOrder()->first() ?: Referent::factory()->create();
 
         return [
-            'client_id' => rand(1, 10) <= 7 ? $client->id : null, 
+            'client_id' => rand(1, 10) <= 7 ? fake()->randomElement($clientIds) : null, 
             'user_id' => $user->id,
             'referent_id' => $referent->id,
             'address_invoice' => $this->faker->streetAddress,

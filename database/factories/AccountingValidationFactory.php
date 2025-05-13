@@ -19,8 +19,10 @@ class AccountingValidationFactory extends Factory
      */
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
-            'client_id' => Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'project_id' => Project::factory(),
         
             'accounting_validation' => $this->faker->boolean,

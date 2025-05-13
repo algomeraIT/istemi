@@ -12,8 +12,10 @@ class AcquisitionFactory extends Factory
 
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
-            'client_id' => Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'invoice' => $this->faker->unique()->numerify('INV-#####'),
             'total_price' => $this->faker->randomFloat(2, 100, 10000),
             'status' => $this->faker->randomElement([0, 1, 2]),

@@ -13,12 +13,14 @@ class ArchiveFactory extends Factory
 
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
             'project_id' => Project::factory(),
             'last_phase' => $this->faker->word,
             'note_project' => $this->faker->optional()->text,
             'estimate_project' => $this->faker->word,
-            'id_client' => Client::factory(), 
+            'id_client' => fake()->randomElement($clientIds), 
             'name_client' => $this->faker->company,
             'logo_path_client' => $this->faker->optional()->imageUrl(),
             'note_client' => $this->faker->optional()->text,

@@ -14,7 +14,7 @@ class Show extends Component
 
     public function mount($id)
     {
-        $this->client = Client::with('referents', 'estimate')->findOrFail($id);
+        $this->client = Client::with('user', 'referents', 'estimate')->findOrFail($id);
     }
 
     public function copy($text)

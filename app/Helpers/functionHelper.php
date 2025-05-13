@@ -99,7 +99,3 @@ if (!function_exists('badgeClient')) {
         return $bgColor;
     }
 }
-
-// $table->foreignId('created_by')->nullable()->references('id')->on('users');
-// $table->foreignId('updated_by')->nullable()->references('id')->on('users');
-// $table->foreignId('deleted_by')->nullable()->references('id')->on('users');

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
 use App\Models\Accounting;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -11,8 +12,10 @@ class AccountingFactory extends Factory
 
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray();
+        
         return [
-            'client_id' => \App\Models\Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'project_id' => \App\Models\Project::factory(),
             'accounting' => $this->faker->text(),
             'user_accounting' => \App\Models\User::factory(),

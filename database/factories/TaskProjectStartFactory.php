@@ -15,9 +15,11 @@ class TaskProjectStartFactory extends Factory
 
     public function definition()
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
             'project_id' => Project::factory(),
-            'client_id' => Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'project_start_id' => ProjectStart::factory(),
             'user_id' => User::factory(),
             'user_name' => $this->faker->name(),

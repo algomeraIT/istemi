@@ -14,8 +14,10 @@ class NonComplianceManagementFactory extends Factory
 
     public function definition(): array
     {
+        $clientIds = Client::pluck('id')->toArray();
+
         return [
-            'client_id' => Client::factory(),
+            'client_id' => fake()->randomElement($clientIds),
             'project_id' => Project::factory(),
             'non_compliance_management' => $this->faker->sentence(),
             'user' => fake()->name(),
