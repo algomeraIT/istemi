@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->foreignId('parent_id')->nullable()->constrained('clients')->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('estimate_id')->nullable()->on('estimates')->nullOnDelete();
+            $table->foreignId('sales_manager_id')->nullable()->on('users')->nullOnDelete();
             $table->boolean('is_company');
             $table->string('name');
             $table->string('email')->unique();
@@ -32,7 +33,6 @@ return new class extends Migration {
             $table->string('service')->nullable();
             $table->string('provenance')->nullable();
             $table->string('registered_office_address')->nullable();
-            $table->string('sales_manager')->nullable();
             $table->boolean('has_referent')->nullable();
             $table->string('status');
             $table->string('step')->nullable();

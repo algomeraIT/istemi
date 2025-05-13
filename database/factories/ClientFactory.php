@@ -27,6 +27,7 @@ class ClientFactory extends Factory
 
         return [
             'user_id' => $users->random()->id,
+            'sales_manager_id' => $users->random()->id,
             'is_company' => $this->faker->boolean(),
             'email' => $this->faker->unique()->companyEmail,
             'pec' => $this->faker->optional()->safeEmail,
@@ -44,7 +45,6 @@ class ClientFactory extends Factory
             'note' => $this->faker->paragraph(),
             'registered_office_address' => $this->faker->address,
             'has_referent' => $this->faker->boolean,
-            'sales_manager' => $this->faker->boolean,
             'status' => $status,
             'step' => $step,
         ];

@@ -19,6 +19,7 @@ class Client extends Model implements HasMedia
         'parent_id',
         'user_id',
         'estimate_id',
+        'sales_manager_id',
         'is_company',
         'name',
         'email',
@@ -38,7 +39,6 @@ class Client extends Model implements HasMedia
         'service',
         'provenance',
         'registered_office_address',
-        'sales_manager',
         'has_referent',
         'status',
         'step',
@@ -66,6 +66,11 @@ class Client extends Model implements HasMedia
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function salesManager(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'sales_manager_id');
     }
 
     public function estimate()

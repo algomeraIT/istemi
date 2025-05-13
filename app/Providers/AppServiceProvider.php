@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Middleware\Authenticate;
-use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,15 @@ class AppServiceProvider extends ServiceProvider
         Authenticate::redirectUsing(function ($request) { 
             return route('home'); 
         });
+
+        Builder::macro('filter', function($field, $string) {
+            return $string ? $this->where($field, 'like', '%'.strtolower($string).'%') : $this;
+        });
+
+        Builder::macro('orFilter', function($field, $string) {
+            return $string ? $this->orWhere($field, 'like', '%'.strtolower($string).'%') : $this;
+        });
+
         
     }
 }

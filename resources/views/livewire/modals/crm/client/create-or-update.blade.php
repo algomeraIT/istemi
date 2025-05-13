@@ -19,7 +19,7 @@
                     <flux:field data-input>
                         <div>
                             <flux:icon.clipboard />
-                            <flux:label>Ragione sociale</flux:label>
+                            <flux:label>Nome/Ragione sociale</flux:label>
                         </div>
                         <flux:input wire:model.live="clientForm.name" />
                         <flux:error name="clientForm.name" />

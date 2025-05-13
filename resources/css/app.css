@@ -83,6 +83,11 @@
 
         [data-flux-input] {
             @apply mb-0;
+
+            div {
+                @apply mb-0;
+            }
+            
             input {
                 @apply rounded-none shadow-none h-8 !text-[#B0B0B0] border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0;
             }
@@ -113,6 +118,13 @@
 
     &[data-variant="status"] {
         @apply lg:w-40;
+    }
+}
+[data-flux-select][data-custom] {
+    @apply w-fit;
+
+    button {
+        @apply lg:w-46 rounded-none shadow-none text-[#B0B0B0] font-light h-8 py-0 border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0 z-10;
     }
 }
 
@@ -200,11 +212,10 @@ select:focus[data-flux-control] {
 }
 
 [data-flux-tab] {
-    @apply bg-white border-1 rounded-none border-[#10BDD4] text-[#B0B0B0]  font-semibold ;
-    font-size: 16px;
+    @apply bg-white border-1 rounded-none border-[#10BDD4] text-[#888888] text-base  font-medium ;
 
     &[data-active] {
-        @apply bg-[#F5FCFD] text-[#10BDD4];
+        @apply bg-[#F5FCFD] text-[#10BDD4] font-bold;
     }
 
     &[data-variant="detail"] {
