@@ -23,7 +23,7 @@
 
     <div class="megamenu"></div>
 
-    <div class="h-[calc(100vh-103px)] bg-[#F5FCFD] py-14">
+    <div class="h-[calc(100vh-103px)] bg-[#F5FCFD] py-12">
         @yield('content')
 
         <main class="grid grid-cols-12 gap-[30px] mx-10 lg:mx-[105px]">

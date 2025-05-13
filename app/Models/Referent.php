@@ -40,7 +40,11 @@ class Referent extends Model
                 'application/vnd.ms-excel',
                 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
             ])->useDisk('public')
-            ->singleFile();
-            
+            ->singleFile();  
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->last_name} {$this->name}";
     }
 }

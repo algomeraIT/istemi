@@ -207,19 +207,18 @@ select:focus[data-flux-control] {
 }
 
 [data-flux-tabs] {
-    @apply bg-white ;
-
+    @apply bg-transparent;
 }
 
 [data-flux-tab] {
     @apply bg-white border-1 rounded-none border-[#10BDD4] text-[#888888] text-base  font-medium ;
 
     &[data-active] {
-        @apply bg-[#F5FCFD] text-[#10BDD4] font-bold;
+        @apply bg-[#F5FCFD] text-[#10BDD4];
     }
 
     &[data-variant="detail"] {
-        @apply border-none;
+        @apply !border-none;
     }
 
     &[data-variant="projectDetail"] {

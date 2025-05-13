@@ -10,31 +10,32 @@ use App\Models\HistoryContact;
 class Show extends Component
 {
     public $client;
-    public $estimates;
-    public $histories;
     public $references;
 
     public function mount($id)
     {
         $this->client = Client::with('referents', 'estimate')->findOrFail($id);
+    }
 
-        $this->estimates = Estimate::where('client_id', $id)
-            ->latest()
-            ->get();
+    public function copy($text)
+    {
+        $this->dispatch('copyLink', [
+            'text' => $text
+        ]);
+    }
 
-        $this->histories = HistoryContact::where('client_id', $id)
-            ->latest()
-            ->get();
+    public function newQuote() {
+        dump('Nuovo preventivo');
     }
 
     public function render()
     {
-        if ($this->client->status == 'cliente') {
-            return view('livewire.crm.client-detail');
-        } elseif ($this->client->status == 'contatto') {
-            return view('livewire.crm.contact-detail');
-        } elseif ($this->client->status == 'lead') {
-            return view('livewire.crm.client.show');
-        }
+        $estimates = Estimate::where('client_id', $this->client->id)->latest()->get();
+        $histories = HistoryContact::where('client_id', $this->client->id)->latest()->get();
+
+        return view('livewire.crm.client.show', [
+            'estimates' => $estimates,
+            'histories' => $histories,
+        ]);
     }
 }
