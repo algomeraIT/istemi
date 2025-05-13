@@ -10,6 +10,7 @@
             @include('livewire.projects.project-detail-list-component', [
                 'elements' => $this->projectStart,
                 'nameSection' => 'Avvio progetto',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 

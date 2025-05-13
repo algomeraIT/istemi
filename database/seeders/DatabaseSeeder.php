@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
             NonComplianceManagementSeeder::class,
             CloseActivitySeeder::class,
             NoteTaskProjectStartSeeder::class,
+            TaskProjectSeeder::class
         ]);
     }
 }

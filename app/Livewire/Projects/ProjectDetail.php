@@ -16,6 +16,7 @@ use App\Models\ProjectStart;
 use App\Models\Referent;
 use App\Models\Report;
 use App\Models\Stackholder;
+use App\Models\TaskProject;
 use Livewire\Component;
 
 class ProjectDetail extends Component
@@ -29,13 +30,14 @@ class ProjectDetail extends Component
     public $isOpen = false;
     public $selectedProjectStartId = null;
     public $id;
+    public $groupedMicroTasks;
     public $stackholder;
     public string $datasheetHideDiv = 'task';
 
     public function mount($id)
     {
         $this->project = Project::findOrFail($id);
-
+        $this->groupedMicroTasks = TaskProject::where("project_id", $id)->get();
         $this->projectStart = ProjectStart::where("project_id", $id)->get();
         $this->accountingValidation = AccountingValidation::where("project_id", $id)->get();
         $this->closeActivity = CloseActivity::where("project_id", $id)->get();
@@ -94,6 +96,21 @@ class ProjectDetail extends Component
         }
 
         return $result;
+    }
+
+    public function deleteTask($id)
+    {
+        try {
+            $task = \App\Models\TaskProjectStart::findOrFail($id);
+
+            $task->update([
+                'status' => 'archived',
+            ]);
+
+            \Flux\Flux::toast('Task archiviato con successo!');
+        } catch (\Exception $e) {
+            \Flux\Flux::toast('Errore durante l\'archiviazione del task...');
+        }
     }
 
     public function render()
