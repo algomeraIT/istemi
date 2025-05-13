@@ -52,13 +52,22 @@
                             <flux:table.row @click="openMicro = !openMicro" class="cursor-pointer border-b">
                                 <flux:table.cell data-detail="detail" class="whitespace-nowrap border  ">
                                     {{ $element->name_phase }}
-                                    
+
                                 </flux:table.cell>
 
                                 <flux:table.cell class="whitespace-nowrap border " data-detail="detail">
-                                    <flux:button wire:click="show({{ $element->id }})" variant="ghost"
-                                        data-variant="ghost" data-color="teal" data-rounded icon="plus"
-                                        size="sm" />
+
+                                    <flux:button
+                                        wire:click="$dispatch('openModal', {
+                                    component: 'projects.modals.create-task-project',
+                                    arguments: {
+                                        project_id: {{ $project->id }},
+                                        phase: 'project_start_id',
+                                        id: {{ $element->id }}
+                                    }
+                                })"
+                                variant="ghost" data-variant="ghost" icon="plus">
+                                    </flux:button>
                                 </flux:table.cell>
 
                                 <flux:table.cell data-detail="detail" class="whitespace-nowrap border ">
@@ -108,40 +117,46 @@
                             <tr x-show="openMicro" x-transition>
                                 <td colspan="5" class="p-4 bg-gray-50 border-t border-l-4 border-[#4D1B83]">
                                     <div class="text-sm font-medium text-[#4D1B83] mb-2">Micro Task</div>
-                                        <flux:table class="bg-white border rounded-md text-sm">
-                                            <flux:table.columns>
-                                                <flux:table.column class="border px-4 py-2 text-left" data-detail="detailColumn">Task</flux:table.column>
-                                                <flux:table.column class="border px-4 py-2 text-left" data-detail="detailColumn">Assegnatario</flux:table.column>
-                                                <flux:table.column class="border px-4 py-2 text-right" data-detail="detailColumn">Azioni</flux:table.column>
-                                            </flux:table.columns>
-                                        
-                                            @foreach ($groupedMicroTasks as $micro)
-                                                <flux:table.row class="border-b hover:bg-gray-50">
-                                                    <flux:table.cell class="border px-4 py-2" data-detail="detail">
-                                                        {{ $micro->title }}
-                                                    </flux:table.cell>
-                                        
-                                                    <flux:table.cell class="border px-4 py-2" data-detail="detail">
-                                                        {{ $micro->assignee ?? '—' }}
-                                                    </flux:table.cell>
-                                        
-                                                    <flux:table.cell class="border px-4 py-2 text-right" data-detail="detail">
-                                                        <flux:button
-                                                            wire:click="$dispatch('openModal', { component: 'projects.modals.micro-task-detail', arguments: { id: {{ $micro->id }} }})"
-                                                            variant="ghost" data-variant="ghost" data-color="teal" data-rounded icon="eye" size="sm" />
-                                        
-                                                        <flux:button
-                                                            wire:click="$dispatch('openModal', { component: 'projects.modals.micro-edit-task', arguments: { id: {{ $micro->id }} } })"
-                                                            variant="ghost" data-variant="ghost" data-color="gray" data-rounded icon="pencil" size="sm" />
-                                        
-                                                        <flux:button
-                                                            wire:click="microDeleteTask({{ $micro->id }})"
-                                                            wire:confirm="Sei sicuro di voler archiviare questo micro task?"
-                                                            variant="ghost" data-variant="ghost" data-color="red" data-rounded icon="trash" size="sm" />
-                                                    </flux:table.cell>
-                                                </flux:table.row>
-                                            @endforeach
-                                        </flux:table>
+                                    <flux:table class="bg-white border rounded-md text-sm">
+                                        <flux:table.columns>
+                                            <flux:table.column class="border px-4 py-2 text-left"
+                                                data-detail="detailColumn">Task</flux:table.column>
+                                            <flux:table.column class="border px-4 py-2 text-left"
+                                                data-detail="detailColumn">Assegnatario</flux:table.column>
+                                            <flux:table.column class="border px-4 py-2 text-right"
+                                                data-detail="detailColumn">Azioni</flux:table.column>
+                                        </flux:table.columns>
+
+                                        @foreach ($groupedMicroTasks as $micro)
+                                            <flux:table.row class="border-b hover:bg-gray-50">
+                                                <flux:table.cell class="border px-4 py-2" data-detail="detail">
+                                                    {{ $micro->title }}
+                                                </flux:table.cell>
+
+                                                <flux:table.cell class="border px-4 py-2" data-detail="detail">
+                                                    {{ $micro->assignee ?? '—' }}
+                                                </flux:table.cell>
+
+                                                <flux:table.cell class="border px-4 py-2 text-right"
+                                                    data-detail="detail">
+                                                    <flux:button
+                                                        wire:click="$dispatch('openModal', { component: 'projects.modals.micro-task-detail', arguments: { id: {{ $micro->id }} }})"
+                                                        variant="ghost" data-variant="ghost" data-color="teal"
+                                                        data-rounded icon="eye" size="sm" />
+
+                                                    <flux:button
+                                                        wire:click="$dispatch('openModal', { component: 'projects.modals.micro-edit-task', arguments: { id: {{ $micro->id }} } })"
+                                                        variant="ghost" data-variant="ghost" data-color="gray"
+                                                        data-rounded icon="pencil" size="sm" />
+
+                                                    <flux:button wire:click="microDeleteTask({{ $micro->id }})"
+                                                        wire:confirm="Sei sicuro di voler archiviare questo micro task?"
+                                                        variant="ghost" data-variant="ghost" data-color="red"
+                                                        data-rounded icon="trash" size="sm" />
+                                                </flux:table.cell>
+                                            </flux:table.row>
+                                        @endforeach
+                                    </flux:table>
                                 </td>
                             </tr>
 
@@ -155,4 +170,5 @@
     @if ($isOpenTaskModal)
         @include('livewire.projects.modals.task-detail')
     @endif
+
 </div>
