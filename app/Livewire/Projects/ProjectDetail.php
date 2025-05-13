@@ -51,9 +51,14 @@ class ProjectDetail extends Component
         $this->referent = Referent::get();
         $this->document = DocumentProject::where("project_id", $id)->get();
         $this->notes = NoteProject::where("project_id", $id)->orderBy('created_at', 'desc')->get();
+
         $ids = json_decode($this->project['stackholder_id'], true);
 
-        $this->stackholder = Stackholder::whereIn('id', $ids)->get();
+        if (is_array($ids) && count($ids) > 0) {
+            $this->stackholder = Stackholder::whereIn('id', $ids)->get();
+        } else {
+            $this->stackholder = collect(); 
+        }
     }
 
     public function show($id)

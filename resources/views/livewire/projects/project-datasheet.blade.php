@@ -126,10 +126,11 @@
                             <flux:icon.document class="w-3 h-3" />Componenti del raggruppamento
                         </p>
 
-                            @php
-                            $firms = json_decode($this->project['firms_and_percentage'] , true);
+                        @php
+                            $firms = json_decode($this->project['firms_and_percentage'], true);
                         @endphp
-                        
+                    </div>
+                    @if (is_array($firms))
                         <div class="space-y-2">
                             @foreach ($firms as $firm => $percentage)
                                 <div class="flex justify-between items-center border-b pb-1">
@@ -137,22 +138,22 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div>
-                    <div class="font-light p-2.5">
-                        <p class="flex text-[13px] items-center">
-                            <flux:icon.document class="w-3 h-3" />Percentuali dei raggruppati
-                        </p>
-                        <div class="space-y-2">
 
-                            @foreach ($firms as $firm => $percentage)
-                            <div class="flex justify-between items-center border-b pb-1">
-                                <span class="text-gray-700 font-medium">{{ $percentage }}%</span>
+                        <div class="font-light p-2.5">
+                            <p class="flex text-[13px] items-center">
+                                <flux:icon.document class="w-3 h-3" />Percentuali dei raggruppati
+                            </p>
+                            <div class="space-y-2">
+
+                                @foreach ($firms as $firm => $percentage)
+                                    <div class="flex justify-between items-center border-b pb-1">
+                                        <span class="text-gray-700 font-medium">{{ $percentage }}%</span>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
-                    </div>
 
-                    </div>
-
+                        </div>
+                    @endif
                 </div>
 
                 {{-- last line --}}
@@ -212,14 +213,15 @@
                             <flux:icon.user-group class="w-3 h-3" />Stackholder coinvolti
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
-
-                           @foreach ($this->stackholder as $stack)
-                               <div class="flex font-light text-[13px] space-x-5">
-                                <p class="text-[15px] text-[#A0A0A0]  font-semibold">{{ $stack['role'] }}</p>
-                                <p class="text-[15px] text-[#A0A0A0]  font-semibold">{{ $stack['name'] }}</p>
-                                <p class="text-[15px] text-[#A0A0A0]  font-semibold">{{ $stack['email'] }}</p>
-                               </div>
-                           @endforeach
+                            @if ($this->stackholder && $this->stackholder->count())
+                                @foreach ($this->stackholder as $stack)
+                                    <div class="flex font-light text-[13px] space-x-5">
+                                        <p class="text-[15px] text-[#A0A0A0]  font-semibold">{{ $stack['role'] }}</p>
+                                        <p class="text-[15px] text-[#A0A0A0]  font-semibold">{{ $stack['name'] }}</p>
+                                        <p class="text-[15px] text-[#A0A0A0]  font-semibold">{{ $stack['email'] }}</p>
+                                    </div>
+                                @endforeach
+                            @endif
                         </p>
                     </div>
                 </div>
@@ -235,7 +237,7 @@
                         @foreach ($phases as $phase => $status)
                             <li class="font-semibold text-[#A0A0A0] text-[15px] list-none">
                                 {{ ucwords(str_replace('_', ' ', $phase)) }}
-                       {{--          <span class="{{ $status === 'Svolto' ? 'text-green-600' : 'text-yellow-600' }}">
+                                {{--          <span class="{{ $status === 'Svolto' ? 'text-green-600' : 'text-yellow-600' }}">
                                     {{ $status }}
                                 </span> --}}
                             </li>

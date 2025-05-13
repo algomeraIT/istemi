@@ -180,14 +180,14 @@
                                             <flux:icon.at-symbol class="w-4 h-4 mr-2 text-gray-500" />
                                             Responsabile di area
                                         </label>
-                                        <select id="chief_area" wire:model="formData.chief_area"
+                                        <select id="id_chief_area" wire:model="formData.id_chief_area"
                                             class="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white">
                                             <option selected>Seleziona</option>
                                             @foreach ($area as $a)
                                                 <option value="{{ $a['id'] }}">{{ $a['name'] . ' ' . $a['last_name'] }}</option>
                                             @endforeach
                                         </select>
-                                        @error('formData.chief_area')
+                                        @error('formData.id_chief_area')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -196,14 +196,14 @@
                                             <flux:icon.at-symbol class="w-4 h-4 mr-2 text-gray-500" />
                                             Responsabile di progetto
                                         </label>
-                                        <select id="chief_project" wire:model="formData.chief_project"
+                                        <select id="id_chief_project" wire:model="formData.id_chief_project"
                                             class="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white">
                                             <option selected>Seleziona</option>
                                             @foreach ($project as $p)
                                                 <option value="{{ $p['id'] }}">{{ $p['name'] . ' ' . $p['last_name'] }}</option>
                                             @endforeach
                                         </select>
-                                        @error('formData.chief_project')
+                                        @error('formData.id_chief_project')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
