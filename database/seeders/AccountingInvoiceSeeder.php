@@ -9,6 +9,6 @@ class AccountingInvoiceSeeder extends Seeder
 {
     public function run(): void
     {
-        AccountingInvoice::factory()->count(30)->create();
+        AccountingInvoice::factory()->count(20)->create();
     }
 }

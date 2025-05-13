@@ -36,9 +36,14 @@
                     </div>
                 
                     <div>
-                        <span class="font-semibold {{ $element->status_contract_ver ? 'text-green-600' : 'text-yellow-600' }}">
-                            {{ $element->status_contract_ver ? 'Svolto' : 'In attesa' }}
-                        </span>
+                        <div class="w-full h-full px-4 py-2 text-center font-extralight">
+                            <select wire:change="updateStatusStart({{ $element->id }}, $event.target.value)"
+                                class="bg-transparent w-full appearance-none px-2 py-1 border-none focus:outline-none text-center
+                                    {{ $element->status === 'approved' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
+                                <option value="approved" {{ $element->status === 'approved' ? 'selected' : '' }}>Svolto</option>
+                                <option value="pending" {{ $element->status === 'pending' ? 'selected' : '' }}>In attesa</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 

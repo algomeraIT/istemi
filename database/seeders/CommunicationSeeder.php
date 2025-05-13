@@ -9,6 +9,6 @@ class CommunicationSeeder extends Seeder
 {
     public function run(): void
     {
-        Communication::factory()->count(30)->create();
+        Communication::factory()->count(20)->create();
     }
 }

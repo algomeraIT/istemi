@@ -11,9 +11,12 @@ class ConstructionSitePlaneFactory extends Factory
 {
     public function definition(): array
     {
+        $project = Project::first();
+        $client = Client::first();
+
         return [
-            'client_id' => Client::factory(),
-            'project_id' => Project::factory(),
+               'client_id' => $client->id,
+            'project_id' => $project->id,
 
             'construction_site_plane' => $this->faker->boolean,
             'user' => fake()->name(),

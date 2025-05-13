@@ -15,6 +15,7 @@ use App\Models\Project;
 use App\Models\ProjectStart;
 use App\Models\Referent;
 use App\Models\Report;
+use App\Models\Stackholder;
 use Livewire\Component;
 
 class ProjectDetail extends Component
@@ -25,9 +26,10 @@ class ProjectDetail extends Component
     public string $tabListKanbaDetail = 'kanban';
     public string $subDetailActiveTab = 'sub-detail-kanban';
     public string $datasheettabs = 'info';
-    public $isOpen = true;
+    public $isOpen = false;
     public $selectedProjectStartId = null;
     public $id;
+    public $stackholder;
     public string $datasheetHideDiv = 'task';
 
     public function mount($id)
@@ -47,6 +49,9 @@ class ProjectDetail extends Component
         $this->referent = Referent::get();
         $this->document = DocumentProject::where("project_id", $id)->get();
         $this->notes = NoteProject::where("project_id", $id)->orderBy('created_at', 'desc')->get();
+        $ids = json_decode($this->project['stackholder_id'], true);
+
+        $this->stackholder = Stackholder::whereIn('id', $ids)->get();
     }
 
     public function show($id)
@@ -68,12 +73,12 @@ class ProjectDetail extends Component
             'Gestione non conformità' => $this->nonComplianceManagement,
             'Report' => $this->report,
         ];
-    
+
         $result = [];
-    
+
         foreach ($collections as $label => $items) {
             $phases = [];
-    
+
             foreach ($items as $item) {
                 foreach ($item->getAttributes() as $key => $value) {
                     if (str_starts_with($key, 'status_')) {
@@ -82,12 +87,12 @@ class ProjectDetail extends Component
                     }
                 }
             }
-    
+
             if (!empty($phases)) {
                 $result[$label] = $phases;
             }
         }
-    
+
         return $result;
     }
 

@@ -9,6 +9,6 @@ class NoteCommunicationClientSeeder extends Seeder
 {
     public function run(): void
     {
-        NoteCommunicationClient::factory()->count(30)->create();
+        NoteCommunicationClient::factory()->count(20)->create();
     }
 }

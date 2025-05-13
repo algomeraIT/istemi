@@ -82,8 +82,9 @@
 
 
                             <flux:table.cell class="border" data-detail="detail">
-                                <flux:button wire:click="goToDetail({{ $element->id }})" variant="ghost"
+                                <flux:button wire:click="$dispatch('openModal', { component: 'projects.modals.task-detail', arguments: { id: {{ $element->id }} }})" variant="ghost"
                                     data-variant="ghost" data-color="teal" data-rounded icon="eye" size="sm" />
+
                                 <flux:button wire:click="edit({{ $element->id }})" variant="ghost"
                                     data-variant="ghost" data-color="gray" data-rounded icon="pencil" size="sm" />
                                 <flux:button wire:click="delete({{ $element->id }})"
@@ -97,4 +98,7 @@
             </div>
         </div>
     @endif
+@if ($isOpenTaskModal)
+@include('livewire.projects.modals.task-detail')
+@endif
 </div>

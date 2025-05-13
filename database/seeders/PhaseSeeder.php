@@ -7,6 +7,6 @@ use App\Models\Phase;
 
 class PhaseSeeder extends Seeder {
     public function run() {
-        Phase::factory()->count(30)->create();
+        Phase::factory()->count(20)->create();
     }
 }

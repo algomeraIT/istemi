@@ -11,6 +11,6 @@ class NoteCommunicationClientHistorySeeder extends Seeder
     {
         NoteCommunicationClientHistory::factory()->count(1)->fixed()->create();
 
-        NoteCommunicationClientHistory::factory()->count(30)->create();
+        NoteCommunicationClientHistory::factory()->count(20)->create();
     }
 }

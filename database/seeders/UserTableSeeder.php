@@ -34,6 +34,6 @@ class UserTableSeeder extends Seeder
             'remember_me' => 0,
         ]);
   
-        User::factory()->count(30)->create();
+        User::factory()->count(20)->create();
     }
 }

@@ -11,6 +11,6 @@ class ContactSeeder extends Seeder
     {
         Contact::factory()->count(1)->fixed()->create();
 
-        Contact::factory()->count(30)->create();
+        Contact::factory()->count(20)->create();
     }
 }

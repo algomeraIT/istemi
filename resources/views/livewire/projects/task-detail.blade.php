@@ -3,7 +3,8 @@
     <flux:tabs variant="segmented" class="lg:ml-[40%]">
         <flux:tab name="list" icon="list-bullet">Lista</flux:tab>
         <flux:tab name="kanban" icon="squares-2x2">Kanban</flux:tab>
-    </flux:tabs>
+    </flux:tabs>      <flux:button wire:click="show(1)" variant="ghost" data-variant="ghost"
+        data-color="teal" data-rounded icon="plus" size="sm" />
 
     <flux:tab.panel name="list">
         @if (count($this->projectStart) > 0)

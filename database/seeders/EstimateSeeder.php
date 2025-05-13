@@ -11,6 +11,6 @@ class EstimateSeeder extends Seeder
     {
         Estimate::factory()->count(1)->fixed()->create();
 
-        Estimate::factory()->count(30)->create();
+        Estimate::factory()->count(20)->create();
     }
 }

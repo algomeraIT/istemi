@@ -11,6 +11,6 @@ class EmailCommunicationClientHistorySeeder extends Seeder
     {
         EmailCommunicationClientHistory::factory()->count(1)->fixed()->create();
 
-        EmailCommunicationClientHistory::factory()->count(30)->create();
+        EmailCommunicationClientHistory::factory()->count(20)->create();
     }
 }

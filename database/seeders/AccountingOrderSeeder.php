@@ -9,6 +9,6 @@ class AccountingOrderSeeder extends Seeder
 {
     public function run(): void
     {
-        AccountingOrder::factory()->count(30)->create();
+        AccountingOrder::factory()->count(20)->create();
     }
 }

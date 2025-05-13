@@ -11,6 +11,6 @@ class NoteProjectSeeder extends Seeder
     {
         NoteProject::factory()->count(1)->fixed()->create();
 
-        NoteProject::factory()->count(30)->create();
+        NoteProject::factory()->count(20)->create();
     }
 }

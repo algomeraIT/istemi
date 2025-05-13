@@ -9,6 +9,6 @@ class AttachSeeder extends Seeder
 {
     public function run(): void
     {
-        Attach::factory()->count(30)->create();
+        Attach::factory()->count(20)->create();
     }
 }

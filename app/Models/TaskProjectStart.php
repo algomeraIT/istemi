@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 
 class TaskProjectStart extends Model
@@ -16,6 +17,8 @@ class TaskProjectStart extends Model
         'project_id',
         'client_id',
         'project_start_id',
+        'user_id',
+        'user_name',
         'title',
         'assignee',
         'cc',

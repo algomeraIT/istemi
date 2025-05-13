@@ -11,6 +11,6 @@ class ReferentSeeder extends Seeder
     {
         Referent::factory()->count(1)->fixed()->create();
 
-        Referent::factory()->count(30)->create();
+        Referent::factory()->count(20)->create();
     }
 }

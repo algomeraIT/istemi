@@ -12,7 +12,7 @@ class StackholderSeeder extends Seeder
      */
     public function run(): void
     {
-        Stackholder::factory()->count(30)->create();
+        Stackholder::factory()->count(20)->create();
 
     }
 }

@@ -84,7 +84,7 @@ select:focus[data-flux-control] {
     @apply rounded-none shadow-none text-[#B0B0B0] font-semibold h-8;
 
     &[data-variant="status"] {
-        @apply lg:w-40;
+        @apply lg:w-40 ;
     }
 }
 

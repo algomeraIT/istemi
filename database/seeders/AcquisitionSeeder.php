@@ -11,6 +11,6 @@ class AcquisitionSeeder extends Seeder
     {
         Acquisition::factory()->count(1)->fixed()->create();
 
-        Acquisition::factory()->count(30)->create();
+        Acquisition::factory()->count(20)->create();
     }
 }

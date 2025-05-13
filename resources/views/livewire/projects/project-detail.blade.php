@@ -1,5 +1,4 @@
-<div>
-    @section('content')
+
         <div class="container mx-auto pt-2">
             <div class=" bg-white p-6 ">
                 <!-- Left Section: Referents -->
@@ -42,7 +41,10 @@
                                 </div>
                             </div>
                             <flux:tab.panel name="task">
-                                @include('livewire.projects.task-detail')
+                                <div>
+                                    <livewire:projects.project-tasks-list :id="$id"/>
+                                </div>
+                           
                             </flux:tab.panel>
 
                             <flux:tab.panel name="document">
@@ -68,5 +70,4 @@
 
             </div>
         </div>
-    @endsection
-</div>
+

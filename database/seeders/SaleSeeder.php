@@ -11,6 +11,6 @@ class SaleSeeder extends Seeder
     {
         Sale::factory()->count(1)->fixed()->create();
 
-        Sale::factory()->count(30)->create();
+        Sale::factory()->count(20)->create();
     }
 }

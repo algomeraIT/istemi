@@ -14,13 +14,14 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserTableSeeder::class,
+            ClientsSeeder::class,
+            ProjectSeeder::class,
             AccountingInvoiceSeeder::class,
             AccountingOrderSeeder::class,
             AcquisitionSeeder::class,
             ActivityCommunicationClientHistorySeeder::class,
             ArchiveSeeder::class,
             AttachSeeder::class,
-            ClientsSeeder::class,
             CommunicationSeeder::class,
             EmailCommunicationClientHistorySeeder::class,
             EstimateSeeder::class,
@@ -29,10 +30,8 @@ class DatabaseSeeder extends Seeder
             NoteCommunicationClientSeeder::class,
             NoteSeeder::class,
             PhaseSeeder::class,
-            ProjectSeeder::class,
             ReferentSeeder::class,
             SaleSeeder::class,
-            UserTableSeeder::class,
             NoteProjectSeeder::class,
             HistoryContactsTableSeeder::class,
             ProjectStartSeeder::class,
@@ -48,6 +47,7 @@ class DatabaseSeeder extends Seeder
             AccountingValidationSeeder::class,
             NonComplianceManagementSeeder::class,
             CloseActivitySeeder::class,
+            NoteTaskProjectStartSeeder::class,
         ]);
     }
 }

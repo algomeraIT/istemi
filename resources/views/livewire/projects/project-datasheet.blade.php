@@ -125,19 +125,32 @@
                         <p class="flex text-[13px] items-center">
                             <flux:icon.document class="w-3 h-3" />Componenti del raggruppamento
                         </p>
-                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
-                            {{ $this->project['firms_and_percentage'] }}
-                        </p>
+                            @php
+                            $firms = json_decode($this->project['firms_and_percentage'] , true);
+                        @endphp
+                        
+                        <div class="space-y-2">
+                            @foreach ($firms as $firm => $percentage)
+                                <div class="flex justify-between items-center border-b pb-1">
+                                    <span class="text-gray-700 font-medium">{{ $firm }}</span>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="font-light p-2.5">
                         <p class="flex text-[13px] items-center">
                             <flux:icon.document class="w-3 h-3" />Percentuali dei raggruppati
                         </p>
-                        <p class="text-[15px] text-[#A0A0A0] font-semibold">
+                        <div class="space-y-2">
 
-                            {{ $this->project['firms_and_percentage'] }}
-                        </p>
+                            @foreach ($firms as $firm => $percentage)
+                            <div class="flex justify-between items-center border-b pb-1">
+                                <span class="text-gray-700 font-medium">{{ $percentage }}%</span>
+                            </div>
+                        @endforeach
+                    </div>
+
                     </div>
 
                 </div>
@@ -163,7 +176,7 @@
                 <div class="flex mt-4">
                     <div class="font-light p-2.5">
                         <p class="flex text-[13px] items-center">
-                            <flux:icon.document class="w-3 h-3" />Obiettivi
+                            <flux:icon.star class="w-3 h-3" />Obiettivi
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
@@ -174,7 +187,7 @@
                 <div class="flex mt-4">
                     <div class="font-light p-2.5">
                         <p class="flex text-[13px] items-center">
-                            <flux:icon.document class="w-3 h-3" />Ambito del progetto
+                            <flux:icon.square-3-stack-3d class="w-3 h-3" />Ambito del progetto
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
@@ -185,7 +198,7 @@
                 <div class="flex mt-4">
                     <div class="font-light p-2.5">
                         <p class="flex text-[13px] items-center">
-                            <flux:icon.document class="w-3 h-3" />Risultati attesi
+                            <flux:icon.trophy class="w-3 h-3" />Risultati attesi
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
@@ -196,11 +209,17 @@
                 <div class="flex mt-4">
                     <div class="font-light p-2.5">
                         <p class="flex text-[13px] items-center">
-                            <flux:icon.document class="w-3 h-3" />Stackholder coinvolti
+                            <flux:icon.user-group class="w-3 h-3" />Stackholder coinvolti
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
-                            {{ $this->project['stackholder_id'] }}
+                           @foreach ($this->stackholder as $stack)
+                               <div class="flex font-light text-[13px] space-x-5">
+                                <p class="text-[15px] text-[#A0A0A0]  font-semibold">{{ $stack['role'] }}</p>
+                                <p class="text-[15px] text-[#A0A0A0]  font-semibold">{{ $stack['name'] }}</p>
+                                <p class="text-[15px] text-[#A0A0A0]  font-semibold">{{ $stack['email'] }}</p>
+                               </div>
+                           @endforeach
                         </p>
                     </div>
                 </div>
@@ -215,7 +234,7 @@
                     <ul class="ml-4 list-disc text-sm">
                         @foreach ($phases as $phase => $status)
                             <li class="font-semibold text-[#A0A0A0] text-[15px] list-none">
-                                {{ ucwords(str_replace('_', ' ', $phase)) }}:
+                                {{ ucwords(str_replace('_', ' ', $phase)) }}
                        {{--          <span class="{{ $status === 'Svolto' ? 'text-green-600' : 'text-yellow-600' }}">
                                     {{ $status }}
                                 </span> --}}
