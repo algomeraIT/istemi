@@ -53,10 +53,13 @@
                         <tbody x-data="{ openMicro: false }">
                             <flux:table.row class="cursor-pointer border-b">
                                 <flux:table.cell data-detail="detail" class="whitespace-nowrap border  ">
-                            
-                                    @if ($groupedMicroTasks[0]->project_start_id === $element->id)
+
+                          
+                                @if (isset($groupedMicroTasks[0]) && $groupedMicroTasks[0]->project_start_id === $element->id)
                                         <flux:icon.arrow-down @click="openMicro = !openMicro" />
                                     @endif
+                           
+                                 
 
                                 </flux:table.cell>
                                 <flux:table.cell data-detail="detail" class="whitespace-nowrap border  ">
@@ -116,14 +119,15 @@
                                         wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $element->id }} } })"
                                         variant="ghost" data-variant="ghost" data-color="gray" data-rounded
                                         icon="pencil" size="sm" />
-                                    <flux:button wire:click="deleteTask({{ $element->id }})"
-                                        wire:confirm="Sei sicuro di voler archiviare questo task?" variant="ghost"
+                                    <flux:button
+                                        wire:click="deleteMacroTask({{ $element->id }})"
+                                        wire:confirm="Sei sicuro di voler archiviare questo micro task?" variant="ghost"
                                         data-variant="ghost" data-color="red" data-rounded icon="trash"
                                         size="sm" />
                                 </flux:table.cell>
                             </flux:table.row>
                             {{-- MicroTask children --}}
-                            <tr x-show="openMicro" x-transition class=""> 
+                            <tr x-show="openMicro" x-transition class="">
                                 <td colspan="5" class="p-4 bg-gray-50 border-t border-l-4 border-[#4D1B83]">
                                     <flux:table class="bg-white border rounded-md text-sm">
                                         <flux:table.columns>
@@ -136,9 +140,8 @@
                                         </flux:table.columns>
 
                                         @foreach ($groupedMicroTasks as $micro)
-                                        
                                             <flux:table.row class="border-b hover:bg-gray-50">
-                                   
+
                                                 <flux:table.cell class="border px-4 py-2" data-detail="detail">
                                                     {{ $micro->title }}
                                                 </flux:table.cell>
@@ -159,7 +162,8 @@
                                                         variant="ghost" data-variant="ghost" data-color="gray"
                                                         data-rounded icon="pencil" size="sm" />
 
-                                                    <flux:button wire:click="microDeleteTask({{ $micro->id }})"
+                                                    <flux:button
+                                                        wire:click="microDeleteTask({{ $micro->id }}, '{{ $NameTable }}')"
                                                         wire:confirm="Sei sicuro di voler archiviare questo micro task?"
                                                         variant="ghost" data-variant="ghost" data-color="red"
                                                         data-rounded icon="trash" size="sm" />

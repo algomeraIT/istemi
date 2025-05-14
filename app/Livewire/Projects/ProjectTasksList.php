@@ -12,34 +12,33 @@ use App\Models\NonComplianceManagement;
 use App\Models\Project;
 use App\Models\ProjectStart;
 use App\Models\Report;
-use Livewire\Component;
 use App\Models\TaskProject;
-
 use Flux\Flux;
+use Livewire\Component;
 
 class ProjectTasksList extends Component
 {
     public Project $project;
     public $isOpenTaskModal = false;
     public $selectedProjectStartId;
-    public $groupedMicroTasks;
+    public $groupedMicroTasks, $nameSection;
 
     public $projectStart, $document, $notes, $accountingValidation, $closeActivity, $constructionSitePlane, $data, $externalValidation, $invoicesSal, $nonComplianceManagement, $report, $referent;
 
     public function mount($id)
     {
         $this->project = Project::findOrFail($id);
-        $this->projectStart = ProjectStart::where("project_id", $id)->get();
-        $this->groupedMicroTasks = TaskProject::where("project_id", $id)->get();
+        $this->projectStart = ProjectStart::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->groupedMicroTasks = TaskProject::where("project_id", $id)->where('status', '!=', 'deleted')->get();
 
-        $this->accountingValidation = AccountingValidation::where("project_id", $id)->get();
-        $this->closeActivity = CloseActivity::where("project_id", $id)->get();
-        $this->constructionSitePlane = ConstructionSitePlane::where("project_id", $id)->get();
-        $this->data = Data::where("project_id", $id)->get();
-        $this->externalValidation = ExternalValidation::where("project_id", $id)->get();
-        $this->invoicesSal = InvoicesSal::where("project_id", $id)->get();
-        $this->nonComplianceManagement = NonComplianceManagement::where("project_id", $id)->get();
-        $this->report = Report::where("project_id", $id)->get();
+        $this->accountingValidation = AccountingValidation::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->closeActivity = CloseActivity::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->constructionSitePlane = ConstructionSitePlane::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->data = Data::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->externalValidation = ExternalValidation::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->invoicesSal = InvoicesSal::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->nonComplianceManagement = NonComplianceManagement::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->report = Report::where("project_id", $id)->where('status', '!=', 'deleted')->get();
     }
 
     public function show($id)
@@ -69,18 +68,39 @@ class ProjectTasksList extends Component
         }
     }
 
-    public function deleteTask($id)
+    public function microDeleteTask($id)
     {
         try {
-            $task = \App\Models\TaskProjectStart::findOrFail($id);
+      
+            $model = TaskProject::findOrFail($id);
+        
+            $model->status = "deleted";
+            $model->save();
 
-            $task->update([
-                'status' => 'archived',
-            ]);
-
-            Flux::toast('Task archiviato con successo!');
+            Flux::toast('MicroTask eliminato con successo!');
         } catch (\Exception $e) {
-            Flux::toast('Errore durante l\'archiviazione del task...');
+            logger()->error("Errore nella cancellazione: " . $e->getMessage());
+            Flux::toast('Errore durante la cancellazione del MicroTask.');
+        }
+    }
+
+    public function deleteMacroTask($id, $nameTable)
+    {
+        try {
+            $modelClass = class_exists($nameTable) ? $nameTable : 'App\\Models\\' . $nameTable;
+
+            if (!class_exists($modelClass)) {
+                throw new \Exception("Model {$modelClass} non esiste...");
+            }
+            $model = $modelClass::findOrFail($id);
+          
+            $model->status = "deleted";
+            $model->save();
+
+            Flux::toast('MicroTask eliminato con successo!');
+        } catch (\Exception $e) {
+            dd($e);
+            Flux::toast('Errore durante la cancellazione del MacroTask.');
         }
     }
     public function render()
