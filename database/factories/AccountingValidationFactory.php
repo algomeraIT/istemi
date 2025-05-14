@@ -19,6 +19,29 @@ class AccountingValidationFactory extends Factory
      */
     public function definition(): array
     {
+        $fields = [
+            'balance',
+            'cre_archiving',
+            'pay_suppliers',
+            'pay_allocation_expenses',
+            'learned_lesson',
+        ];
+
+        $labels = [
+            'balance' => 'Saldo',
+            'cre_archiving' => 'Archiviazione CRE',
+            'pay_suppliers' => 'Pagamento fornitori',
+            'pay_allocation_expenses' => 'Pagamento riparto spese',
+            'learned_lesson' => 'Lezioni apprese',
+        ];
+
+        $trueField = $this->faker->randomElement($fields);
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $field === $trueField;
+        }
+
         $clientIds = Client::pluck('id')->toArray();
 
         return [
@@ -26,8 +49,10 @@ class AccountingValidationFactory extends Factory
             'project_id' => Project::factory(),
         
             'accounting_validation' => $this->faker->boolean,
+            'name_phase' => $labels[$trueField],
+
             'user' => fake()->name(),
-            'status' => fake()->randomElement(['approved', 'pending']),
+            'status' => fake()->randomElement(['Svolto', 'In attesa']),
             'user_accounting_validation' => User::factory(),
             'status_accounting_validation' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
         

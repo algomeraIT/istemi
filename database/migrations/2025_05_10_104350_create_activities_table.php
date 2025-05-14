@@ -12,6 +12,7 @@ return new class extends Migration {
 
             $table->foreignId('client_id')->nullable()->constrained('clients')->cascadeOnDelete();
             $table->foreignId('project_id')->nullable()->constrained('projects')->cascadeOnDelete();
+            $table->string('name_phase')->nullable();
 
             $table->string('user')->nullable();
             $table->string('status')->nullable();

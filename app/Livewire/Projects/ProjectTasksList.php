@@ -48,10 +48,15 @@ class ProjectTasksList extends Component
         $this->isOpenTaskModal = true;
     }
 
-    public function updateStatusStart($id, $value)
+    public function updateStatusStart($id, $value, $nameTable)
     {
         try {
-            $record = ProjectStart::findOrFail($id);
+            $modelClass = class_exists($nameTable) ? $nameTable : 'App\\Models\\' . $nameTable;
+
+            if (!class_exists($modelClass)) {
+                throw new \Exception("Model {$modelClass} non esiste...");
+            }
+            $record = $modelClass::findOrFail($id);
 
             $record->status = $value;
             $record->save();
@@ -59,6 +64,7 @@ class ProjectTasksList extends Component
             Flux::toast('Stato aggiornato con successo!');
 
         } catch (\Exception $e) {
+            dd($e);
             Flux::toast('Errore durante la variazione di stato...');
         }
     }

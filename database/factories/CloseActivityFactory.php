@@ -14,6 +14,24 @@ class CloseActivityFactory extends Factory
 
     public function definition(): array
     {
+        $fields = [
+            'sale',
+            'release',
+        ];
+
+        $labels = [
+            'sale' => 'Fatturato specifico',
+            'release' => 'Svincolo dalla polizza',
+        ];
+
+
+        $trueField = $this->faker->randomElement($fields);
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $field === $trueField;
+        }
+
         $project = Project::first();
         $client = Client::first();
 
@@ -21,8 +39,10 @@ class CloseActivityFactory extends Factory
             'client_id' => $client->id,
             'project_id' => $project->id,
             'close_activity' => $this->faker->sentence,
+            'name_phase' => $labels[$trueField],
+
             'user' => fake()->name(),
-            'status' => fake()->randomElement(['approved', 'pending']),
+            'status' => fake()->randomElement(['Svolto', 'In attesa']),
             'user_close_activity' => User::factory(),
             'status_close_activity' => 'completed',
             'sale' => $this->faker->sentence,

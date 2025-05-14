@@ -19,6 +19,25 @@ class ExternalValidationFactory extends Factory
      */
     public function definition(): array
     {
+        $fields = [
+            'cre',
+            'liquidation',
+            'balance_invoice',
+        ];
+
+        $labels = [
+            'cre' => 'CRE',
+            'liquidation' => 'Liquidazione',
+            'balance_invoice' => 'Predisposizione della fattura al saldo',
+        ];
+
+        $trueField = $this->faker->randomElement($fields);
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $field === $trueField;
+        }
+
         $project = Project::first();
         $client = Client::first();
 
@@ -27,8 +46,10 @@ class ExternalValidationFactory extends Factory
             'project_id' => $project->id,
     
             'external_validation' => $this->faker->boolean,
+            'name_phase' => $labels[$trueField],
+
             'user' => fake()->name(),
-            'status' => fake()->randomElement(['approved', 'pending']),
+            'status' => fake()->randomElement(['Svolto', 'In attesa']),
             'user_external_validation' => User::factory(),
             'status_external_validation' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
     

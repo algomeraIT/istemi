@@ -18,7 +18,8 @@ return new class extends Migration
 
             $table->string('user')->nullable();
             $table->string('status')->nullable();
-    
+            $table->string('name_phase')->nullable();
+
             $table->boolean('external_validation')->default(false);
             $table->unsignedBigInteger('user_external_validation')->nullable();
             $table->string('status_external_validation')->nullable();

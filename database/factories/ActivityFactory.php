@@ -11,6 +11,29 @@ class ActivityFactory extends Factory
 {
     public function definition(): array
     {
+        $fields = [
+            'team',
+            'field_activities',
+            'daily_check_activities',
+            'contruction_site_media',
+            'activity_validation',
+        ];
+
+        $labels = [
+            'team' => 'Selezione della squadra',
+            'field_activities' => 'Imprtire istruzioni utili allo svolgimento delle attività in campo',
+            'daily_check_activities' => 'Riepilogo giornaliero delle attività eseguite',
+            'contruction_site_media' => 'Caricamento dati cantiere',
+            'activity_validation' => 'Controllo avanzamento attività/budget (PM)',
+        ];
+
+        $trueField = $this->faker->randomElement($fields);
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $field === $trueField;
+        }
+
         $clientIds = Client::pluck('id')->toArray();
 
         return [
@@ -18,8 +41,10 @@ class ActivityFactory extends Factory
             'project_id' => Project::factory(),
 
             'activities' => $this->faker->boolean,
+            'name_phase' => $labels[$trueField],
+
             'user' => fake()->name(),
-            'status' => fake()->randomElement(['approved', 'pending']),
+            'status' => fake()->randomElement(['Svolto', 'In attesa']),
             'user_activities' => User::factory(),
             'status_activities' => $this->faker->randomElement(['pending', 'completed']),
 

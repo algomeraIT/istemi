@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->nullable()->constrained('clients')->nullOnDelete();
             $table->foreignId('project_id')->nullable()->constrained('projects')->nullOnDelete();
+            $table->string('name_phase')->nullable();
 
             $table->string('user')->nullable();
             $table->string('status')->nullable();

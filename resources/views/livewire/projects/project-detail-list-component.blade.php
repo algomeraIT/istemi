@@ -14,10 +14,10 @@
                         <div class="w-1 h-1 bg-gray-400 rounded-4xl self-center"></div>
                         </p>
                         <p class="text-[#FDC106] text-[13px]">
-                            {{ $elements->where('status', 'pending')->count() }}
+                            {{ $elements->where('status', 'In attesa')->count() }}
                             in attesa</p>
                         <p class="text-[#28A745] text-[13px]">
-                            {{ $elements->where('status', 'approved')->count() }}
+                            {{ $elements->where('status', 'Svolto')->count() }}
                             svolti </p>
                     </div>
                 </div>
@@ -35,6 +35,8 @@
 
                 <flux:table class="bg-white border rounded-md text-sm  border-l-3 border-l-[#4D1B83] border-l-solid">
                     <flux:table.columns class="">
+                        <flux:table.column class="border px-4 py-2 text-center" data-detail="detailColumn">
+                        </flux:table.column>
                         <flux:table.column class="border px-4 py-2 text-center" data-detail="detailColumn">Task
                         </flux:table.column>
                         <flux:table.column class="border px-4 py-2" data-detail="detailColumn">Attività
@@ -49,9 +51,15 @@
 
                     @foreach ($elements as $element)
                         <tbody x-data="{ openMicro: false }">
-                            <flux:table.row @click="openMicro = !openMicro" class="cursor-pointer border-b">
+                            <flux:table.row class="cursor-pointer border-b">
                                 <flux:table.cell data-detail="detail" class="whitespace-nowrap border  ">
-                                    {{ $element->name_phase }}
+                                    @if (count($groupedMicroTasks) > 0)
+                                        <flux:icon.arrow-down @click="openMicro = !openMicro" />
+                                    @endif
+
+                                </flux:table.cell>
+                                <flux:table.cell data-detail="detail" class="whitespace-nowrap border  ">
+                                    <p>{{ $element->name_phase }}</p>
 
                                 </flux:table.cell>
 
@@ -66,7 +74,7 @@
                                         id: {{ $element->id }}
                                     }
                                 })"
-                                variant="ghost" data-variant="ghost" icon="plus">
+                                        variant="ghost" data-variant="ghost" icon="plus">
                                     </flux:button>
                                 </flux:table.cell>
 
@@ -83,13 +91,13 @@
                                 <flux:table.cell data-detail="detail" class="whitespace-nowrap border p-0">
                                     <div class="w-full h-full px-4 py-2 text-center font-extralight">
                                         <select
-                                            wire:change="updateStatusStart({{ $element->id }}, $event.target.value)"
+                                            wire:change="updateStatusStart({{ $element->id }}, $event.target.value, '{{ $NameTable }}')"
                                             class="bg-transparent w-full appearance-none px-2 py-1 border-none focus:outline-none text-center
-                                            {{ $element->status === 'approved' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
-                                            <option value="approved"
-                                                {{ $element->status === 'approved' ? 'selected' : '' }}>Svolto</option>
-                                            <option value="pending"
-                                                {{ $element->status === 'pending' ? 'selected' : '' }}>
+                                            {{ $element->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
+                                            <option value="Svolto"
+                                                {{ $element->status === 'Svolto' ? 'selected' : '' }}>Svolto</option>
+                                            <option value="In attesa"
+                                                {{ $element->status === 'In attesa' ? 'selected' : '' }}>
                                                 In attesa</option>
                                         </select>
                                     </div>
@@ -114,9 +122,8 @@
                                 </flux:table.cell>
                             </flux:table.row>
                             {{-- MicroTask children --}}
-                            <tr x-show="openMicro" x-transition>
+                            <tr x-show="openMicro" x-transition class=""> 
                                 <td colspan="5" class="p-4 bg-gray-50 border-t border-l-4 border-[#4D1B83]">
-                                    <div class="text-sm font-medium text-[#4D1B83] mb-2">Micro Task</div>
                                     <flux:table class="bg-white border rounded-md text-sm">
                                         <flux:table.columns>
                                             <flux:table.column class="border px-4 py-2 text-left"
@@ -128,7 +135,9 @@
                                         </flux:table.columns>
 
                                         @foreach ($groupedMicroTasks as $micro)
+                                        
                                             <flux:table.row class="border-b hover:bg-gray-50">
+                                   
                                                 <flux:table.cell class="border px-4 py-2" data-detail="detail">
                                                     {{ $micro->title }}
                                                 </flux:table.cell>
