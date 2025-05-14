@@ -14,6 +14,7 @@ class Activity extends Model
     protected $fillable = [
         'client_id',
         'project_id',
+        'name_phase',
         'user',
         'status',
         'activities',
@@ -80,5 +81,61 @@ class Activity extends Model
     public function userActivityValidation()
     {
         return $this->belongsTo(User::class, 'user_activity_validation');
+    }
+
+    public static function createFromPhases(array $formData, array $selected, int $projectId): void
+    {
+        $fields = [
+            'activities',
+            'team',
+            'field_activities',
+            'daily_check_activities',
+            'contruction_site_media',
+            'activity_validation',
+        ];
+
+        $labels = [
+            'team' => 'Selezione della squadra',
+            'field_activities' => 'Impartire istruzioni utili allo svolgimento delle attività in campo',
+            'daily_check_activities' => 'Riepilogo giornaliero delle attività eseguite',
+            'contruction_site_media' => 'Caricamento dati cantiere',
+            'activity_validation' => 'Controllo avanzamento attività/budget (PM)',
+        ];
+
+        foreach ($fields as $phase) {
+            if (in_array($phase, $selected)) {
+                self::create([
+                    'client_id' => $formData['id_client'],
+                    'project_id' => $projectId,
+                    'user' => auth()->user()->name . ' ' . auth()->user()->last_name,
+                    'status' => 'In attesa',
+                    'name_phase' => $labels[$phase] ?? $phase,
+
+                    'activities' => in_array('activities', $selected),
+                    'user_activities' => $formData['user_activities'] ?? null,
+                    'status_activities' => false,
+
+                    'team' => in_array('team', $selected),
+                    'user_team' => $formData['user_team'] ?? null,
+                    'status_team' => false,
+
+                    'field_activities' => in_array('field_activities', $selected),
+                    'user_field_activities' => $formData['user_field_activities'] ?? null,
+                    'status_field_activities' => false,
+
+                    'daily_check_activities' => in_array('daily_check_activities', $selected),
+                    'user_daily_check_activities' => $formData['user_daily_check_activities'] ?? null,
+                    'status_daily_check_activities' => false,
+
+                    'contruction_site_media' => in_array('contruction_site_media', $selected),
+                    'user_contruction_site_media' => $formData['user_contruction_site_media'] ?? null,
+                    'status_contruction_site_media' => false,
+
+                    'activity_validation' => in_array('activity_validation', $selected),
+                    'user_activity_validation' => $formData['user_activity_validation'] ?? null,
+                    'status_activity_validation' => false,
+                ]);
+            }
+        }
     }
 }
