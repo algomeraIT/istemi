@@ -180,7 +180,7 @@
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
-                            {{ $this->project['goals'] }}
+                            {!! $this->project['goals'] !!}
                         </p>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
-                            {{ $this->project['project_scope'] }}
+                            {!! $this->project['project_scope'] !!}
                         </p>
                     </div>
                 </div>
@@ -202,7 +202,7 @@
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
-                            {{ $this->project['expected_results'] }}
+                            {!! $this->project['expected_results'] !!}
                         </p>
                     </div>
                 </div>

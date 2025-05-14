@@ -52,7 +52,7 @@
                             </flux:tab.panel>
 
                             <flux:tab.panel name="note">
-                                @include('livewire.projects.note-detail')
+                                @include('livewire.projects.note-detail', ['id' => $id])
                             </flux:tab.panel>
 
                             <flux:tab.panel name="data-sheet">

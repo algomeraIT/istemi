@@ -17,6 +17,7 @@ use App\Models\Project;
 use App\Models\ProjectStart;
 use App\Models\Report;
 use App\Models\User;
+use App\Models\Stackholder;
 use Flux\Flux;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;

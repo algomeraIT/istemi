@@ -53,7 +53,8 @@
                         <tbody x-data="{ openMicro: false }">
                             <flux:table.row class="cursor-pointer border-b">
                                 <flux:table.cell data-detail="detail" class="whitespace-nowrap border  ">
-                                    @if (count($groupedMicroTasks) > 0)
+                            
+                                    @if ($groupedMicroTasks[0]->project_start_id === $element->id)
                                         <flux:icon.arrow-down @click="openMicro = !openMicro" />
                                     @endif
 
@@ -107,7 +108,7 @@
 
                                 <flux:table.cell class="border" data-detail="detail">
                                     <flux:button
-                                        wire:click="$dispatch('openModal', { component: 'projects.modals.task-detail', arguments: { id: {{ $element->id }} }})"
+                                        wire:click="$dispatch('openModal', { component: 'projects.modals.show-micro-task', arguments: { id: {{ $element->id }} }})"
                                         variant="ghost" data-variant="ghost" data-color="teal" data-rounded
                                         icon="eye" size="sm" />
 
@@ -149,12 +150,12 @@
                                                 <flux:table.cell class="border px-4 py-2 text-right"
                                                     data-detail="detail">
                                                     <flux:button
-                                                        wire:click="$dispatch('openModal', { component: 'projects.modals.micro-task-detail', arguments: { id: {{ $micro->id }} }})"
+                                                        wire:click="$dispatch('openModal', { component: 'projects.modals.show-micro-task', arguments: { id: {{ $micro->id }} }})"
                                                         variant="ghost" data-variant="ghost" data-color="teal"
                                                         data-rounded icon="eye" size="sm" />
 
                                                     <flux:button
-                                                        wire:click="$dispatch('openModal', { component: 'projects.modals.micro-edit-task', arguments: { id: {{ $micro->id }} } })"
+                                                        wire:click="$dispatch('openModal', { component: 'projects.modals.edit-micro-task', arguments: { id: {{ $micro->id }} } })"
                                                         variant="ghost" data-variant="ghost" data-color="gray"
                                                         data-rounded icon="pencil" size="sm" />
 
