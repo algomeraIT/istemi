@@ -10,10 +10,10 @@
             <div class="w-1 h-1 bg-gray-400 rounded-4xl self-center"></div>
             </p>
             <p class="text-[#FDC106] text-[13px]">
-                {{ $elements->where('status_contract_ver', false)->count() }}
+                {{ $elements->where('status', 'In attesa')->count() }}
                 in attesa</p>
             <p class="text-[#28A745] text-[13px]">
-                {{ $elements->where('status_contract_ver', true)->count() }}
+                {{ $elements->where('status', 'Svolto')->count() }}
                 svolti </p>
         </div>
     </div>
@@ -34,14 +34,17 @@
                         </div>
                         {{ $element->user }}
                     </div>
-                
+
                     <div>
                         <div class="w-full h-full px-4 py-2 text-center font-extralight">
-                            <select wire:change="updateStatusStart({{ $element->id }}, $event.target.value)"
+                            <select
+                                wire:change="updateStatusStart({{ $element->id }}, $event.target.value, '{{ $NameTable }}')"
                                 class="bg-transparent w-full appearance-none px-2 py-1 border-none focus:outline-none text-center
-                                    {{ $element->status === 'approved' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
-                                <option value="approved" {{ $element->status === 'approved' ? 'selected' : '' }}>Svolto</option>
-                                <option value="pending" {{ $element->status === 'pending' ? 'selected' : '' }}>In attesa</option>
+                            {{ $element->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
+                                <option value="Svolto" {{ $element->status === 'Svolto' ? 'selected' : '' }}>Svolto
+                                </option>
+                                <option value="In attesa" {{ $element->status === 'In attesa' ? 'selected' : '' }}>
+                                    In attesa</option>
                             </select>
                         </div>
                     </div>

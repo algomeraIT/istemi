@@ -531,7 +531,7 @@
                             })">
                                 <!-- “Select All” master checkbox -->
                                 <label class="flex items-center mb-2">
-                                    <input type="checkbox" wire:model='"formData.checked' x-model="selectAll"
+                                    <input type="checkbox" wire:model="formData.checked" x-model="selectAll"
                                         class="mr-2" />
                                     Seleziona tutti
                                 </label>
