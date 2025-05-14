@@ -74,7 +74,7 @@
                             <flux:icon.globe-europe-africa />
                             <flux:label>Nazione</flux:label>
                         </div>
-                        <flux:select variant="listbox" wire:model.live="clientForm.country">
+                        <flux:select variant="listbox" wire:model.live="clientForm.country" searchable>
                             @foreach (countryList() as $country)
                                 <flux:select.option value="{{ $country }}">
                                     {{ ucfirst($country) }}

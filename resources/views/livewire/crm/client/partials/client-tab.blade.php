@@ -8,76 +8,51 @@
 
     <flux:tab.panel name="referenti">
         <div class="flex items-center place-content-between">
-            <flux:button variant="primary" size="sm" data-variant="primary" wire:click="openModalReferent" data-color="teal" class="ml-4">
+            <flux:button wire:click='setReferent' variant="primary" size="sm" data-variant="primary"
+                data-color="teal" class="ml-4">
                 Aggiungi
             </flux:button>
 
             <flux:field data-input>
                 <flux:input wire:model.live="search" data-variant="search" :loading="false" clearable
                     icon="magnifying-glass" placeholder="Cerca" />
-            </flux:field>    
+            </flux:field>
         </div>
 
-        <!-- Referents Table -->
-        @include('livewire.crm.utilities.referent-table', ['referents' => $referents])
+        <!-- Table -->
+        @include('livewire.crm.client.components.tab-referent.referent-table', ['referents' => $referents])
+
+        {{-- Modals --}}
+        @include('livewire.crm.client.components.tab-referent.flyout-create-edit')
+        @include('livewire.crm.client.components.tab-referent.flyout-show')
     </flux:tab.panel>
 
     <flux:tab.panel name="commercio">
-        <div x-data="{ activeTabSales: 'sales' }">
-            <div class="flex  place-content-between">
-                <div class="flex  pt-[10px] pl-[40px] pb-[20px] h-[65px]">
-                    <button @click="activeTabSales = 'sales'"
-                        :class="{ ' text-[#10BDD4]': activeTabSales === 'sales' }"
-                        class="flex p-1 border-1 border-[#10BDD4] text-[16px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                        <flux:icon.arrow-up-right class="w-3 ml-1.5 mr-2" /> Vendite
-                    </button>
+        <flux:tab.group>
+            <div class="flex items-center place-content-between">
+                <flux:tabs variant="segmented">
+                    <flux:tab name="sales">
+                        <flux:icon.arrow-up-right class="size-5" /> Vendite
+                    </flux:tab>
+                    <flux:tab name="acquisitions">
+                        <flux:icon.arrow-down-right class="size-5" /> Acquisti
+                    </flux:tab>
+                </flux:tabs>
 
-                    <button @click="activeTabSales = 'acquisitions';"
-                        :class="{ ' text-[#10BDD4]': activeTabSales === 'acquisitions' }"
-                        class="flex p-1 border-1 border-[#10BDD4] text-[16px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                        <flux:icon.arrow-down-right class="w-3 ml-1.5 mr-2 " /> Acquisti
-                    </button>
-                </div>
-
-
-                <div class="" x-show="activeTabSales === 'sales'" x-cloak>
-
-                    <div class="flex h-14 p-2">
-                        <select wire:model.live="status_sales" class=" border-1 ">
-                            <option value="" selected>Filtro</option>
-                            <option value="0">In transito</option>
-                            <option value="1">Consegnato</option>
-                        </select>
-                        <input type="text" wire:model.live="query_sales" placeholder="Cerca" class="border" />
-                    </div>
-                </div>
-
-                <div class="" x-show="activeTabSales === 'acquisitions'" x-cloak>
-
-                    <div class="">
-                        <select wire:model.live="acquisition_sales" class=" border-1 h-[40px] p-[10px] w-[130px]">
-                            <option value="" selected>Filtro</option>
-                            <option value="0">In arrivo</option>
-                            <option value="1">Ricevuta</option>
-                        </select>
-                        <input type="text" wire:model.live="query_acquisitions" placeholder="Cerca"
-                            class="border p-2" />
-                    </div>
-                </div>
+                <flux:field data-input>
+                    <flux:input wire:model.live="search" data-variant="search" :loading="false" clearable
+                        icon="magnifying-glass" placeholder="Cerca" />
+                </flux:field>
             </div>
 
-            <div class="mt-2 " x-show="activeTabSales === 'sales'" x-cloak>
+            <flux:tab.panel name="sales" class="!pt-0">
                 @include('livewire.crm.utilities.sale-table', ['sales' => $sales])
+            </flux:tab.panel>
 
-            </div>
-
-            <div class="mt-2 " x-show="activeTabSales === 'acquisitions'" x-cloak>
-                @include('livewire.crm.utilities.acquisition-table', [
-                    'acquisitions' => $acquisitions,
-                ])
-
-            </div>
-        </div>
+            <flux:tab.panel name="acquisitions" class="!pt-0">
+                @include('livewire.crm.utilities.acquisition-table', ['acquisitions' => $acquisitions])
+            </flux:tab.panel>
+        </flux:tab.group>
     </flux:tab.panel>
 
     <flux:tab.panel name="contabilita">

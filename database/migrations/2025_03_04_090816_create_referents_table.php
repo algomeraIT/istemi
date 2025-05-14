@@ -21,8 +21,6 @@ return new class extends Migration
             $table->string('email');
             $table->string('telephone');
             $table->text('note')->nullable();
-            $table->tinyInteger('status')->default(1);
-            $table->string('role');
             $table->timestamps();
         });
     }

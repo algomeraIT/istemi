@@ -58,21 +58,22 @@
     @apply text-[#10BDD4];
 }
 
+[data-flux-field][data-input] > div:first-child {
+    @apply mb-1;
+    
+    svg {
+        @apply inline size-4 text-[#B0B0B0];
+    }
+
+    [data-flux-label] {
+        @apply !font-extralight !mb-0 text-[13px] !text-[#B0B0B0];
+    }
+}
+
 [data-flux-field] {
     @apply relative;
 
     &[data-input] {
-        div {
-            @apply flex items-center gap-0.5 mb-1;
-            
-            [data-flux-icon] {
-                @apply size-4 text-[#B0B0B0];
-            }
-            [data-flux-label] {
-                @apply !font-extralight !mb-0 text-[13px] !text-[#B0B0B0];
-            }
-        }
-
         [data-flux-input-group] {
             @apply gap-0
         }
@@ -191,6 +192,14 @@ select:focus[data-flux-control] {
 
     &[data-step="in contatto"] {
         @apply bg-[#F7C548] text-white;
+    }
+    
+    &[data-step="in transito"] {
+        @apply bg-[#F7C548] text-white;
+    }
+
+    &[data-step="consegnato"] {
+        @apply bg-[#5AC88D] text-white;
     }
 
     &[data-step="non idoneo"] {

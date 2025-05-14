@@ -6,6 +6,7 @@ use Livewire\Form;
 use App\Models\Client;
 use Illuminate\Http\File;
 use Livewire\WithFileUploads;
+use Mews\Purifier\Facades\Purifier;
 use Illuminate\Support\Facades\Auth;
 
 class ClientForm extends Form
@@ -16,15 +17,15 @@ class ClientForm extends Form
     public $clientId;
 
     public $logo = [];
-    public $parent_id, $user_id, $estimate_id, $is_company, $name, $email, $pec, $first_telephone, $second_telephone, $country, $city, $province, $address, $cap, $tax_code, $p_iva, $sdi, $site, $label, $note, $service, $provenance, $registered_office_address, $sales_manager, $has_referent, $status, $step;
+    public $parent_id, $estimate_id, $sales_manager_id, $is_company, $name, $email, $pec, $first_telephone, $second_telephone, $country, $city, $province, $address, $cap, $tax_code, $p_iva, $sdi, $site, $label, $note, $service, $provenance, $registered_office_address, $has_referent, $status, $step;
 
     public function rules()
     {
         return [
             'parent_id' => ['nullable', 'integer'],
-            'user_id' => ['nullable', 'integer'],
             'estimate_id' => ['nullable', 'integer'],
-            'is_company' => ['required', 'boolean'],
+            'sales_manager_id' => ['nullable', 'string'],
+            'is_company' => ['nullable', 'boolean'],
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:clients,email,' . $this->clientId],
             'pec' => ['nullable', 'email'],
@@ -44,7 +45,6 @@ class ClientForm extends Form
             'service' => ['nullable', 'string'],
             'provenance' => ['nullable', 'string'],
             'registered_office_address' => ['nullable', 'string'],
-            'sales_manager' => ['nullable', 'string'],
             'has_referent' => ['nullable', 'boolean'],
             'status' => ['required', 'string', 'max:50'],
             'step' => ['nullable', 'string', 'max:50'],
@@ -87,7 +87,7 @@ class ClientForm extends Form
                     'id' => $logo->id,
                     'extension' => pathinfo($logo->file_name, PATHINFO_EXTENSION),
                     'name' => $logo->name,
-                    'path' => $logo->getFullUrl(), 
+                    'path' => $logo->getFullUrl(),
                     'size' => $logo->size,
                     'temporaryUrl' => $logo->getFullUrl('preview'),
                     'tmpFilename' => $logo->file_name,
@@ -100,7 +100,10 @@ class ClientForm extends Form
     {
         $this->verifyValidation();
         $validated = $this->validate();
-        $this->user_id = Auth::id();
+
+        if (!empty($validated['note'])) {
+            $validated['note'] = Purifier::clean($validated['note']);
+        }
 
         $client = Client::create($validated);
 
@@ -118,6 +121,10 @@ class ClientForm extends Form
     {
         $this->verifyValidation();
         $validated = $this->validate();
+
+        if (!empty($validated['note'])) {
+            $validated['note'] = Purifier::clean($validated['note']);
+        }
 
         $currentLogo = $this->client->getFirstMedia('logos');
 
