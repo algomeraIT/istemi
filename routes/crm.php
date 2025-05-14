@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Crm\Client\Index as ClientIndex;
 use App\Livewire\Crm\Client\Show as ClientShow;
+use App\Livewire\Crm\Products\Index as ProductsIndex;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReferentController;
 use App\Http\Controllers\SalesController;
+
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/referents/store', [ReferentController::class, 'store'])->name('referents.store');
@@ -17,6 +19,10 @@ Route::middleware(['auth'])->group(function () {
         Route::name('client.')->group(function () {
             Route::get('/{status}', ClientIndex::class)->name('index');
             Route::get('/{status}/{id}', ClientShow::class)->name('show');
+        });
+
+        Route::name('products.')->group(function () {
+            Route::get('/', ProductsIndex::class)->name('index');
         });
     });
 });
