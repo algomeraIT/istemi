@@ -15,7 +15,7 @@ class ClientFactory extends Factory
         $userIds = User::pluck('id')->toArray();
 
         return [
-            'sales_manager_id' => fake()->randomElement($userIds),
+            'sales_manager_id' => null,
             'is_company' => $this->faker->boolean(),
             'email' => $this->faker->unique()->companyEmail,
             'pec' => $this->faker->optional()->safeEmail,
@@ -51,10 +51,14 @@ class ClientFactory extends Factory
         };
 
         return $this->state(function () use ($status, $stepOptions) {
+            $step = fake()->randomElement($stepOptions);
+            $userIds = User::pluck('id')->toArray();
+
             return [
                 'status' => $status,
-                'step' => fake()->randomElement($stepOptions),
+                'step' => $step,
                 'label' => fake()->randomElement($stepOptions),
+                'sales_manager_id' => in_array($step, ['nuovo', 'da riassegnare']) ? null : fake()->randomElement($userIds),
             ];
         });
     }

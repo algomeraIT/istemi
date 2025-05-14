@@ -19,7 +19,6 @@ class Client extends Model implements HasMedia
 
     protected $fillable = [
         'parent_id',
-        'user_id',
         'estimate_id',
         'sales_manager_id',
         'is_company',

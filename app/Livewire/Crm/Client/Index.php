@@ -51,7 +51,9 @@ class Index extends Component
 
     public function setClient($id)
     {
-        $this->selectedClient = Client::find($id);
+        $this->selectedClient = Client::findOrFail($id);
+
+        Flux::modal('show-client')->show();
     }
 
     public function assignManager($clientId)
@@ -67,6 +69,8 @@ class Index extends Component
             'step' => 'assegnato'
         ]);
 
+        Flux::modals()->close();
+
         Flux::toast(
             text: "Assegnato Commerciale a {$client->name}.",
             variant: 'success',
@@ -78,9 +82,8 @@ class Index extends Component
     public function create()
     {
         $this->clientForm->status = $this->clientStatus;
+        $this->clientForm->step = 'nuovo';
         $this->clientForm->store();
-
-        $this->closeModal();
 
         Flux::toast(
             text: "Nuovo {$this->clientStatus} creato con successo.",
@@ -88,6 +91,8 @@ class Index extends Component
         );
 
         $this->dispatch('refresh');
+
+        Flux::modals()->close();
     }
 
     public function delete($id)

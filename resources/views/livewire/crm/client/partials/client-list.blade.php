@@ -58,26 +58,22 @@
                     {{-- Actions --}}
                     <flux:table.cell :align="'end'">
                         @if ($clientStatus === 'lead')
-                            <flux:modal.trigger name="show-client">
-                                <flux:button variant="ghost" wire:click='setClient({{ $client->id }})'
-                                    data-variant="ghost" data-color="teal" icon="eye" size="sm" />
-                            </flux:modal.trigger>
+                            <flux:button variant="ghost" wire:click='setClient({{ $client->id }})'
+                                data-variant="ghost" data-color="teal" icon="eye" size="sm" />
                         @else
                             <flux:button href="{{ route('crm.client.show', [$clientStatus, $client->id]) }}"
-                                variant="ghost" data-variant="ghost" data-color="teal" icon="eye"
-                                size="sm" />
+                                variant="ghost" data-variant="ghost" data-color="teal" icon="eye" size="sm" />
                         @endif
 
                         @if ($clientStatus === 'cliente')
                             <flux:button
                                 wire:click="$dispatch('openModal', { component: 'modals.crm.client.create-or-update', arguments: { client: {{ $client->id }} } })"
-                                variant="ghost" data-variant="ghost" data-color="gray" icon="pencil"
-                                size="sm" />
+                                variant="ghost" data-variant="ghost" data-color="gray" icon="pencil" size="sm" />
                         @endif
 
                         <flux:button wire:click="delete({{ $client->id }})"
-                            wire:confirm="Sei sicuro di voler eliminare questo {{ $clientStatus }}?"
-                            variant="ghost" data-variant="ghost" data-color="red" icon="trash" size="sm" />
+                            wire:confirm="Sei sicuro di voler eliminare questo {{ $clientStatus }}?" variant="ghost"
+                            data-variant="ghost" data-color="red" icon="trash" size="sm" />
                     </flux:table.cell>
                 </flux:table.row>
             @endforeach
@@ -95,7 +91,13 @@
     </div>
 
     {{-- Modal --}}
-    <flux:modal name="show-client" variant="flyout" class="w-2xl !px-32">
+    <flux:modal name="show-client" variant="flyout" :dismissible="false" class="w-2xl !px-32 relative">
+        <button class="absolute top-4 right-4 text-lg z-10 bg-white text-[#A0A0A0] flex items-center gap-1 cursor-pointer"
+            x-on:click="$flux.modals().close()">
+            <flux:icon.x-mark class="size-4" />
+            <span>Annulla</span>
+        </button>
+
         @if ($selectedClient)
             <div class="flex flex-col justify-start items-start gap-10">
                 <h2 class="text-2xl font-bold text-left">{{ $selectedClient->name }}</h2>
@@ -140,12 +142,16 @@
                             </x-slot>
                         </x-field-data>
                     </div>
+
                     <div class="col-span-2">
-                        <x-field-data :label="'Nota'" :data="$selectedClient->note">
-                            <x-slot name="icon">
-                                <flux:icon.pencil-square class="size-4" />
-                            </x-slot>
-                        </x-field-data>
+                        <div>
+                            <div class="flex items-center gap-1 mb-1 ml-1">
+                                <flux:icon.document-text class="size-4 text-[#B0B0B0]" />
+                                <flux:label class="text-xs !font-light !text-[#B0B0B0]">Nota</flux:label>
+                            </div>
+                            <flux:editor value="{{ $selectedClient->note }}" disabled toolbar="align"
+                                class="**:data-[slot=content]:max-h-[50px]!" />
+                        </div>
                     </div>
                 </div>
 
