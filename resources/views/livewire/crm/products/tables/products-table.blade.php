@@ -94,23 +94,72 @@
 
                     {{-- Actions --}}
                     <flux:table.cell :align="'end'">
-                        <flux:button
-                                wire:click="$dispatch('openModal', { component: 'modals.product-category.show', arguments: { id: {{ $item->id }} } })"
-                                variant="ghost" data-variant="ghost" data-color="teal"
-                                icon="eye" size="sm" />
-
-                        <flux:button
-                                wire:click="$dispatch('openModal', { component: 'modals.product-category.edit', arguments: { id: {{ $item->id }} } })"
-                                variant="ghost" data-variant="ghost" data-color="gray"
-                                icon="pencil" size="sm" />
-
-                        <flux:button
-                                wire:click="delete({{ $item->id }})"
-                                wire:confirm="Sei sicuro di voler eliminare questo prodotto?"
-                                variant="ghost" data-variant="ghost" data-color="red"
-                                icon="trash" size="sm" />
+                        <flux:modal.trigger :name="'product-show-'.$item->id">
+                            <flux:button variant="ghost" data-variant="ghost" data-color="teal" icon="eye" size="sm" />
+                        </flux:modal.trigger>
+                        <flux:button wire:click.prevent="$dispatch('openModal', { component: 'crm.products.modals.upsert-product', arguments: { product: {{ $item->id }} } })" variant="ghost" data-variant="ghost" data-color="gray" icon="pencil" size="sm" />
+                        <flux:button wire:click.prevent="delete({{ $item->id }})" wire:confirm="Sei sicuro di voler eliminare questo prodotto?" variant="ghost" data-variant="ghost" data-color="red" icon="trash" size="sm" />
                     </flux:table.cell>
                 </flux:table.row>
+
+                <flux:modal :name="'product-show-'.$item->id" variant="flyout" class="px-28! py-8! max-w-xl space-y-8">
+                    {{-- Header --}}
+                    <h2 class="text-2xl font-bold mb-16">Servizio</h2>
+
+                    {{-- Codice --}}
+                    <div class="space-y-1">
+                        <div class="text-xs font-extralight text-[#B0B0B0]">Codice</div>
+                        <div class="text-lg font-semibold text-teal-500 ms-3.5">{{ $item->unique_code }}</div>
+                    </div>
+
+                    {{-- Titolo --}}
+                    <div class="space-y-1">
+                        <div class="text-xs font-extralight text-[#B0B0B0]">Titolo</div>
+                        <div class="text-base font-semibold text-[#B0B0B0] ms-3.5">{{ $item->title }}</div>
+                    </div>
+
+                    {{-- Categoria --}}
+                    <div class="space-y-1">
+                        <div class="text-xs font-extralight text-[#B0B0B0]">Categoria</div>
+                        <div class="text-base font-semibold text-[#B0B0B0] ms-3.5">{{ $item->category }}</div>
+                    </div>
+
+                    {{-- UdM --}}
+                    <div class="space-y-1">
+                        <div class="text-xs font-extralight text-[#B0B0B0]">UdM</div>
+                        <div class="text-base font-semibold text-[#B0B0B0] ms-3.5">{{ $item->udm }}</div>
+                    </div>
+
+                    {{-- Prezzo --}}
+                    <div class="space-y-1">
+                        <div class="text-xs font-extralight text-[#B0B0B0]">Prezzo</div>
+                        <div class="text-base font-semibold text-[#B0B0B0] ms-3.5">€{{ number_format($item->price, 2, ',', '.') }}</div>
+                    </div>
+
+                    {{-- Stato --}}
+                    <div class="space-y-1">
+                        <div class="text-xs font-extralight text-[#B0B0B0]">Stato</div>
+                        <div class="ms-3.5">
+                            @if($item->is_active)
+                                <flux:badge size="sm" color="green" inset="top bottom">Attivo</flux:badge>
+                            @else
+                                <flux:badge size="sm" color="slate" inset="top bottom">Disattivo</flux:badge>
+                            @endif
+                        </div>
+                    </div>
+
+                    {{-- Descrizione --}}
+                    @if($item->description)
+                        <div class="space-y-1">
+                            <div class="text-xs font-extralight text-[#B0B0B0]">Descrizione</div>
+                            <div class="text-sm font-semibold text-[#B0B0B0] leading-relaxed ms-3.5">
+                                {{ $item->description }}
+                            </div>
+                        </div>
+                    @endif
+
+                </flux:modal>
+
             @endforeach
         </flux:table.rows>
     </flux:table>
@@ -124,4 +173,6 @@
     <div class="-mx-4 mt-4">
         {{ $products->links('customPagination') }}
     </div>
+
+
 </div>

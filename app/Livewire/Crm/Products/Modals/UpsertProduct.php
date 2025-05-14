@@ -25,16 +25,16 @@ class UpsertProduct extends ModalComponent
         }
     }
 
-    public function save()
+    public function updateOrCreate()
     {
         if ($this->isEdit) {
-            $this->form->update($this->product);
+            $this->productForm->update($this->product);
             Flux::toast(
                 text: "Servizio aggiornato con successo.",
                 variant: 'success',
             );
         } else {
-            $this->form->store();
+            $this->productForm->store();
             Flux::toast(
                 text: "Nuovo servizio creato con successo.",
                 variant: 'success',

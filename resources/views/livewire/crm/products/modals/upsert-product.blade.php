@@ -1,4 +1,4 @@
-<form class="bg-[#FFFFFF] px-12 py-9 rounded-lg" >
+<form class="bg-[#FFFFFF] px-12 py-9 rounded-lg" wire:submit.prevent="updateOrCreate">
 
 
     <div class="flex items-start justify-between mb-6">
@@ -6,7 +6,7 @@
             {{ $isEdit ? 'Modifica servizio' : 'Aggiungi servizio' }}
         </h3>
 
-        <button wire:click="$dispatch('closeModal')"
+        <button wire:click.prevent="$dispatch('closeModal')"
                 class="font-light text-[#B0B0B0] flex items-center gap-1 cursor-pointer">
             <flux:icon.x-mark class="size-4" /> Annulla
         </button>
@@ -17,7 +17,7 @@
             {{-- Categoria --}}
             <flux:field data-input>
                 <flux:label>Categoria</flux:label>
-                <flux:select variant="listbox" wire:model="productForm.category" placeholder="Seleziona">
+                <flux:select variant="listbox"  searchable clearable  wire:model="productForm.category" placeholder="Seleziona">
                     @foreach($categories as $cat)
                         <flux:select.option value="{{ $cat }}">{{ $cat }}</flux:select.option>
                     @endforeach
@@ -48,39 +48,45 @@
             {{-- UdM --}}
             <flux:field data-input>
                 <flux:label>UdM</flux:label>
-                <flux:select variant="listbox" wire:model="productForm.udm" placeholder="Seleziona o digita">
+                <flux:select variant="listbox" searchable clearable wire:model="productForm.udm" placeholder="Seleziona o digita">
                     @foreach($udms as $u)
                         <flux:select.option value="{{ $u }}">{{ $u }}</flux:select.option>
                     @endforeach
                 </flux:select>
-                <flux:error name="productForm.udm" />
+
             </flux:field>
+
 
             {{-- Prezzo --}}
             <flux:field data-input>
                 <flux:label>Prezzo</flux:label>
-                <flux:input icon="currency-euro" wire:model="productForm.price" type="number" step="0.01" class="pl-8" />
+                <flux:input.group>
+                    <flux:input.group.prefix class="bg-[#F5FCFD]"> <span class="font-semibold text-[#10BDD4] px-2.5 py-1.5">€</span> </flux:input.group.prefix>
+                    <flux:input wire:model="productForm.price" type="number" step="0.01" />
+                </flux:input.group>
                 <flux:error name="productForm.price" />
             </flux:field>
         </div>
 
         {{-- Descrizione --}}
         <div class="mt-4">
-            <flux:label>Descrizione</flux:label>
-            <flux:textarea wire:model="productForm.description" name="description" rows="4" />
-            <flux:error name="productForm.description" />
+            <flux:field data-input>
+                <flux:label>Descrizione</flux:label>
+                <flux:textarea wire:model="productForm.description" name="description" rows="4" />
+                <flux:error name="productForm.description" />
+            </flux:field>
         </div>
 
         {{-- Checkbox --}}
         <div class="flex gap-6 mt-6">
 
             <flux:field variant="inline" data-input>
-                <flux:checkbox wire:model="productForm.is_active" name="is_active" />
+                <flux:checkbox wire:model="productForm.is_active" name="is_active" data-prodotti />
                 <flux:label>Attivo</flux:label>
                 <flux:error name="productForm.is_active" />
             </flux:field>
             <flux:field variant="inline" data-input>
-                <flux:checkbox wire:model="productForm.is_cnpaia" />
+                <flux:checkbox wire:model="productForm.is_cnpaia"  data-prodotti />
                 <flux:label>CNPAIA</flux:label>
                 <flux:error name="productForm.is_cnpaia" />
             </flux:field>
@@ -90,12 +96,12 @@
     </div>
     <div class="flex justify-start space-x-2 mt-6">
         @if ($isEdit)
-            <flux:button variant="primary" data-variant="primary" wire:click="update" data-color="teal">
+            <flux:button variant="primary" data-variant="primary" data-color="teal" :disabled="!$productForm->title" type="submit">
                 Modifica
             </flux:button>
         @else
-            <flux:button variant="primary" data-variant="primary" wire:click="create" data-color="teal" :disabled="!$productForm->title">
-                Salva
+            <flux:button variant="primary" data-variant="primary" data-color="teal" :disabled="!$productForm->title" type="submit">
+                Aggiungi
             </flux:button>
         @endif
     </div>

@@ -46,9 +46,8 @@ class ProductsTable extends Component
         }
     }
 
-    public function delete($id)
+    public function delete(Product $product)
     {
-        $product = Product::find($id);
         $product->delete();
 
         Flux::toast(
