@@ -14,9 +14,6 @@ class Projects extends Component
 {
     use WithPagination;
 
-    // default values for a new project
-
-    // possible phases
     private const PHASES = [
         'Non Definito', 'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura',
     ];
@@ -62,7 +59,6 @@ class Projects extends Component
             ->get()->toArray();
     }
 
-    // reset pagination whenever search or tab changes
     public function updatingSearch()
     {$this->resetPage();}
 
@@ -195,7 +191,6 @@ class Projects extends Component
     {
         $referents = Referent::paginate(10);
 
-        // Always prepare both datasets separately
         $listProjects = $this->buildProjectQuery()
             ->orderBy('created_at', 'desc')
             ->paginate(15);

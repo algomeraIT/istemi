@@ -22,11 +22,9 @@
         @if ($paginator->onFirstPage())
             <span class="text-gray-400 cursor-not-allowed px-3 py-1">← Precedente</span>
         @else
-            <a wire:navigate
-              href="{{ $paginator->previousPageUrl() }}"
-              rel="prev"
-              class="text-gray-600 hover:underline px-3 py-1"
-            >← Precedente</a>
+            <button wire:click="previousPage" class="text-gray-600 hover:underline px-3 py-1">
+                ← Precedente
+            </button>
         @endif
 
         {{-- Page X of Y --}}
@@ -36,11 +34,9 @@
 
         {{-- Next --}}
         @if ($paginator->hasMorePages())
-            <a wire:navigate
-              href="{{ $paginator->nextPageUrl() }}"
-              rel="next"
-              class="text-gray-600 hover:underline px-3 py-1"
-            >Successiva →</a>
+            <button wire:click="nextPage" class="text-gray-600 hover:underline px-3 py-1">
+                Successiva →
+            </button>
         @else
             <span class="text-gray-400 cursor-not-allowed px-3 py-1">Successiva →</span>
         @endif
