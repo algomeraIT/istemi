@@ -2,12 +2,8 @@
 
 namespace App\Livewire\Projects\Modals;
 
-use Livewire\Component;
-use LivewireUI\Modal\ModalComponent;
-use App\Models\Project;
-use App\Models\ProjectStart;
-
 use Flux\Flux;
+use LivewireUI\Modal\ModalComponent;
 
 class MacroTaskDetail extends ModalComponent
 {
@@ -26,18 +22,39 @@ class MacroTaskDetail extends ModalComponent
             'Gestione non conformità' => 'NonComplianceManagement',
             'Report' => 'Report',
         ];
-    
+
         if (!array_key_exists($nameSection, $collections)) {
             abort(404, "Sezione {$nameSection} non trovata.");
         }
-    
+
         $modelClass = 'App\\Models\\' . $collections[$nameSection];
-    
+
         if (!class_exists($modelClass)) {
             abort(404, "Model {$modelClass} non esiste.");
         }
 
-        $this->tasks = $modelClass::where('id',$id)->get();
+        $this->tasks = $modelClass::where('id', $id)->get();
+    }
+
+    public function updateStatusStart($id, $value)
+    {
+        try {
+            $modelClass = class_exists($nameTable) ? $nameTable : 'App\\Models\\' . $nameTable;
+
+            if (!class_exists($modelClass)) {
+                throw new \Exception("Model {$modelClass} non esiste...");
+            }
+            $record = $modelClass::findOrFail($id);
+
+            $record->status = $value;
+            $record->save();
+
+            Flux::toast('Stato aggiornato con successo!');
+
+        } catch (\Exception $e) {
+            dd($e);
+            Flux::toast('Errore durante la variazione di stato...');
+        }
     }
 
     public function render()

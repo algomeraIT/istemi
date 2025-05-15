@@ -16,7 +16,7 @@
             <flux:table.rows>
                 @foreach ($projects as $project)
                     <flux:table.row :key="$project->id">
-                        <flux:table.cell class="flex items-center gap-3">{{ $project->n_file }}</flux:table.cell>
+                        <flux:table.cell class="flex items-center gap-3">{{ $project->estimate }}</flux:table.cell>
                         <flux:table.cell class="whitespace-nowrap">{{ $project->client_name }}</flux:table.cell>
                         <flux:table.cell class="whitespace-nowrap"> <span
                                 class="px-2 py-1 text-xs font-semibold border-1 {{ $project->client_type === 'Pubblico' ? 'bg-[#F6F3F9] text-[#4D1A87] border-[#4D1B86]' : 'bg-[#F2F5F9] text-[#08468B] border-[#08468B]' }}">

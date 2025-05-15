@@ -34,7 +34,7 @@
                         <div class=" font-extralight">
                             {{ $task['note'] }}
                         </div>
-                        <div class="flex mt-4  font-extralight">
+                        <div class="flex mt-4  font-extralight text-[15px]">
                             <p>Creato da: {{ $task['assignee'] }}</p>
                             <div class="w-1 h-1 bg-gray-400 rounded-4xl self-center mr-1 ml-1"></div>
                             {{ $task['created_at']->diffForHumans() }}

@@ -45,17 +45,17 @@
                         <!-- Phase Filter -->
                         <flux:select wire:model.live="query_phase" data-variant="status">
                             <flux:select.option value="">Tutte le fasi</flux:select.option>
-                            <flux:select.option value="0">Non definito</flux:select.option>
-                            <flux:select.option value="1">Avvio</flux:select.option>
-                            <flux:select.option value="2">Pianificazione</flux:select.option>
-                            <flux:select.option value="3">Esecuzione</flux:select.option>
-                            <flux:select.option value="4">Verifica</flux:select.option>
-                            <flux:select.option value="5">Chiusura</flux:select.option>
+                            <flux:select.option value="Non definito">Non definito</flux:select.option>
+                            <flux:select.option value="Avvio">Avvio</flux:select.option>
+                            <flux:select.option value="Pianificazione">Pianificazione</flux:select.option>
+                            <flux:select.option value="Esecuzione">Esecuzione</flux:select.option>
+                            <flux:select.option value="Verifica">Verifica</flux:select.option>
+                            <flux:select.option value="Chiusura">Chiusura</flux:select.option>
                         </flux:select>
             
                         <!-- Search -->
                         <div class="w-full lg:w-auto lg:max-w-xs relative">
-                            <flux:input wire:model.live="search" data-variant="search" placeholder="pippo..." icon="magnifying-glass" :loading="false" />
+                            <flux:input wire:model.live="search" data-variant="search" placeholder="preventivo..." icon="magnifying-glass" :loading="false" />
                         </div>
                     </div>
             
