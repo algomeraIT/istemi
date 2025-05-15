@@ -8,27 +8,17 @@
         <div class="p-6 space-y-4 bg-white">
             <div>
                 <label class="text-sm text-gray-600">Titolo</label>
-                <input type="text" wire:model.defer="title"
+                <input type="text" wire:model.defer="name_phase"
                     class="w-full border border-gray-300 rounded p-2 text-sm">
             </div>
 
             <div>
                 <label class="text-sm text-gray-600">Assegnato a</label>
-                <input type="text" wire:model.defer="assignee"
+                <input type="text" wire:model.defer="user"
                     class="w-full border border-gray-300 rounded p-2 text-sm">
             </div>
 
-            <div>
-                <label class="text-sm text-gray-600">Scadenza</label>
-                <input type="date" wire:model.defer="expire"
-                    class="w-full border border-gray-300 rounded p-2 text-sm">
-            </div>
-
-            <div>
-                <label class="text-sm text-gray-600">Nota</label>
-                <textarea wire:model.defer="note"
-                    class="w-full border border-gray-300 rounded p-2 text-sm h-28"></textarea>
-            </div>
+     
 
             <div class="pt-4">
                 <button wire:click="save"

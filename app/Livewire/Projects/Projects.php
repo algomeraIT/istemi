@@ -6,8 +6,7 @@ use App\Models\Client;
 use App\Models\Estimate;
 use App\Models\Project;
 use App\Models\Referent;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\DB;
+use Flux\Flux;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,7 +15,6 @@ class Projects extends Component
     use WithPagination;
 
     // default values for a new project
-
 
     // possible phases
     private const PHASES = [
@@ -29,7 +27,7 @@ class Projects extends Component
     public bool $showListFilters = true;
     public bool $showKanbanFilters = false;
     public int $currentTab = 1;
- 
+
     public string $activeTab = 'list';
     #[Url( as :'currentTab', except: 'list')]
     public string $kanbanTab = 'current_phase';
@@ -115,14 +113,10 @@ class Projects extends Component
         $this->currentTab = 1;
     }
 
-
-
     public function goToDetail($projectId)
     {
         return redirect()->route('projects.project-detail', ['project' => $projectId]);
     }
-
-
 
     public function edit()
     {
@@ -178,7 +172,23 @@ class Projects extends Component
             ->when($this->query_phase, fn($q) => $q->where('current_phase', 'like', '%' . $this->query_phase . '%'))
             ->when($this->query_search, fn($q) => $q->where('client_name', 'like', '%' . $this->query_search . '%'))
 /*             ->when($this->query_search, fn($q) => $q->where('n_file', 'like', '%' . $this->query_search . '%'))
- */    ->when($this->status, fn($q) => $q->where('status', $this->status));
+ */    ->when($this->status, fn($q) => $q->where('status', $this->status))
+            ->where('status', '!=', 'deleted');
+    }
+
+    public function delete($id)
+    {
+        try {
+            $project = Project::findOrFail($id);
+
+            $project->status = "deleted";
+            $project->save();
+
+            Flux::toast('Progetto eliminato...');
+
+        } catch (\Exception $e) {
+            Flux::toast('Non è stato possibile eliminare il progetto.');
+        }
     }
 
     public function render()

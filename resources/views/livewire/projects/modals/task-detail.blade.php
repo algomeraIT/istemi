@@ -14,7 +14,6 @@
                     <flux:tab name="billing">Note</flux:tab>
                 </flux:tabs>
 
-
                 <flux:tab.panel name="profile">
                     @foreach ($tasks as $task)
                         <div>

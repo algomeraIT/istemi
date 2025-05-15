@@ -2,16 +2,16 @@
 
 namespace App\Livewire\Projects\Modals;
 
-use App\Models\ProjectStart;
-use App\Models\TaskProjectStart;
-use Flux\Flux;
+use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
+use App\Models\Project;
+use App\Models\ProjectStart;
 
-class TaskDetail extends ModalComponent
+use Flux\Flux;
+
+class MacroTaskDetail extends ModalComponent
 {
-    public $id, $tasks, $user_name;
-    public $tab = 'profile';
-    public string $note = '';
+    public $tasks, $groupedTasks, $monthTasks;
 
     public function mount($id, $nameSection)
     {
@@ -36,12 +36,12 @@ class TaskDetail extends ModalComponent
         if (!class_exists($modelClass)) {
             abort(404, "Model {$modelClass} non esiste.");
         }
-    
-        $this->tasks = $modelClass::findOrFail($id);
+
+        $this->tasks = $modelClass::where('id',$id)->get();
     }
 
     public function render()
     {
-        return view('livewire.projects.modals.task-detail');
+        return view('livewire.projects.modals.macro-task-detail');
     }
 }

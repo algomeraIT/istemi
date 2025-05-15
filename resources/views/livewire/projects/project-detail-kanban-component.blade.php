@@ -56,6 +56,17 @@
                     <flux:button wire:click="delete({{ $element->id }})"
                         wire:confirm="Sei sicuro di voler eliminare questa fase?" variant="ghost" data-variant="ghost"
                         data-color="red" data-rounded icon="trash" size="sm" />
+                    <flux:button class="justify-end"
+                        wire:click="$dispatch('openModal', {
+                    component: 'projects.modals.create-task-project',
+                    arguments: {
+                        project_id: {{ $project->id }},
+                        phase: 'project_start_id',
+                        id: {{ $element->id }}
+                    }
+                })"
+                        variant="ghost" data-variant="ghost" icon="plus">
+                    </flux:button>
                 </div>
             </li>
         @endforeach

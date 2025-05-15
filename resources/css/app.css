@@ -233,6 +233,10 @@ select:focus[data-flux-control] {
     &[data-variant="projectDetail"] {
         @apply bg-white;
     }
+
+    &[data-variant="detailNoBorders"] {
+        @apply  bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-b-cyan-200;
+    }
 }
 
 [data-flux-column] {

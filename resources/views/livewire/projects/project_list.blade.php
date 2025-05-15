@@ -59,9 +59,13 @@
                         <flux:table.cell align="end">
                             <flux:button wire:click="goToDetail({{ $project->id }})" variant="ghost"
                                 data-variant="ghost" data-color="teal" data-rounded icon="eye" size="sm" />
-                            <flux:button wire:click="delete({{ $project->id }})"
+                                <flux:button
+                                wire:click="$dispatch('openModal', { component: 'projects.modals.edit-project', arguments: { id: {{ $project->id }} } })"
+                                variant="ghost" data-variant="ghost" data-color="gray" data-rounded
+                                icon="pencil" size="sm" />
+                     {{--        <flux:button wire:click="delete({{ $project->id }})"
                                 wire:confirm="Sei sicuro di voler eliminare questo project?" variant="ghost"
-                                data-variant="ghost" data-color="red" data-rounded icon="trash" size="sm" />
+                                data-variant="ghost" data-color="red" data-rounded icon="trash" size="sm" /> --}}
                         </flux:table.cell>
                     </flux:table.row>
                 @endforeach

@@ -54,12 +54,12 @@
                             <flux:table.row class="cursor-pointer border-b">
                                 <flux:table.cell data-detail="detail" class="whitespace-nowrap border  ">
 
-                          
-                                @if (isset($groupedMicroTasks[0]) && $groupedMicroTasks[0]->project_start_id === $element->id)
+
+                                    @if (isset($groupedMicroTasks[0]) && $groupedMicroTasks[0]->project_start_id === $element->id)
                                         <flux:icon.arrow-down @click="openMicro = !openMicro" />
                                     @endif
-                           
-                                 
+
+
 
                                 </flux:table.cell>
                                 <flux:table.cell data-detail="detail" class="whitespace-nowrap border  ">
@@ -110,17 +110,17 @@
 
 
                                 <flux:table.cell class="border" data-detail="detail">
+                        
                                     <flux:button
-                                        wire:click="$dispatch('openModal', { component: 'projects.modals.show-micro-task', arguments: { id: {{ $element->id }} }})"
+                                        wire:click="$dispatch('openModal', { component: 'projects.modals.macro-task-detail', arguments: { id: {{ $element->id }}, nameSection: '{{ $nameSection }}' }})"
                                         variant="ghost" data-variant="ghost" data-color="teal" data-rounded
                                         icon="eye" size="sm" />
 
                                     <flux:button
-                                        wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $element->id }} } })"
+                                        wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $element->id }}, nameSection: '{{ $nameSection }}' }})"
                                         variant="ghost" data-variant="ghost" data-color="gray" data-rounded
                                         icon="pencil" size="sm" />
-                                    <flux:button
-                                        wire:click="deleteMacroTask({{ $element->id }})"
+                                    <flux:button wire:click="deleteMacroTask({{ $element->id }})"
                                         wire:confirm="Sei sicuro di voler archiviare questo micro task?" variant="ghost"
                                         data-variant="ghost" data-color="red" data-rounded icon="trash"
                                         size="sm" />
@@ -181,8 +181,6 @@
             </div>
         </div>
     @endif
-    @if ($isOpenTaskModal)
-        @include('livewire.projects.modals.task-detail')
-    @endif
+
 
 </div>
