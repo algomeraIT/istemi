@@ -16,14 +16,14 @@ class ProductForm extends Form
      */
     public ?Product $product = null;
 
-    #[Validate('required|string')]
-    public $category = null;
+    #[Validate('required')]
+    public $product_category_id = null;
 
     #[Validate('required|string|max:255')]
     public $title = '';
 
     #[Validate('required|string')]
-    public $udm = null;
+    public $uom = null;
 
     #[Validate('nullable|string')]
     public $description = '';
@@ -56,37 +56,25 @@ class ProductForm extends Form
     {
         $this->validate();
 
-        $product = Product::create([
-            'category' => $this->category,
-            'unique_code' => $this->unique_code,
-            'title' => $this->title,
-            'udm' => $this->udm,
-            'description' => $this->description,
-            'price' => $this->price,
-            'is_active' => $this->is_active,
-            'is_cnpaia' => $this->is_cnpaia,
-        ]);
-
-        $this->reset();
+        rescue(function () use (&$product) {
+            return $product = Product::create($this->except('product',));
+        }, function ($e) {
+            return $e->getMessage();
+        });
 
         return $product;
     }
 
-    public function update(Product $product): Product
+    public function update():bool
     {
         $this->validate();
 
-        $product->update([
-            'category' => $this->category,
-            'title' => $this->title,
-            'udm' => $this->udm,
-            'description' => $this->description,
-            'price' => $this->price,
-            'is_active' => $this->is_active,
-            'is_cnpaia' => $this->is_cnpaia,
-        ]);
+        return rescue(function ()  {
+            return $this->product->update($this->except('product'));
+        }, function ($e) {
+            return false;
+        });
 
-        return $product;
     }
 
 }

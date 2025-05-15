@@ -4,6 +4,7 @@ namespace App\Livewire\Crm\Products\Tables;
 
 use App\Enums\MeasurementUnitEnum;
 use App\Enums\ParentProductCategoryEnum;
+use App\Models\ProductCategory;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -19,23 +20,29 @@ class ProductsTable extends Component
     public string $search = '';
     public ?string $filterCategory = null;
     public ?string $filterState = null;
-    public ?string $filterUdm = null;
+    public ?string $filterUom = null;
     public string $sortBy = 'unique_code';
     public string $sortDirection = 'asc';
+    public $productCategories;
 
     protected $queryString = [
         'search'         => ['except' => ''],
         'filterCategory' => ['except' => null],
         'filterState'    => ['except' => null],
-        'filterUdm'      => ['except' => null],
+        'filterUom'      => ['except' => null],
         'sortBy'         => ['except' => 'unique_code'],
         'sortDirection'  => ['except' => 'asc'],
     ];
 
+    public function mount(): void
+    {
+        $this->productCategories = ProductCategory::all();
+    }
+
     public function updatingSearch() { $this->resetPage(); }
     public function updatingFilterCategory() { $this->resetPage(); }
     public function updatingFilterState()    { $this->resetPage(); }
-    public function updatingFilterUdm()      { $this->resetPage(); }
+    public function updatingFilterUom()      { $this->resetPage(); }
 
     public function sort($column)
     {
@@ -74,7 +81,7 @@ class ProductsTable extends Component
 
         // category
         if (filled($this->filterCategory)) {
-            $query->where('category', $this->filterCategory);
+            $query->where('product_category_id', $this->filterCategory);
         }
 
         // state (attenzione: filled('0') è true, quindi gestisce anche lo “0”)
@@ -82,9 +89,9 @@ class ProductsTable extends Component
             $query->where('is_active', $this->filterState);
         }
 
-        // udm
-        if (filled($this->filterUdm)) {
-            $query->where('udm', $this->filterUdm);
+        // uom
+        if (filled($this->filterUom)) {
+            $query->where('uom', $this->filterUom);
         }
 
         // 5) Ordinamento finale
@@ -92,8 +99,8 @@ class ProductsTable extends Component
 
         return view('livewire.crm.products.tables.products-table', [
             'products' => $query->paginate(12),
-            'categories' => ParentProductCategoryEnum::valuesArray(),
-            'udms'       => MeasurementUnitEnum::valuesArray(),
+            'categories' => $this->productCategories,
+            'uoms'       => MeasurementUnitEnum::valuesArray(),
         ]);
     }
 }

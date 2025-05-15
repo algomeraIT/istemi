@@ -17,12 +17,12 @@
             {{-- Categoria --}}
             <flux:field data-input>
                 <flux:label>Categoria</flux:label>
-                <flux:select variant="listbox"  searchable clearable  wire:model="productForm.category" placeholder="Seleziona">
+                <flux:select variant="listbox"  searchable clearable  wire:model="productForm.product_category_id " placeholder="Seleziona">
                     @foreach($categories as $cat)
-                        <flux:select.option value="{{ $cat }}">{{ $cat }}</flux:select.option>
+                        <flux:select.option value="{{ $cat->id }}">{{ $cat->name }}</flux:select.option>
                     @endforeach
                 </flux:select>
-                <flux:error name="productForm.category" />
+                <flux:error name="productForm.product_category_id " />
             </flux:field>
 
             {{-- Codice --}}
@@ -48,8 +48,8 @@
             {{-- UdM --}}
             <flux:field data-input>
                 <flux:label>UdM</flux:label>
-                <flux:select variant="listbox" searchable clearable wire:model="productForm.udm" placeholder="Seleziona o digita">
-                    @foreach($udms as $u)
+                <flux:select variant="listbox" searchable clearable wire:model="productForm.uom" placeholder="Seleziona o digita">
+                    @foreach($uoms as $u)
                         <flux:select.option value="{{ $u }}">{{ $u }}</flux:select.option>
                     @endforeach
                 </flux:select>

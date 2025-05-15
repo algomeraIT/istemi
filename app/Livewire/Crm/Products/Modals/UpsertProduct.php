@@ -3,9 +3,9 @@
 namespace App\Livewire\Crm\Products\Modals;
 
 use App\Enums\MeasurementUnitEnum;
-use App\Enums\ParentProductCategoryEnum;
 use App\Livewire\Crm\Products\Forms\ProductForm;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Flux\Flux;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -16,9 +16,12 @@ class UpsertProduct extends ModalComponent
     public ProductForm $productForm;
     public ?Product $product = null;
     public bool $isEdit = false;
+    public $productCategories;
 
     public function mount(): void
     {
+        $this->productCategories = ProductCategory::all();
+
         if ($this->product) {
             $this->productForm->setProduct($this->product);
             $this->isEdit = true;
@@ -28,7 +31,7 @@ class UpsertProduct extends ModalComponent
     public function updateOrCreate()
     {
         if ($this->isEdit) {
-            $this->productForm->update($this->product);
+            $this->productForm->update();
             Flux::toast(
                 text: "Servizio aggiornato con successo.",
                 variant: 'success',
@@ -61,11 +64,11 @@ class UpsertProduct extends ModalComponent
 
     public function updatedProductFormTitle(): void
     {
-        if($this->productForm->category){
+        if($this->productForm->product_category_id ){
             $this->productForm->unique_code = generateUniqueCode(
                 Product::class,
                 'unique_code',
-                $this->productForm->category,
+                ProductCategory::find($this->productForm->product_category_id)->name,
                 $this->productForm->title
             );
         }
@@ -77,8 +80,8 @@ class UpsertProduct extends ModalComponent
     public function render(): View
     {
         return view('livewire.crm.products.modals.upsert-product', [
-            'categories' => ParentProductCategoryEnum::valuesArray(),
-            'udms' => MeasurementUnitEnum::valuesArray(),
+            'categories' => $this->productCategories,
+            'uoms' => MeasurementUnitEnum::valuesArray(),
         ]);
     }
 }

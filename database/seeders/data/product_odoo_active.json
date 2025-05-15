@@ -8,6 +8,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -19,6 +20,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -30,6 +32,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -41,6 +44,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Vestiario",
+    "category_complete_name": "Vestiario",
     "uom_name": "a corpo"
   },
   {
@@ -52,6 +56,7 @@
     "price": 18.75,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -63,6 +68,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -74,6 +80,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -85,6 +92,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -96,6 +104,7 @@
     "price": 40.00,
     "is_active": true,
     "category_name": "Vestiario",
+    "category_complete_name": "Vestiario",
     "uom_name": "hours"
   },
   {
@@ -107,6 +116,7 @@
     "price": 10000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -118,6 +128,7 @@
     "price": 100000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -129,6 +140,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -140,6 +152,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -151,6 +164,7 @@
     "price": 750.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -162,6 +176,7 @@
     "price": 1.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -173,6 +188,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -184,6 +200,7 @@
     "price": 96.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -195,6 +212,7 @@
     "price": 1.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -206,6 +224,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -217,6 +236,7 @@
     "price": 18.75,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -228,6 +248,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -239,6 +260,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "hours"
   },
   {
@@ -250,6 +272,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -261,6 +284,7 @@
     "price": 650.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -272,6 +296,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -283,6 +308,7 @@
     "price": 1.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -294,6 +320,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -305,6 +332,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -316,6 +344,7 @@
     "price": 300.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -327,6 +356,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -338,6 +368,7 @@
     "price": 400.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -349,6 +380,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -360,6 +392,7 @@
     "price": 401.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -371,6 +404,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -382,6 +416,7 @@
     "price": 402.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -393,6 +428,7 @@
     "price": 750.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -404,6 +440,7 @@
     "price": 150.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -415,6 +452,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -426,6 +464,7 @@
     "price": 396.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -437,6 +476,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -448,6 +488,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -459,6 +500,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -470,6 +512,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -481,6 +524,7 @@
     "price": 4.70,
     "is_active": false,
     "category_name": "Vestiario",
+    "category_complete_name": "Vestiario",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -492,6 +536,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -503,6 +548,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -514,6 +560,7 @@
     "price": 4.70,
     "is_active": true,
     "category_name": "Vestiario",
+    "category_complete_name": "Vestiario",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -525,6 +572,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -536,6 +584,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -547,6 +596,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -558,6 +608,7 @@
     "price": 75.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -569,6 +620,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -580,6 +632,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "terna"
   },
   {
@@ -591,6 +644,7 @@
     "price": 22.50,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -602,6 +656,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "terna"
   },
   {
@@ -613,6 +668,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -624,6 +680,7 @@
     "price": 120.00,
     "is_active": true,
     "category_name": "Monitoraggio strutturale",
+    "category_complete_name": "Rilievi e monitoraggi / Monitoraggio strutturale",
     "uom_name": "cad"
   },
   {
@@ -635,6 +692,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Monitoraggio strutturale",
+    "category_complete_name": "Rilievi e monitoraggi / Monitoraggio strutturale",
     "uom_name": "cad"
   },
   {
@@ -646,6 +704,7 @@
     "price": 10000.00,
     "is_active": true,
     "category_name": "Monitoraggio strutturale",
+    "category_complete_name": "Rilievi e monitoraggi / Monitoraggio strutturale",
     "uom_name": "cad"
   },
   {
@@ -657,6 +716,7 @@
     "price": 350000.00,
     "is_active": true,
     "category_name": "Monitoraggio strutturale",
+    "category_complete_name": "Rilievi e monitoraggi / Monitoraggio strutturale",
     "uom_name": "a corpo"
   },
   {
@@ -668,6 +728,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Monitoraggio strutturale",
+    "category_complete_name": "Rilievi e monitoraggi / Monitoraggio strutturale",
     "uom_name": "cad"
   },
   {
@@ -679,6 +740,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Monitoraggio strutturale",
+    "category_complete_name": "Rilievi e monitoraggi / Monitoraggio strutturale",
     "uom_name": "a corpo"
   },
   {
@@ -690,6 +752,7 @@
     "price": 750.00,
     "is_active": true,
     "category_name": "Monitoraggio e analisi vibrazionale",
+    "category_complete_name": "Monitoraggio e analisi vibrazionale",
     "uom_name": "cad"
   },
   {
@@ -701,6 +764,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Monitoraggio e analisi vibrazionale",
+    "category_complete_name": "Monitoraggio e analisi vibrazionale",
     "uom_name": "cad"
   },
   {
@@ -712,6 +776,7 @@
     "price": 900.00,
     "is_active": true,
     "category_name": "Monitoraggio Ambientale",
+    "category_complete_name": "Monitoraggio Ambientale",
     "uom_name": "cad"
   },
   {
@@ -723,6 +788,7 @@
     "price": 3500.00,
     "is_active": true,
     "category_name": "Monitoraggio Ambientale",
+    "category_complete_name": "Monitoraggio Ambientale",
     "uom_name": "a corpo"
   },
   {
@@ -734,6 +800,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Monitoraggio Ambientale",
+    "category_complete_name": "Monitoraggio Ambientale",
     "uom_name": "a corpo"
   },
   {
@@ -745,6 +812,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Monitoraggio Ambientale",
+    "category_complete_name": "Monitoraggio Ambientale",
     "uom_name": "a corpo"
   },
   {
@@ -756,6 +824,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Monitoraggio Ambientale",
+    "category_complete_name": "Monitoraggio Ambientale",
     "uom_name": "cad"
   },
   {
@@ -767,6 +836,7 @@
     "price": 800.00,
     "is_active": true,
     "category_name": "Monitoraggio Ambientale",
+    "category_complete_name": "Monitoraggio Ambientale",
     "uom_name": "cad/6 mesi"
   },
   {
@@ -778,6 +848,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Monitoraggio Ambientale",
+    "category_complete_name": "Monitoraggio Ambientale",
     "uom_name": "a corpo"
   },
   {
@@ -789,6 +860,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Monitoraggio Ambientale",
+    "category_complete_name": "Monitoraggio Ambientale",
     "uom_name": "cad"
   },
   {
@@ -800,6 +872,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "a corpo"
   },
   {
@@ -811,6 +884,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "ogni 100 mq"
   },
   {
@@ -822,6 +896,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "a corpo"
   },
   {
@@ -833,6 +908,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "a corpo"
   },
   {
@@ -844,6 +920,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "cad"
   },
   {
@@ -855,6 +932,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "a corpo"
   },
   {
@@ -866,6 +944,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "a corpo"
   },
   {
@@ -877,6 +956,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Verifiche e controlli",
+    "category_complete_name": "Verifiche e controlli",
     "uom_name": "a corpo"
   },
   {
@@ -888,6 +968,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Verifiche e controlli",
+    "category_complete_name": "Verifiche e controlli",
     "uom_name": "ogni 250 mq"
   },
   {
@@ -899,6 +980,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove di carico",
+    "category_complete_name": "Prove di carico",
     "uom_name": "cad"
   },
   {
@@ -910,6 +992,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Prove di carico",
+    "category_complete_name": "Prove di carico",
     "uom_name": "cad"
   },
   {
@@ -921,6 +1004,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Prove di carico",
+    "category_complete_name": "Prove di carico",
     "uom_name": "cad"
   },
   {
@@ -932,6 +1016,7 @@
     "price": 1250.00,
     "is_active": true,
     "category_name": "Prove di carico",
+    "category_complete_name": "Prove di carico",
     "uom_name": "cad"
   },
   {
@@ -943,6 +1028,7 @@
     "price": 875.00,
     "is_active": true,
     "category_name": "Prove di carico",
+    "category_complete_name": "Prove di carico",
     "uom_name": "cad"
   },
   {
@@ -954,6 +1040,7 @@
     "price": 2500.00,
     "is_active": true,
     "category_name": "Prove di carico",
+    "category_complete_name": "Prove di carico",
     "uom_name": "cad"
   },
   {
@@ -965,6 +1052,7 @@
     "price": 1250.00,
     "is_active": true,
     "category_name": "Prove di carico",
+    "category_complete_name": "Prove di carico",
     "uom_name": "cad"
   },
   {
@@ -976,6 +1064,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Prove di carico",
+    "category_complete_name": "Prove di carico",
     "uom_name": "cad"
   },
   {
@@ -987,6 +1076,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Prove di carico",
+    "category_complete_name": "Prove di carico",
     "uom_name": "cad"
   },
   {
@@ -998,6 +1088,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1009,6 +1100,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1020,6 +1112,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1031,6 +1124,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1042,6 +1136,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1053,6 +1148,7 @@
     "price": 50.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1064,6 +1160,7 @@
     "price": 37.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1075,6 +1172,7 @@
     "price": 3.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1086,6 +1184,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1097,6 +1196,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1108,6 +1208,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1119,6 +1220,7 @@
     "price": 12.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1130,6 +1232,7 @@
     "price": 312.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1141,6 +1244,7 @@
     "price": 50.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -1152,6 +1256,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1163,6 +1268,7 @@
     "price": 3.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "ml"
   },
   {
@@ -1174,6 +1280,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1185,6 +1292,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1196,6 +1304,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1207,6 +1316,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1218,6 +1328,7 @@
     "price": 750.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1229,6 +1340,7 @@
     "price": 5.66,
     "is_active": true,
     "category_name": "Sicurezza",
+    "category_complete_name": "Sicurezza",
     "uom_name": "cad/30gg"
   },
   {
@@ -1240,6 +1352,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1251,6 +1364,7 @@
     "price": 750.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1262,6 +1376,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1273,6 +1388,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "cad"
   },
   {
@@ -1284,6 +1400,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1295,6 +1412,7 @@
     "price": 400.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1306,6 +1424,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1317,6 +1436,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1328,6 +1448,7 @@
     "price": 400.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1339,6 +1460,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1350,6 +1472,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1361,6 +1484,7 @@
     "price": 400.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1372,6 +1496,7 @@
     "price": 2.50,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "m"
   },
   {
@@ -1383,6 +1508,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1394,6 +1520,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1405,6 +1532,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1416,6 +1544,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1427,6 +1556,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1438,6 +1568,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1449,6 +1580,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1460,6 +1592,7 @@
     "price": 312.50,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1471,6 +1604,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1482,6 +1616,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "cad"
   },
   {
@@ -1493,6 +1628,7 @@
     "price": 1500.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1504,6 +1640,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1515,6 +1652,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1526,6 +1664,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1537,6 +1676,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1548,6 +1688,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1559,6 +1700,7 @@
     "price": 312.50,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1570,6 +1712,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1581,6 +1724,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1592,6 +1736,7 @@
     "price": 375.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1603,6 +1748,7 @@
     "price": 375.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1614,6 +1760,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1625,6 +1772,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1636,6 +1784,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1647,6 +1796,7 @@
     "price": 375.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -1658,6 +1808,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1669,6 +1820,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1680,6 +1832,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1691,6 +1844,7 @@
     "price": 60.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1702,6 +1856,7 @@
     "price": 37.50,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1713,6 +1868,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Monitoraggio e analisi vibrazionale",
+    "category_complete_name": "Monitoraggio e analisi vibrazionale",
     "uom_name": "cad"
   },
   {
@@ -1724,6 +1880,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1735,6 +1892,7 @@
     "price": 60.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1746,6 +1904,7 @@
     "price": 12.50,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1757,6 +1916,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1768,6 +1928,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1779,6 +1940,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1790,6 +1952,7 @@
     "price": 120.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1801,6 +1964,7 @@
     "price": 312.50,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1812,6 +1976,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1823,6 +1988,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1834,6 +2000,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1845,6 +2012,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1856,6 +2024,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1867,6 +2036,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1878,6 +2048,7 @@
     "price": 1500.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1889,6 +2060,7 @@
     "price": 35.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1900,6 +2072,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "a corpo"
   },
   {
@@ -1911,6 +2084,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1922,6 +2096,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1933,6 +2108,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1944,6 +2120,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1955,6 +2132,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1966,6 +2144,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -1977,6 +2156,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Monitoraggio micro ambientale",
+    "category_complete_name": "Monitoraggio micro ambientale",
     "uom_name": "cad"
   },
   {
@@ -1988,6 +2168,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Monitoraggio micro ambientale",
+    "category_complete_name": "Monitoraggio micro ambientale",
     "uom_name": "cad"
   },
   {
@@ -1999,6 +2180,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Monitoraggio micro ambientale",
+    "category_complete_name": "Monitoraggio micro ambientale",
     "uom_name": "cad"
   },
   {
@@ -2010,6 +2192,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "cad"
   },
   {
@@ -2021,6 +2204,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2032,6 +2216,7 @@
     "price": 20000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2043,6 +2228,7 @@
     "price": 35000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2054,6 +2240,7 @@
     "price": 50000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2065,6 +2252,7 @@
     "price": 50.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2076,6 +2264,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2087,6 +2276,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2098,6 +2288,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2109,6 +2300,7 @@
     "price": 50.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2120,6 +2312,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2131,6 +2324,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2142,6 +2336,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2153,6 +2348,7 @@
     "price": 0.70,
     "is_active": true,
     "category_name": "Monitoraggio Ambientale",
+    "category_complete_name": "Monitoraggio Ambientale",
     "uom_name": "mc"
   },
   {
@@ -2164,6 +2360,7 @@
     "price": 250.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2175,6 +2372,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -2186,6 +2384,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -2197,6 +2396,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -2208,6 +2408,7 @@
     "price": 80.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2219,6 +2420,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -2230,6 +2432,7 @@
     "price": 0.42,
     "is_active": true,
     "category_name": "Sicurezza",
+    "category_complete_name": "Sicurezza",
     "uom_name": "cad/30gg"
   },
   {
@@ -2241,6 +2444,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "0,5 mq"
   },
   {
@@ -2252,6 +2456,7 @@
     "price": 800.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2263,6 +2468,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "0,5 mq"
   },
   {
@@ -2274,6 +2480,7 @@
     "price": 520.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2285,6 +2492,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "0,5 mq"
   },
   {
@@ -2296,6 +2504,7 @@
     "price": 85.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2307,6 +2516,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "0,5 mq"
   },
   {
@@ -2318,6 +2528,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "0,5 mq"
   },
   {
@@ -2329,6 +2540,7 @@
     "price": 15.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2340,6 +2552,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -2351,6 +2564,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2362,6 +2576,7 @@
     "price": 900.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2373,6 +2588,7 @@
     "price": 180.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2384,6 +2600,7 @@
     "price": 375.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2395,6 +2612,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2406,6 +2624,7 @@
     "price": 60.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "ml"
   },
   {
@@ -2417,6 +2636,7 @@
     "price": 120.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "ml"
   },
   {
@@ -2428,6 +2648,7 @@
     "price": 120.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "ml"
   },
   {
@@ -2439,6 +2660,7 @@
     "price": 20.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "ml"
   },
   {
@@ -2450,6 +2672,7 @@
     "price": 15.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "ml"
   },
   {
@@ -2461,6 +2684,7 @@
     "price": 60.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "ml"
   },
   {
@@ -2472,6 +2696,7 @@
     "price": 20.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2483,6 +2708,7 @@
     "price": 10.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "ml"
   },
   {
@@ -2494,6 +2720,7 @@
     "price": 650.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2505,6 +2732,7 @@
     "price": 290.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2516,6 +2744,7 @@
     "price": 120.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2527,6 +2756,7 @@
     "price": 128.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2538,6 +2768,7 @@
     "price": 127.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2549,6 +2780,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2560,6 +2792,7 @@
     "price": 315.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2571,6 +2804,7 @@
     "price": 120.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2582,6 +2816,7 @@
     "price": 35.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2593,6 +2828,7 @@
     "price": 95.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2604,6 +2840,7 @@
     "price": 270.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2615,6 +2852,7 @@
     "price": 750.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2626,6 +2864,7 @@
     "price": 187.50,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2637,6 +2876,7 @@
     "price": 230.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2648,6 +2888,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2659,6 +2900,7 @@
     "price": 38.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "ml"
   },
   {
@@ -2670,6 +2912,7 @@
     "price": 38.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "ml"
   },
   {
@@ -2681,6 +2924,7 @@
     "price": 45.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "ml"
   },
   {
@@ -2692,6 +2936,7 @@
     "price": 15.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2703,6 +2948,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "a corpo"
   },
   {
@@ -2714,6 +2960,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2725,6 +2972,7 @@
     "price": 2000.00,
     "is_active": true,
     "category_name": "Monitoraggio e analisi vibrazionale",
+    "category_complete_name": "Monitoraggio e analisi vibrazionale",
     "uom_name": "a corpo"
   },
   {
@@ -2736,6 +2984,7 @@
     "price": 800.00,
     "is_active": true,
     "category_name": "Monitoraggio strutturale",
+    "category_complete_name": "Rilievi e monitoraggi / Monitoraggio strutturale",
     "uom_name": "cad"
   },
   {
@@ -2747,6 +2996,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -2758,6 +3008,7 @@
     "price": 37.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2769,6 +3020,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "cad"
   },
   {
@@ -2780,6 +3032,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2791,6 +3044,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2802,6 +3056,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2813,6 +3068,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2824,6 +3080,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2835,6 +3092,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2846,6 +3104,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2857,6 +3116,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2868,6 +3128,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2879,6 +3140,7 @@
     "price": 375.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2890,6 +3152,7 @@
     "price": 16000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2901,6 +3164,7 @@
     "price": 162.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2912,6 +3176,7 @@
     "price": 120.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2923,6 +3188,7 @@
     "price": 312.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "1 mq"
   },
   {
@@ -2934,6 +3200,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2945,6 +3212,7 @@
     "price": 62500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2956,6 +3224,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2967,6 +3236,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2978,6 +3248,7 @@
     "price": 12500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -2989,6 +3260,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3000,6 +3272,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3011,6 +3284,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3022,6 +3296,7 @@
     "price": 5.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3033,6 +3308,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3044,6 +3320,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3055,6 +3332,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3066,6 +3344,7 @@
     "price": 300.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3077,6 +3356,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3088,6 +3368,7 @@
     "price": 3.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3099,6 +3380,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3110,6 +3392,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3121,6 +3404,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3132,6 +3416,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3143,6 +3428,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3154,6 +3440,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3165,6 +3452,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3176,6 +3464,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3187,6 +3476,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3198,6 +3488,7 @@
     "price": 162.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3209,6 +3500,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3220,6 +3512,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3231,6 +3524,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3242,6 +3536,7 @@
     "price": 450.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3253,6 +3548,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3264,6 +3560,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3275,6 +3572,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3286,6 +3584,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3297,6 +3596,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "ml"
   },
   {
@@ -3308,6 +3608,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -3319,6 +3620,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3330,6 +3632,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3341,6 +3644,7 @@
     "price": 300.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3352,6 +3656,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3363,6 +3668,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3374,6 +3680,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a corpo"
   },
   {
@@ -3385,6 +3692,7 @@
     "price": 12500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3396,6 +3704,7 @@
     "price": 50.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3407,6 +3716,7 @@
     "price": 250.00,
     "is_active": true,
     "category_name": "Monitoraggio strutturale",
+    "category_complete_name": "Rilievi e monitoraggi / Monitoraggio strutturale",
     "uom_name": "cad"
   },
   {
@@ -3418,6 +3728,7 @@
     "price": 520.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -3429,6 +3740,7 @@
     "price": 1.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3440,6 +3752,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3451,6 +3764,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3462,6 +3776,7 @@
     "price": 50.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3473,6 +3788,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -3484,6 +3800,7 @@
     "price": 120.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -3495,6 +3812,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Diagnotica strutturale",
+    "category_complete_name": "Diagnotica strutturale",
     "uom_name": "a corpo"
   },
   {
@@ -3506,6 +3824,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a corpo"
   },
   {
@@ -3517,6 +3836,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "una tantum"
   },
   {
@@ -3528,6 +3848,7 @@
     "price": 800.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "cad"
   },
   {
@@ -3539,6 +3860,7 @@
     "price": 144.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -3550,6 +3872,7 @@
     "price": 560.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -3561,6 +3884,7 @@
     "price": 1500.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -3572,6 +3896,7 @@
     "price": 990.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -3583,6 +3908,7 @@
     "price": 375.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3594,6 +3920,7 @@
     "price": 87.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -3605,6 +3932,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3616,6 +3944,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3627,6 +3956,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3638,6 +3968,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "a corpo"
   },
   {
@@ -3649,6 +3980,7 @@
     "price": 160.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3660,6 +3992,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3671,6 +4004,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3682,6 +4016,7 @@
     "price": 50.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3693,6 +4028,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo"
   },
   {
@@ -3704,6 +4040,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3715,6 +4052,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3726,6 +4064,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3737,6 +4076,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3748,6 +4088,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3759,6 +4100,7 @@
     "price": 144.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3770,6 +4112,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3781,6 +4124,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3792,6 +4136,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3803,6 +4148,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3814,6 +4160,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3825,6 +4172,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3836,6 +4184,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3847,6 +4196,7 @@
     "price": 800.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3858,6 +4208,7 @@
     "price": 0.70,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3869,6 +4220,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3880,6 +4232,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3891,6 +4244,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3902,6 +4256,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3913,6 +4268,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3924,6 +4280,7 @@
     "price": 875.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3935,6 +4292,7 @@
     "price": 2500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3946,6 +4304,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3957,6 +4316,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3968,6 +4328,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Verifiche e controlli",
+    "category_complete_name": "Verifiche e controlli",
     "uom_name": "prospetto"
   },
   {
@@ -3979,6 +4340,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -3990,6 +4352,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4001,6 +4364,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4012,6 +4376,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4023,6 +4388,7 @@
     "price": 900.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4034,6 +4400,7 @@
     "price": 3500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4045,6 +4412,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4056,6 +4424,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4067,6 +4436,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4078,6 +4448,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4089,6 +4460,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4100,6 +4472,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4111,6 +4484,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4122,6 +4496,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4133,6 +4508,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4144,6 +4520,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4155,6 +4532,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4166,6 +4544,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Monitoraggio Ambientale",
+    "category_complete_name": "Monitoraggio Ambientale",
     "uom_name": "cad"
   },
   {
@@ -4177,6 +4556,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4188,6 +4568,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4199,6 +4580,7 @@
     "price": 1250.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4210,6 +4592,7 @@
     "price": 96.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -4221,6 +4604,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4232,6 +4616,7 @@
     "price": 25.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -4243,6 +4628,7 @@
     "price": 1500.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -4254,6 +4640,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4265,6 +4652,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4276,6 +4664,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4287,6 +4676,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4298,6 +4688,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4309,6 +4700,7 @@
     "price": 150.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4320,6 +4712,7 @@
     "price": 50.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4331,6 +4724,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4342,6 +4736,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -4353,6 +4748,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4364,6 +4760,7 @@
     "price": 300.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4375,6 +4772,7 @@
     "price": 390.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -4386,6 +4784,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -4397,6 +4796,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a giorno"
   },
   {
@@ -4408,6 +4808,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -4419,6 +4820,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4430,6 +4832,7 @@
     "price": 750.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -4441,6 +4844,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Rilievi e monitoraggi",
+    "category_complete_name": "Rilievi e monitoraggi",
     "uom_name": "a corpo"
   },
   {
@@ -4452,6 +4856,7 @@
     "price": 2000.00,
     "is_active": true,
     "category_name": "Monitoraggio strutturale",
+    "category_complete_name": "Rilievi e monitoraggi / Monitoraggio strutturale",
     "uom_name": "cad"
   },
   {
@@ -4463,6 +4868,7 @@
     "price": 85.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -4474,6 +4880,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -4485,6 +4892,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "0,5 mq"
   },
   {
@@ -4496,6 +4904,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -4507,6 +4916,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "a corpo"
   },
   {
@@ -4518,6 +4928,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4529,6 +4940,7 @@
     "price": 510.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -4540,6 +4952,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "a corpo"
   },
   {
@@ -4551,6 +4964,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4562,6 +4976,7 @@
     "price": 35.31,
     "is_active": true,
     "category_name": "Sicurezza",
+    "category_complete_name": "Sicurezza",
     "uom_name": "cad"
   },
   {
@@ -4573,6 +4988,7 @@
     "price": 17.39,
     "is_active": true,
     "category_name": "Sicurezza",
+    "category_complete_name": "Sicurezza",
     "uom_name": "cad"
   },
   {
@@ -4584,6 +5000,7 @@
     "price": 2000.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo"
   },
   {
@@ -4595,6 +5012,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4606,6 +5024,7 @@
     "price": 240.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4617,6 +5036,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4628,6 +5048,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4639,6 +5060,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4650,6 +5072,7 @@
     "price": 150.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4661,6 +5084,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4672,6 +5096,7 @@
     "price": 150.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4683,6 +5108,7 @@
     "price": 210.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4694,6 +5120,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4705,6 +5132,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4716,6 +5144,7 @@
     "price": 156.25,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4727,6 +5156,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4738,6 +5168,7 @@
     "price": 2000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4749,6 +5180,7 @@
     "price": 150.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4760,6 +5192,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4771,6 +5204,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4782,6 +5216,7 @@
     "price": 225.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4793,6 +5228,7 @@
     "price": 96.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4804,6 +5240,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4815,6 +5252,7 @@
     "price": 750.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4826,6 +5264,7 @@
     "price": 30.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4837,6 +5276,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4848,6 +5288,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4859,6 +5300,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4870,6 +5312,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -4881,6 +5324,7 @@
     "price": 40.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4892,6 +5336,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4903,6 +5348,7 @@
     "price": 1200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4914,6 +5360,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4925,6 +5372,7 @@
     "price": 75.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -4936,6 +5384,7 @@
     "price": 750.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4947,6 +5396,7 @@
     "price": 1500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4958,6 +5408,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4969,6 +5420,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4980,6 +5432,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -4991,6 +5444,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5002,6 +5456,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5013,6 +5468,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5024,6 +5480,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5035,6 +5492,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5046,6 +5504,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5057,6 +5516,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5068,6 +5528,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5079,6 +5540,7 @@
     "price": 15.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5090,6 +5552,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5101,6 +5564,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5112,6 +5576,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5123,6 +5588,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5134,6 +5600,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5145,6 +5612,7 @@
     "price": 60.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5156,6 +5624,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -5167,6 +5636,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -5178,6 +5648,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -5189,6 +5660,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "a giorno"
   },
   {
@@ -5200,6 +5672,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -5211,6 +5684,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -5222,6 +5696,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -5233,6 +5708,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5244,6 +5720,7 @@
     "price": 37.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5255,6 +5732,7 @@
     "price": 3.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "m"
   },
   {
@@ -5266,6 +5744,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "a giorno"
   },
   {
@@ -5277,6 +5756,7 @@
     "price": 144.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5288,6 +5768,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5299,6 +5780,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5310,6 +5792,7 @@
     "price": 35.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5321,6 +5804,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5332,6 +5816,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5343,6 +5828,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5354,6 +5840,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5365,6 +5852,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5376,6 +5864,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5387,6 +5876,7 @@
     "price": 400.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5398,6 +5888,7 @@
     "price": 400.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5409,6 +5900,7 @@
     "price": 400.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5420,6 +5912,7 @@
     "price": 55.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5431,6 +5924,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5442,6 +5936,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5453,6 +5948,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5464,6 +5960,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5475,6 +5972,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5486,6 +5984,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5497,6 +5996,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5508,6 +6008,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5519,6 +6020,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5530,6 +6032,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5541,6 +6044,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5552,6 +6056,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5563,6 +6068,7 @@
     "price": 2000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5574,6 +6080,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5585,6 +6092,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5596,6 +6104,7 @@
     "price": 150.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5607,6 +6116,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5618,6 +6128,7 @@
     "price": 30.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5629,6 +6140,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -5640,6 +6152,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5651,6 +6164,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5662,6 +6176,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5673,6 +6188,7 @@
     "price": 12.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5684,6 +6200,7 @@
     "price": 170.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -5695,6 +6212,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5706,6 +6224,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5717,6 +6236,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5728,6 +6248,7 @@
     "price": 72.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5739,6 +6260,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5750,6 +6272,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5761,6 +6284,7 @@
     "price": 25.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5772,6 +6296,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5783,6 +6308,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5794,6 +6320,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5805,6 +6332,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5816,6 +6344,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5827,6 +6356,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5838,6 +6368,7 @@
     "price": 144.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -5849,6 +6380,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5860,6 +6392,7 @@
     "price": 50.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5871,6 +6404,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5882,6 +6416,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5893,6 +6428,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -5904,6 +6440,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5915,6 +6452,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5926,6 +6464,7 @@
     "price": 350.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5937,6 +6476,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -5948,6 +6488,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5959,6 +6500,7 @@
     "price": 180.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5970,6 +6512,7 @@
     "price": 25.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -5981,6 +6524,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a giorno"
   },
   {
@@ -5992,6 +6536,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6003,6 +6548,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "a corpo"
   },
   {
@@ -6014,6 +6560,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6025,6 +6572,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6036,6 +6584,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6047,6 +6596,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "0,5 mq"
   },
   {
@@ -6058,6 +6608,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -6069,6 +6620,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "0,5 mq"
   },
   {
@@ -6080,6 +6632,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6091,6 +6644,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6102,6 +6656,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6113,6 +6668,7 @@
     "price": 43.75,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6124,6 +6680,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6135,6 +6692,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6146,6 +6704,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6157,6 +6716,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6168,6 +6728,7 @@
     "price": 1500.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "a corpo"
   },
   {
@@ -6179,6 +6740,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6190,6 +6752,7 @@
     "price": 37.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6201,6 +6764,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6212,6 +6776,7 @@
     "price": 375.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -6223,6 +6788,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6234,6 +6800,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "a giorno"
   },
   {
@@ -6245,6 +6812,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6256,6 +6824,7 @@
     "price": 10.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -6267,6 +6836,7 @@
     "price": 16000.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6278,6 +6848,7 @@
     "price": 12500.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6289,6 +6860,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6300,6 +6872,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6311,6 +6884,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6322,6 +6896,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "a corpo"
   },
   {
@@ -6333,6 +6908,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -6344,6 +6920,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6355,6 +6932,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6366,6 +6944,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6377,6 +6956,7 @@
     "price": 40.00,
     "is_active": true,
     "category_name": "Acciaio Dolce per Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Acciaio Dolce per Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6388,6 +6968,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6399,6 +6980,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "a corpo"
   },
   {
@@ -6410,6 +6992,7 @@
     "price": 26.65,
     "is_active": true,
     "category_name": "Sicurezza",
+    "category_complete_name": "Sicurezza",
     "uom_name": "1 mq"
   },
   {
@@ -6421,6 +7004,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -6432,6 +7016,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6443,6 +7028,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6454,6 +7040,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6465,6 +7052,7 @@
     "price": 1000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6476,6 +7064,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Legno",
+    "category_complete_name": "Diagnotica strutturale / Legno",
     "uom_name": "cad"
   },
   {
@@ -6487,6 +7076,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6498,6 +7088,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6509,6 +7100,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Legno",
+    "category_complete_name": "Diagnotica strutturale / Legno",
     "uom_name": "cad"
   },
   {
@@ -6520,6 +7112,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6531,6 +7124,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6542,6 +7136,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6553,6 +7148,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Legno",
+    "category_complete_name": "Diagnotica strutturale / Legno",
     "uom_name": "cad"
   },
   {
@@ -6564,6 +7160,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6575,6 +7172,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6586,6 +7184,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Legno",
+    "category_complete_name": "Diagnotica strutturale / Legno",
     "uom_name": "cad"
   },
   {
@@ -6597,6 +7196,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6608,6 +7208,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Legno",
+    "category_complete_name": "Diagnotica strutturale / Legno",
     "uom_name": "cad"
   },
   {
@@ -6619,6 +7220,7 @@
     "price": 120.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -6630,6 +7232,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Legno",
+    "category_complete_name": "Diagnotica strutturale / Legno",
     "uom_name": "cad"
   },
   {
@@ -6641,6 +7244,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Legno",
+    "category_complete_name": "Diagnotica strutturale / Legno",
     "uom_name": "cad"
   },
   {
@@ -6652,6 +7256,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "a corpo"
   },
   {
@@ -6663,6 +7268,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Legno",
+    "category_complete_name": "Diagnotica strutturale / Legno",
     "uom_name": "cad"
   },
   {
@@ -6674,6 +7280,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -6685,6 +7292,7 @@
     "price": 20.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -6696,6 +7304,7 @@
     "price": 30000.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Geognostica e fondazioni / Geofisica",
     "uom_name": "ha"
   },
   {
@@ -6707,6 +7316,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6718,6 +7328,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6729,6 +7340,7 @@
     "price": 250.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "hours"
   },
   {
@@ -6740,6 +7352,7 @@
     "price": 185.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -6751,6 +7364,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -6762,6 +7376,7 @@
     "price": 1.63,
     "is_active": true,
     "category_name": "Sicurezza",
+    "category_complete_name": "Sicurezza",
     "uom_name": "cad/30gg"
   },
   {
@@ -6773,6 +7388,7 @@
     "price": 9.70,
     "is_active": true,
     "category_name": "Sicurezza",
+    "category_complete_name": "Sicurezza",
     "uom_name": "cad/30gg"
   },
   {
@@ -6784,6 +7400,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6795,6 +7412,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -6806,6 +7424,7 @@
     "price": 2000.00,
     "is_active": true,
     "category_name": "Altro",
+    "category_complete_name": "Altro",
     "uom_name": "a corpo"
   },
   {
@@ -6817,6 +7436,7 @@
     "price": 1250.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "a corpo"
   },
   {
@@ -6828,6 +7448,7 @@
     "price": 550.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6839,6 +7460,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6850,6 +7472,7 @@
     "price": 675.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "a corpo"
   },
   {
@@ -6861,6 +7484,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6872,6 +7496,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a corpo"
   },
   {
@@ -6883,6 +7508,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6894,6 +7520,7 @@
     "price": 2500.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "a corpo"
   },
   {
@@ -6905,6 +7532,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -6916,6 +7544,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -6927,6 +7556,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a giorno"
   },
   {
@@ -6938,6 +7568,7 @@
     "price": 180.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "terna"
   },
   {
@@ -6949,6 +7580,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6960,6 +7592,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6971,6 +7604,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -6982,6 +7616,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "a corpo"
   },
   {
@@ -6993,6 +7628,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Rilievi e monitoraggi",
+    "category_complete_name": "Rilievi e monitoraggi",
     "uom_name": "cad"
   },
   {
@@ -7004,6 +7640,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Noli",
+    "category_complete_name": "Noli",
     "uom_name": "a giorno"
   },
   {
@@ -7015,6 +7652,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -7026,6 +7664,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7037,6 +7676,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -7048,6 +7688,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7059,6 +7700,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a corpo"
   },
   {
@@ -7070,6 +7712,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7081,6 +7724,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7092,6 +7736,7 @@
     "price": 3000.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -7103,6 +7748,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7114,6 +7760,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7125,6 +7772,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7136,6 +7784,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7147,6 +7796,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7158,6 +7808,7 @@
     "price": 12.50,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "cad"
   },
   {
@@ -7169,6 +7820,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7180,6 +7832,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "cad"
   },
   {
@@ -7191,6 +7844,7 @@
     "price": 144.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7202,6 +7856,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7213,6 +7868,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Vestiario",
+    "category_complete_name": "Vestiario",
     "uom_name": "a corpo"
   },
   {
@@ -7224,6 +7880,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Software / Geofisica",
     "uom_name": "a corpo"
   },
   {
@@ -7235,6 +7892,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Software / Geofisica",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7246,6 +7904,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Software / Geofisica",
     "uom_name": "a corpo"
   },
   {
@@ -7257,6 +7916,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Geofisica",
+    "category_complete_name": "Software / Geofisica",
     "uom_name": "a corpo"
   },
   {
@@ -7268,6 +7928,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "a corpo"
   },
   {
@@ -7279,6 +7940,7 @@
     "price": 1325.00,
     "is_active": true,
     "category_name": "Noli",
+    "category_complete_name": "Noli",
     "uom_name": "cad"
   },
   {
@@ -7290,6 +7952,7 @@
     "price": 450.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -7301,6 +7964,7 @@
     "price": 75.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -7312,6 +7976,7 @@
     "price": 375.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a giorno"
   },
   {
@@ -7323,6 +7988,7 @@
     "price": 13.50,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -7334,6 +8000,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Geognostica e fondazioni",
+    "category_complete_name": "Geognostica e fondazioni",
     "uom_name": "cad"
   },
   {
@@ -7345,6 +8012,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7356,6 +8024,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7367,6 +8036,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7378,6 +8048,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7389,6 +8060,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7400,6 +8072,7 @@
     "price": 2.50,
     "is_active": true,
     "category_name": "Rilievi e monitoraggi",
+    "category_complete_name": "Rilievi e monitoraggi",
     "uom_name": "m"
   },
   {
@@ -7411,6 +8084,7 @@
     "price": 1250.00,
     "is_active": true,
     "category_name": "Prove speciali",
+    "category_complete_name": "Prove speciali",
     "uom_name": "a corpo"
   },
   {
@@ -7422,6 +8096,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7433,6 +8108,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7444,6 +8120,7 @@
     "price": 162.50,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7455,6 +8132,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7466,6 +8144,7 @@
     "price": 162.50,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7477,6 +8156,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7488,6 +8168,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7499,6 +8180,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7510,6 +8192,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7521,6 +8204,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7532,6 +8216,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7543,6 +8228,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7554,6 +8240,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7565,6 +8252,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -7576,6 +8264,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7587,6 +8276,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Altro",
+    "category_complete_name": "Altro",
     "uom_name": "una tantum"
   },
   {
@@ -7598,6 +8288,7 @@
     "price": 450.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7609,6 +8300,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7620,6 +8312,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -7631,6 +8324,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7642,6 +8336,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7653,6 +8348,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7664,6 +8360,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7675,6 +8372,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7686,6 +8384,7 @@
     "price": 1500.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7697,6 +8396,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7708,6 +8408,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7719,6 +8420,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7730,6 +8432,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "cad"
   },
   {
@@ -7741,6 +8444,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -7752,6 +8456,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7763,6 +8468,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "a corpo"
   },
   {
@@ -7774,6 +8480,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7785,6 +8492,7 @@
     "price": 265.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -7796,6 +8504,7 @@
     "price": 550.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -7807,6 +8516,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7818,6 +8528,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "a corpo"
   },
   {
@@ -7829,6 +8540,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -7840,6 +8552,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7851,6 +8564,7 @@
     "price": 1200.00,
     "is_active": true,
     "category_name": "Verifiche e controlli",
+    "category_complete_name": "Verifiche e controlli",
     "uom_name": "cad"
   },
   {
@@ -7862,6 +8576,7 @@
     "price": 3.90,
     "is_active": true,
     "category_name": "Altro",
+    "category_complete_name": "Altro",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7873,6 +8588,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7884,6 +8600,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -7895,6 +8612,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo"
   },
   {
@@ -7906,6 +8624,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "a corpo"
   },
   {
@@ -7917,6 +8636,7 @@
     "price": 750.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -7928,6 +8648,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -7939,6 +8660,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Geognostica e fondazioni",
+    "category_complete_name": "Geognostica e fondazioni",
     "uom_name": "a corpo"
   },
   {
@@ -7950,6 +8672,7 @@
     "price": 1440.00,
     "is_active": true,
     "category_name": "Noli",
+    "category_complete_name": "Noli",
     "uom_name": "cad"
   },
   {
@@ -7961,6 +8684,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a corpo"
   },
   {
@@ -7972,6 +8696,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -7983,6 +8708,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a corpo"
   },
   {
@@ -7994,6 +8720,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -8005,6 +8732,7 @@
     "price": 87.50,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "1 mq"
   },
   {
@@ -8016,6 +8744,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Muratura",
+    "category_complete_name": "Diagnotica strutturale / Muratura",
     "uom_name": "cad"
   },
   {
@@ -8027,6 +8756,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -8038,6 +8768,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8049,6 +8780,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a giorno"
   },
   {
@@ -8060,6 +8792,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Monitoraggio micro ambientale",
+    "category_complete_name": "Monitoraggio micro ambientale",
     "uom_name": "cad"
   },
   {
@@ -8071,6 +8804,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -8082,6 +8816,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -8093,6 +8828,7 @@
     "price": 0.85,
     "is_active": true,
     "category_name": "Sicurezza",
+    "category_complete_name": "Sicurezza",
     "uom_name": "cad/30gg"
   },
   {
@@ -8104,6 +8840,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8115,6 +8852,7 @@
     "price": 9.27,
     "is_active": true,
     "category_name": "Sicurezza",
+    "category_complete_name": "Sicurezza",
     "uom_name": "cad/30gg"
   },
   {
@@ -8126,6 +8864,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8137,6 +8876,7 @@
     "price": 450.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "cad"
   },
   {
@@ -8148,6 +8888,7 @@
     "price": 6.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -8159,6 +8900,7 @@
     "price": 57.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -8170,6 +8912,7 @@
     "price": 57.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -8181,6 +8924,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Altro",
+    "category_complete_name": "Altro",
     "uom_name": "a corpo"
   },
   {
@@ -8192,6 +8936,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8203,6 +8948,7 @@
     "price": 32.50,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "m"
   },
   {
@@ -8214,6 +8960,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8225,6 +8972,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8236,6 +8984,7 @@
     "price": 750.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8247,6 +8996,7 @@
     "price": 25.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -8258,6 +9008,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8269,6 +9020,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8280,6 +9032,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8291,6 +9044,7 @@
     "price": 400.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8302,6 +9056,7 @@
     "price": 400.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8313,6 +9068,7 @@
     "price": 400.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8324,6 +9080,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8335,6 +9092,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "a corpo"
   },
   {
@@ -8346,6 +9104,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "a corpo"
   },
   {
@@ -8357,6 +9116,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8368,6 +9128,7 @@
     "price": 396.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8379,6 +9140,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo"
   },
   {
@@ -8390,6 +9152,7 @@
     "price": 125.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8401,6 +9164,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8412,6 +9176,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8423,6 +9188,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8434,6 +9200,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8445,6 +9212,7 @@
     "price": 65.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -8456,6 +9224,7 @@
     "price": 55.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8467,6 +9236,7 @@
     "price": 1200.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "a corpo"
   },
   {
@@ -8478,6 +9248,7 @@
     "price": 1500.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "a corpo"
   },
   {
@@ -8489,6 +9260,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "a giorno"
   },
   {
@@ -8500,6 +9272,7 @@
     "price": 40.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8511,6 +9284,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -8522,6 +9296,7 @@
     "price": 300.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "cad"
   },
   {
@@ -8533,6 +9308,7 @@
     "price": 43.75,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "coppia"
   },
   {
@@ -8544,6 +9320,7 @@
     "price": 150.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -8555,6 +9332,7 @@
     "price": 10.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -8566,6 +9344,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "cad"
   },
   {
@@ -8577,6 +9356,7 @@
     "price": 2000.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "a corpo"
   },
   {
@@ -8588,6 +9368,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "a corpo"
   },
   {
@@ -8599,6 +9380,7 @@
     "price": 1550.00,
     "is_active": true,
     "category_name": "Noli",
+    "category_complete_name": "Noli",
     "uom_name": "cad"
   },
   {
@@ -8610,6 +9392,7 @@
     "price": 1500.00,
     "is_active": true,
     "category_name": "Archeologia preventiva",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici / Archeologia preventiva",
     "uom_name": "a corpo"
   },
   {
@@ -8621,6 +9404,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -8632,6 +9416,7 @@
     "price": 120.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -8643,6 +9428,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -8654,6 +9440,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8665,6 +9452,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8676,6 +9464,7 @@
     "price": 33.75,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -8687,6 +9476,7 @@
     "price": 1.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8698,6 +9488,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8709,6 +9500,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8720,6 +9512,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8731,6 +9524,7 @@
     "price": 30.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8742,6 +9536,7 @@
     "price": 62.50,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "cad"
   },
   {
@@ -8753,6 +9548,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -8764,6 +9560,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -8775,6 +9572,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8786,6 +9584,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8797,6 +9596,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Diagnotica strutturale",
+    "category_complete_name": "Diagnotica strutturale",
     "uom_name": "a corpo"
   },
   {
@@ -8808,6 +9608,7 @@
     "price": 1670.00,
     "is_active": true,
     "category_name": "Noli",
+    "category_complete_name": "Noli",
     "uom_name": "cad"
   },
   {
@@ -8819,6 +9620,7 @@
     "price": 730.00,
     "is_active": true,
     "category_name": "Noli",
+    "category_complete_name": "Noli",
     "uom_name": "a giorno"
   },
   {
@@ -8830,6 +9632,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "a corpo"
   },
   {
@@ -8841,6 +9644,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Conservazione dei beni culturali e archeologici",
+    "category_complete_name": "Conservazione dei beni culturali e archeologici",
     "uom_name": "cad"
   },
   {
@@ -8852,6 +9656,7 @@
     "price": 63.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -8863,6 +9668,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "a corpo"
   },
   {
@@ -8874,6 +9680,7 @@
     "price": 625.00,
     "is_active": true,
     "category_name": "Calcestruzzo",
+    "category_complete_name": "Diagnotica strutturale / Calcestruzzo",
     "uom_name": "a corpo"
   },
   {
@@ -8885,6 +9692,7 @@
     "price": 33.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -8896,6 +9704,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8907,6 +9716,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8918,6 +9728,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Altro",
+    "category_complete_name": "Altro",
     "uom_name": "cad"
   },
   {
@@ -8929,6 +9740,7 @@
     "price": 220.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -8940,6 +9752,7 @@
     "price": 10.80,
     "is_active": true,
     "category_name": "Rilievi e monitoraggi",
+    "category_complete_name": "Rilievi e monitoraggi",
     "uom_name": "m"
   },
   {
@@ -8951,6 +9764,7 @@
     "price": 425.00,
     "is_active": true,
     "category_name": "Rilievi e monitoraggi",
+    "category_complete_name": "Rilievi e monitoraggi",
     "uom_name": "cad"
   },
   {
@@ -8962,6 +9776,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8973,6 +9788,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8984,6 +9800,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -8995,6 +9812,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -9006,6 +9824,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9017,6 +9836,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9028,6 +9848,7 @@
     "price": 50.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9039,6 +9860,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9050,6 +9872,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9061,6 +9884,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9072,6 +9896,7 @@
     "price": 1.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9083,6 +9908,7 @@
     "price": 75.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9094,6 +9920,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9105,6 +9932,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9116,6 +9944,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9127,6 +9956,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9138,6 +9968,7 @@
     "price": 150.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9149,6 +9980,7 @@
     "price": 180.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9160,6 +9992,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9171,6 +10004,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9182,6 +10016,7 @@
     "price": 62.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9193,6 +10028,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9204,6 +10040,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9215,6 +10052,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9226,6 +10064,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -9237,6 +10076,7 @@
     "price": 187.50,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -9248,6 +10088,7 @@
     "price": 330.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -9259,6 +10100,7 @@
     "price": 500.00,
     "is_active": true,
     "category_name": "Noli",
+    "category_complete_name": "Noli",
     "uom_name": "a giorno"
   },
   {
@@ -9270,6 +10112,7 @@
     "price": 110.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -9281,6 +10124,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9292,6 +10136,7 @@
     "price": 1000.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a corpo"
   },
   {
@@ -9303,6 +10148,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Prove su materiali da costruzione",
+    "category_complete_name": "Prove su materiali da costruzione",
     "uom_name": "cad"
   },
   {
@@ -9314,6 +10160,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9325,6 +10172,7 @@
     "price": 625.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9336,6 +10184,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9347,6 +10196,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9358,6 +10208,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Vestiario",
+    "category_complete_name": "Vestiario",
     "uom_name": "a corpo"
   },
   {
@@ -9369,6 +10220,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9380,6 +10232,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9391,6 +10244,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9402,6 +10256,7 @@
     "price": 350.00,
     "is_active": true,
     "category_name": "Rilievo",
+    "category_complete_name": "Rilievo",
     "uom_name": "cad"
   },
   {
@@ -9413,6 +10268,7 @@
     "price": 90.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   },
   {
@@ -9424,6 +10280,7 @@
     "price": 3000.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a corpo"
   },
   {
@@ -9435,6 +10292,7 @@
     "price": 0.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9446,6 +10304,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9457,6 +10316,7 @@
     "price": 50.00,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -9468,6 +10328,7 @@
     "price": 1.00,
     "is_active": true,
     "category_name": "Relazioni",
+    "category_complete_name": "Relazioni",
     "uom_name": "a corpo"
   },
   {
@@ -9479,6 +10340,7 @@
     "price": 190.00,
     "is_active": true,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "cad"
   },
   {
@@ -9490,6 +10352,7 @@
     "price": 312.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9501,6 +10364,7 @@
     "price": 1750.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9512,6 +10376,7 @@
     "price": 3000.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9523,6 +10388,7 @@
     "price": 37.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9534,6 +10400,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9545,6 +10412,7 @@
     "price": 250.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9556,6 +10424,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9567,6 +10436,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9578,6 +10448,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9589,6 +10460,7 @@
     "price": 43.50,
     "is_active": true,
     "category_name": "Acciaio",
+    "category_complete_name": "Diagnotica strutturale / Acciaio",
     "uom_name": "cad"
   },
   {
@@ -9600,6 +10472,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9611,6 +10484,7 @@
     "price": 18.75,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9622,6 +10496,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9633,6 +10508,7 @@
     "price": 150.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9644,6 +10520,7 @@
     "price": 200.00,
     "is_active": true,
     "category_name": "Prove chimiche e archeometriche sui materiali",
+    "category_complete_name": "Prove chimiche e archeometriche sui materiali",
     "uom_name": "cad"
   },
   {
@@ -9655,6 +10532,7 @@
     "price": 60.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9666,6 +10544,7 @@
     "price": 12.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9677,6 +10556,7 @@
     "price": 125.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9688,6 +10568,7 @@
     "price": 150.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9699,6 +10580,7 @@
     "price": 100.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9710,6 +10592,7 @@
     "price": 750.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9721,6 +10604,7 @@
     "price": 187.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9732,6 +10616,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9743,6 +10628,7 @@
     "price": 450.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9754,6 +10640,7 @@
     "price": 120.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9765,6 +10652,7 @@
     "price": 312.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9776,6 +10664,7 @@
     "price": 500.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9787,6 +10676,7 @@
     "price": 312.50,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9798,6 +10688,7 @@
     "price": 0.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9809,6 +10700,7 @@
     "price": 200.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9820,6 +10712,7 @@
     "price": 18.75,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9831,6 +10724,7 @@
     "price": 375.00,
     "is_active": false,
     "category_name": "Indagini Diagnostiche",
+    "category_complete_name": "Indagini Diagnostiche",
     "uom_name": "a corpo (non usare)"
   },
   {
@@ -9842,6 +10736,7 @@
     "price": 100.00,
     "is_active": true,
     "category_name": "Geotecnica",
+    "category_complete_name": "Geognostica e fondazioni / Geotecnica",
     "uom_name": "cad"
   }
 ]

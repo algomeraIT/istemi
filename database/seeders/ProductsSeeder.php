@@ -2,79 +2,82 @@
 
 namespace Database\Seeders;
 
+use App\Enums\MeasurementUnitEnum;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use App\Enums\ParentProductCategoryEnum;
-use App\Enums\MeasurementUnitEnum;
+use App\Models\ProductCategory; // il tuo model per product_categories
 use Illuminate\Support\Str;
-use function generateUniqueCode;
 
 class ProductsSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1) Costruisci il path al file, NON File::get
         $path = database_path('seeders/data/product_odoo_active.json');
 
-        // 2) Verifica che esista davvero
         if (! File::exists($path)) {
-            dd("File non trovato: {$path}");
+            $this->command->error("File not found: {$path}");
+            return;
         }
 
-        // 3) Leggi il contenuto del file
-        $json = File::get($path);
-
-        // 4) Se è NDJSON, puliscilo o parsalo riga per riga,
-        //    altrimenti se è un array JSON skip questo step.
-
-        // 5) Decode in array
-        $records = json_decode($json, true);
-        if (is_null($records)) {
-            dd('json_decode error: '.json_last_error_msg());
+        $records = json_decode(File::get($path), true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            $this->command->error("JSON error: " . json_last_error_msg());
+            return;
         }
 
         foreach ($records as $odoo) {
-            // 2. Prendi il nome categoria e unità di misura
-            $categoryName = $odoo['category_name'] ?? 'Altro';
+            // Estrai il leaf-category dal complete_name
+            $full = $odoo['category_complete_name'] ?? $odoo['category_name'];
+            // Se c'è una slash, prendi la parte dopo l'ultima slash
+            if (Str::contains($full, '/')) {
+                $parts = array_map('trim', explode('/', $full));
+                $leaf  = end($parts);
+            } else {
+                $leaf = trim($full);
+            }
+
+            // Lookup in product_categories
+            $cat = ProductCategory::where('name', $leaf)->first();
+            $categoryId = $cat ? $cat->id : null;
+
             $uomName      = $odoo['uom_name']      ?? 'Unità';
 
-            // 3. Mappa stringhe Odoo sugli enum (tryFrom restituisce null se non trova)
-            $categoryEnum = ParentProductCategoryEnum::tryFrom($categoryName)
-                ?? ParentProductCategoryEnum::ALTRO;
+            $uomEnum = MeasurementUnitEnum::tryFrom($uomName) ?? MeasurementUnitEnum::UNITA;
 
-            $udmEnum = MeasurementUnitEnum::tryFrom($uomName)
-                ?? MeasurementUnitEnum::UNITA;
-
-            // 4. Prepara gli altri campi
+            // Prepara i campi
+            $isActive    = filter_var($odoo['is_active'], FILTER_VALIDATE_BOOLEAN);
+            $price       = $odoo['price'] ?? 0.0;
             $title       = trim($odoo['title'] ?? $odoo['name'] ?? '');
             $description = trim($odoo['description'] ?? $odoo['description_sale'] ?? '');
-            $price       = $odoo['price'] ?? 0.00;
-            $isActive    = $odoo['is_active'];
 
-            // 5. Genera unique code
             $uniqueCode = $odoo['default_code'];
 
             $uniqueCode = $uniqueCode ?? generateUniqueCode(
                 \App\Models\Product::class,
                 'unique_code',
-                $categoryName,
+                $cat->name,
                 $title
             );;
 
-            // 6. Inserisci nel database
+            // Se tu avessi una tabella uoms, potresti fare un lookup simile
+            // $uom = Uom::where('name', $uomClean)->first();
+            // $uomId = $uom ? $uom->id : null;
+
             DB::table('products')->insert([
-                'category'    => $categoryEnum->value,
-                'unique_code' => $uniqueCode,
-                'title'       => $title,
-                'udm'         => $udmEnum->value,
-                'description' => $description ?: null,
-                'price'       => $price,
-                'is_active'   => $isActive,
-                'is_cnpaia'   => true,
-                'created_at'  => now(),
-                'updated_at'  => now(),
+                'unique_code'           => $uniqueCode,
+                'product_category_id'   => $categoryId,
+                'uom'                   => $uomEnum->value,
+                'title'                 => $title,
+                'description'           => $description ?: null,
+                'price'                 => $price,
+                'is_active'             => $isActive,
+                'is_cnpaia'             => true,
+                'created_at'            => now(),
+                'updated_at'            => now(),
             ]);
         }
+
+        $this->command->info('Seeded products: ' . count($records));
     }
 }
