@@ -2,8 +2,8 @@
     <!-- Left Section: Referents -->
     @include('livewire.general.goback')
 
-    <div class="mt-5 flex flex-col lg:flex-row gap-10">
-        <div class="flex-grow">
+    <div class="mt-5 flex flex-col 2xl:flex-row gap-10">
+        <div class="flex-grow 2xl:w-2/3">
             @livewire('crm.client.partials.clientTab', ['client' => $client])
         </div>
 

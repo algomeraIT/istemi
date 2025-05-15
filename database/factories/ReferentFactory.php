@@ -23,8 +23,6 @@ class ReferentFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'telephone' => $this->faker->phoneNumber,
             'note' => $this->faker->optional()->text,
-            'status' => $this->faker->randomElement([1, 0]), 
-            'role' => $this->faker->word,
         ];
     }
 }

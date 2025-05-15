@@ -21,8 +21,6 @@ class Referent extends Model
         'email',
         'telephone',
         'note',
-        'status',
-        'role',
     ];
 
     public function client()

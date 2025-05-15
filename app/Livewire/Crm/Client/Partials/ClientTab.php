@@ -3,18 +3,21 @@
 namespace App\Livewire\Crm\Client\Partials;
 
 use Exception;
+use Flux\Flux;
 use Carbon\Carbon;
 use App\Models\Sale;
 use App\Models\User;
 use Livewire\Component;
 use App\Models\Referent;
 use App\Models\Acquisition;
+use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use App\Models\Communication;
 use Livewire\WithFileUploads;
 use App\Models\AccountingOrder;
 use App\Models\AccountingInvoice;
 use Illuminate\Support\Facades\DB;
+use App\Livewire\Forms\ReferentForm;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\NoteCommunicationClientHistory;
@@ -25,12 +28,14 @@ class ClientTab extends Component
 {
     use WithPagination, WithFileUploads;
 
+    public ReferentForm $referentForm;
+
     public $client_id, $referent_id, $activity_id, $name, $last_name, $title, $job_position, $label, $to_do, $activities, $assignee, $expire_at, $email, $telephone, $role, $note, $task, $assigned_to, $sender, $attach_id;
     public $id_multiple_attaches, $user_id, $name_user, $last_name_user, $job_position_user, $status_user, $action, $receivers;
     public $receiver, $selectedEmails = [];
 
     public $isOpenReferent, $isOpenSale, $isOpenInvoice, $isOpenActivity, $isOpenEmail, $isOpenNote, $editing, $isSending, $has_multiple_attaches, $showModal,
-    $showModalSale, $showModalInvoice, $showModalActivity, $showModalEmail, $showModalNote = false;
+        $showModalSale, $showModalInvoice, $showModalActivity, $showModalEmail, $showModalNote = false;
 
     public $selectedReferent, $selectedSale, $selectedInvoice, $selectedActivity, $selectedEmail, $selectedNote;
     public $activeTabAccounting = 'orders';
@@ -51,6 +56,8 @@ class ClientTab extends Component
     public string $status_invoices = '';
     public string $acquisition_sales = '';
 
+    public $search;
+
 
     protected $rules = [
         'name' => 'required|string',
@@ -68,9 +75,45 @@ class ClientTab extends Component
         $this->client_id = $client->id;
     }
 
-    public function setReferent($id)
+    // Functions Referent
+    public function setReferent($id = null, $action = 'create')
     {
-        $this->selectedReferent = Referent::findOrFail($id);
+        $this->referentForm->setReferent($id);
+
+        if ($action == 'show') {
+            Flux::modal('show-referent')->show();
+        } else {
+            Flux::modal('create-edit-referent')->show();
+        }
+    }
+
+    public function createReferent()
+    {
+        $this->referentForm->client_id = $this->client_id;
+        $this->referentForm->store();
+
+        Flux::modals()->close();
+
+        Flux::toast(
+            text: "Nuovo referente inserito con successo.",
+            variant: 'success',
+        );
+
+        $this->dispatch('refresh');
+    }
+
+    public function updateReferent()
+    {
+        $this->referentForm->update();
+
+        Flux::modals()->close();
+
+        Flux::toast(
+            text: "Referent aggiornato con successo.",
+            variant: 'success',
+        );
+
+        $this->dispatch('refresh');
     }
 
     public function showSale($id)
@@ -186,15 +229,9 @@ class ClientTab extends Component
         $this->closeModal();
     }
 
-    public function attachments()
-    {
+    public function attachments() {}
 
-    }
-
-    public function attachmentsToEmail($user_id, $file)
-    {
-
-    }
+    public function attachmentsToEmail($user_id, $file) {}
     public function updatedLogo()
     {
         $this->validate([
@@ -205,7 +242,6 @@ class ClientTab extends Component
             $this->logoPreview = $this->logo->temporaryUrl();
         } else {
             $this->logoPreview = './images/default-logo.webp';
-
         }
     }
     public function removeLogo()
@@ -279,7 +315,6 @@ class ClientTab extends Component
                 if ($emailRecord->getFirstMediaUrl('emailCommunicationFile')) {
                     $message->attach($emailRecord->getFirstMediaUrl('emailCommunicationFile'));
                 }
-
             });
             $this->isSending = false;
 
@@ -288,7 +323,6 @@ class ClientTab extends Component
             session()->flash('message', 'Email inviata con successo.');
 
             $this->closeModal();
-
         } catch (Exception $e) {
             DB::rollBack();
             $this->isSending = false;
@@ -396,16 +430,19 @@ class ClientTab extends Component
         return $carbonDate->translatedFormat('F j, Y');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.crm.client.partials.client-tab', [
-            'referents' => Referent::where('client_id', $this->client_id)
-                ->when($this->query_referent, fn($q) =>
-                    $q->where(function ($query) {
-                        $query->where('name', 'like', '%' . $this->query_referent . '%')
-                            ->orWhere('last_name', 'like', '%' . $this->query_referent . '%');
-                    })
-                )->paginate(10),
+            'referents' => Referent::where('client_id', $this->client_id)->when(
+                $this->search,
+                fn($q) => $q->where(
+                    function ($query) {
+                        $query->filter('name', $this->search)
+                            ->orFilter('last_name', $this->search);
+                    }
+                )
+            )->paginate(10),
 
             'sales' => Sale::where('client_id', $this->client_id)
                 ->when($this->query_sales, fn($q) => $q->where('invoice', 'like', '%' . $this->query_sales . '%'))
