@@ -63,21 +63,32 @@ class ProductsTable extends Component
     #[On('refresh')]
     public function render(): View
     {
-        $query = Product::query()
-            ->when($this->search, fn($q) =>
-            $q->where('unique_code', 'like', "%{$this->search}%")
-                ->orWhere('title', 'like', "%{$this->search}%")
-            )
-            ->when($this->filterCategory, fn($q) =>
-            $q->where('category', $this->filterCategory)
-            )
-            ->when($this->filterState !== null, fn($q) =>
-            $q->where('is_active', $this->filterState === 'attivo')
-            )
-            ->when($this->filterUdm, fn($q) =>
-            $q->where('udm', $this->filterUdm)
-            )
-            ->orderBy($this->sortBy, $this->sortDirection);
+        $query = Product::query();
+
+        if ($this->search) {
+            $query->where(function($q) {
+                $q->where('unique_code', 'like', "%{$this->search}%")
+                    ->orWhere('title',       'like', "%{$this->search}%");
+            });
+        }
+
+        // category
+        if (filled($this->filterCategory)) {
+            $query->where('category', $this->filterCategory);
+        }
+
+        // state (attenzione: filled('0') è true, quindi gestisce anche lo “0”)
+        if (filled($this->filterState)) {
+            $query->where('is_active', $this->filterState);
+        }
+
+        // udm
+        if (filled($this->filterUdm)) {
+            $query->where('udm', $this->filterUdm);
+        }
+
+        // 5) Ordinamento finale
+        $query->orderBy($this->sortBy, $this->sortDirection);
 
         return view('livewire.crm.products.tables.products-table', [
             'products' => $query->paginate(12),

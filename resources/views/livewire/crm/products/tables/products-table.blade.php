@@ -14,20 +14,17 @@
         <div class="col-span-1">
             <div class="grid grid-cols-4 gap-3">
                 <flux:select size="sm" variant="listbox" clearable searchable wire:model.live="filterCategory" placeholder="Tutte le categorie" data-custom>
-                    <flux:select.option value="">Tutte le categorie</flux:select.option>
                     @foreach($categories as $cat)
                         <flux:select.option value="{{ $cat }}">{{ $cat }}</flux:select.option>
                     @endforeach
                 </flux:select>
 
-                <flux:select size="sm" variant="listbox" wire:model.live="filterState" placeholder="Tutti gli stati" data-custom>
-                    <flux:select.option value="">Tutti gli stati</flux:select.option>
-                    <flux:select.option value="attivo">Attivo</flux:select.option>
-                    <flux:select.option value="disattivo">Disattivo</flux:select.option>
+                <flux:select size="sm" variant="listbox" clearable wire:model.live="filterState" placeholder="Tutti gli stati" data-custom>
+                    <flux:select.option value="1">Attivo</flux:select.option>
+                    <flux:select.option value="0">Disattivo</flux:select.option>
                 </flux:select>
 
-                <flux:select size="sm" searchable variant="listbox" wire:model.live="filterUdm" placeholder="Tutte le UdM" data-custom>
-                    <flux:select.option value="">Tutte le UdM</flux:select.option>
+                <flux:select size="sm" searchable clearable variant="listbox" wire:model.live="filterUdm" placeholder="Tutte le UdM" data-custom>
                     @foreach($udms as $u)
                         <flux:select.option value="{{ $u }}">{{ $u }}</flux:select.option>
                     @endforeach
@@ -62,8 +59,8 @@
             </flux:table.column>
             <flux:table.column :align="'end'" class="w-24">Azioni</flux:table.column>
         </flux:table.columns>
-
-        <flux:table.rows>
+        @if($products->count() > 0)
+            <flux:table.rows>
             @foreach ($products as $item)
                 <flux:table.row wire:key="prod-{{ $item->id }}">
                     <flux:table.cell>
@@ -164,6 +161,11 @@
 
             @endforeach
         </flux:table.rows>
+        @else
+            <flux:table.row>
+                <flux:table.cell class="text-gray-500 text-center">Nessun prodotto da mostrare</flux:table.cell>
+            </flux:table.row>
+        @endif
     </flux:table>
 
     @if (!$products || $products->isEmpty())
