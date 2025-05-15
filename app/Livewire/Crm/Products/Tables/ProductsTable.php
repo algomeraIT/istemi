@@ -5,6 +5,7 @@ namespace App\Livewire\Crm\Products\Tables;
 use App\Enums\MeasurementUnitEnum;
 use App\Enums\ParentProductCategoryEnum;
 use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
@@ -59,6 +60,7 @@ class ProductsTable extends Component
     /**
      * @return View
      */
+    #[On('refresh')]
     public function render(): View
     {
         $query = Product::query()
