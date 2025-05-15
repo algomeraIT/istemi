@@ -1,8 +1,8 @@
 <div class="fixed inset-0 bg-[oklch(0.97_0_0_/_0.5)] bg-opacity-20 flex justify-end z-50">
     <!-- Left Section: Referents -->
-    <div class="w-1/3  bg-gray-50">
+    <div class="w-1/3  bg-white">
         <div class="flex flex-row justify-between align-top items-start mx-auto bg-[#F5FCFD] h-36 p-10">
-            <h2 class="text-2xl font-bold text-left">Task</h2>
+            <h2 class="text-2xl font-bold text-left">Attività</h2>
             <button wire:click="$dispatch('closeModal')" class="hover:cursor-pointer" icon="close">Chiudi</button>
         </div>
 

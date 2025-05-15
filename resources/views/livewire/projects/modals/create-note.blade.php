@@ -1,10 +1,10 @@
 <div class="fixed inset-0 bg-[oklch(0.97_0_0_/_0.5)] bg-opacity-20 flex justify-end z-50">
-    <div class="w-1/3 bg-gray-50">
-        <div class="flex justify-between items-start p-6 bg-[#F5FCFD] h-24">
+    <div class="w-1/3 bg-white">
+        <div class="flex justify-between items-start p-6 bg-white h-24">
             <h2 class="text-2xl font-bold">Scrivi nota</h2>
             <button wire:click="$dispatch('closeModal')" class="hover:cursor-pointer">Chiudi</button>
         </div>
-        <div class="m-16">
+        <div class="m-4 p-16">
 
             <!-- Nota (rich text) -->
             {{-- The x-init directive allows you to hook into the initialization phase of any element in Alpine. --}}
@@ -72,11 +72,12 @@
                     padding: 4px;
                 }
             </style>
+            <div class="flex justify-start space-x-2 pt-10">
+                <button wire:click="save" class="px-4 py-2 bg-[#00C0D9] text-white rounded">Scrivi</button>
+            </div>
         </div>
 
-        <div class="flex justify-end space-x-2">
-            <button wire:click="save" class="px-4 py-2 bg-blue-600 text-white rounded">Scrivi</button>
-        </div>
+
 
     </div>
 </div>

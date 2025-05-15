@@ -1,5 +1,5 @@
 <div class="fixed inset-0 bg-[oklch(0.97_0_0_/_0.5)] bg-opacity-20 flex justify-end z-50">
-    <div class="w-1/3 bg-gray-50">
+    <div class="w-1/3 bg-white">
         <div class="flex justify-between items-start p-6 bg-[#F5FCFD] h-24">
             <h2 class="text-2xl font-bold">Modifica progetto</h2>
             <button wire:click="$dispatch('closeModal')" class="hover:cursor-pointer">Chiudi</button>
@@ -25,7 +25,7 @@
 
         <div class="mb-4">
             <label class="block text-sm font-medium text-gray-700">Budget Totale</label>
-            <input type="number" wire:model.defer="form.total_budget" class="w-full border p-2 rounded" />
+            <input type="number" min="0" step="0.01" wire:model.defer="form.total_budget" class="w-full border p-2 rounded" />
         </div>
 
         <div class="mb-4">

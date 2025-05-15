@@ -15,7 +15,7 @@
 
             <!-- Tabs -->
             <div class="lg:pl-[33%]">
-                <div x-data="{ tab: @entangle('activeTab') }" class="md:flex 2xl:flex-nowrap align-middle items-center justify-center ">
+                <div x-data="{ tab: @entangle('activeTab') }" class="md:flex 2xl:flex-nowrap align-middle justify-center items-end-safe">
                     <!-- Tabs -->
                     <flux:tabs wire:model="activeTab" variant="segmented">
                         <flux:tab name="list" icon="list-bullet">Lista</flux:tab>
@@ -33,13 +33,15 @@
             
                         <!-- Responsible Filter -->
                         <div class="w-full lg:w-auto lg:max-w-xs">
-                            <flux:input wire:model.live="query" data-variant="list" placeholder="Tutti i responsabili" :loading="false" />
+                            <flux:field data-input>
+                            <flux:input wire:model.live="query" data-variant="filter"  placeholder="Tutti i responsabili" :loading="false" />
                             <datalist id="responsibles-list">
                                 <option value="">Tutti i responsabili</option>
                                 @foreach ($responsibles as $resp)
                                     <option value="{{ $resp }}"></option>
                                 @endforeach
                             </datalist>
+                        </flux:field>
                         </div>
             
                         <!-- Phase Filter -->
@@ -54,13 +56,15 @@
                         </flux:select>
             
                         <!-- Search -->
-                        <div class="w-full lg:w-auto lg:max-w-xs relative">
-                            <flux:input wire:model.live="search" data-variant="search" placeholder="preventivo..." icon="magnifying-glass" :loading="false" />
-                        </div>
+                        <flux:field data-input>
+                            <flux:input wire:model.live="search" data-variant="search" :loading="false" clearable
+                                icon="magnifying-glass" placeholder="Cerca" />
+                        </flux:field>
+             
                     </div>
             
                     <!-- Filters: KANBAN -->
-                    <div x-show="tab === 'kanban'" x-cloak class="flex 2xl:flex-nowrap flex-wrap gap-2 align-middle items-center">
+                    <div x-show="tab === 'kanban'" x-cloak class="flex 2xl:flex-nowrap flex-wrap gap-2 align-middle  items-center">
                         <div class="flex justify-center items-center ml-5">
                             <p class="text-[#B0B0B0] text-[15px] font-extralight">Raggruppa per </p>
                             <flux:tabs wire:model="kanbanTab" variant="segmented">
@@ -73,9 +77,11 @@
                             <flux:select.option value="Pubblico">Pubblico</flux:select.option>
                             <flux:select.option value="Privato">Privato</flux:select.option>
                         </flux:select>
-                        <div class="w-full lg:w-auto lg:max-w-xs relative">
-                            <flux:input wire:model.live="search" data-variant="search" placeholder="Cerca..." icon="magnifying-glass" :loading="false" />
-                        </div>
+                             <!-- Search -->
+                             <flux:field data-input>
+                                <flux:input wire:model.live="search" data-variant="search" :loading="false" clearable
+                                    icon="magnifying-glass" placeholder="Cerca" />
+                            </flux:field>
                     </div>
                 </div>
             </div>

@@ -109,7 +109,7 @@
 
 
 
-                                <flux:table.cell class="border" data-detail="detail">
+                                <flux:table.cell class="border " data-detail="detail">
                         
                                     <flux:button
                                         wire:click="$dispatch('openModal', { component: 'projects.modals.macro-task-detail', arguments: { id: {{ $element->id }}, nameSection: '{{ $nameSection }}' }})"
@@ -128,14 +128,16 @@
                             </flux:table.row>
                             {{-- MicroTask children --}}
                             <tr x-show="openMicro" x-transition class="">
-                                <td colspan="5" class="p-4 bg-gray-50 border-t border-l-4 border-[#4D1B83]">
-                                    <flux:table class="bg-white border rounded-md text-sm">
+                                <td colspan="6" class=" bg-gray-50 border-t  p-10">
+                                    <flux:table class="bg-white border rounded-md text-sm border-l-4 border-[#4D1B83]">
                                         <flux:table.columns>
                                             <flux:table.column class="border px-4 py-2 text-left"
                                                 data-detail="detailColumn">Task</flux:table.column>
                                             <flux:table.column class="border px-4 py-2 text-left"
                                                 data-detail="detailColumn">Assegnatario</flux:table.column>
                                             <flux:table.column class="border px-4 py-2 text-right"
+                                                data-detail="detailColumn">Stato</flux:table.column>
+                                                <flux:table.column class="border px-4 py-2 text-right"
                                                 data-detail="detailColumn">Azioni</flux:table.column>
                                         </flux:table.columns>
 
@@ -148,6 +150,21 @@
 
                                                 <flux:table.cell class="border px-4 py-2" data-detail="detail">
                                                     {{ $micro->assignee ?? '—' }}
+                                                </flux:table.cell>
+
+                                                <flux:table.cell data-detail="detail" class="whitespace-nowrap border p-0">
+                                                    <div class="w-full h-full px-4 py-2 text-center font-extralight">
+                                                        <select
+                                                            wire:change="updateMicroStatusStart({{ $micro->id }}, $event.target.value, '{{ $NameTable }}')"
+                                                            class="bg-transparent w-full appearance-none px-2 py-1 border-none focus:outline-none text-center
+                                                            {{ $micro->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
+                                                            <option value="Svolto"
+                                                                {{ $micro->status === 'Svolto' ? 'selected' : '' }}>Svolto</option>
+                                                            <option value="In attesa"
+                                                                {{ $micro->status === 'In attesa' ? 'selected' : '' }}>
+                                                                In attesa</option>
+                                                        </select>
+                                                    </div>
                                                 </flux:table.cell>
 
                                                 <flux:table.cell class="border px-4 py-2 text-right"

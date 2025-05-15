@@ -803,7 +803,7 @@
                 </div>
 
             </div>
-            <div class="bg-white p-4 border-t flex justify-between">
+            <div class="bg-white p-4 flex justify-between">
                 <button wire:click="prevTab"
                     class="bg-gray-300 px-4 py-2 rounded {{ $currentTab == 1 ? 'opacity-50 cursor-not-allowed' : '' }}"
                     {{ $currentTab == 1 ? 'disabled' : '' }}>

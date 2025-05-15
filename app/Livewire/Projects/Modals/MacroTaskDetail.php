@@ -57,6 +57,8 @@ class MacroTaskDetail extends ModalComponent
         }
     }
 
+    
+
     public function render()
     {
         return view('livewire.projects.modals.macro-task-detail');
