@@ -89,7 +89,7 @@
                     <flux:table.cell class="whitespace-nowrap">{{ $item->udm }}</flux:table.cell>
 
                     <flux:table.cell :align="'end'" class="whitespace-nowrap font-semibold">
-                        €{{ number_format($item->price, 2, ',', '.') }}
+                        {{ money($item->price, 'EUR')->format() }}
                     </flux:table.cell>
 
                     {{-- Actions --}}
@@ -133,7 +133,9 @@
                     {{-- Prezzo --}}
                     <div class="space-y-1">
                         <div class="text-xs font-extralight text-[#B0B0B0]">Prezzo</div>
-                        <div class="text-base font-semibold text-[#B0B0B0] ms-3.5">€{{ number_format($item->price, 2, ',', '.') }}</div>
+                        <div class="text-base font-semibold text-[#B0B0B0] ms-3.5">
+                            {{ money($item->price, 'EUR')->format() }}
+                        </div>
                     </div>
 
                     {{-- Stato --}}
