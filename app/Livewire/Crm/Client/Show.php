@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crm\Client;
 
+use Flux\Flux;
 use App\Models\Client;
 use Livewire\Component;
 use App\Models\Estimate;
@@ -24,8 +25,20 @@ class Show extends Component
         ]);
     }
 
-    public function newQuote() {
+    public function newQuote()
+    {
         dump('Nuovo preventivo');
+    }
+
+    public function updateStatus($status)
+    {
+        $this->client->step = $status;
+        $this->client->save();
+        
+        Flux::toast(
+            text: "Stato aggiornato per  {$this->client->name}.",
+            variant: 'success',
+        );
     }
 
     public function render()

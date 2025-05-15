@@ -44,7 +44,7 @@ class ClientFactory extends Factory
     public function withStatus(string $status): self
     {
         $stepOptions = match ($status) {
-            'lead' => ['nuovo', 'assegnato', 'da riassegnare'],
+            'lead' => ['nuovo', 'da riassegnare'],
             'contatto' => ['in contatto', 'non idoneo'],
             'cliente' => ['call center', 'censimento'],
             default => ['nessuno'],

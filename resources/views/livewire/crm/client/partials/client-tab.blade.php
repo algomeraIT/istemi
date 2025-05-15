@@ -103,14 +103,12 @@
             @include('livewire.crm.utilities.order-table', [
                 'accounting_orders' => $accounting_orders,
             ])
-
         </div>
 
         <div class="mt-2" x-show="activeTabAccounting === 'invoices'" x-cloak>
             @include('livewire.crm.utilities.invoice-table', [
                 'accounting_invoices' => $accounting_invoices,
             ])
-
         </div>
     </flux:tab.panel>
 

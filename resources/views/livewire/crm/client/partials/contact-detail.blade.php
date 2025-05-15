@@ -1,215 +1,354 @@
-<div class="px-6 lg:px-24 pt-12">
-  <div class="bg-white rounded shadow p-6">
-      @include('livewire.general.goback')
+<div class="pt-5 flex flex-col xl:flex-row gap-10 h-full">
+    <!-- Right Section: Contact Info -->
+    <div class="order-first xl:order-last w-full xl:max-w-[422px] mt-6 lg:mt-0">
+        <div class=" rounded border-2 border-dashed border-cyan-300 p-10 space-y-4">
+            <h2 class="text-2xl font-bold flex items-center space-x-2">
+                <flux:icon.briefcase class="w-6 h-6" />
+                <span>{{ $client->name }}</span>
+            </h2>
 
-    <div class="flex flex-col lg:flex-row gap-6">
+            <div class="space-y-3 text-gray-600 font-inter">
+                <x-field-data-client :label="'E-mail'" :data="$client->email" :copy="true" />
+                <x-field-data-client :label="'Telefono'" :data="$client->first_telephone" :copy="true" />
+                <x-field-data-client :label="'Servizio'" :data="$client->service" />
 
-      <!-- RIGHT Column; mobile: show first, lg+: last -->
-      <div class="order-first lg:order-last w-full lg:w-1/3 mt-6">
-        <div class="bg-white rounded-lg border-2 border-dashed border-cyan-300 p-6 space-y-4">
-          <h2 class="text-2xl font-bold flex items-center space-x-2">
-            <flux:icon.briefcase class="w-6 h-6" />
-            <span>{{ $client->name }}</span>
-          </h2>
+                <div class="w-full border-b border-dashed border-[#10BDD4] my-2"></div>
 
-          @php
-            $statusMap = [
-              0 => ['label'=>'Call center','bg'=>'bg-[#FEF7EF]','text'=>'text-[#F5AD65]','border'=>'border-[#F5AD65]'],
-              1 => ['label'=>'Censimento','bg'=>'bg-[#E3F1F4]','text'=>'text-[#2A8397]','border'=>'border-[#2A8397]'],
-            ];
-            $fields = [
-              'E-mail'            => $client->email,
-              'Telefono'          => $client->first_telephone,
-              'Servizio'          => $client->service,
-              'Data acquisizione' => \Carbon\Carbon::parse($client->created_at)->format('d/m/Y'),
-              'Commerciale'       => $client->tax_code,
-              'Stato'             => $client->status,
-            ];
-          @endphp
+                <x-field-data-client :label="'Provenienza'" :data="$client->provenance" />
+                <x-field-data-client :label="'Data acquisizione'" :data="dateItFormat($client->created_at)" />
 
-          <div class="space-y-3 text-gray-600 font-inter">
-            @foreach ($fields as $label => $value)
-              <div class="flex justify-between">
-                <span class="text-gray-400">{{ $label }}:</span>
-                @if ($label === 'Stato')
-                  @php
-                    $s = $statusMap[$value] ?? ['label'=>'Sconosciuto','bg'=>'bg-gray-100','text'=>'text-gray-600','border'=>'border-gray-600'];
-                  @endphp
-                  <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full border {{ $s['bg'] }} {{ $s['text'] }} {{ $s['border'] }}">
-                    {{ $s['label'] }}
-                  </span>
-                @else
-                  <span class="font-semibold">{{ $value }}</span>
-                @endif
-              </div>
-            @endforeach
-          </div>
+                <div class="w-full border-b border-dashed border-[#10BDD4] my-2"></div>
 
-          <button wire:click="openNewEstimateModal"
-                  class="bg-cyan-500 hover:bg-cyan-600 text-white py-2 px-4 rounded">
-            Crea preventivo
-          </button>
+                <x-field-data-client :label="'Commerciale'" :data="$client->salesManager?->full_name" />
+
+                <div class="flex justify-between mt-2 mb-8">
+                    <span class="text-[15px] text-[#B0B0B0]">Stato</span>
+
+                    <flux:dropdown offset="-10" class="border rounded-lg px-2 bg-[#F0F1F2]">
+                        <button
+                            class="flex items-center justify-between cursor-pointer text-xs font-semibold pt-0.5 capitalize">
+                            {{ $client->step }}
+                            <flux:icon.chevron-down variant="micro" />
+                        </button>
+
+                        <flux:menu>
+                            <flux:menu.item wire:click="updateStatus('non idoneo')">
+                                Non idoneo
+                            </flux:menu.item>
+                            <flux:menu.item wire:click="updateStatus('in contatto')">
+                                In contatto
+                            </flux:menu.item>
+                        </flux:menu>
+                    </flux:dropdown>
+                </div>
+            </div>
+
+            <flux:button variant="primary" size="sm" data-variant="primary" wire:click="newQuote"
+                data-color="teal">
+                Crea preventivo
+            </flux:button>
         </div>
-      </div>
-
-      <!-- LEFT Column; mobile: show last, lg+: first -->
-      <div class="order-last lg:order-first w-full lg:w-2/3">
-
-        <div class="bg-white" x-data="{ mainTab: 'history', commTab: 'sales' }">
-          <div class="w-full lg:w-2/3 ">
-
-              <div class="bg-white" x-data="{ mainTab: 'history', commTab: 'sales' }">
-                  {{-- Tab Buttons --}}
-                  <nav class="flex mb-4">
-                      <button @click="mainTab='history'"
-                          :class="mainTab === 'history' ? 'bg-[#FBFBFB] text-cyan-600' : 'text-gray-400'"
-                          class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
-                          Storico
-                      </button>
-                      <button @click="mainTab='communication'"
-                          :class="mainTab === 'communication' ? 'bg-[#FBFBFB] text-cyan-400' : 'text-gray-400'"
-                          class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
-                          Comunicazione
-                      </button>
-                      <button @click="mainTab='estimate'"
-                          :class="mainTab === 'estimate' ? 'bg-[#FBFBFB] text-cyan-600' : 'text-gray-400'"
-                          class="py-2 px-4 text-[16px] leading-[20px] font-medium text-[#888888] text-left opacity-100 font-inter">
-                          Preventivi
-                      </button>
-                  </nav>
-
-                  {{-- History Tab --}}
-                  <div x-show="mainTab === 'history'" x-cloak class="mt-4 space-y-4 p-2.5">
-                      @include('livewire.crm.utilities.historycontact', [
-                          'histories' => $histories,
-                      ])
-                  </div>
-
-                  {{-- Communication Tab --}}
-                  <div x-show="mainTab === 'communication'" x-cloak class="mt-4 space-y-4">
-
-
-
-                      <div x-data="{ tab: 'attività' }" class="bg-white p-6">
-                          {{-- Tabs --}}
-                          <nav class="flex  border-b border-gray-200 mb-6">
-                              <button @click="tab='attività'"
-                                  :class="tab === 'attività' ? 'bg-gray-100' :
-                                      'text-gray-600'"
-                                  class="flex p-[4px] border-1 border-[#10BDD4] text-[16px] leading-[25px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                                  <flux:icon.archive-box class="w-3 h-3 mr-2 mt-2" /> Attività
-                              </button>
-
-                              <button @click="tab='e-mail'"
-                                  :class="tab === 'e-mail' ? 'bg-gray-100' :
-                                      'text-gray-600'"
-                                  class="flex p-[4px] border-1 border-[#10BDD4] text-[16px] leading-[25px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                                  <flux:icon.at-symbol class="w-3 h-3 mr-2 mt-2" /> E‑mail
-                              </button>
-
-                              <button @click="tab='note'"
-                                  :class="tab === 'note' ? 'bg-gray-100' :
-                                      'text-gray-600'"
-                                  class="flex p-[4px] border-1 border-[#10BDD4] text-[16px] leading-[25px] font-bold text-[#10BDD4] text-left opacity-100 font-inter">
-                                  <flux:icon.document-text class="w-3 h-3 mr-2 mt-2" /> Note
-                              </button>
-                          </nav>
-
-                          {{-- Content Panels --}}
-                          <div class="relative pl-8">
-                              {{-- vertical line --}}
-                              <div class="absolute left-3 top-0 bottom-0 w-px bg-gray-200"></div>
-
-                              <ul class="space-y-8">
-                                  {{-- Attività --}}
-                                  <template x-if="tab==='attività'">
-                                      @foreach (collect($histories)->where('type', 'attività') as $item)
-                                          <li class="relative flex items-start">
-                                              <div
-                                                  class="absolute left-0 bg-white border border-gray-200 rounded-full p-1">
-                                                  <flux:icon.archive-box class="w-4 h-4 text-green-600" />
-                                              </div>
-                                              <div class="ml-6">
-                                                  <p class="font-semibold text-gray-800">
-                                                      {{ $item['name'] }} {{ $item['last_name'] }}
-                                                      <span
-                                                          class="ml-2 text-sm text-gray-500 capitalize">({{ $item['role'] }})</span>
-                                                  </p>
-                                                  <p class="mt-1 text-gray-600">{{ $item['note'] ?? '—' }}</p>
-                                              </div>
-                                          </li>
-                                      @endforeach
-                                  </template>
-
-                                  {{-- E‑mail --}}
-                                  <template x-if="tab==='e-mail'">
-                                      @foreach (collect($histories)->where('type', 'e-mail') as $item)
-                                          <li class="relative flex items-start">
-                                              <div
-                                                  class="absolute left-0 bg-white border border-gray-200 rounded-full p-1">
-                                                  <flux:icon.at-symbol class="w-4 h-4 text-blue-600" />
-                                              </div>
-                                              <div class="ml-6">
-                                                  <p class="font-semibold text-gray-800">
-                                                      {{ $item['name'] }} {{ $item['last_name'] }}
-                                                      <span
-                                                          class="ml-2 text-sm text-gray-500 capitalize">({{ $item['role'] }})</span>
-                                                  </p>
-                                                  <p class="mt-1 text-gray-600">{{ $item['note'] ?? '—' }}</p>
-                                              </div>
-                                          </li>
-                                      @endforeach
-                                  </template>
-
-                                  {{-- Note --}}
-                                  <template x-if="tab==='note'">
-                                      @foreach (collect($histories)->where('type', 'note') as $item)
-                                          <li class="relative flex items-start">
-                                              <div
-                                                  class="absolute left-0 bg-white border border-gray-200 rounded-full p-1">
-                                                  <flux:icon.document-text class="w-4 h-4 text-gray-600" />
-                                              </div>
-                                              <div class="ml-6">
-                                                  <p class="font-semibold text-gray-800">
-                                                      {{ $item['name'] }} {{ $item['last_name'] }}
-                                                      <span
-                                                          class="ml-2 text-sm text-gray-500 capitalize">({{ $item['role'] }})</span>
-                                                  </p>
-                                                  <p class="mt-1 text-gray-600">{{ $item['note'] ?? '—' }}</p>
-                                              </div>
-                                          </li>
-                                      @endforeach
-                                  </template>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-                  {{-- Estimates Tab --}}
-                  <div x-show="mainTab === 'estimate'" x-cloak class="mt-4">
-                      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 mb-4">
-                          <div class="flex gap-4 items-center">
-                              <select wire:model.live="status_estimate" class=" border rounded p-2">
-                                  <option value="">Filtro</option>
-                                  <option value="0">In scadenza</option>
-                                  <option value="1">Valido</option>
-                                  <option value="2">Scaduto</option>
-                              </select>
-
-                              <input type="text" wire:model.live="query_estimate" placeholder="Cerca…"
-                                  class="border rounded p-2 flex-1 max-w-sm" />
-                          </div>
-                      </div>
-
-                      @include('livewire.crm.utilities.estimate-sub-table', [
-                          'estimates' => $estimates,
-                      ])
-                  </div>
-
-              </div>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
+
+    {{-- Section Tab --}}
+    <div class="flex-grow xl:w-2/3">
+        <flux:tab.group>
+            <flux:tabs variant="segmented">
+                <flux:tab data-variant="detail" name="history">Storico</flux:tab>
+                <flux:tab data-variant="detail" name="communications">Comunicazioni</flux:tab>
+                <flux:tab data-variant="detail" name="quotes">Preventivi</flux:tab>
+            </flux:tabs>
+
+            <flux:tab.panel name="history">
+                @include('livewire.crm.utilities.historycontact', ['histories' => $histories])
+            </flux:tab.panel>
+
+            <flux:tab.panel name="communications">
+                <flux:tab.group>
+                    <flux:tabs variant="segmented">
+                        <flux:tab name="activity">
+                            <flux:icon.calendar class="size-5" /> Attività
+                        </flux:tab>
+                        <flux:tab name="email">
+                            <flux:icon.paper-airplane class="size-5" /> E-mail
+                        </flux:tab>
+                        <flux:tab name="note">
+                            <flux:icon.pencil class="size-5" /> Note
+                        </flux:tab>
+                    </flux:tabs>
+
+                    <flux:tab.panel name="activity">
+                        <div class="flex items-center justify-between">
+                            <flux:modal.trigger name="new-activity">
+                                <flux:button variant="primary" size="sm" data-variant="primary" data-color="teal">
+                                    Programma attività
+                                </flux:button>
+                            </flux:modal.trigger>
+
+                            @include('livewire.crm.client.components.contact.flyout-show-activity')
+
+                            <flux:field data-input>
+                                <flux:input wire:model.live="search" data-variant="search" :loading="false"
+                                    clearable icon="magnifying-glass" placeholder="Cerca" />
+                            </flux:field>
+                        </div>
+
+                        <div class="mt-5 overflow-auto h-[500px]">
+                            @foreach ($histories->where('type', 'attività')->groupBy(fn($item) => $item->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $items)
+                                <div class="mt-8 mb-4 flex items-center relative">
+                                    <div class="absolute h-px bg-gray-300 w-full"></div>
+                                    <span
+                                        class="bg-[#F5FCFD] text-[#10BDD4] z-10 px-3 py-1 border-[#E8E8E8] border-1 text-[13px] font-semibold ml-12">
+                                        {{ $month }}
+                                    </span>
+                                </div>
+
+                                @foreach ($items as $item)
+                                    <div class="border w-full p-4 mt-6">
+                                        <div class="flex items-center space-x-3">
+                                            <div
+                                                class="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
+                                                <flux:icon.user class="size-4" />
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="flex items-center space-x-2 text-sm">
+                                                    <span
+                                                        class="text-sm font-medium">{{ $item->user->full_name }}</span>
+                                                    <span class="text-[#B0B0B0] text-xs capitalize"> -
+                                                        {{ $item->role }}</span>
+                                                </div>
+                                                <div class="flex items-center text-xs text-gray-600 mt-1">
+                                                    <span class="italic">ha programmato un'attività</span>
+                                                    <div class="w-1 h-1 bg-black rounded-full mx-2"></div>
+                                                    <span>{{ $item->created_at->diffForHumans() }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-start gap-8 my-5 ml-8">
+                                            <div class="text-[#B0B0B0]">
+                                                <div class="flex items-center gap-1">
+                                                    <flux:icon.briefcase class="size-4" />
+                                                    <span class="text-xs font-light ">Attività</span>
+                                                </div>
+                                                <span class="font-semibold ml-4">Chiama</span>
+                                            </div>
+                                            <div class="text-[#B0B0B0]">
+                                                <div class="flex items-center gap-1">
+                                                    <flux:icon.at-symbol class="size-4" />
+                                                    <span class="text-xs font-light ">Assegnato a</span>
+                                                </div>
+                                                <span class="font-semibold ml-4">Nome Cognome</span>
+                                            </div>
+                                            <div class="text-[#B0B0B0]">
+                                                <div class="flex items-center gap-1">
+                                                    <flux:icon.calendar-days class="size-4" />
+                                                    <span class="text-xs font-light ">Scadenza</span>
+                                                </div>
+                                                <span class="font-semibold ml-4">{{ dateItFormat(now()) }}</span>
+                                            </div>
+
+                                            <flux:badge size="sm" data-step="{{ $item->status }}">
+                                                {{ $item->status }}
+
+                                                <flux:dropdown offset="-15" gap="2">
+                                                    <button class="flex items-center">
+                                                        <flux:icon.chevron-down data-flux-button="data-flux-button"
+                                                            variant="micro" />
+                                                    </button>
+
+                                                    <flux:menu>
+                                                        <flux:menu.item wire:click="updateStatus('chiusa')"
+                                                            class="!text-custom-9C1216">Presa in carico
+                                                        </flux:menu.item>
+                                                        <flux:menu.item wire:click="updateStatus('aperta')"
+                                                            class="!text-custom-126C9C">Svolto
+                                                        </flux:menu.item>
+                                                        <flux:menu.item wire:click="updateStatus('aperta')"
+                                                            class="!text-custom-126C9C">In ritardo
+                                                        </flux:menu.item>
+                                                    </flux:menu>
+                                                </flux:dropdown>
+                                            </flux:badge>
+                                        </div>
+
+                                        <flux:button variant="ghost" icon:trailing="arrow-right" data-color="teal">
+                                            Mostra di più
+                                        </flux:button>
+                                    </div>
+                                @endforeach
+                            @endforeach
+                        </div>
+                    </flux:tab.panel>
+
+                    <flux:tab.panel name="email">
+                        <div class="flex items-center justify-between">
+                            <flux:modal.trigger name="new-email">
+                                <flux:button variant="primary" size="sm" data-variant="primary"
+                                    data-color="teal">
+                                    Invia e-mail
+                                </flux:button>
+                            </flux:modal.trigger>
+
+                            @include('livewire.crm.client.components.contact.flyout-show-mail')
+
+                            <flux:field data-input>
+                                <flux:input wire:model.live="search" data-variant="search" :loading="false"
+                                    clearable icon="magnifying-glass" placeholder="Cerca" />
+                            </flux:field>
+                        </div>
+
+                        <div class="mt-5 overflow-auto h-[500px]">
+                            @foreach ($histories->where('type', 'e-mail')->groupBy(fn($item) => $item->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $items)
+                                <div class="mt-8 mb-4 flex items-center relative">
+                                    <div class="absolute h-px bg-gray-300 w-full"></div>
+                                    <span
+                                        class="bg-[#F5FCFD] text-[#10BDD4] z-10 px-3 py-1 border-[#E8E8E8] border-1 text-[13px] font-semibold ml-12">
+                                        {{ $month }}
+                                    </span>
+                                </div>
+
+                                @foreach ($items as $item)
+                                    <div class="border w-full p-4 mt-6">
+                                        <div class="flex items-center space-x-3">
+                                            <div
+                                                class="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
+                                                <flux:icon.user class="size-4" />
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="flex items-center space-x-2 text-sm">
+                                                    <span
+                                                        class="text-sm font-medium">{{ $item->user->full_name }}</span>
+                                                    <span class="text-[#B0B0B0] text-xs capitalize"> -
+                                                        {{ $item->role }}</span>
+                                                </div>
+                                                <div class="flex items-center text-xs text-gray-600 mt-1">
+                                                    <span class="italic">ha inviato un'email</span>
+                                                    <div class="w-1 h-1 bg-black rounded-full mx-2"></div>
+                                                    <span>{{ $item->created_at->diffForHumans() }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-start gap-8 my-5 ml-8">
+                                            <div class="text-[#B0B0B0]">
+                                                <div class="flex items-center gap-1">
+                                                    <flux:icon.paper-airplane class="size-4" />
+                                                    <span class="text-xs font-light">Mittente</span>
+                                                </div>
+                                                <span class="font-semibold ml-4">Nome Cognome</span>
+                                            </div>
+                                            <div class="text-[#B0B0B0]">
+                                                <div class="flex items-center gap-1">
+                                                    <flux:icon.at-symbol class="size-4" />
+                                                    <span class="text-xs font-light ">Assegnato a</span>
+                                                </div>
+                                                <span class="font-semibold ml-4">{{ $item->user->email }}</span>
+                                            </div>
+                                            <div class="text-[#B0B0B0]">
+                                                <div class="flex items-center gap-1">
+                                                    <flux:icon.paper-clip class="size-4" />
+                                                    <span class="text-xs font-light ">Allegati</span>
+                                                </div>
+                                                <span class="font-semibold ml-4">sample.pdf</span>
+                                            </div>
+                                        </div>
+
+                                        <flux:button variant="ghost" icon:trailing="arrow-right" data-color="teal">
+                                            Mostra di più
+                                        </flux:button>
+                                    </div>
+                                @endforeach
+                            @endforeach
+                        </div>
+                    </flux:tab.panel>
+
+                    <flux:tab.panel name="note">
+                        <div class="flex items-center justify-between">
+                            <flux:modal.trigger name="new-note">
+                                <flux:button variant="primary" size="sm" data-variant="primary"
+                                    data-color="teal">
+                                    Scrivi nota
+                                </flux:button>
+                            </flux:modal.trigger>
+
+                            @include('livewire.crm.client.components.contact.flyout-show-note')
+
+                            <flux:field data-input>
+                                <flux:input wire:model.live="search" data-variant="search" :loading="false"
+                                    clearable icon="magnifying-glass" placeholder="Cerca" />
+                            </flux:field>
+                        </div>
+
+
+                        <div class="mt-5 overflow-auto h-[500px]">
+                            @foreach ($histories->where('type', 'note')->groupBy(fn($item) => $item->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $items)
+                                <div class="mt-8 mb-4 flex items-center relative">
+                                    <div class="absolute h-px bg-gray-300 w-full"></div>
+                                    <span
+                                        class="bg-[#F5FCFD] text-[#10BDD4] z-10 px-3 py-1 border-[#E8E8E8] border-1 text-[13px] font-semibold ml-12">
+                                        {{ $month }}
+                                    </span>
+                                </div>
+
+                                @foreach ($items as $item)
+                                    <div class="border w-full p-4 mt-6">
+                                        <div class="flex items-center space-x-3">
+                                            <div
+                                                class="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
+                                                <flux:icon.user class="size-4" />
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="flex items-center space-x-2 text-sm">
+                                                    <span
+                                                        class="text-sm font-medium">{{ $item->user->full_name }}</span>
+                                                    <span class="text-[#B0B0B0] text-xs capitalize"> -
+                                                        {{ $item->role }}</span>
+                                                </div>
+                                                <div class="flex items-center text-xs text-gray-600 mt-1">
+                                                    <span class="italic">ha scritto una nota</span>
+                                                    <div class="w-1 h-1 bg-black rounded-full mx-2"></div>
+                                                    <span>{{ $item->created_at->diffForHumans() }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-[#B0B0B0] mt-5 ml-8">
+                                            <div class="flex items-center gap-1">
+                                                <flux:icon.paper-clip class="size-4" />
+                                                <span class="text-xs font-light ">Allegati</span>
+                                            </div>
+                                            <span class="font-semibold ml-4">sample.pdf</span>
+                                        </div>
+
+                                        <p class="mt-4 ml-12 text-lg font-light text-[#B0B0B0]">
+                                            {{ $item->note }}
+                                        </p>
+                                    </div>
+                                @endforeach
+                            @endforeach
+                        </div>
+                    </flux:tab.panel>
+                </flux:tab.group>
+            </flux:tab.panel>
+
+            <flux:tab.panel name="quotes">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 mb-4">
+                    <div class="flex gap-4 items-center">
+                        <select wire:model.live="status_estimate" class=" border rounded p-2">
+                            <option value="">Filtro</option>
+                            <option value="0">In scadenza</option>
+                            <option value="1">Valido</option>
+                            <option value="2">Scaduto</option>
+                        </select>
+
+                        <input type="text" wire:model.live="query_estimate" placeholder="Cerca…"
+                            class="border rounded p-2 flex-1 max-w-sm" />
+                    </div>
+                </div>
+
+                @include('livewire.crm.utilities.estimate-sub-table', ['estimates' => $estimates])
+            </flux:tab.panel>
+        </flux:tab.group>
+    </div>
 </div>

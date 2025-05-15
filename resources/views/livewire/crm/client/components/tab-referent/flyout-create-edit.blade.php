@@ -96,7 +96,7 @@
                         <flux:icon.document-text class="size-4 text-[#B0B0B0]" />
                         <flux:label class="text-xs !font-light !text-[#B0B0B0]">Nota</flux:label>
                     </div>
-                    <flux:editor wire:model="referentForm.note" />
+                    <flux:editor wire:model="referentForm.note" class="**:data-[slot=content]:min-h-[100px]!" />
                 </div>
             </div>
         </div>
