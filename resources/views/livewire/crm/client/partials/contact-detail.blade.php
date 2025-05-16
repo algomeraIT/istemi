@@ -85,7 +85,7 @@
                                 </flux:button>
                             </flux:modal.trigger>
 
-                            @include('livewire.crm.client.components.contact.flyout-show-activity')
+                            @include('livewire.crm.client.components.contact.flyout-create-edit-activity')
 
                             <flux:field data-input>
                                 <flux:input wire:model.live="search" data-variant="search" :loading="false"
@@ -190,7 +190,7 @@
                                 </flux:button>
                             </flux:modal.trigger>
 
-                            @include('livewire.crm.client.components.contact.flyout-show-mail')
+                            @include('livewire.crm.client.components.contact.flyout-create-edit-mail')
 
                             <flux:field data-input>
                                 <flux:input wire:model.live="search" data-variant="search" :loading="false"
@@ -272,7 +272,7 @@
                                 </flux:button>
                             </flux:modal.trigger>
 
-                            @include('livewire.crm.client.components.contact.flyout-show-note')
+                            @include('livewire.crm.client.components.contact.flyout-create-edit-note')
 
                             <flux:field data-input>
                                 <flux:input wire:model.live="search" data-variant="search" :loading="false"

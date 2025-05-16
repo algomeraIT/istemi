@@ -20,11 +20,11 @@
         </div>
 
         <!-- Table -->
-        @include('livewire.crm.client.components.tab-referent.referent-table', ['referents' => $referents])
+        @include('livewire.crm.client.components.client.referent-table', ['referents' => $referents])
 
         {{-- Modals --}}
-        @include('livewire.crm.client.components.tab-referent.flyout-create-edit')
-        @include('livewire.crm.client.components.tab-referent.flyout-show')
+        @include('livewire.crm.client.components.client.flyout-create-edit')
+        @include('livewire.crm.client.components.client.flyout-show')
     </flux:tab.panel>
 
     <flux:tab.panel name="commercio">
