@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
 
 class Activity extends Model
 {
@@ -101,13 +103,13 @@ class Activity extends Model
             'contruction_site_media' => 'Caricamento dati cantiere',
             'activity_validation' => 'Controllo avanzamento attività/budget (PM)',
         ];
-
+        $user = Auth::user();
         foreach ($fields as $phase) {
             if (in_array($phase, $selected)) {
                 self::create([
                     'client_id' => $formData['id_client'],
                     'project_id' => $projectId,
-                    'user' => auth()->user()->name . ' ' . auth()->user()->last_name,
+                    'user' => $user->name . ' ' . $user->last_name,
                     'status' => 'In attesa',
                     'name_phase' => $labels[$phase] ?? $phase,
 

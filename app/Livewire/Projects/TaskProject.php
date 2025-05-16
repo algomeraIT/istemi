@@ -7,6 +7,8 @@ use LivewireUI\Modal\ModalComponent;
 
 class TaskProject extends Component
 {
+    public $projectStart;
+    
     public function mount($id)
     {
         $this->projectStart = ProjectStart::where("project_id", $id)->get();

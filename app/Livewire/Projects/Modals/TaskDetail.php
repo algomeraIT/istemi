@@ -2,9 +2,6 @@
 
 namespace App\Livewire\Projects\Modals;
 
-use App\Models\ProjectStart;
-use App\Models\TaskProjectStart;
-use Flux\Flux;
 use LivewireUI\Modal\ModalComponent;
 
 class TaskDetail extends ModalComponent

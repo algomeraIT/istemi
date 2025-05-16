@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Projects\Modals;
 
-use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 use App\Models\Project;
 use App\Models\NoteProject;
@@ -30,14 +30,14 @@ class CreateNote extends ModalComponent
             if (!$project) {
                 throw new \Exception("Project not found.");
             }
-    
+            $user = Auth::user();
             NoteProject::create([
                 'note' => $this->note,
                 'project_id' => $this->id,
                 'client_id' => $project->id_client,
-                'user_name' => auth()->user()->name . ' ' . auth()->user()->last_name,
-                'role' => auth()->user()->role,
-                'user_id' => auth()->id(),
+                'user_name' => $user->name . ' ' . $user->last_name,
+                'role' => $user->role,
+                'user_id' => $user->id,
             ]);
     
             DB::commit();

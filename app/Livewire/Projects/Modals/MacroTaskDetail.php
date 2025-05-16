@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Projects\Modals;
 
-use Flux\Flux;
 use LivewireUI\Modal\ModalComponent;
 
 class MacroTaskDetail extends ModalComponent
@@ -35,29 +34,6 @@ class MacroTaskDetail extends ModalComponent
 
         $this->tasks = $modelClass::where('id', $id)->get();
     }
-
-    public function updateStatusStart($id, $value)
-    {
-        try {
-            $modelClass = class_exists($nameTable) ? $nameTable : 'App\\Models\\' . $nameTable;
-
-            if (!class_exists($modelClass)) {
-                throw new \Exception("Model {$modelClass} non esiste...");
-            }
-            $record = $modelClass::findOrFail($id);
-
-            $record->status = $value;
-            $record->save();
-
-            Flux::toast('Stato aggiornato con successo!');
-
-        } catch (\Exception $e) {
-            dd($e);
-            Flux::toast('Errore durante la variazione di stato...');
-        }
-    }
-
-    
 
     public function render()
     {

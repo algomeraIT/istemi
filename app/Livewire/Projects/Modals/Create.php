@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Projects\Modals;
 
+use Livewire\Attributes\On;
+
 use App\Models\Accounting;
 use App\Models\AccountingValidation;
 use App\Models\Activity;
@@ -126,8 +128,7 @@ class Create extends ModalComponent
     {
         $this->rules = $this->getValidationRules();
         $this->validateOnly($propertyName);
-/*     $this->canProceed = $this->getCanProceedProperty();
- */}
+}
 
     public function getValidationRules()
     {
@@ -167,11 +168,6 @@ class Create extends ModalComponent
             default:
                 return [];
         }
-    }
-
-    public function close()
-    {
-        $this->isOpen = false;
     }
 
     public function nextTab()

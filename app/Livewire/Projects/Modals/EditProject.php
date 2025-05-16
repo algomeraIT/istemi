@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Projects\Modals;
 
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 use App\Models\Project;
 

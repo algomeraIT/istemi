@@ -2,14 +2,13 @@
 
 namespace App\Livewire\Projects\Modals;
 
-use App\Models\TaskProject;
 use Flux\Flux;
 use LivewireUI\Modal\ModalComponent;
 
 class EditTask extends ModalComponent
 {
     public $task;
-    public $name_phase, $user, $status, $nameSection, $modelClass;
+    public $name_phase, $user, $status, $nameSection, $modelClass, $form;
 
     public function mount($id, $nameSection)
     {

@@ -2,10 +2,8 @@
 
 namespace App\Livewire\Projects\Modals;
 
-use Livewire\Component;
 use App\Models\TaskProject;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
 use LivewireUI\Modal\ModalComponent;
 use Flux\Flux;
 

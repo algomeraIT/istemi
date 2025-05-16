@@ -9,6 +9,7 @@ use App\Models\Referent;
 use Flux\Flux;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\Url;
 
 class Projects extends Component
 {
@@ -49,6 +50,44 @@ class Projects extends Component
     protected $listeners = ['updatePhase', 'updatePhaseResponsible'];
     public $clients = [];
     public $estimates = [];
+    public $formData;
+    private const DEFAULT_FORM = [
+        'estimate' => '',
+        'n_file' => '',
+        'name_project' => '',
+        'id_client' => '',
+        'client_type' => '',
+        'client_name' => '',
+        'current_phase' => 'Non definito',
+        'is_from_agent' => false,
+        'total_budget' => '',
+        'id_chief_area' => '',
+        'id_chief_project' => '',
+        'chief_area' => '',
+        'chief_project' => '',
+        'responsible' => '',
+        'start_at' => '',
+        'end_at' => '',
+        'starting_price' => '',
+        'discount_percentage' => '',
+        'discounted' => '',
+        'n_firms' => '',
+        'firms_and_percentage' => '',
+        'note' => '',
+        'general_info' => '',
+        'note_client' => '',
+        'goals' => '',
+        'project_scope' => '',
+        'expected_results' => '',
+        'stackholder_id' => '',
+        'stackholders' => [],
+        'agreement' => false,
+        'selectedAreas' => [],
+        'selectedPhases' => [],
+        'address_client' => 'ok',
+        'client_status' => "ok",
+        'status' => '',
+    ];
 
     public function mount()
     {
