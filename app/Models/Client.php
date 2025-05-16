@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Spatie\Image\Enums\Fit;
+use App\Models\HistoryClient;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -23,7 +24,7 @@ class Client extends Model implements HasMedia
         'sales_manager_id',
         'is_company',
         'name',
-        'email',
+        'client',
         'pec',
         'first_telephone',
         'second_telephone',
@@ -94,5 +95,38 @@ class Client extends Model implements HasMedia
         $this->addMediaCollection('clientLogo')
             ->useDisk('public')
             ->singleFile();
+    }
+
+        protected static function booted()
+    {
+        static::created(function ($client) {
+            HistoryClient::create([
+                'client_id' => $client->id,
+                'type'      => 'client',
+                'action'    => 'create',
+                'model_id'  => $client->id,
+                'status_client' => $client->step,
+            ]);
+        });
+
+        static::updated(function ($client) {
+            HistoryClient::create([
+                'client_id' => $client->id,
+                'type'      => 'client',
+                'action'    => 'update',
+                'model_id'  => $client->id,
+                'status_client' => $client->step,
+            ]);
+        });
+
+        static::deleted(function ($client) {
+            HistoryClient::create([
+                'client_id' => $client->id,
+                'type'      => 'client',
+                'action'    => 'delete',
+                'model_id'  => $client->id,
+                'status_client' => $client->step,
+            ]);
+        });
     }
 }

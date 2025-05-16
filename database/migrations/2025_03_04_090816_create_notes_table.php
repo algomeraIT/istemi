@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notes', function (Blueprint $table) {
-            $table->id(); // This automatically creates an auto-incrementing primary key
-            $table->boolean('is_leads')->default(false);
-            $table->boolean('is_communication')->default(false);
-            $table->boolean('is_project')->default(false);
-            $table->boolean('is_referent')->default(false);
-            $table->boolean('is_email')->default(false);
-            $table->text('body');
-            $table->tinyInteger('status')->default(1);
+            $table->id();
+            $table->foreignId('client_id')->constrained()->onDelete('cascade');
+            $table->text('content');
+
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete();
+
             $table->timestamps();
         });
     }

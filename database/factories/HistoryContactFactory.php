@@ -2,16 +2,16 @@
 
 namespace Database\Factories;
 
-use App\Models\HistoryContact;
+use App\Models\HistoryClient;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Contact;
 use App\Models\Estimate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class HistoryContactFactory extends Factory
+class HistoryClientFactory extends Factory
 {
-    protected $model = HistoryContact::class;
+    protected $model = HistoryClient::class;
 
     public function definition()
     {

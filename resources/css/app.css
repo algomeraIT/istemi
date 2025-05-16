@@ -202,7 +202,19 @@ select:focus[data-flux-control] {
         @apply bg-[#5AC88D] text-white;
     }
 
+    &[data-step="completato"] {
+        @apply bg-[#5AC88D] text-white;
+    }
+
     &[data-step="non idoneo"] {
+        @apply bg-[#A0A7AF] text-white;
+    }
+
+    &[data-step="sospeso"] {
+        @apply bg-[#A0A7AF] text-white;
+    }
+
+    &[data-step="in attesa"] {
         @apply bg-[#A0A7AF] text-white;
     }
 

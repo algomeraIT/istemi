@@ -11,7 +11,6 @@ return new class extends Migration {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('parent_id')->nullable()->constrained('clients')->cascadeOnDelete();
-            $table->foreignId('estimate_id')->nullable()->on('estimates')->nullOnDelete();
             $table->foreignId('sales_manager_id')->nullable()->on('users')->nullOnDelete();
             $table->boolean('is_company')->nullable();
             $table->string('name');

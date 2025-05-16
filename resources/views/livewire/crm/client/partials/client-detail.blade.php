@@ -41,10 +41,11 @@
                     </flux:badge>
                 </div>
 
-                <flux:button variant="primary" size="sm" data-variant="primary" wire:click="newQuote"
+                {{-- TODO da decommentare a seguito di sviluppo area preventivi --}}
+                {{-- <flux:button variant="primary" size="sm" data-variant="primary" wire:click="newQuote"
                     data-color="teal">
                     Crea preventivo
-                </flux:button>
+                </flux:button> --}}
             </div>
         </div>
     </div>

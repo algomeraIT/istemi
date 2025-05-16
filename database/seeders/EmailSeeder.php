@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Note;
 use App\Models\User;
+use App\Models\Email;
 use App\Models\Client;
 use App\Models\HistoryClient;
 use Illuminate\Database\Seeder;
 
-class NoteSeeder extends Seeder
+class EmailSeeder extends Seeder
 {
     public function run(): void
     {
@@ -17,17 +17,17 @@ class NoteSeeder extends Seeder
         $clients = Client::where('status', 'contatto')->get();
 
         foreach ($clients as $client) {
-            Note::factory()->count(10)->make()->each(function ($note) use ($userIds, $client) {
-                $note->client_id  = $client->id;
-                $note->created_by = fake()->randomElement($userIds);
-                $note->updated_by = fake()->randomElement($userIds);
-                $note->saveQuietly();
+            Email::factory()->count(10)->make()->each(function ($email) use ($userIds, $client) {
+                $email->client_id  = $client->id;
+                $email->created_by = fake()->randomElement($userIds);
+                $email->updated_by = fake()->randomElement($userIds);
+                $email->saveQuietly();
 
                 HistoryClient::create([
                     'client_id' => $client->id,
-                    'type'      => 'note',
+                    'type'      => 'email',
                     'action'    => 'create',
-                    'model_id'  => $note->id,
+                    'model_id'  => $email->id,
                     'status_client' => $client->step,
                 ]);
             });

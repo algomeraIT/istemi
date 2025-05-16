@@ -1,9 +1,10 @@
 <flux:tab.group>
     <flux:tabs variant="segmented">
         <flux:tab data-variant="detail" name="referenti">Referenti</flux:tab>
-        <flux:tab data-variant="detail" name="commercio">Vendite e acquisti</flux:tab>
+        {{-- TODO da sviluppare le altre tab --}}
+        {{-- <flux:tab data-variant="detail" name="commercio">Vendite e acquisti</flux:tab>
         <flux:tab data-variant="detail" name="contabilita">Contabilità</flux:tab>
-        <flux:tab data-variant="detail" name="comunicazioni">Comunicazioni</flux:tab>
+        <flux:tab data-variant="detail" name="comunicazioni">Comunicazioni</flux:tab> --}}
     </flux:tabs>
 
     <flux:tab.panel name="referenti">
@@ -161,7 +162,7 @@
             </div>
         </div>
 
-        @include('livewire.crm.utilities.activity-com-table', [
+        {{-- @include('livewire.crm.utilities.activity-com-table', [
             'activity_communications' => $activity_communications,
         ])
 
@@ -175,11 +176,10 @@
             'activity_communications' => $activity_communications,
         ])
 
-
         @include('livewire.crm.utilities.call-com-table', [
             'call_communications' => $note_communications,
             'activity_communications' => $activity_communications,
-        ])
+        ]) --}}
     </flux:tab.panel>
 
     @include('livewire.crm.referent.modal', [

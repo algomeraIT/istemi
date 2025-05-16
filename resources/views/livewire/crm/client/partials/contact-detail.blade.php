@@ -43,10 +43,11 @@
                 </div>
             </div>
 
-            <flux:button variant="primary" size="sm" data-variant="primary" wire:click="newQuote"
+            {{-- TODO da abilitare a seguito di sviluppo aerea preventivo --}}
+            {{-- <flux:button variant="primary" size="sm" data-variant="primary" wire:click="newQuote"
                 data-color="teal">
                 Crea preventivo
-            </flux:button>
+            </flux:button> --}}
         </div>
     </div>
 
@@ -60,7 +61,7 @@
             </flux:tabs>
 
             <flux:tab.panel name="history">
-                @include('livewire.crm.utilities.historycontact', ['histories' => $histories])
+                @include('livewire.crm.client.components.contact.historyClient')
             </flux:tab.panel>
 
             <flux:tab.panel name="communications">
@@ -94,7 +95,7 @@
                         </div>
 
                         <div class="mt-5 overflow-auto h-[500px]">
-                            @foreach ($histories->where('type', 'attività')->groupBy(fn($item) => $item->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $items)
+                            @foreach ($activities->groupBy(fn($activity) => $activity->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $records)
                                 <div class="mt-8 mb-4 flex items-center relative">
                                     <div class="absolute h-px bg-gray-300 w-full"></div>
                                     <span
@@ -103,7 +104,7 @@
                                     </span>
                                 </div>
 
-                                @foreach ($items as $item)
+                                @foreach ($records as $record)
                                     <div class="border w-full p-4 mt-6">
                                         <div class="flex items-center space-x-3">
                                             <div
@@ -113,14 +114,14 @@
                                             <div class="flex-1">
                                                 <div class="flex items-center space-x-2 text-sm">
                                                     <span
-                                                        class="text-sm font-medium">{{ $item->user->full_name }}</span>
+                                                        class="text-sm font-medium">{{ $record->user?->full_name }}</span>
                                                     <span class="text-[#B0B0B0] text-xs capitalize"> -
-                                                        {{ $item->role }}</span>
+                                                        {{ $record->role }}</span>
                                                 </div>
                                                 <div class="flex items-center text-xs text-gray-600 mt-1">
                                                     <span class="italic">ha programmato un'attività</span>
                                                     <div class="w-1 h-1 bg-black rounded-full mx-2"></div>
-                                                    <span>{{ $item->created_at->diffForHumans() }}</span>
+                                                    <span>{{ $record->created_at->diffForHumans() }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -138,7 +139,7 @@
                                                     <flux:icon.at-symbol class="size-4" />
                                                     <span class="text-xs font-light ">Assegnato a</span>
                                                 </div>
-                                                <span class="font-semibold ml-4">Nome Cognome</span>
+                                                <span class="font-semibold ml-4">{{ $record->assigned->full_name }}</span>
                                             </div>
                                             <div class="text-[#B0B0B0]">
                                                 <div class="flex items-center gap-1">
@@ -148,12 +149,12 @@
                                                 <span class="font-semibold ml-4">{{ dateItFormat(now()) }}</span>
                                             </div>
 
-                                            <flux:badge size="sm" data-step="{{ $item->status }}">
-                                                {{ $item->status }}
+                                            <flux:badge size="sm" data-step="{{ $record->status }}">
+                                                {{ $record->status }}
 
                                                 <flux:dropdown offset="-15" gap="2">
                                                     <button class="flex items-center">
-                                                        <flux:icon.chevron-down data-flux-button="data-flux-button"
+                                                        <flux:icon.chevron-down class="text-white"
                                                             variant="micro" />
                                                     </button>
 
@@ -199,7 +200,7 @@
                         </div>
 
                         <div class="mt-5 overflow-auto h-[500px]">
-                            @foreach ($histories->where('type', 'e-mail')->groupBy(fn($item) => $item->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $items)
+                            @foreach ($emails->groupBy(fn($email) => $email->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $records)
                                 <div class="mt-8 mb-4 flex items-center relative">
                                     <div class="absolute h-px bg-gray-300 w-full"></div>
                                     <span
@@ -208,7 +209,7 @@
                                     </span>
                                 </div>
 
-                                @foreach ($items as $item)
+                                @foreach ($records as $record)
                                     <div class="border w-full p-4 mt-6">
                                         <div class="flex items-center space-x-3">
                                             <div
@@ -218,14 +219,14 @@
                                             <div class="flex-1">
                                                 <div class="flex items-center space-x-2 text-sm">
                                                     <span
-                                                        class="text-sm font-medium">{{ $item->user->full_name }}</span>
+                                                        class="text-sm font-medium">{{ $record->user->full_name }}</span>
                                                     <span class="text-[#B0B0B0] text-xs capitalize"> -
-                                                        {{ $item->role }}</span>
+                                                        {{ $record->role }}</span>
                                                 </div>
                                                 <div class="flex items-center text-xs text-gray-600 mt-1">
                                                     <span class="italic">ha inviato un'email</span>
                                                     <div class="w-1 h-1 bg-black rounded-full mx-2"></div>
-                                                    <span>{{ $item->created_at->diffForHumans() }}</span>
+                                                    <span>{{ $record->created_at->diffForHumans() }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -236,14 +237,14 @@
                                                     <flux:icon.paper-airplane class="size-4" />
                                                     <span class="text-xs font-light">Mittente</span>
                                                 </div>
-                                                <span class="font-semibold ml-4">Nome Cognome</span>
+                                                <span class="font-semibold ml-4">{{ $record->sendBy->full_name}}</span>
                                             </div>
                                             <div class="text-[#B0B0B0]">
                                                 <div class="flex items-center gap-1">
                                                     <flux:icon.at-symbol class="size-4" />
                                                     <span class="text-xs font-light ">Assegnato a</span>
                                                 </div>
-                                                <span class="font-semibold ml-4">{{ $item->user->email }}</span>
+                                                <span class="font-semibold ml-4">{{ $record->user->email }}</span>
                                             </div>
                                             <div class="text-[#B0B0B0]">
                                                 <div class="flex items-center gap-1">
@@ -282,7 +283,7 @@
 
 
                         <div class="mt-5 overflow-auto h-[500px]">
-                            @foreach ($histories->where('type', 'note')->groupBy(fn($item) => $item->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $items)
+                            @foreach ($notes->groupBy(fn($note) => $note->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $records)
                                 <div class="mt-8 mb-4 flex items-center relative">
                                     <div class="absolute h-px bg-gray-300 w-full"></div>
                                     <span
@@ -291,7 +292,7 @@
                                     </span>
                                 </div>
 
-                                @foreach ($items as $item)
+                                @foreach ($records as $record)
                                     <div class="border w-full p-4 mt-6">
                                         <div class="flex items-center space-x-3">
                                             <div
@@ -301,14 +302,14 @@
                                             <div class="flex-1">
                                                 <div class="flex items-center space-x-2 text-sm">
                                                     <span
-                                                        class="text-sm font-medium">{{ $item->user->full_name }}</span>
+                                                        class="text-sm font-medium">{{ $record->user?->full_name }}</span>
                                                     <span class="text-[#B0B0B0] text-xs capitalize"> -
-                                                        {{ $item->role }}</span>
+                                                        {{ $record->role }}</span>
                                                 </div>
                                                 <div class="flex items-center text-xs text-gray-600 mt-1">
                                                     <span class="italic">ha scritto una nota</span>
                                                     <div class="w-1 h-1 bg-black rounded-full mx-2"></div>
-                                                    <span>{{ $item->created_at->diffForHumans() }}</span>
+                                                    <span>{{ $record->created_at->diffForHumans() }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -322,7 +323,7 @@
                                         </div>
 
                                         <p class="mt-4 ml-12 text-lg font-light text-[#B0B0B0]">
-                                            {{ $item->note }}
+                                            {{ $record->content }}
                                         </p>
                                     </div>
                                 @endforeach

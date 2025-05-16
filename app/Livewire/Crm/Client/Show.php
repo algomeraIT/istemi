@@ -2,17 +2,20 @@
 
 namespace App\Livewire\Crm\Client;
 
-use App\Livewire\Forms\HistoryContactForm;
 use Flux\Flux;
+use App\Models\Note;
+use App\Models\User;
+use App\Models\Email;
 use App\Models\Client;
 use Livewire\Component;
+use App\Models\Activity;
 use App\Models\Estimate;
-use App\Models\HistoryContact;
-use App\Models\User;
+use App\Models\HistoryClient;
+use App\Livewire\Forms\HistoryClientForm;
 
 class Show extends Component
 {
-    public HistoryContactForm $historyForm;
+    public HistoryClientForm $historyForm;
 
     public $client;
     public $references;
@@ -53,7 +56,10 @@ class Show extends Component
     public function render()
     {
         $estimates = Estimate::where('client_id', $this->client->id)->latest()->get();
-        $histories = HistoryContact::where('client_id', $this->client->id)->latest()->get();
+        $histories = HistoryClient::where('client_id', $this->client->id)->latest()->get();
+        $activities = Activity::where('client_id', $this->client->id)->latest()->get();
+        $emails = Email::where('client_id', $this->client->id)->latest()->get();
+        $notes = Note::where('client_id', $this->client->id)->latest()->get();
         $users = User::all();
         $clients = Client::all();
 
@@ -62,6 +68,9 @@ class Show extends Component
         return view('livewire.crm.client.show', [
             'estimates' => $estimates,
             'histories' => $histories,
+            'activities' => $activities,
+            'emails' => $emails,
+            'notes' => $notes,
             'users' => $users,
             'all' => $all,
         ]);
