@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('name_user');
             $table->string('last_name_user');
             $table->string('role_user');
+            $table->json('path')->nullable();
+            $table->text('note')->nullable(); 
             $table->unsignedBigInteger('attach_id')->nullable();
-            $table->unsignedBigInteger('id_note');
             $table->timestamps();
         });
     }

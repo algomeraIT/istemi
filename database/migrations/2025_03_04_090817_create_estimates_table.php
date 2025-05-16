@@ -19,6 +19,24 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->decimal('total', 10, 2);
             $table->tinyInteger('status')->default(1);
+            $table->foreignId('client_id')->nullable()->constrained('clients')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('referent_id')->constrained('referents')->cascadeOnDelete();
+
+            $table->string('address_invoice');
+            $table->string('city');
+            $table->string('cap', 10);
+            $table->string('country');
+            $table->boolean('has_same_address_for_delivery')->default(true);
+
+            $table->string('price_list');
+            $table->date('expiration');
+            $table->string('term_pay');
+            $table->string('method_pay');
+
+            $table->string('title_service');
+            $table->text('service');
+            $table->text('note_service')->nullable();
             $table->timestamps();
         });
     }

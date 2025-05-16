@@ -18,7 +18,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->string('task')->nullable();
-            $table->string('assigned_to');
+            $table->json('path')->nullable();
+            $table->string('assigned_to')->nullable();
             $table->string('sender');
             $table->string('receiver');
             $table->unsignedBigInteger('attach_id')->nullable();
@@ -27,7 +28,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('name_user');
             $table->string('last_name_user');
-            $table->string('job_position_user');
+            $table->string('job_position_user')->nullable();
             $table->tinyInteger('status_user');
             $table->string('action');
             $table->text('note')->nullable();

@@ -63,7 +63,6 @@ class ProjectTasksList extends Component
             $record->save();
 
             Flux::toast('Stato aggiornato con successo!');
-
         } catch (\Exception $e) {
             dd($e);
             Flux::toast('Errore durante la variazione di stato...');
@@ -85,28 +84,27 @@ class ProjectTasksList extends Component
                 'project_report_id',
                 'project_close_id',
             ];
-    
+
             $task = DB::table('task_projects')->where('id', $id)->first();
-    
+
             if (!$task) {
                 Flux::toast('Task non trovato.');
                 return;
             }
-    
+
             $notNullCount = collect($columns)->filter(function ($column) use ($task) {
                 return !is_null($task->{$column});
             })->count();
-    
+
             if ($notNullCount === 1) {
                 DB::table('task_projects')
                     ->where('id', $id)
                     ->update(['status' => $value]);
-    
+
                 Flux::toast('Stato aggiornato con successo!');
             } else {
                 Flux::toast('Errore: Il task ha più di un campo compilato o nessuno.');
             }
-    
         } catch (\Exception $e) {
             Flux::toast('Errore durante la variazione di stato...');
             dd($e);
@@ -116,9 +114,9 @@ class ProjectTasksList extends Component
     public function microDeleteTask($id)
     {
         try {
-      
+
             $model = TaskProject::findOrFail($id);
-        
+
             $model->status = "deleted";
             $model->save();
 
@@ -132,13 +130,27 @@ class ProjectTasksList extends Component
     public function deleteMacroTask($id, $nameTable)
     {
         try {
-            $modelClass = class_exists($nameTable) ? $nameTable : 'App\\Models\\' . $nameTable;
+            $collections = [
+                'Avvio progetto' => 'ProjectStart',
+                'Verifica tecnico contabile' => 'AccountingValidation',
+                'Chiusura attività' => 'CloseActivity',
+                'Pianificazione cantiere' => 'ConstructionSitePlane',
+                'Elaborazione dati' => 'Data',
+                'Verifica esterna' => 'ExternalValidation',
+                'Fattura e acconto SAL' => 'InvoicesSal',
+                'Gestione non conformità' => 'NonComplianceManagement',
+                'Report' => 'Report',
+            ];
 
-            if (!class_exists($modelClass)) {
-                throw new \Exception("Model {$modelClass} non esiste...");
+            $class = $collections[$nameTable];
+
+            if (!class_exists('App\\Models\\' .  $class)) {
+                throw new \Exception("Model {$class} non esiste...");
             }
-            $model = $modelClass::findOrFail($id);
-          
+
+            $className = 'App\\Models\\' . $class;
+            $model = $className::findOrFail($id);
+
             $model->status = "deleted";
             $model->save();
 

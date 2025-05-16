@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('activities_communication_client_history', function (Blueprint $table) {
             $table->id(); // This automatically creates an auto-incrementing primary key
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->onDelete('cascade');
             $table->string('name');
             $table->string('last_name');
             $table->string('role');

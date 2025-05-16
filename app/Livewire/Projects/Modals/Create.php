@@ -32,7 +32,7 @@ class Create extends ModalComponent
     public $clients = [];
     public $estimates = [];
     public $area = [];
-    public $project = [];
+    public $projectUser = [];
     public $stackholderIds = [];
     protected array $rules = [];
     public bool $canProceed = true;
@@ -81,7 +81,7 @@ class Create extends ModalComponent
         $this->clients = Client::select('id', 'name')->get()->toArray();
         $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)->get()->toArray();
         $this->area = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->get()->toArray();
-        $this->project = User::select('id', 'name', 'last_name', 'role')->where('role', 'project')->get()->toArray();
+        $this->projectUser = User::select('id', 'name', 'last_name', 'role')->where('role', 'project')->get()->toArray();
     }
 
     public function toggleAllPhases()
@@ -102,9 +102,9 @@ class Create extends ModalComponent
     ];
 
     if (count($this->formData['selectedPhases']) === count($phases)) {
-        $this->formData['selectedPhases'] = []; // Deselect all
+        $this->formData['selectedPhases'] = []; 
     } else {
-        $this->formData['selectedPhases'] = $phases; // Select all
+        $this->formData['selectedPhases'] = $phases; 
     }
 }
 
@@ -167,7 +167,6 @@ class Create extends ModalComponent
 
     public function nextTab()
     {
-
         $this->currentTab++;
         $this->recheckCanProceed();
     }

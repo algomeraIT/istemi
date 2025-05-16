@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id(); // This automatically creates an auto-incrementing primary key
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
+            $table->string('user_name');
+            $table->string('role');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->text('note');
             $table->timestamps();
         });

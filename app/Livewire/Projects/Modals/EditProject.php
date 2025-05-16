@@ -7,6 +7,20 @@ use App\Models\Project;
 use App\Models\Client;
 use App\Models\Estimate;
 use App\Models\User;
+
+use App\Models\Accounting;
+use App\Models\AccountingValidation;
+use App\Models\Activity;
+use App\Models\CloseActivity;
+use App\Models\ConstructionSitePlane;
+use App\Models\Data;
+use App\Models\ExternalValidation;
+use App\Models\InvoicesSal;
+use App\Models\NonComplianceManagement;
+use App\Models\ProjectStart;
+use App\Models\Report;
+use App\Models\Stackholder;
+
 use Flux\Flux;
 
 
@@ -73,6 +87,89 @@ class EditProject extends ModalComponent
                 'status',
             ])
         );
+
+        $selectedPhasesToMerge = [];
+
+        $selectedPhasesToMerge = array_merge(
+            $selectedPhasesToMerge,
+            extractSelectedPhases($this->project->id, [
+                'contract_ver',
+                'cme_ver',
+                'reserves',
+                'expiring_date_project',
+                'communication_plan',
+                'extension',
+                'sal',
+                'warranty'
+            ], \App\Models\ProjectStart::class),
+
+            extractSelectedPhases($this->project->id, [
+                'emission_invoice',
+                'payment_invoice'
+            ], \App\Models\InvoicesSal::class),
+
+            extractSelectedPhases($this->project->id, [
+                'construction_site_plane',
+                'travel',
+                'site_pass',
+                'ztl',
+                'supplier',
+                'timetable',
+                'security'
+            ], ConstructionSitePlane::class),
+
+            extractSelectedPhases($this->project->id, [
+                'team',
+                'field_activities',
+                'daily_check_activities',
+                'contruction_site_media',
+                'activity_validation'
+            ], Activity::class),
+
+            extractSelectedPhases($this->project->id, [
+                'foreman_docs',
+                'sanding_sample_lab',
+                'data_validation',
+                'internal_validation'
+            ], Data::class),
+
+            extractSelectedPhases($this->project->id, [
+                'create_note',
+                'sending_note'
+            ], Report::class),
+
+            extractSelectedPhases($this->project->id, [
+                'accounting_dec',
+                'create_cre',
+                'expense_allocation'
+            ], Accounting::class),
+
+            extractSelectedPhases($this->project->id, [
+                'cre',
+                'liquidation',
+                'balance_invoice'
+            ], ExternalValidation::class),
+
+            extractSelectedPhases($this->project->id, [
+                'balance',
+                'cre_archiving',
+                'pay_suppliers',
+                'pay_allocation_expenses',
+                'learned_lesson'
+            ], AccountingValidation::class),
+
+            extractSelectedPhases($this->project->id, [
+                'sa',
+                'integrate_doc'
+            ], NonComplianceManagement::class),
+
+            extractSelectedPhases($this->project->id, [
+                'sale',
+                'release'
+            ], CloseActivity::class)
+        );
+
+        $this->formData['selectedPhases'] = array_unique($selectedPhasesToMerge);
     }
 
     public function toggleAllPhases()
@@ -213,7 +310,7 @@ class EditProject extends ModalComponent
         try {
             $this->project->update($this->formData);
             Flux::toast('Progetto aggiornato con successo!');
-            $this->dispatch('project-updated');
+            $this->dispatch('refresh');
             $this->closeModal();
         } catch (\Exception $e) {
             Flux::toast('Errore durante l\'aggiornamento del progetto.');

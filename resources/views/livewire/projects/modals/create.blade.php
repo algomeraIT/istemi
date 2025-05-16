@@ -191,7 +191,7 @@
                                         <select id="id_chief_project" wire:model="formData.id_chief_project"
                                             class="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white">
                                             <option selected>Seleziona</option>
-                                            @foreach ($project as $p)
+                                            @foreach ($projectUser as $p)
                                                 <option value="{{ $p['id'] }}">{{ $p['name'] . ' ' . $p['last_name'] }}</option>
                                             @endforeach
                                         </select>

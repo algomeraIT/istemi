@@ -103,20 +103,7 @@ class ProjectDetail extends Component
         return $result;
     }
 
-    public function deleteTask($id)
-    {
-        try {
-            $task = \App\Models\TaskProjectStart::findOrFail($id);
 
-            $task->update([
-                'status' => 'archived',
-            ]);
-
-            \Flux\Flux::toast('Task archiviato con successo!');
-        } catch (\Exception $e) {
-            \Flux\Flux::toast('Errore durante l\'archiviazione del task...');
-        }
-    }
 
     public function render()
     {

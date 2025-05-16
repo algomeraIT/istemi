@@ -120,10 +120,12 @@
                                         wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $element->id }}, nameSection: '{{ $nameSection }}' }})"
                                         variant="ghost" data-variant="ghost" data-color="gray" data-rounded
                                         icon="pencil" size="sm" />
-                                    <flux:button wire:click="deleteMacroTask({{ $element->id }})"
-                                        wire:confirm="Sei sicuro di voler archiviare questo micro task?" variant="ghost"
-                                        data-variant="ghost" data-color="red" data-rounded icon="trash"
-                                        size="sm" />
+       
+                                        <flux:button
+                                        wire:click="deleteMacroTask({{ $element->id }}, '{{ $nameSection }}')"
+                                        wire:confirm="Sei sicuro di voler archiviare questo macro task?"
+                                        variant="ghost" data-variant="ghost" data-color="red"
+                                        data-rounded icon="trash" size="sm" />
                                 </flux:table.cell>
                             </flux:table.row>
                             {{-- MicroTask children --}}
