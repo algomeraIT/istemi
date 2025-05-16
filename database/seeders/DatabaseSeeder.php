@@ -7,10 +7,12 @@ namespace Database\Seeders;
 use App\Models\Sale;
 use App\Models\Referent;
 use App\Models\Acquisition;
+use App\Models\ActivityPhase;
 use App\Models\Communication;
 use App\Models\AccountingOrder;
 use Illuminate\Database\Seeder;
 use App\Models\AccountingInvoice;
+use Database\Factories\ActivityPhaseFactory;
 use App\Models\ActivityCommunicationClientHistory;
 
 class DatabaseSeeder extends Seeder
@@ -61,5 +63,8 @@ class DatabaseSeeder extends Seeder
 
         AccountingInvoice::factory()->count(40)->create();
         $this->command->info('Fatture create con successo.');
+
+        ActivityPhase::factory()->count(40)->create();
+        $this->command->info('Attivita Progetti creati con successo.');
     }
 }

@@ -232,7 +232,7 @@ class Projects extends Component
 
         $listProjects = $this->buildProjectQuery()
             ->orderBy('created_at', 'desc')
-            ->paginate(15);
+            ->paginate(12);
 
         $validGroupFields = ['current_phase', 'responsible'];
         $groupField = in_array($this->kanbanTab, $validGroupFields) ? $this->kanbanTab : 'current_phase';

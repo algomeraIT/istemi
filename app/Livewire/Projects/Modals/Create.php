@@ -6,7 +6,7 @@ use Livewire\Attributes\On;
 
 use App\Models\Accounting;
 use App\Models\AccountingValidation;
-use App\Models\Activity;
+use App\Models\ActivityPhase;
 use App\Models\Client;
 use App\Models\CloseActivity;
 use App\Models\ConstructionSitePlane;
@@ -203,7 +203,7 @@ class Create extends ModalComponent
 
             ConstructionSitePlane::createFromPhases($this->formData, $selected, $project->id);
 
-            Activity::createFromPhases($this->formData, $selected, $project->id);
+            ActivityPhase::createFromPhases($this->formData, $selected, $project->id);
 
             Data::createFromPhases($this->formData, $selected, $project->id);
 
@@ -232,6 +232,8 @@ class Create extends ModalComponent
             DB::rollBack();
             Flux::toast('Errore imprevisto: ' . $e->getMessage());
         }
+
+        $this->closeModal();
     }
 
     public function render()

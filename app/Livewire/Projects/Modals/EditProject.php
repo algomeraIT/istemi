@@ -10,7 +10,7 @@ use App\Models\User;
 
 use App\Models\Accounting;
 use App\Models\AccountingValidation;
-use App\Models\Activity;
+use App\Models\ActivityPhase;
 use App\Models\CloseActivity;
 use App\Models\ConstructionSitePlane;
 use App\Models\Data;
@@ -124,7 +124,7 @@ class EditProject extends ModalComponent
                 'daily_check_activities',
                 'contruction_site_media',
                 'activity_validation'
-            ], Activity::class),
+            ], ActivityPhase::class),
 
             extractSelectedPhases($this->project->id, [
                 'foreman_docs',
