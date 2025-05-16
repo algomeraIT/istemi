@@ -61,13 +61,7 @@
                                 4
                             </button>
                         </li>
-                        {{--              <li>
-                            <button wire:click="$set('currentTab', 5)"
-                                class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-cyan-400 text-cyan-400 font-bold
-                    {{ $currentTab == 5 ? 'bg-cyan-500 text-white' : 'bg-white hover:bg-cyan-100' }}">
-                                5
-                            </button>
-                        </li> --}}
+           
                     </ul>
                 </div>
 
@@ -77,9 +71,7 @@
                         @if ($currentTab == 1)
                             <div class="">
                                 <h2 class="text-lg font-medium italic mb-2">Informazioni Generali</h2>
-                                {{--  
-                            <input type="text" wire:model="formData.general_info" placeholder="Informazioni Generali"
-                                class="border p-2 w-full"> --}}
+          
                                 <div class="lg:flex p-1">
                                     <div class=" p-4 ">
 
@@ -809,21 +801,11 @@
                     {{ $currentTab == 1 ? 'disabled' : '' }}>
                     Indietro
                 </button>
-                {{--      <div x-data="{
-                    canProceed: @entangle('formData').defer,
-                    isValid: false
-                }" x-init="$watch('canProceed', () => { Livewire.emit('checkValid') })"
-                    @canProceed-updated.window="isValid = $event.detail">
-                    <button wire:click="{{ $currentTab < 4 ? 'nextTab' : 'save' }}"
-                        class="bg-cyan-600 text-white px-4 py-2 rounded {{ !$canProceed ? 'opacity-50 cursor-not-allowed' : '' }}"
-                        @if (!$canProceed) disabled @endif>
-                        {{ $currentTab < 4 ? 'Avanti' : 'Salva' }}
-                    </button>
-                </div> --}}
 
                 <button wire:click="{{ $currentTab < 4 ? 'nextTab' : 'save' }}"
                     class="bg-cyan-600 text-white px-4 py-2 rounded ">
                     {{ $currentTab < 4 ? 'Avanti' : 'Salva' }}
+                    
                 </button>
             </div>
         </div>
@@ -837,7 +819,6 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Fallback Quill init if needed elsewhere
         if (document.getElementById('quill-editor-area')) {
             var editor = new Quill('#quill-editor', {
                 theme: 'snow'

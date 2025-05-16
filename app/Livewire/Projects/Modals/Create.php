@@ -27,8 +27,8 @@ use LivewireUI\Modal\ModalComponent;
 
 class Create extends ModalComponent
 {
-    public $currentTab = 1;
 
+    public $currentTab = 1;
     public $clients = [];
     public $estimates = [];
     public $area = [];
@@ -78,15 +78,10 @@ class Create extends ModalComponent
 
     public function mount()
     {
-        $this->clients = Client::select('id', 'name')
-            ->get()->toArray();
-
-        $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)
-            ->get()->toArray();
-
+        $this->clients = Client::select('id', 'name')->get()->toArray();
+        $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)->get()->toArray();
         $this->area = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->get()->toArray();
         $this->project = User::select('id', 'name', 'last_name', 'role')->where('role', 'project')->get()->toArray();
-
     }
 
     public function toggleAllPhases()
@@ -194,7 +189,7 @@ class Create extends ModalComponent
     }
 
     public function save()
-    {
+    {        
         DB::beginTransaction();
 
         try {

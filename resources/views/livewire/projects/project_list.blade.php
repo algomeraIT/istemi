@@ -1,8 +1,6 @@
 
 <div class="w-full overflow-x-auto">
     @if ($projects)
-
-
         <flux:table>
             <flux:table.columns>
                 <flux:table.column>Preventivo</flux:table.column>
@@ -63,9 +61,7 @@
                                 wire:click="$dispatch('openModal', { component: 'projects.modals.edit-project', arguments: { id: {{ $project->id }} } })"
                                 variant="ghost" data-variant="ghost" data-color="gray" data-rounded
                                 icon="pencil" size="sm" />
-                     {{--        <flux:button wire:click="delete({{ $project->id }})"
-                                wire:confirm="Sei sicuro di voler eliminare questo project?" variant="ghost"
-                                data-variant="ghost" data-color="red" data-rounded icon="trash" size="sm" /> --}}
+                                
                         </flux:table.cell>
                     </flux:table.row>
                 @endforeach
