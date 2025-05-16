@@ -14,6 +14,7 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->text('note')->nullable();
             $table->json('attachment')->nullable();
+            
             $table->timestamps();
 
             $table->foreign('task_id')->references('id')->on('task_project_start')->onDelete('cascade');

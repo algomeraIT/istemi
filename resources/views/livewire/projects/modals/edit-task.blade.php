@@ -1,34 +1,24 @@
 <div class="fixed inset-0 bg-[oklch(0.97_0_0_/_0.5)] bg-opacity-20 flex justify-end z-50">
-    <div class="w-1/3 bg-gray-50">
-        <div class="flex justify-between items-start p-6 bg-[#F5FCFD] h-24">
-            <h2 class="text-2xl font-bold">Modifica Task</h2>
+    <div class="w-1/3 bg-white">
+        <div class="flex justify-between items-start p-6 bg-white h-24">
+            <h2 class="text-2xl font-bold">Modifica Attività</h2>
             <button wire:click="$dispatch('closeModal')" class="hover:cursor-pointer">Chiudi</button>
         </div>
 
         <div class="p-6 space-y-4 bg-white">
             <div>
                 <label class="text-sm text-gray-600">Titolo</label>
-                <input type="text" wire:model.defer="title"
+                <input type="text" wire:model.defer="name_phase"
                     class="w-full border border-gray-300 rounded p-2 text-sm">
             </div>
 
             <div>
                 <label class="text-sm text-gray-600">Assegnato a</label>
-                <input type="text" wire:model.defer="assignee"
+                <input type="text" wire:model.defer="user"
                     class="w-full border border-gray-300 rounded p-2 text-sm">
             </div>
 
-            <div>
-                <label class="text-sm text-gray-600">Scadenza</label>
-                <input type="date" wire:model.defer="expire"
-                    class="w-full border border-gray-300 rounded p-2 text-sm">
-            </div>
-
-            <div>
-                <label class="text-sm text-gray-600">Nota</label>
-                <textarea wire:model.defer="note"
-                    class="w-full border border-gray-300 rounded p-2 text-sm h-28"></textarea>
-            </div>
+     
 
             <div class="pt-4">
                 <button wire:click="save"

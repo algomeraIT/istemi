@@ -118,27 +118,26 @@
                         </p>
                     </div>
                 </div>
-
+                @php
+                    $firms = json_decode($this->project['firms_and_percentage'], true);
+                @endphp
                 {{-- fourth line --}}
                 <div class="flex mt-4">
-                    <div class="font-light p-2.5">
-                        <p class="flex text-[13px] items-center">
-                            <flux:icon.document class="w-3 h-3" />Componenti del raggruppamento
-                        </p>
 
-                        @php
-                            $firms = json_decode($this->project['firms_and_percentage'], true);
-                        @endphp
-                    </div>
                     @if (is_array($firms))
-                        <div class="space-y-2">
-                            @foreach ($firms as $firm => $percentage)
-                                <div class="flex justify-between items-center border-b pb-1">
-                                    <span class="text-gray-700 font-medium">{{ $firm }}</span>
-                                </div>
-                            @endforeach
-                        </div>
+                        <div class="font-light p-2.5">
+                            <p class="flex text-[13px] items-center">
+                                <flux:icon.document class="w-3 h-3" />Componenti del raggruppamento
+                            </p>
 
+                            <div class="space-y-2">
+                                @foreach ($firms as $firm => $percentage)
+                                    <div class="flex justify-between items-center border-b pb-1">
+                                        <span class="text-gray-700 font-medium">{{ $firm }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                         <div class="font-light p-2.5">
                             <p class="flex text-[13px] items-center">
                                 <flux:icon.document class="w-3 h-3" />Percentuali dei raggruppati
@@ -181,7 +180,7 @@
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
-                            {{ $this->project['goals'] }}
+                            {!! $this->project['goals'] !!}
                         </p>
                     </div>
                 </div>
@@ -192,7 +191,7 @@
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
-                            {{ $this->project['project_scope'] }}
+                            {!! $this->project['project_scope'] !!}
                         </p>
                     </div>
                 </div>
@@ -203,7 +202,7 @@
                         </p>
                         <p class="text-[15px] text-[#A0A0A0] font-semibold">
 
-                            {{ $this->project['expected_results'] }}
+                            {!! $this->project['expected_results'] !!}
                         </p>
                     </div>
                 </div>
@@ -237,9 +236,7 @@
                         @foreach ($phases as $phase => $status)
                             <li class="font-semibold text-[#A0A0A0] text-[15px] list-none">
                                 {{ ucwords(str_replace('_', ' ', $phase)) }}
-                                {{--          <span class="{{ $status === 'Svolto' ? 'text-green-600' : 'text-yellow-600' }}">
-                                    {{ $status }}
-                                </span> --}}
+                         
                             </li>
                         @endforeach
                     </ul>

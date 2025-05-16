@@ -1,8 +1,8 @@
 <div class="fixed inset-0 bg-[oklch(0.97_0_0_/_0.5)] bg-opacity-20 flex justify-end z-50">
     <!-- Left Section: Referents -->
-    <div class="w-1/3  bg-gray-50">
-        <div class="flex flex-row justify-between align-top items-start mx-auto bg-[#F5FCFD] h-24 p-6">
-            <h2 class="text-2xl font-bold text-left">Task</h2>
+    <div class="w-1/3  bg-white">
+        <div class="flex flex-row justify-between align-top items-start mx-auto bg-white h-24 p-6">
+            <h2 class="text-2xl font-bold text-left">Attività</h2>
             <button wire:click="$dispatch('closeModal')" class="hover:cursor-pointer ">Chiudi</button>
         </div>
 
@@ -13,7 +13,6 @@
                     <flux:tab name="account">Allegati</flux:tab>
                     <flux:tab name="billing">Note</flux:tab>
                 </flux:tabs>
-
 
                 <flux:tab.panel name="profile">
                     @foreach ($tasks as $task)
@@ -35,7 +34,7 @@
                         <div class=" font-extralight">
                             {{ $task['note'] }}
                         </div>
-                        <div class="flex mt-4  font-extralight">
+                        <div class="flex mt-4  font-extralight text-[15px]">
                             <p>Creato da: {{ $task['assignee'] }}</p>
                             <div class="w-1 h-1 bg-gray-400 rounded-4xl self-center mr-1 ml-1"></div>
                             {{ $task['created_at']->diffForHumans() }}

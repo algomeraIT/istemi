@@ -98,9 +98,14 @@
             }
         
             &[data-variant="list"] {
-                @apply lg:w-40;
+                @apply lg:w-40 ;
+            }
+
+            &[data-variant="filter"] {
+                @apply lg:w-40 rounded-none h-8 shadow-none;
             }
         }
+
         
         [data-flux-select] {
             button {
@@ -244,6 +249,10 @@ select:focus[data-flux-control] {
 
     &[data-variant="projectDetail"] {
         @apply bg-white;
+    }
+
+    &[data-variant="detailNoBorders"] {
+        @apply  bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-b-cyan-200;
     }
 }
 

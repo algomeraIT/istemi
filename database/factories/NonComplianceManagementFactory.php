@@ -14,14 +14,33 @@ class NonComplianceManagementFactory extends Factory
 
     public function definition(): array
     {
+        $fields = [
+            'sa',
+            'integrate_doc',
+        ];
+
+        $labels = [
+            'sa' => 'Accogliere le richieste/integrazioni della S.A.',
+            'integrate_doc' => 'Produrre ed inviare documentazione integrativa',
+        ];
+
+        $trueField = $this->faker->randomElement($fields);
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $field === $trueField;
+        }
+
         $clientIds = Client::pluck('id')->toArray();
 
         return [
             'client_id' => fake()->randomElement($clientIds),
             'project_id' => Project::factory(),
             'non_compliance_management' => $this->faker->sentence(),
+             'name_phase' => $labels[$trueField],
+
             'user' => fake()->name(),
-            'status' => fake()->randomElement(['approved', 'pending']),
+            'status' => fake()->randomElement(['Svolto', 'In attesa']),
             'user_non_compliance_management' => User::factory(),
             'status_non_compliance_management' => 'pending',
 

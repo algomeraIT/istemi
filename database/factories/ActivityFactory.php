@@ -11,6 +11,29 @@ class ActivityFactory extends Factory
 {
     public function definition(): array
     {
+        $fields = [
+            'team',
+            'field_activities',
+            'daily_check_activities',
+            'contruction_site_media',
+            'activity_validation',
+        ];
+
+        $labels = [
+            'team' => 'Selezione della squadra',
+            'field_activities' => 'Imprtire istruzioni utili allo svolgimento delle attività in campo',
+            'daily_check_activities' => 'Riepilogo giornaliero delle attività eseguite',
+            'contruction_site_media' => 'Caricamento dati cantiere',
+            'activity_validation' => 'Controllo avanzamento attività/budget (PM)',
+        ];
+
+        $trueField = $this->faker->randomElement($fields);
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $field === $trueField;
+        }
+
         $clientIds = Client::pluck('id')->toArray();
         $userIds = User::pluck('id')->toArray();
 

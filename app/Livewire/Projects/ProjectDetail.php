@@ -37,16 +37,16 @@ class ProjectDetail extends Component
     public function mount($id)
     {
         $this->project = Project::findOrFail($id);
-        $this->groupedMicroTasks = TaskProject::where("project_id", $id)->get();
-        $this->projectStart = ProjectStart::where("project_id", $id)->get();
-        $this->accountingValidation = AccountingValidation::where("project_id", $id)->get();
-        $this->closeActivity = CloseActivity::where("project_id", $id)->get();
-        $this->constructionSitePlane = ConstructionSitePlane::where("project_id", $id)->get();
-        $this->data = Data::where("project_id", $id)->get();
-        $this->externalValidation = ExternalValidation::where("project_id", $id)->get();
-        $this->invoicesSal = InvoicesSal::where("project_id", $id)->get();
-        $this->nonComplianceManagement = NonComplianceManagement::where("project_id", $id)->get();
-        $this->report = Report::where("project_id", $id)->get();
+        $this->groupedMicroTasks = TaskProject::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->projectStart = ProjectStart::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->accountingValidation = AccountingValidation::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->closeActivity = CloseActivity::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->constructionSitePlane = ConstructionSitePlane::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->data = Data::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->externalValidation = ExternalValidation::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->invoicesSal = InvoicesSal::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->nonComplianceManagement = NonComplianceManagement::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->report = Report::where("project_id", $id)->where('status', '!=', 'deleted')->get();
 
         $this->referent = Referent::get();
         $this->document = DocumentProject::where("project_id", $id)->get();
@@ -103,20 +103,7 @@ class ProjectDetail extends Component
         return $result;
     }
 
-    public function deleteTask($id)
-    {
-        try {
-            $task = \App\Models\TaskProjectStart::findOrFail($id);
 
-            $task->update([
-                'status' => 'archived',
-            ]);
-
-            \Flux\Flux::toast('Task archiviato con successo!');
-        } catch (\Exception $e) {
-            \Flux\Flux::toast('Errore durante l\'archiviazione del task...');
-        }
-    }
 
     public function render()
     {

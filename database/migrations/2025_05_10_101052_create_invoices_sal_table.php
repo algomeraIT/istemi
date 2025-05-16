@@ -12,8 +12,10 @@ return new class extends Migration {
 
             $table->foreignId('client_id')->nullable()->constrained('clients')->cascadeOnDelete();
             $table->foreignId('project_id')->nullable()->constrained('projects')->cascadeOnDelete();
-            $table->string('user')->nullable();
-            $table->string('status')->nullable();
+            $table->string('name_phase');
+
+            $table->string('user');
+            $table->string('status');
             $table->boolean('invoices_sal')->default(false);
             $table->foreignId('user_invoices_sal')->nullable()->constrained('users')->nullOnDelete();
             $table->string('status_invoices_sal')->nullable();

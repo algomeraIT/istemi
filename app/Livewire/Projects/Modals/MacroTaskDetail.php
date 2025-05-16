@@ -4,11 +4,9 @@ namespace App\Livewire\Projects\Modals;
 
 use LivewireUI\Modal\ModalComponent;
 
-class TaskDetail extends ModalComponent
+class MacroTaskDetail extends ModalComponent
 {
-    public $id, $tasks, $user_name;
-    public $tab = 'profile';
-    public string $note = '';
+    public $tasks, $groupedTasks, $monthTasks;
 
     public function mount($id, $nameSection)
     {
@@ -23,22 +21,22 @@ class TaskDetail extends ModalComponent
             'Gestione non conformità' => 'NonComplianceManagement',
             'Report' => 'Report',
         ];
-    
+
         if (!array_key_exists($nameSection, $collections)) {
             abort(404, "Sezione {$nameSection} non trovata.");
         }
-    
+
         $modelClass = 'App\\Models\\' . $collections[$nameSection];
-    
+
         if (!class_exists($modelClass)) {
             abort(404, "Model {$modelClass} non esiste.");
         }
-    
-        $this->tasks = $modelClass::findOrFail($id);
+
+        $this->tasks = $modelClass::where('id', $id)->get();
     }
 
     public function render()
     {
-        return view('livewire.projects.modals.task-detail');
+        return view('livewire.projects.modals.macro-task-detail');
     }
 }

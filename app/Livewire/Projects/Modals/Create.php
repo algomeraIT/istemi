@@ -2,11 +2,24 @@
 
 namespace App\Livewire\Projects\Modals;
 
+use Livewire\Attributes\On;
+
+use App\Models\Accounting;
+use App\Models\AccountingValidation;
+use App\Models\Activity;
 use App\Models\Client;
+use App\Models\CloseActivity;
+use App\Models\ConstructionSitePlane;
+use App\Models\Data;
 use App\Models\Estimate;
+use App\Models\ExternalValidation;
+use App\Models\InvoicesSal;
+use App\Models\NonComplianceManagement;
 use App\Models\Project;
-use App\Models\User;
 use App\Models\ProjectStart;
+use App\Models\Report;
+use App\Models\User;
+use App\Models\Stackholder;
 use Flux\Flux;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -14,12 +27,12 @@ use LivewireUI\Modal\ModalComponent;
 
 class Create extends ModalComponent
 {
-    public $currentTab = 1;
 
+    public $currentTab = 1;
     public $clients = [];
     public $estimates = [];
     public $area = [];
-    public $project = [];
+    public $projectUser = [];
     public $stackholderIds = [];
     protected array $rules = [];
     public bool $canProceed = true;
@@ -30,12 +43,14 @@ class Create extends ModalComponent
         'id_client' => '',
         'client_type' => '',
         'client_name' => '',
+        'current_phase' => 'Non definito',
         'is_from_agent' => false,
         'total_budget' => '',
         'id_chief_area' => '',
         'id_chief_project' => '',
         'chief_area' => '',
         'chief_project' => '',
+        'responsible' => '',
         'start_at' => '',
         'end_at' => '',
         'starting_price' => '',
@@ -44,6 +59,7 @@ class Create extends ModalComponent
         'n_firms' => '',
         'firms_and_percentage' => '',
         'note' => '',
+        'general_info' => '',
         'note_client' => '',
         'goals' => '',
         'project_scope' => '',
@@ -58,22 +74,39 @@ class Create extends ModalComponent
         'status' => '',
     ];
 
-
-
     public array $formData = self::DEFAULT_FORM;
 
     public function mount()
     {
-        $this->clients = Client::select('id', 'name')
-            ->get()->toArray();
-
-        $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)
-            ->get()->toArray();
-
+        $this->clients = Client::select('id', 'name')->get()->toArray();
+        $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)->get()->toArray();
         $this->area = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->get()->toArray();
-        $this->project = User::select('id', 'name', 'last_name', 'role')->where('role', 'project')->get()->toArray();
-
+        $this->projectUser = User::select('id', 'name', 'last_name', 'role')->where('role', 'project')->get()->toArray();
     }
+
+    public function toggleAllPhases()
+{
+    $phases = [
+        'contract_ver', 'cme_ver', 'reserves', 'expiring_date_project',
+        'communication_plan', 'extension', 'sal', 'warranty',
+        'emission_invoice', 'payment_invoice',
+        'construction_site_plane', 'travel', 'site_pass', 'ztl', 'supplier', 'timetable', 'security',
+        'activities', 'team', 'field_activities', 'daily_check_activities', 'contruction_site_media', 'activity_validation',
+        'data', 'foreman_docs', 'sanding_sample_lab', 'data_validation', 'internal_validation',
+        'Report', 'create_note', 'sending_note',
+        'accounting', 'accounting_dec', 'create_cre', 'expense_allocation',
+        'external_validation', 'cre', 'liquidation', 'balance_invoice',
+        'accounting_validation', 'balance', 'cre_archiving', 'pay_suppliers', 'pay_allocation_expenses', 'learned_lesson',
+        'non_compliance_management', 'sa', 'integrate_doc',
+        'close_activity', 'sale', 'release'
+    ];
+
+    if (count($this->formData['selectedPhases']) === count($phases)) {
+        $this->formData['selectedPhases'] = []; 
+    } else {
+        $this->formData['selectedPhases'] = $phases; 
+    }
+}
 
     #[On('checkValid')]
     public function checkValid()
@@ -90,8 +123,7 @@ class Create extends ModalComponent
     {
         $this->rules = $this->getValidationRules();
         $this->validateOnly($propertyName);
-/*     $this->canProceed = $this->getCanProceedProperty();
- */}
+}
 
     public function getValidationRules()
     {
@@ -133,14 +165,8 @@ class Create extends ModalComponent
         }
     }
 
-    public function close()
-    {
-        $this->isOpen = false;
-    }
-
     public function nextTab()
     {
-
         $this->currentTab++;
         $this->recheckCanProceed();
     }
@@ -162,119 +188,45 @@ class Create extends ModalComponent
     }
 
     public function save()
-    {
+    {        
         DB::beginTransaction();
 
         try {
-            if ($this->formData['id_chief_area']) {
-                $getNameArea = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->where('id', $this->formData['id_chief_area'])->get()->toArray();
-            }
-            if ($this->formData['id_chief_project']) {
-                $getNameProject = User::select('id', 'name', 'last_name', 'role')->where('role', 'project')->where('id', $this->formData['id_chief_project'])->get()->toArray();
-            }
-
-            if ($this->formData['id_client']) {
-                $getClient = Client::select('id', 'name', 'address', 'status', 'note')->where('id', $this->formData['id_client'])->get()->toArray();
-            }
-            if ($this->formData['n_file']) {
-                $getEstimate = Estimate::where('id', $this->formData['n_file'])->get()->toArray();
-            }
-
-            $this->formData['phase'] = "ok";
-            $this->formData['estimate'] = $this->formData['n_file'] = $getEstimate[0]['serial_number'];
-
-            $this->formData['chief_area'] = $getNameArea[0]['name'] . ' ' . $getNameArea[0]['last_name'];
-            $this->formData['chief_project'] = $getNameProject[0]['name'] . ' ' . $getNameProject[0]['last_name'];
-
-            $this->formData['address_client'] = $getClient[0]['address'];
-            $this->formData['client_status'] = $getClient[0]['status'];
-            $this->formData['client_name'] = $getClient[0]['name'];
-            $this->formData['note_client'] = $getClient[0]['note'];
-            $this->formData['status'] = $this->formData['client_type'];
-            $this->formData['stackholder_id'] = json_encode($this->formData['stackholder_id']);
-
-            $this->formData['starting_price'] = $this->formData['starting_price'] !== '' ? (float) $this->formData['starting_price'] : null;
-            $this->formData['discount_percentage'] = $this->formData['discount_percentage'] !== '' ? (float) $this->formData['discount_percentage'] : null;
-            $this->formData['discounted'] = $this->formData['discounted'] !== '' ? (float) $this->formData['discounted'] : null;
-            $this->formData['total_budget'] = $this->formData['total_budget'] !== '' ? (float) $this->formData['total_budget'] : null;
-
+            $this->formData = Project::prepareFormData($this->formData);
             $project = Project::create($this->formData);
-           
+
             $selected = is_array($this->formData['selectedPhases']) ? $this->formData['selectedPhases'] : [];
 
-             $projectStart = [
-                'contract_ver',
-                'user',
-                'status',
-                'cme_ver',
-                'reserves',
-                'expiring_date_project',
-                'communication_plan',
-                'extension',
-                'sal',
-                'warranty',
-            ];
-            if (count(array_intersect($projectStart, $selected)) > 0) {
-                ProjectStart::create([
-                    'client_id' => $this->formData['id_client'],
-                    'project_id' => $project->id,
-                    'user' => auth()->user()->name . ' ' . auth()->user()->last_name,
-                    'status' => 'pending',
-                    'contract_ver' => in_array('contract_ver', $this->formData['selectedPhases']),
-                    'user_contract_ver' => $this->formData['user_contract_ver'] ?? null,
-                    'status_contract_ver' => false,
+            ProjectStart::createFromPhases($this->formData, $selected, $project->id);
 
-                    'cme_ver' => in_array('cme_ver', $this->formData['selectedPhases']),
-                    'user_cme_ver' => $this->formData['user_cme_ver'] ?? null,
-                    'status_cme_ver' => false,
+            InvoicesSal::createFromPhases($this->formData, $selected, $project->id);
 
-                    'reserves' => in_array('reserves', $this->formData['selectedPhases']),
-                    'user_reserves' => $this->formData['user_reserves'] ?? null,
-                    'status_reserves' => false,
+            ConstructionSitePlane::createFromPhases($this->formData, $selected, $project->id);
 
-                    'expiring_date_project' => in_array('expiring_date_project', $this->formData['selectedPhases']),
-                    'user_expiring_date_project' => $this->formData['user_expiring_date_project'] ?? null,
-                    'status_expiring_date_project' => false,
+            Activity::createFromPhases($this->formData, $selected, $project->id);
 
-                    'communication_plan' => in_array('communication_plan', $this->formData['selectedPhases']),
+            Data::createFromPhases($this->formData, $selected, $project->id);
 
-                    'extension' => in_array('extension', $this->formData['selectedPhases']),
-                    'user_extension' => $this->formData['user_extension'] ?? null,
-                    'status_extension' => false,
+            Report::createFromPhases($this->formData, $selected, $project->id);
 
-                    'sal' => in_array('sal', $this->formData['selectedPhases']),
-                    'user_sal' => $this->formData['user_sal'] ?? null,
-                    'status_sal' => false,
+            Accounting::createFromPhases($this->formData, $selected, $project->id);
 
-                    'warranty' => in_array('warranty', $this->formData['selectedPhases']),
-                    'user_warranty' => $this->formData['user_warranty'] ?? null,
-                    'status_warranty' => false,
-                ]);
-            }
+            ExternalValidation::createFromPhases($this->formData, $selected, $project->id);
 
-            /*     foreach ($this->formData['stackholder_id'] as $stackholder) {
-            $id = DB::table('stackholders')->insertGetId([
-            'project_id' => $project->id,
-            'name' => $stackholder['name'],
-            'email' => $stackholder['email'],
-            'role' => $stackholder['role'],
-            'is_archived' => 0,
-            'created_at' => now(),
-            'updated_at' => now(),
-            ]);
+            AccountingValidation::createFromPhases($this->formData, $selected, $project->id);
 
-            $stackholderIds[] = $id;
-            } */
+            NonComplianceManagement::createFromPhases($this->formData, $selected, $project->id);
+
+            CloseActivity::createFromPhases($this->formData, $selected, $project->id);
+
+            Stackholder::insertFromForm($this->formData, $project->id);
 
             DB::commit();
 
             Flux::toast('Progetto creato con successo!');
 
-            $this->close();
-
         } catch (QueryException $e) {
             DB::rollBack();
-            dd($e);
             Flux::toast('Errore di database, contatta l’amministratore.');
         } catch (\Exception $e) {
             DB::rollBack();
