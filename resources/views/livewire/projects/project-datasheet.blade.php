@@ -236,9 +236,7 @@
                         @foreach ($phases as $phase => $status)
                             <li class="font-semibold text-[#A0A0A0] text-[15px] list-none">
                                 {{ ucwords(str_replace('_', ' ', $phase)) }}
-                                {{--          <span class="{{ $status === 'Svolto' ? 'text-green-600' : 'text-yellow-600' }}">
-                                    {{ $status }}
-                                </span> --}}
+                         
                             </li>
                         @endforeach
                     </ul>
