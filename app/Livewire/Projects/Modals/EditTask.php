@@ -49,7 +49,12 @@ class EditTask extends ModalComponent
             'status' => $this->status,
         ]);
 
+        $this->closeModal();
+
         Flux::toast('Task aggiornato con successo!');
+
+        $this->dispatch('refresh');
+
     }
 
     public function render()

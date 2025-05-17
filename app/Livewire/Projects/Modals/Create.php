@@ -85,28 +85,67 @@ class Create extends ModalComponent
     }
 
     public function toggleAllPhases()
-{
-    $phases = [
-        'contract_ver', 'cme_ver', 'reserves', 'expiring_date_project',
-        'communication_plan', 'extension', 'sal', 'warranty',
-        'emission_invoice', 'payment_invoice',
-        'construction_site_plane', 'travel', 'site_pass', 'ztl', 'supplier', 'timetable', 'security',
-        'activities', 'team', 'field_activities', 'daily_check_activities', 'contruction_site_media', 'activity_validation',
-        'data', 'foreman_docs', 'sanding_sample_lab', 'data_validation', 'internal_validation',
-        'Report', 'create_note', 'sending_note',
-        'accounting', 'accounting_dec', 'create_cre', 'expense_allocation',
-        'external_validation', 'cre', 'liquidation', 'balance_invoice',
-        'accounting_validation', 'balance', 'cre_archiving', 'pay_suppliers', 'pay_allocation_expenses', 'learned_lesson',
-        'non_compliance_management', 'sa', 'integrate_doc',
-        'close_activity', 'sale', 'release'
-    ];
+    {
+        $phases = [
+            'contract_ver',
+            'cme_ver',
+            'reserves',
+            'expiring_date_project',
+            'communication_plan',
+            'extension',
+            'sal',
+            'warranty',
+            'emission_invoice',
+            'payment_invoice',
+            'construction_site_plane',
+            'travel',
+            'site_pass',
+            'ztl',
+            'supplier',
+            'timetable',
+            'security',
+            'activities',
+            'team',
+            'field_activities',
+            'daily_check_activities',
+            'contruction_site_media',
+            'activity_validation',
+            'data',
+            'foreman_docs',
+            'sanding_sample_lab',
+            'data_validation',
+            'internal_validation',
+            'Report',
+            'create_note',
+            'sending_note',
+            'accounting',
+            'accounting_dec',
+            'create_cre',
+            'expense_allocation',
+            'external_validation',
+            'cre',
+            'liquidation',
+            'balance_invoice',
+            'accounting_validation',
+            'balance',
+            'cre_archiving',
+            'pay_suppliers',
+            'pay_allocation_expenses',
+            'learned_lesson',
+            'non_compliance_management',
+            'sa',
+            'integrate_doc',
+            'close_activity',
+            'sale',
+            'release'
+        ];
 
-    if (count($this->formData['selectedPhases']) === count($phases)) {
-        $this->formData['selectedPhases'] = []; 
-    } else {
-        $this->formData['selectedPhases'] = $phases; 
+        if (count($this->formData['selectedPhases']) === count($phases)) {
+            $this->formData['selectedPhases'] = [];
+        } else {
+            $this->formData['selectedPhases'] = $phases;
+        }
     }
-}
 
     #[On('checkValid')]
     public function checkValid()
@@ -123,7 +162,7 @@ class Create extends ModalComponent
     {
         $this->rules = $this->getValidationRules();
         $this->validateOnly($propertyName);
-}
+    }
 
     public function getValidationRules()
     {
@@ -188,7 +227,7 @@ class Create extends ModalComponent
     }
 
     public function save()
-    {        
+    {
         DB::beginTransaction();
 
         try {
@@ -223,8 +262,11 @@ class Create extends ModalComponent
 
             DB::commit();
 
+            $this->closeModal();
+
             Flux::toast('Progetto creato con successo!');
 
+            $this->dispatch('refresh');
         } catch (QueryException $e) {
             DB::rollBack();
             Flux::toast('Errore di database, contatta l’amministratore.');
@@ -232,7 +274,6 @@ class Create extends ModalComponent
             DB::rollBack();
             Flux::toast('Errore imprevisto: ' . $e->getMessage());
         }
-
         $this->closeModal();
     }
 

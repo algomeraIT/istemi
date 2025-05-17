@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Projects;
 
+use Livewire\Attributes\On;
 use App\Models\Client;
 use App\Models\Estimate;
 use App\Models\Project;
@@ -150,7 +151,7 @@ class Projects extends Component
 
     public function goToDetail($projectId)
     {
-        return redirect()->route('projects.project-detail', ['project' => $projectId]);
+        return redirect()->route('projects.project-detail', ['id' => $projectId]);
     }
 
     public function edit()
@@ -221,11 +222,14 @@ class Projects extends Component
 
             Flux::toast('Progetto eliminato...');
 
+            $this->dispatch('refresh');
+
         } catch (\Exception $e) {
             Flux::toast('Non è stato possibile eliminare il progetto.');
         }
     }
 
+    #[On('refresh')]
     public function render()
     {
         $referents = Referent::paginate(10);
