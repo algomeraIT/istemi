@@ -85,11 +85,6 @@ class Client extends Model implements HasMedia
         return $this->hasMany(Referent::class);
     }
 
-    public function communication()
-    {
-        return $this->hasMany(Communication::class);
-    }
-
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('clientLogo')
@@ -97,7 +92,12 @@ class Client extends Model implements HasMedia
             ->singleFile();
     }
 
-        protected static function booted()
+    public function getFullNameAttribute()
+    {
+        return "{$this->last_name} {$this->name}";
+    }
+
+    protected static function booted()
     {
         static::created(function ($client) {
             HistoryClient::create([

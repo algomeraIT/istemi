@@ -116,7 +116,7 @@
                                                     <span
                                                         class="text-sm font-medium">{{ $record->user?->full_name }}</span>
                                                     <span class="text-[#B0B0B0] text-xs capitalize"> -
-                                                        {{ $record->role }}</span>
+                                                        {{ $record->user?->role_name }}</span>
                                                 </div>
                                                 <div class="flex items-center text-xs text-gray-600 mt-1">
                                                     <span class="italic">ha programmato un'attività</span>
@@ -219,9 +219,9 @@
                                             <div class="flex-1">
                                                 <div class="flex items-center space-x-2 text-sm">
                                                     <span
-                                                        class="text-sm font-medium">{{ $record->user->full_name }}</span>
+                                                        class="text-sm font-medium">{{ $record->user?->full_name }}</span>
                                                     <span class="text-[#B0B0B0] text-xs capitalize"> -
-                                                        {{ $record->role }}</span>
+                                                        {{ $record->user?->role_name }}</span>
                                                 </div>
                                                 <div class="flex items-center text-xs text-gray-600 mt-1">
                                                     <span class="italic">ha inviato un'email</span>
@@ -305,7 +305,7 @@
                                                     <span
                                                         class="text-sm font-medium">{{ $record->user?->full_name }}</span>
                                                     <span class="text-[#B0B0B0] text-xs capitalize"> -
-                                                        {{ $record->role }}</span>
+                                                        {{ $record->user?->role_name }}</span>
                                                 </div>
                                                 <div class="flex items-center text-xs text-gray-600 mt-1">
                                                     <span class="italic">ha scritto una nota</span>

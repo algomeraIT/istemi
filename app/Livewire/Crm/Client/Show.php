@@ -11,12 +11,9 @@ use Livewire\Component;
 use App\Models\Activity;
 use App\Models\Estimate;
 use App\Models\HistoryClient;
-use App\Livewire\Forms\HistoryClientForm;
 
 class Show extends Component
 {
-    public HistoryClientForm $historyForm;
-
     public $client;
     public $references;
 

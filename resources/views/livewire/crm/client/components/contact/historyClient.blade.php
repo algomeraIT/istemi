@@ -47,7 +47,7 @@
                         <div>
                             <span class="font-medium text-[#232323]">{{ $history->model->user?->full_name }}</span>
                             <span class="ml-2 text-sm text-[#B0B0B0] font-normal capitalize">-
-                                {{ $history->model->user?->role }}</span>
+                                {{ $history->model->user?->role_name }}</span>
                         </div>
 
                         @if ($history->type == 'client')

@@ -26,12 +26,12 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('province')->nullable();
             $table->string('cap')->nullable();
-            $table->string('role')->nullable();
             $table->string('job_position')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->boolean('remember_me')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

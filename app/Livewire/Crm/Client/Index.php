@@ -120,7 +120,7 @@ class Index extends Component
             ->distinct()
             ->orderBy('year', 'desc')
             ->pluck('year');
-        $salesManager = User::all();
+        $salesManager = User::role('commerciale')->get();
 
         $query = Client::where('status', $this->clientStatus)
             ->when($this->step, fn($q) => $q->where('step', $this->step))

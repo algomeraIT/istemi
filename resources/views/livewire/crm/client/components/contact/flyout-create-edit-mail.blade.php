@@ -17,8 +17,14 @@
                         <flux:icon.paper-airplane />
                         <flux:label>Mittente</flux:label>
                     </div>
-                    <flux:input wire:model.live="referentForm.name" />
-                    <flux:error name="referentForm.name" />
+                    <flux:select variant="listbox" wire:model.live="clientForm.country" searchable>
+                        @foreach ($users as $user)
+                            <flux:select.option value="{{ $user->id }}">
+                                {{ $user->full_name }}
+                            </flux:select.option>
+                        @endforeach
+                    </flux:select>
+                    <flux:error name="clientForm.country" />
                 </flux:field>
             </div>
 

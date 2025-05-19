@@ -23,7 +23,7 @@
 
                 <div class="grid flex-1 text-left text-sm leading-tight">
                     <flux:text variant="strong" class="truncate">{{ auth()->user()?->full_name }}</flux:text>
-                    <flux:text class="text-xs">{{ auth()->user()?->role }}</flux:text>
+                    <flux:text class="text-xs">{{ auth()->user()?->role_name }}</flux:text>
                 </div>
                 <flux:icon.chevron-down variant="micro" class="text-neutral-400"/>
             </button>

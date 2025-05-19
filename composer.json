@@ -22,6 +22,7 @@
         "nesbot/carbon": "^3.9",
         "richan-fongdasen/eloquent-blameable": "^1.11",
         "spatie/laravel-medialibrary": "^11.12",
+        "spatie/laravel-permission": "^6.18",
         "wire-elements/modal": "^3.0"
     },
     "require-dev": {
