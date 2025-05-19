@@ -7,10 +7,12 @@ namespace Database\Seeders;
 use App\Models\Sale;
 use App\Models\Referent;
 use App\Models\Acquisition;
+use App\Models\ActivityPhase;
 use App\Models\Communication;
 use App\Models\AccountingOrder;
 use Illuminate\Database\Seeder;
 use App\Models\AccountingInvoice;
+use Database\Factories\ActivityPhaseFactory;
 use App\Models\ActivityCommunicationClientHistory;
 
 class DatabaseSeeder extends Seeder
@@ -24,23 +26,18 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             ClientsSeeder::class,
             ProjectSeeder::class,
-            ArchiveSeeder::class,
-            AttachSeeder::class,
-            EmailCommunicationClientHistorySeeder::class,
             EstimateSeeder::class,
             HistorySeeder::class,
-            NoteCommunicationClientHistorySeeder::class,
-            NoteCommunicationClientSeeder::class,
+            ActivitySeeder::class,
+            EmailSeeder::class,
             NoteSeeder::class,
             PhaseSeeder::class,
             NoteProjectSeeder::class,
-            HistoryContactsTableSeeder::class,
             ProjectStartSeeder::class,
             TaskProjectStartSeeder::class,
             DocumentProjectSeeder::class,
             InvoicesSalSeeder::class,
             ConstructionSitePlaneSeeder::class,
-            ActivitySeeder::class,
             DataSeeder::class,
             ReportSeeder::class,
             AccountingSeeder::class,
@@ -67,11 +64,7 @@ class DatabaseSeeder extends Seeder
         AccountingInvoice::factory()->count(40)->create();
         $this->command->info('Fatture create con successo.');
 
-        Communication::factory()->count(80)->create();
-        $this->command->info('Comunicazioni create con successo.');
-
-        ActivityCommunicationClientHistory::factory()->count(80)->create();
-        $this->command->info('Comunicazioni attivita create con successo.');
-
+        ActivityPhase::factory()->count(40)->create();
+        $this->command->info('Attivita Progetti creati con successo.');
     }
 }

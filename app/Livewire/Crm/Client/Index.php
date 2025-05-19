@@ -24,7 +24,7 @@ class Index extends Component
     public $year;
     public $search;
 
-    public $selectedClient;
+    public $selectedLead;
     public $selected_sales_manager;
 
     public function mount($status)
@@ -49,11 +49,11 @@ class Index extends Component
         ]);
     }
 
-    public function setClient($id)
+    public function setLead($id)
     {
-        $this->selectedClient = Client::findOrFail($id);
+        $this->selectedLead = Client::findOrFail($id);
 
-        Flux::modal('show-client')->show();
+        Flux::modal('show-lead')->show();
     }
 
     public function assignManager($clientId)
@@ -66,6 +66,7 @@ class Index extends Component
 
         $client->update([
             'sales_manager_id' => $this->selected_sales_manager,
+            'status' => 'contatto',
             'step' => 'assegnato'
         ]);
 

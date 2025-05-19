@@ -11,16 +11,45 @@ class ConstructionSitePlaneFactory extends Factory
 {
     public function definition(): array
     {
+        $fields = [
+            'inspection',
+            'travel',
+            'site_pass',
+            'ztl',
+            'supplier',
+            'timetable',
+            'security',
+        ];
+
+        $labels = [
+            'inspection' => 'Ispezione',
+            'travel' => 'Trasferte',
+            'site_pass' => 'Permessi/pass accesso al sito',
+            'ztl' => 'Permessi/pass ZTL',
+            'supplier' => 'Selezione fornitori',
+            'timetable' => 'Cronoprogramma',
+            'security' => 'Sicurezza',
+        ];
+
+        $trueField = $this->faker->randomElement($fields);
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $field === $trueField;
+        }
+
         $project = Project::first();
         $client = Client::first();
 
         return [
-               'client_id' => $client->id,
+            'client_id' => $client->id,
             'project_id' => $project->id,
 
             'construction_site_plane' => $this->faker->boolean,
+            'name_phase' => $labels[$trueField],
+
             'user' => fake()->name(),
-            'status' => fake()->randomElement(['approved', 'pending']),
+            'status' => fake()->randomElement(['Svolto', 'In attesa']),
             'user_construction_site_plane' => User::factory(),
             'status_construction_site_plane' => $this->faker->randomElement(['pending', 'completed']),
 

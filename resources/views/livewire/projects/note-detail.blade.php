@@ -1,5 +1,7 @@
 <div>
-    <flux:button>Scrivi nota</flux:button>
+ 
+    <flux:button variant="primary" data-variant="primary" wire:click="$dispatch('openModal', { component: 'projects.modals.create-note', arguments: { id: {{ $id }} }})" data-color="teal">
+        Scrivi nota</flux:button>
     @if ($notes->isNotEmpty())
         @foreach ($notes->groupBy(fn($note) => $note->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $monthNotes)
             <div class="mt-8 mb-4 flex items-center">
@@ -32,7 +34,7 @@
                         </div>
                     </div>
                     <div class="mt-4 text-base font-light text-gray-800">
-                        {{ $note->note }}
+                        {!! $note->note !!}
                     </div>
                 </div>
             @endforeach

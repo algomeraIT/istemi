@@ -463,23 +463,7 @@ class ClientTab extends Component
                 ->when($this->query_invoices, fn($q) => $q->where('number_invoice', 'like', '%' . $this->query_invoices . '%'))
                 ->when($this->status_invoices !== "", fn($q) => $q->where('status', $this->status_invoices))
                 ->paginate(10),
-
-            'communications' => Communication::where('client_id', $this->client_id)
-                ->when($this->query_communications, fn($q) => $q->where('message', 'like', '%' . $this->query_communications . '%'))
-                ->paginate(10),
-
-            'activity_communications' => ActivityCommunicationClientHistory::where('client_id', $this->client_id)
-                ->when($this->query_activities, fn($q) => $q->where('activities', 'like', '%' . $this->query_activities . '%'))
-                //->orderBy('created_at', 'desc')
-                ->paginate(10),
-            'email_communications' => EmailCommunicationClientHistory::where('client_id', $this->client_id)
-                ->when($this->query_emails, fn($q) => $q->where('sender', 'like', '%' . $this->query_emails . '%'))
-                ->orderBy('created_at', 'desc')->paginate(10),
-
-            'note_communications' => NoteCommunicationClientHistory::where('client_id', $this->client_id)
-                ->when($this->query_notes, fn($q) => $q->where('note', 'like', '%' . $this->query_notes . '%'))
-                ->orderBy('created_at', 'desc')->paginate(10),
-
+                
             'email_all_users' => User::pluck('email')->toArray(),
         ]);
     }

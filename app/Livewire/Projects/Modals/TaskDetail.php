@@ -2,58 +2,39 @@
 
 namespace App\Livewire\Projects\Modals;
 
-use App\Models\ProjectStart;
-use App\Models\TaskProjectStart;
-use Flux\Flux;
 use LivewireUI\Modal\ModalComponent;
 
 class TaskDetail extends ModalComponent
 {
-    public $id, $tasks;
+    public $id, $tasks, $user_name;
     public $tab = 'profile';
     public string $note = '';
 
-    public function mount($id)
+    public function mount($id, $nameSection)
     {
-        $task = TaskProjectStart::findOrFail($id);
-        $this->tasks = TaskProjectStart::where('project_id', $task->project_id)->get();
-
-    }
-
-    public function saveNote($id, $projectID, $projectStartID, $clientID)
-    {
-        try {
-            NoteTaskProjectStart::create([
-                'project_id' => $projectID,
-                'client_id' => $clientID,
-                'note' => $this->note,
-                'user_id' => auth()->user()->id,
-                'user_name' => auth()->user()->name,
-                'created_at' => now(),
-            ]);
-
-            $this->reset('note');
-
-            Flux::toast('Nota aggiunta con successo!');
-
-        } catch (\Exception $e) {
-            dd($e);
-            Flux::toast('Errore durante il salvataggio della nota...');
+        $collections = [
+            'Avvio progetto' => 'ProjectStart',
+            'Verifica tecnico contabile' => 'AccountingValidation',
+            'Chiusura attività' => 'CloseActivity',
+            'Pianificazione cantiere' => 'ConstructionSitePlane',
+            'Elaborazione dati' => 'Data',
+            'Verifica esterna' => 'ExternalValidation',
+            'Fattura e acconto SAL' => 'InvoicesSal',
+            'Gestione non conformità' => 'NonComplianceManagement',
+            'Report' => 'Report',
+        ];
+    
+        if (!array_key_exists($nameSection, $collections)) {
+            abort(404, "Sezione {$nameSection} non trovata.");
         }
-    }
-    public function updateStatusStart($id, $value)
-    {
-        try {
-            $record = ProjectStart::findOrFail($id);
-
-            $record->status = $value;
-            $record->save();
-
-            Flux::toast('Stato aggiornato con successo!');
-
-        } catch (\Exception $e) {
-            Flux::toast('Errore durante la variazione di stato...');
+    
+        $modelClass = 'App\\Models\\' . $collections[$nameSection];
+    
+        if (!class_exists($modelClass)) {
+            abort(404, "Model {$modelClass} non esiste.");
         }
+    
+        $this->tasks = $modelClass::findOrFail($id);
     }
 
     public function render()

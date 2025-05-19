@@ -20,7 +20,7 @@
 
                 {{-- Actions --}}
                 <flux:table.cell :align="'end'">
-                    <flux:button variant="ghost" wire:click="setsale({{ $sale->id }}, 'show')" data-variant="ghost"
+                    <flux:button variant="ghost" wire:click="" data-variant="ghost"
                         data-color="teal" icon="eye" size="sm" />
                 </flux:table.cell>
             </flux:table.row>

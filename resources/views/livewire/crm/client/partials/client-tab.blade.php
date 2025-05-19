@@ -1,9 +1,10 @@
 <flux:tab.group>
     <flux:tabs variant="segmented">
         <flux:tab data-variant="detail" name="referenti">Referenti</flux:tab>
-        <flux:tab data-variant="detail" name="commercio">Vendite e acquisti</flux:tab>
+        {{-- TODO da sviluppare le altre tab --}}
+        {{-- <flux:tab data-variant="detail" name="commercio">Vendite e acquisti</flux:tab>
         <flux:tab data-variant="detail" name="contabilita">Contabilità</flux:tab>
-        <flux:tab data-variant="detail" name="comunicazioni">Comunicazioni</flux:tab>
+        <flux:tab data-variant="detail" name="comunicazioni">Comunicazioni</flux:tab> --}}
     </flux:tabs>
 
     <flux:tab.panel name="referenti">
@@ -20,11 +21,11 @@
         </div>
 
         <!-- Table -->
-        @include('livewire.crm.client.components.tab-referent.referent-table', ['referents' => $referents])
+        @include('livewire.crm.client.components.client.referent-table', ['referents' => $referents])
 
         {{-- Modals --}}
-        @include('livewire.crm.client.components.tab-referent.flyout-create-edit')
-        @include('livewire.crm.client.components.tab-referent.flyout-show')
+        @include('livewire.crm.client.components.client.flyout-create-edit')
+        @include('livewire.crm.client.components.client.flyout-show')
     </flux:tab.panel>
 
     <flux:tab.panel name="commercio">
@@ -103,14 +104,12 @@
             @include('livewire.crm.utilities.order-table', [
                 'accounting_orders' => $accounting_orders,
             ])
-
         </div>
 
         <div class="mt-2" x-show="activeTabAccounting === 'invoices'" x-cloak>
             @include('livewire.crm.utilities.invoice-table', [
                 'accounting_invoices' => $accounting_invoices,
             ])
-
         </div>
     </flux:tab.panel>
 
@@ -163,7 +162,7 @@
             </div>
         </div>
 
-        @include('livewire.crm.utilities.activity-com-table', [
+        {{-- @include('livewire.crm.utilities.activity-com-table', [
             'activity_communications' => $activity_communications,
         ])
 
@@ -177,11 +176,10 @@
             'activity_communications' => $activity_communications,
         ])
 
-
         @include('livewire.crm.utilities.call-com-table', [
             'call_communications' => $note_communications,
             'activity_communications' => $activity_communications,
-        ])
+        ]) --}}
     </flux:tab.panel>
 
     @include('livewire.crm.referent.modal', [

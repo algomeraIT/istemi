@@ -14,6 +14,27 @@ class DataFactory extends Factory
 
     public function definition(): array
     {
+        $fields = [
+            'foreman_docs',
+            'sanding_sample_lab',
+            'data_validation',
+            'internal_validation',
+        ];
+
+        $labels = [
+            'foreman_docs' => 'Controllo documentazione fornita dal caposquadra',
+            'sanding_sample_lab' => 'Spedizione campioni ai laboratori',
+            'data_validation' => 'Avvio attività di analisi dati',
+            'internal_validation' => 'Validazione interna degli elaborati prodotti',
+        ];
+
+        $trueField = $this->faker->randomElement($fields);
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $field === $trueField;
+        }
+
         $clientIds = Client::pluck('id')->toArray();
 
         return [
@@ -21,8 +42,10 @@ class DataFactory extends Factory
             'project_id' => Project::factory(),
 
             'data' => $this->faker->paragraph,
+            'name_phase' => $labels[$trueField],
+
             'user' => fake()->name(),
-            'status' => fake()->randomElement(['approved', 'pending']),
+            'status' => fake()->randomElement(['Svolto', 'In attesa']),
             'user_data' => User::factory(),
             'status_data' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
 

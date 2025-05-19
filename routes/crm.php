@@ -3,17 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Crm\Client\Index as ClientIndex;
 use App\Livewire\Crm\Client\Show as ClientShow;
-use App\Livewire\Crm\Products\Index as ProductsIndex;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ReferentController;
 use App\Http\Controllers\SalesController;
+use App\Livewire\Crm\Products\Index as ProductsIndex;
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/referents/store', [ReferentController::class, 'store'])->name('referents.store');
-    Route::put('/referents/update/{id}', [ReferentController::class, 'update'])->name('referents.update');
     Route::post('/sales/store', [SalesController::class, 'store'])->name('sales.store');
     Route::put('/sales/update/{id}', [SalesController::class, 'update'])->name('sales.update');
+
     // CRM
     Route::prefix('crm')->name('crm.')->group(function () {
         Route::name('client.')->group(function () {

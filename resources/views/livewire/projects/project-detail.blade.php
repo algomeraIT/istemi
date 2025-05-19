@@ -36,8 +36,11 @@
                                         <flux:select.option value="Pubblico">Pubblico</flux:select.option>
                                         <flux:select.option value="Privato">Privato</flux:select.option>
                                     </flux:select>
-                                    <flux:input wire:model.live="query" data-variant="search" :loading="false"
-                                        icon="magnifying-glass" placeholder="Cerca..." />
+                                    <!-- Search -->
+                        <flux:field data-input>
+                            <flux:input wire:model.live="query" data-variant="search" :loading="false" clearable
+                                icon="magnifying-glass" placeholder="Cerca" />
+                        </flux:field>
                                 </div>
                             </div>
                             <flux:tab.panel name="task">
@@ -52,7 +55,7 @@
                             </flux:tab.panel>
 
                             <flux:tab.panel name="note">
-                                @include('livewire.projects.note-detail')
+                                @include('livewire.projects.note-detail', ['id' => $id])
                             </flux:tab.panel>
 
                             <flux:tab.panel name="data-sheet">

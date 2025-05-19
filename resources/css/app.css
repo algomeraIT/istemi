@@ -148,9 +148,14 @@
             }
 
             &[data-variant="list"] {
-                @apply lg:w-40;
+                @apply lg:w-40 ;
+            }
+
+            &[data-variant="filter"] {
+                @apply lg:w-40 rounded-none h-8 shadow-none;
             }
         }
+
         
 
 
@@ -270,7 +275,19 @@ select:focus[data-flux-control] {
         @apply bg-[#5AC88D] text-white;
     }
 
+    &[data-step="completato"] {
+        @apply bg-[#5AC88D] text-white;
+    }
+
     &[data-step="non idoneo"] {
+        @apply bg-[#A0A7AF] text-white;
+    }
+
+    &[data-step="sospeso"] {
+        @apply bg-[#A0A7AF] text-white;
+    }
+
+    &[data-step="in attesa"] {
         @apply bg-[#A0A7AF] text-white;
     }
 
@@ -300,6 +317,10 @@ select:focus[data-flux-control] {
 
     &[data-variant="projectDetail"] {
         @apply bg-white;
+    }
+
+    &[data-variant="detailNoBorders"] {
+        @apply  bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-b-cyan-200;
     }
 }
 

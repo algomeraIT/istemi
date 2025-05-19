@@ -11,37 +11,53 @@ class ActivityFactory extends Factory
 {
     public function definition(): array
     {
+        $fields = [
+            'team',
+            'field_activities',
+            'daily_check_activities',
+            'contruction_site_media',
+            'activity_validation',
+        ];
+
+        $labels = [
+            'team' => 'Selezione della squadra',
+            'field_activities' => 'Imprtire istruzioni utili allo svolgimento delle attività in campo',
+            'daily_check_activities' => 'Riepilogo giornaliero delle attività eseguite',
+            'contruction_site_media' => 'Caricamento dati cantiere',
+            'activity_validation' => 'Controllo avanzamento attività/budget (PM)',
+        ];
+
+        $trueField = $this->faker->randomElement($fields);
+
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = $field === $trueField;
+        }
+
         $clientIds = Client::pluck('id')->toArray();
+        $userIds = User::pluck('id')->toArray();
+
+        $status = ['nuovo', 'in attesa', 'completato', 'sospeso'];
+        $randomStatus = fake()->randomElement($status);
+
+        $expiration = now()->addDays(3);
+
+        $complete = null;
+
+        if ($randomStatus == 'completato') {
+            $complete = now()->addDays(2);
+        }
 
         return [
             'client_id' => fake()->randomElement($clientIds),
-            'project_id' => Project::factory(),
-
-            'activities' => $this->faker->boolean,
-            'user' => fake()->name(),
-            'status' => fake()->randomElement(['approved', 'pending']),
-            'user_activities' => User::factory(),
-            'status_activities' => $this->faker->randomElement(['pending', 'completed']),
-
-            'team' => $this->faker->boolean,
-            'user_team' => User::factory(),
-            'status_team' => $this->faker->randomElement(['ok', 'pending']),
-
-            'field_activities' => $this->faker->boolean,
-            'user_field_activities' => User::factory(),
-            'status_field_activities' => $this->faker->randomElement(['ok', 'pending']),
-
-            'daily_check_activities' => $this->faker->boolean,
-            'user_daily_check_activities' => User::factory(),
-            'status_daily_check_activities' => $this->faker->randomElement(['ok', 'pending']),
-
-            'contruction_site_media' => $this->faker->boolean,
-            'user_contruction_site_media' => User::factory(),
-            'status_contruction_site_media' => $this->faker->randomElement(['ok', 'pending']),
-
-            'activity_validation' => $this->faker->boolean,
-            'user_activity_validation' => User::factory(),
-            'status_activity_validation' => $this->faker->randomElement(['ok', 'pending']),
+            'assigned_to' => fake()->randomElement($userIds),
+            'title' => $this->faker->word,
+            'note' => $this->faker->paragraph,
+            'status' => fake()->randomElement($status),
+            'expiration' => $expiration,
+            'completed_at' => $complete,
+            'created_by' => null,
+            'updated_by' => null,
         ];
     }
 }

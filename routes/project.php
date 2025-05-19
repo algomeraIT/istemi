@@ -1,11 +1,9 @@
 <?php
-use App\Http\Controllers\ProjectController;
+use Illuminate\Support\Facades\Route;
 use App\Livewire\Projects\ProjectDetail;
-use App\Livewire\Projects\ProjectTasksList;
+use App\Livewire\Projects\Projects as ProjectIndex;
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/projects/{id}', ProjectDetail::class)->name('projects.project-detail');
-    Route::get('/projects/{project}', ProjectDetail::class)->name('projects.project-detail');
-    Route::get('/project', [ProjectController::class, 'index'])->name('projects.project');
-    Route::get('/project/{id}', [ProjectController::class, 'goToDetail'])->name('project.project-detail');    
+Route::middleware(['auth'])->name('projects.')->group(function () {
+    Route::get('/projects/{id}', ProjectDetail::class)->name('project-detail');
+    Route::get('/project', ProjectIndex::class)->name('project');
 });

@@ -1,12 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestMail;
-use App\Livewire\PasswordReset;
-use App\Livewire\PasswordChange;
-use App\Livewire\ChangePassword;
 
 Route::middleware('web')
     ->group(base_path('routes/crm.php'))
@@ -18,12 +14,6 @@ Route::middleware('guest')->group(function () {
         return view('login');
     })->name('home');
 });
-
-
-
-
-
-//Route::get('/login', \App\Livewire\Auth\Login::class)->name('login')->middleware('guest');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -44,9 +34,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
-/*     Route::route('settings/profile', 'settings.profile')->name('settings.profile');
-    Route::route('settings/password', 'settings.password')->name('settings.password');
-    Route::route('settings/appearance', 'settings.appearance')->name('settings.appearance'); */
 });
 
 
@@ -60,8 +47,6 @@ Route::get('/send-test-email', function () {
         return "Error sending email: " . $e->getMessage();
     }
 });
-
-// Route password reset 
 
 
 require __DIR__ . '/auth.php';

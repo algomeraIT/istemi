@@ -34,7 +34,7 @@
         @endif
 
         <!-- Filters -->
-        <div class="flex gap-3">
+        <div class="flex gap-3 ml-auto">
             @if ($clientStatus === 'cliente')
                 {{-- City Filter --}}
                 <flux:select variant="listbox" wire:model.live="city" placeholder="Tutte le città" data-custom searchable
@@ -154,7 +154,7 @@
                         <flux:icon.document-text class="size-4 text-[#B0B0B0]" />
                         <flux:label class="text-xs !font-light !text-[#B0B0B0]">Nota</flux:label>
                     </div>
-                    <flux:editor wire:model="clientForm.note" />
+                    <flux:editor wire:model="clientForm.note" class="**:data-[slot=content]:min-h-[100px]!" />
                 </div>
 
                 <flux:field data-input>

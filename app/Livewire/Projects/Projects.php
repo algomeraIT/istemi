@@ -6,19 +6,15 @@ use App\Models\Client;
 use App\Models\Estimate;
 use App\Models\Project;
 use App\Models\Referent;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\DB;
+use Flux\Flux;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\Url;
 
 class Projects extends Component
 {
     use WithPagination;
 
-    // default values for a new project
-
-
-    // possible phases
     private const PHASES = [
         'Non Definito', 'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura',
     ];
@@ -29,7 +25,7 @@ class Projects extends Component
     public bool $showListFilters = true;
     public bool $showKanbanFilters = false;
     public int $currentTab = 1;
- 
+
     public string $activeTab = 'list';
     #[Url( as :'currentTab', except: 'list')]
     public string $kanbanTab = 'current_phase';
@@ -54,6 +50,44 @@ class Projects extends Component
     protected $listeners = ['updatePhase', 'updatePhaseResponsible'];
     public $clients = [];
     public $estimates = [];
+    public $formData;
+    private const DEFAULT_FORM = [
+        'estimate' => '',
+        'n_file' => '',
+        'name_project' => '',
+        'id_client' => '',
+        'client_type' => '',
+        'client_name' => '',
+        'current_phase' => 'Non definito',
+        'is_from_agent' => false,
+        'total_budget' => '',
+        'id_chief_area' => '',
+        'id_chief_project' => '',
+        'chief_area' => '',
+        'chief_project' => '',
+        'responsible' => '',
+        'start_at' => '',
+        'end_at' => '',
+        'starting_price' => '',
+        'discount_percentage' => '',
+        'discounted' => '',
+        'n_firms' => '',
+        'firms_and_percentage' => '',
+        'note' => '',
+        'general_info' => '',
+        'note_client' => '',
+        'goals' => '',
+        'project_scope' => '',
+        'expected_results' => '',
+        'stackholder_id' => '',
+        'stackholders' => [],
+        'agreement' => false,
+        'selectedAreas' => [],
+        'selectedPhases' => [],
+        'address_client' => 'ok',
+        'client_status' => "ok",
+        'status' => '',
+    ];
 
     public function mount()
     {
@@ -64,7 +98,6 @@ class Projects extends Component
             ->get()->toArray();
     }
 
-    // reset pagination whenever search or tab changes
     public function updatingSearch()
     {$this->resetPage();}
 
@@ -115,14 +148,10 @@ class Projects extends Component
         $this->currentTab = 1;
     }
 
-
-
     public function goToDetail($projectId)
     {
         return redirect()->route('projects.project-detail', ['project' => $projectId]);
     }
-
-
 
     public function edit()
     {
@@ -178,17 +207,32 @@ class Projects extends Component
             ->when($this->query_phase, fn($q) => $q->where('current_phase', 'like', '%' . $this->query_phase . '%'))
             ->when($this->query_search, fn($q) => $q->where('client_name', 'like', '%' . $this->query_search . '%'))
 /*             ->when($this->query_search, fn($q) => $q->where('n_file', 'like', '%' . $this->query_search . '%'))
- */    ->when($this->status, fn($q) => $q->where('status', $this->status));
+ */    ->when($this->status, fn($q) => $q->where('status', $this->status))
+            ->where('status', '!=', 'deleted');
+    }
+
+    public function delete($id)
+    {
+        try {
+            $project = Project::findOrFail($id);
+
+            $project->status = "deleted";
+            $project->save();
+
+            Flux::toast('Progetto eliminato...');
+
+        } catch (\Exception $e) {
+            Flux::toast('Non è stato possibile eliminare il progetto.');
+        }
     }
 
     public function render()
     {
         $referents = Referent::paginate(10);
 
-        // Always prepare both datasets separately
         $listProjects = $this->buildProjectQuery()
             ->orderBy('created_at', 'desc')
-            ->paginate(15);
+            ->paginate(12);
 
         $validGroupFields = ['current_phase', 'responsible'];
         $groupField = in_array($this->kanbanTab, $validGroupFields) ? $this->kanbanTab : 'current_phase';

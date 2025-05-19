@@ -10,6 +10,7 @@
             @include('livewire.projects.project-detail-list-component', [
                 'elements' => $this->projectStart,
                 'nameSection' => 'Avvio progetto',
+                'NameTable' => 'ProjectStart',
                 'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
@@ -18,6 +19,8 @@
             @include('livewire.projects.project-detail-list-component', [
                 'elements' => $this->invoicesSal,
                 'nameSection' => 'Fattura e acconto SAL',
+                'NameTable' => 'InvoicesSal',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -25,6 +28,8 @@
             @include('livewire.projects.project-detail-list-component', [
                 'elements' => $this->constructionSitePlane,
                 'nameSection' => 'Pianificazione cantiere',
+                'NameTable' => 'ConstructionSitePlane',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -32,6 +37,8 @@
             @include('livewire.projects.project-detail-list-component', [
                 'elements' => $this->data,
                 'nameSection' => 'Elaborazione dati',
+                'NameTable' => 'Data',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -39,6 +46,8 @@
             @include('livewire.projects.project-detail-list-component', [
                 'elements' => $this->externalValidation,
                 'nameSection' => 'Verifica esterna',
+                'NameTable' => 'ExternalValidation',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -46,6 +55,8 @@
             @include('livewire.projects.project-detail-list-component', [
                 'elements' => $this->accountingValidation,
                 'nameSection' => 'Verifica tecnico contabile',
+                'NameTable' => 'AccountingValidation',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -53,6 +64,8 @@
             @include('livewire.projects.project-detail-list-component', [
                 'elements' => $this->nonComplianceManagement,
                 'nameSection' => 'Gestione non conformità',
+                'NameTable' => 'NonComplianceManagement',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -60,6 +73,8 @@
             @include('livewire.projects.project-detail-list-component', [
                 'elements' => $this->closeActivity,
                 'nameSection' => 'Chiusura attività',
+                'NameTable' => 'CloseActivity',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -71,6 +86,8 @@
             @include('livewire.projects.project-detail-kanban-component', [
                 'elements' => $this->projectStart,
                 'nameSection' => 'Avvio progetto',
+                'NameTable' => 'ProjectStart',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -78,6 +95,8 @@
             @include('livewire.projects.project-detail-kanban-component', [
                 'elements' => $this->invoicesSal,
                 'nameSection' => 'Fattura e acconto SAL',
+                'NameTable' => 'InvoicesSal',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -85,6 +104,8 @@
             @include('livewire.projects.project-detail-kanban-component', [
                 'elements' => $this->constructionSitePlane,
                 'nameSection' => 'Pianificazione cantiere',
+                'NameTable' => 'ConstructionSitePlane',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -92,6 +113,8 @@
             @include('livewire.projects.project-detail-kanban-component', [
                 'elements' => $this->data,
                 'nameSection' => 'Elaborazione dati',
+                'NameTable' => 'Data',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -99,6 +122,8 @@
             @include('livewire.projects.project-detail-kanban-component', [
                 'elements' => $this->externalValidation,
                 'nameSection' => 'Verifica esterna',
+                'NameTable' => 'ExternalValidation',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -106,6 +131,8 @@
             @include('livewire.projects.project-detail-kanban-component', [
                 'elements' => $this->accountingValidation,
                 'nameSection' => 'Verifica tecnico contabile',
+                'NameTable' => 'AccountingValidation',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -113,6 +140,8 @@
             @include('livewire.projects.project-detail-kanban-component', [
                 'elements' => $this->nonComplianceManagement,
                 'nameSection' => 'Gestione non conformità',
+                'NameTable' => 'NonComplianceManagement',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
@@ -120,6 +149,8 @@
             @include('livewire.projects.project-detail-kanban-component', [
                 'elements' => $this->closeActivity,
                 'nameSection' => 'Chiusura attività',
+                'NameTable' => 'CloseActivity',
+                'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
 
