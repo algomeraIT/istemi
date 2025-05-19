@@ -311,9 +311,10 @@ class EditProject extends ModalComponent
 
         try {
             $this->project->update($this->formData);
+            $this->closeModal();
             Flux::toast('Progetto aggiornato con successo!');
             $this->dispatch('refresh');
-            $this->closeModal();
+         
         } catch (\Exception $e) {
             Flux::toast('Errore durante l\'aggiornamento del progetto.');
         }

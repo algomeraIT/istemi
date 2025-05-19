@@ -276,7 +276,6 @@ class Create extends ModalComponent
             DB::rollBack();
             Flux::toast('Errore imprevisto: ' . $e->getMessage());
         }
-
         $this->closeModal();
     }
 

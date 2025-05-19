@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Projects;
 
+use Livewire\Attributes\On;
+
 use App\Models\AccountingValidation;
 use App\Models\CloseActivity;
 use App\Models\ConstructionSitePlane;
@@ -64,6 +66,9 @@ class ProjectTasksList extends Component
             $record->save();
 
             Flux::toast('Stato aggiornato con successo!');
+
+            $this->dispatch('refresh');
+
         } catch (\Exception $e) {
             Flux::toast('Errore durante la variazione di stato...');
         }
@@ -106,11 +111,10 @@ class ProjectTasksList extends Component
                 Flux::toast('Stato aggiornato con successo!');
                 
             } else {
-                Flux::toast('Errore: Il task ha più di un campo compilato o nessuno.');
+                Flux::toast('Errore: Il task ha più di un campo compilato o nessun campo compilato...');
             }
         } catch (\Exception $e) {
             Flux::toast('Errore durante la variazione di stato...');
-            dd($e);
         }
     }
 

@@ -45,9 +45,9 @@
                     <div class="flex justify-between">
                         <div>
                             <flux:button
-                                wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $element->id }} } })"
-                                variant="ghost" data-variant="ghost" data-color="gray" data-rounded icon="pencil"
-                                size="sm" />
+                            wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $element->id }}, nameSection: '{{ $nameSection }}' }})"
+                            variant="ghost" data-variant="ghost" data-color="gray" data-rounded
+                            icon="pencil" size="sm" />
 
                             <flux:button wire:click="deleteMacroTask({{ $element->id }}, '{{ $NameTable }}')"
                                 wire:confirm="Sei sicuro di voler archiviare questo micro task?" variant="ghost"
