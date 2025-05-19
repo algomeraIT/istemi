@@ -18,6 +18,10 @@
                         <flux:label>Mittente</flux:label>
                     </div>
                     <flux:select variant="listbox" wire:model.live="clientForm.country" searchable>
+                        <x-slot name="search">
+                            <flux:select.search placeholder="Cerca..." />
+                        </x-slot>
+
                         @foreach ($users as $user)
                             <flux:select.option value="{{ $user->id }}">
                                 {{ $user->full_name }}
@@ -35,6 +39,10 @@
                         <flux:label>Destinatari</flux:label>
                     </div>
                     <flux:select variant="listbox" wire:model.live="clientForm.country" searchable multiple>
+                        <x-slot name="search">
+                            <flux:select.search placeholder="Cerca..." />
+                        </x-slot>
+
                         @foreach ($all as $user)
                             <flux:select.option value="{{ $user->id }}">
                                 {{ $user->full_name }}

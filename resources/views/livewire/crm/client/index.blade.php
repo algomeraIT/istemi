@@ -37,16 +37,24 @@
         <div class="flex gap-3 ml-auto">
             @if ($clientStatus === 'cliente')
                 {{-- City Filter --}}
-                <flux:select variant="listbox" wire:model.live="city" placeholder="Tutte le città" data-custom searchable
-                    clearable>
+                <flux:select variant="listbox" wire:model.live="city" placeholder="Tutte le città" data-custom
+                    searchable clearable>
+                    <x-slot name="search">
+                        <flux:select.search placeholder="Cerca..." />
+                    </x-slot>
+
                     @foreach ($cities as $city)
                         <flux:select.option value="{{ $city }}">{{ $city }}</flux:select.option>
                     @endforeach
                 </flux:select>
 
                 {{-- Label Filter --}}
-                <flux:select variant="listbox" wire:model.live="label" placeholder="Tutte le etichette" data-custom searchable
-                    clearable>
+                <flux:select variant="listbox" wire:model.live="label" placeholder="Tutte le etichette" data-custom
+                    searchable clearable>
+                    <x-slot name="search">
+                        <flux:select.search placeholder="Cerca..." />
+                    </x-slot>
+
                     @foreach ($labels as $label)
                         <flux:select.option>{{ $label }}</flux:select.option>
                     @endforeach

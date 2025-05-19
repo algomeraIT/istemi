@@ -32,6 +32,10 @@
                         <flux:label>Assegnata a</flux:label>
                     </div>
                     <flux:select variant="listbox" wire:model.live="activityForm.assigned" searchable>
+                        <x-slot name="search">
+                            <flux:select.search placeholder="Cerca..." />
+                        </x-slot>
+
                         @foreach ($users as $user)
                             <flux:select.option value="{{ $user->id }}">
                                 {{ $user->full_name }}

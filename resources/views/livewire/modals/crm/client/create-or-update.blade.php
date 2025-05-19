@@ -75,6 +75,10 @@
                             <flux:label>Nazione</flux:label>
                         </div>
                         <flux:select variant="listbox" wire:model.live="clientForm.country" searchable>
+                            <x-slot name="search">
+                                <flux:select.search placeholder="Cerca..." />
+                            </x-slot>
+
                             @foreach (countryList() as $country)
                                 <flux:select.option value="{{ $country }}">
                                     {{ ucfirst($country) }}
