@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use Exception;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -51,6 +52,11 @@ class User extends Authenticatable
     public function client(): HasOne
     {
         return $this->hasOne(Client::class, 'user_id_creation');
+    }
+
+    public function activities(): BelongsToMany
+    {
+        return $this->belongsToMany(Activity::class);
     }
 
     public function getFullNameAttribute()

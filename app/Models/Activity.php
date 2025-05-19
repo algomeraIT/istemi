@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Activity extends Model
 {
@@ -16,7 +17,6 @@ class Activity extends Model
 
     protected $fillable = [
         'client_id',
-        'assigned_to',
         'title',
         'note',
         'status',
@@ -29,8 +29,9 @@ class Activity extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function assigned(): BelongsTo {
-        return $this->belongsTo(User::class, 'assigned_to');
+    public function assigned(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
 
     public function user(): BelongsTo

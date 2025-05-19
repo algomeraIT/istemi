@@ -139,7 +139,9 @@
                                                     <flux:icon.at-symbol class="size-4" />
                                                     <span class="text-xs font-light ">Assegnato a</span>
                                                 </div>
-                                                <span class="font-semibold ml-4">{{ $record->assigned->full_name }}</span>
+                                                @foreach ($record->assigned as $user)
+                                                    <span class="font-semibold ml-4">{{ $user->full_name }}</span>
+                                                @endforeach
                                             </div>
                                             <div class="text-[#B0B0B0]">
                                                 <div class="flex items-center gap-1">
@@ -154,8 +156,7 @@
 
                                                 <flux:dropdown offset="-15" gap="2">
                                                     <button class="flex items-center">
-                                                        <flux:icon.chevron-down class="text-white"
-                                                            variant="micro" />
+                                                        <flux:icon.chevron-down class="text-white" variant="micro" />
                                                     </button>
 
                                                     <flux:menu>
@@ -185,8 +186,7 @@
                     <flux:tab.panel name="email">
                         <div class="flex items-center justify-between">
                             <flux:modal.trigger name="new-email">
-                                <flux:button variant="primary" size="sm" data-variant="primary"
-                                    data-color="teal">
+                                <flux:button variant="primary" size="sm" data-variant="primary" data-color="teal">
                                     Invia e-mail
                                 </flux:button>
                             </flux:modal.trigger>
@@ -237,7 +237,8 @@
                                                     <flux:icon.paper-airplane class="size-4" />
                                                     <span class="text-xs font-light">Mittente</span>
                                                 </div>
-                                                <span class="font-semibold ml-4">{{ $record->sendBy->full_name}}</span>
+                                                <span
+                                                    class="font-semibold ml-4">{{ $record->sendBy->full_name }}</span>
                                             </div>
                                             <div class="text-[#B0B0B0]">
                                                 <div class="flex items-center gap-1">

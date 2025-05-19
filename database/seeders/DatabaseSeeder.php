@@ -31,40 +31,40 @@ class DatabaseSeeder extends Seeder
             ActivitySeeder::class,
             EmailSeeder::class,
             NoteSeeder::class,
-            PhaseSeeder::class,
-            NoteProjectSeeder::class,
-            ProjectStartSeeder::class,
-            TaskProjectStartSeeder::class,
-            DocumentProjectSeeder::class,
-            InvoicesSalSeeder::class,
-            ConstructionSitePlaneSeeder::class,
-            DataSeeder::class,
-            ReportSeeder::class,
-            AccountingSeeder::class,
-            ExternalValidationSeeder::class,
-            AccountingValidationSeeder::class,
-            NonComplianceManagementSeeder::class,
-            CloseActivitySeeder::class,
-            NoteTaskProjectStartSeeder::class,
-            TaskProjectSeeder::class
+            // PhaseSeeder::class,
+            // NoteProjectSeeder::class,
+            // ProjectStartSeeder::class,
+            // TaskProjectStartSeeder::class,
+            // DocumentProjectSeeder::class,
+            // InvoicesSalSeeder::class,
+            // ConstructionSitePlaneSeeder::class,
+            // DataSeeder::class,
+            // ReportSeeder::class,
+            // AccountingSeeder::class,
+            // ExternalValidationSeeder::class,
+            // AccountingValidationSeeder::class,
+            // NonComplianceManagementSeeder::class,
+            // CloseActivitySeeder::class,
+            // NoteTaskProjectStartSeeder::class,
+            // TaskProjectSeeder::class
         ]);
 
-        Referent::factory()->count(40)->create();
-        $this->command->info('Referenti creati con successo.');
+        // Referent::factory()->count(40)->create();
+        // $this->command->info('Referenti creati con successo.');
 
-        Sale::factory()->count(40)->create();
-        $this->command->info('Vendite create con successo.');
+        // Sale::factory()->count(40)->create();
+        // $this->command->info('Vendite create con successo.');
 
-        Acquisition::factory()->count(40)->create();
-        $this->command->info('Acquisti create con successo.');
+        // Acquisition::factory()->count(40)->create();
+        // $this->command->info('Acquisti create con successo.');
 
-        AccountingOrder::factory()->count(40)->create();
-        $this->command->info('Ordini create con successo.');
+        // AccountingOrder::factory()->count(40)->create();
+        // $this->command->info('Ordini create con successo.');
 
-        AccountingInvoice::factory()->count(40)->create();
-        $this->command->info('Fatture create con successo.');
+        // AccountingInvoice::factory()->count(40)->create();
+        // $this->command->info('Fatture create con successo.');
 
-        ActivityPhase::factory()->count(40)->create();
-        $this->command->info('Attivita Progetti creati con successo.');
+        // ActivityPhase::factory()->count(40)->create();
+        // $this->command->info('Attivita Progetti creati con successo.');
     }
 }
