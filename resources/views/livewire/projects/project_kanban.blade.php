@@ -21,10 +21,10 @@
                             <div class="flex justify-between border-b-2">
                                 <p class="text-lg font-medium  text-left text-[#6C757D] text-[19px] mb-4">
                                     <!-- Sorting Button -->
-                                    <button wire:click="sortBy('n_file', '{{ $phaseLabel }}')"
+                                    <button wire:click="sortBy('estimate', '{{ $phaseLabel }}')"
                                         class="ml-2 text-sm text-blue-500">
                                         <!-- Default icon when not sorted -->
-                                        @if ($activePhase !== $phaseLabel || $sortField !== 'n_file')
+                                        @if ($activePhase !== $phaseLabel || $sortField !== 'estimate')
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block"
                                                 fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                 stroke-width="2">
@@ -105,7 +105,7 @@
                                                 @dragstart.self="draggedItem = parseInt('{{ $project['id'] }}')">
                                                 {{-- Project Info --}}
                                                 <h3 class="text-lg font-semibold text-[#232323]">
-                                                    {{ $project['n_file'] }}
+                                                    {{ $project['estimate'] }}
                                                 </h3>
 
 
@@ -183,7 +183,7 @@
                                     <button wire:click="sortBy('responsible', '{{ $responsible }}')"
                                         class="ml-2 text-sm text-blue-500">
                                         <!-- Default icon when not sorted -->
-                                        @if ($activePhase !== $responsible || $sortField !== 'n_file')
+                                        @if ($activePhase !== $responsible || $sortField !== 'estimate')
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block"
                                                 fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                 stroke-width="2">
@@ -264,7 +264,7 @@
                                                 draggable="true" @dragstart.self="draggedItem = {{ $project['id'] }}">
                                                 {{-- Project Info --}}
                                                 <h3 class="text-lg font-semibold text-[#232323]">
-                                                    {{ $project['n_file'] }}
+                                                    {{ $project['estimate'] }}
                                                 </h3>
 
 

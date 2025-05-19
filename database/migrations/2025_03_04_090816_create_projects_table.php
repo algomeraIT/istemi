@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('client_status');
             $table->text('note')->nullable();
             $table->text('general_info')->nullable();
-            $table->string('n_file')->nullable();
             $table->string('name_project');
             $table->string('client_type')->nullable();
             $table->boolean('is_from_agent')->default(false)->nullable();
@@ -44,7 +43,6 @@ return new class extends Migration
             $table->text('project_scope')->nullable();
             $table->text('expected_results')->nullable();
             $table->json('stackholder_id')->nullable();
-            $table->unsignedBigInteger('phase_id')->nullable();
             $table->string('status');
             $table->boolean('is_archived')->default(false);
             $table->timestamps();

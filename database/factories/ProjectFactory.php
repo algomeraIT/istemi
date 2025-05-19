@@ -20,7 +20,6 @@ class ProjectFactory extends Factory
         return [
             'estimate' => strtoupper($this->faker->numerify('PRT-########')),
             'general_info' => $this->faker->paragraph(),
-            'n_file' => $this->faker->unique()->numerify('PRT-########'),
             'name_project' => $this->faker->sentence(3),
             'id_client' => fake()->randomElement($clientIds),
             'client_name' => $this->faker->company,
@@ -56,7 +55,6 @@ class ProjectFactory extends Factory
             'stackholder_id' => function () {
                 return Stackholder::factory()->count(3)->create()->pluck('id')->toJson();
             },
-            'phase_id' => Phase::factory()->create()->id,
             'current_phase' => $this->faker->randomElement(['Non Definito', 'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura']),
 
         ];

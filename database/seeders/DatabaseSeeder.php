@@ -31,7 +31,6 @@ class DatabaseSeeder extends Seeder
             ActivitySeeder::class,
             EmailSeeder::class,
             NoteSeeder::class,
-            PhaseSeeder::class,
             NoteProjectSeeder::class,
             ProjectStartSeeder::class,
             TaskProjectStartSeeder::class,
@@ -46,7 +45,11 @@ class DatabaseSeeder extends Seeder
             NonComplianceManagementSeeder::class,
             CloseActivitySeeder::class,
             NoteTaskProjectStartSeeder::class,
-            TaskProjectSeeder::class
+            TaskProjectSeeder::class,
+            AreaSeeder::class,
+            MicroAreaSeeder::class,
+            PhaseSeeder::class,
+            TaskSeeder::class,
         ]);
 
         Referent::factory()->count(40)->create();

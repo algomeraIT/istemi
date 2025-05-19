@@ -74,13 +74,13 @@
                         <div class="grid grid-cols-2 gap-4">
                             <flux:field data-input>
                                 <div><flux:icon.document /><flux:label>Pratica</flux:label></div>
-                                <flux:select wire:model.live="formData.n_file">
+                                <flux:select wire:model.live="formData.estimate">
                                     <option value="">Seleziona</option>
                                     @foreach ($estimates as $estimate)
                                         <option value="{{ $estimate['id'] }}">{{ $estimate['serial_number'] }}</option>
                                     @endforeach
                                 </flux:select>
-                                <flux:error name="formData.n_file" />
+                                <flux:error name="formData.estimate" />
                             </flux:field>
 
                             <flux:field data-input>

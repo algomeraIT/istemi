@@ -227,10 +227,10 @@
             </flux:tab.panel>
             <flux:tab.panel name="phases">
                 @php
-                    $statusPhases = $this->getStatusPhasesList();
+                   /*  $statusPhases = $this->getStatusPhasesList(); */
                 @endphp
 
-                @foreach ($statusPhases as $section => $phases)
+          {{--       @foreach ($statusPhases as $section => $phases)
                     <p class="text-[13px] font-semibold mt-4">{{ $section }}</p>
                     <ul class="ml-4 list-disc text-sm">
                         @foreach ($phases as $phase => $status)
@@ -240,7 +240,7 @@
                             </li>
                         @endforeach
                     </ul>
-                @endforeach
+                @endforeach --}}
             </flux:tab.panel>
 
         </flux:tab.group>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Livewire\Projects\Modals;
+use Livewire\Attributes\On;
 
 use App\Models\TaskProject;
 use App\Models\Project;
@@ -92,6 +93,7 @@ class CreateTaskProject extends ModalComponent
         }
     }
 
+    #[On('taskCreated')]
     public function render()
     {
         return view('livewire.projects.modals.create-task-project');

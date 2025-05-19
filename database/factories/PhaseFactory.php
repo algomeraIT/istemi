@@ -2,16 +2,21 @@
 
 namespace Database\Factories;
 
-use App\Models\Phase;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Area;
+use App\Models\MicroArea;
+use App\Models\User;
 
-class PhaseFactory extends Factory {
-    protected $model = Phase::class;
-
-    public function definition() {
+class PhaseFactory extends Factory
+{
+    public function definition(): array
+    {
         return [
-            'name' => $this->faker->word(),
-            'status' => $this->faker->boolean(80) ? 1 : 0,
+            'id_area' => Area::factory(),
+            'id_micro_area' => MicroArea::factory(),
+            'id_project' => $this->faker->randomDigitNotZero(),
+            'id_user' => User::factory(),
+            'status' => $this->faker->randomElement(['In attesa', 'Svolto']),
         ];
     }
 }

@@ -18,13 +18,14 @@ use App\Models\Report;
 use App\Models\Stackholder;
 use App\Models\TaskProject;
 use Livewire\Component;
+
 use Livewire\Attributes\On;
 
 
 class ProjectDetail extends Component
 {
     public Project $project;
-    public $projectStart, $document, $notes, $accountingValidation, $closeActivity, $constructionSitePlane, $data, $externalValidation, $invoicesSal, $nonComplianceManagement, $report, $referent;
+    public  $projectStart, $document, $notes, $accountingValidation, $closeActivity, $constructionSitePlane, $data, $externalValidation, $invoicesSal, $nonComplianceManagement, $report, $referent;
     public string $detailActiveTab = 'detail-kanban';
     public string $tabListKanbaDetail = 'kanban';
     public string $subDetailActiveTab = 'sub-detail-kanban';
@@ -40,7 +41,10 @@ class ProjectDetail extends Component
     {
         $this->project = Project::findOrFail($id);
         $this->groupedMicroTasks = TaskProject::where("project_id", $id)->where('status', '!=', 'deleted')->get();
-        $this->projectStart = ProjectStart::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+
+
+
+/*         $this->projectStart = ProjectStart::where("project_id", $id)->where('status', '!=', 'deleted')->get();
         $this->accountingValidation = AccountingValidation::where("project_id", $id)->where('status', '!=', 'deleted')->get();
         $this->closeActivity = CloseActivity::where("project_id", $id)->where('status', '!=', 'deleted')->get();
         $this->constructionSitePlane = ConstructionSitePlane::where("project_id", $id)->where('status', '!=', 'deleted')->get();
@@ -48,7 +52,7 @@ class ProjectDetail extends Component
         $this->externalValidation = ExternalValidation::where("project_id", $id)->where('status', '!=', 'deleted')->get();
         $this->invoicesSal = InvoicesSal::where("project_id", $id)->where('status', '!=', 'deleted')->get();
         $this->nonComplianceManagement = NonComplianceManagement::where("project_id", $id)->where('status', '!=', 'deleted')->get();
-        $this->report = Report::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+        $this->report = Report::where("project_id", $id)->where('status', '!=', 'deleted')->get();  */
 
         $this->referent = Referent::get();
         $this->document = DocumentProject::where("project_id", $id)->get();
@@ -59,7 +63,7 @@ class ProjectDetail extends Component
         if (is_array($ids) && count($ids) > 0) {
             $this->stackholder = Stackholder::whereIn('id', $ids)->get();
         } else {
-            $this->stackholder = collect(); 
+            $this->stackholder = collect();
         }
     }
 
@@ -69,7 +73,7 @@ class ProjectDetail extends Component
         $this->isOpen = true;
     }
 
-    public function getStatusPhasesList()
+/*     public function getStatusPhasesList()
     {
         $collections = [
             'Avvio progetto' => $this->projectStart,
@@ -103,7 +107,7 @@ class ProjectDetail extends Component
         }
 
         return $result;
-    }
+    } */
 
 
     public function render()

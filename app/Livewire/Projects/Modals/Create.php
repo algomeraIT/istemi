@@ -39,7 +39,6 @@ class Create extends ModalComponent
     public bool $canProceed = true;
     private const DEFAULT_FORM = [
         'estimate' => '',
-        'n_file' => '',
         'name_project' => '',
         'id_client' => '',
         'client_type' => '',
@@ -170,7 +169,7 @@ class Create extends ModalComponent
         switch ($this->currentTab) {
             case 1:
                 return [
-                    'formData.n_file' => 'required',
+                    'formData.estimate' => 'required',
                     'formData.name_project' => 'required|string',
                     'formData.id_client' => 'required|integer',
                     'formData.total_budget' => 'required|numeric|min:0',

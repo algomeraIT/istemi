@@ -1,5 +1,6 @@
 
 <div class="w-full overflow-x-auto">
+
     @if ($projects)
         <flux:table>
             <flux:table.columns>
