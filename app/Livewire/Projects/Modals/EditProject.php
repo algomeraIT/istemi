@@ -20,6 +20,8 @@ use App\Models\NonComplianceManagement;
 use App\Models\ProjectStart;
 use App\Models\Report;
 use App\Models\Stackholder;
+use Livewire\Attributes\On;
+
 
 use Flux\Flux;
 
@@ -317,6 +319,7 @@ class EditProject extends ModalComponent
         }
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.projects.modals.edit-project');

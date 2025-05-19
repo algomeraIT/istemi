@@ -16,6 +16,7 @@ use App\Models\TaskProject;
 use Flux\Flux;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 
 
 class ProjectTasksList extends Component
@@ -64,7 +65,6 @@ class ProjectTasksList extends Component
 
             Flux::toast('Stato aggiornato con successo!');
         } catch (\Exception $e) {
-            dd($e);
             Flux::toast('Errore durante la variazione di stato...');
         }
     }
@@ -101,7 +101,10 @@ class ProjectTasksList extends Component
                     ->where('id', $id)
                     ->update(['status' => $value]);
 
+                    $this->dispatch('refresh');
+
                 Flux::toast('Stato aggiornato con successo!');
+                
             } else {
                 Flux::toast('Errore: Il task ha più di un campo compilato o nessuno.');
             }
@@ -119,6 +122,8 @@ class ProjectTasksList extends Component
 
             $model->status = "deleted";
             $model->save();
+
+            $this->dispatch('refresh');
 
             Flux::toast('MicroTask eliminato con successo!');
         } catch (\Exception $e) {
@@ -154,12 +159,15 @@ class ProjectTasksList extends Component
             $model->status = "deleted";
             $model->save();
 
+            $this->dispatch('refresh');
+
             Flux::toast('MicroTask eliminato con successo!');
         } catch (\Exception $e) {
-            dd($e);
             Flux::toast('Errore durante la cancellazione del MacroTask.');
         }
     }
+
+    #[On('refresh')]
     public function render()
     {
         $tasks = ProjectStart::where('project_id', $this->project->id)->get();
