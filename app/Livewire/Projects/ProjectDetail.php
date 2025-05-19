@@ -18,6 +18,8 @@ use App\Models\Report;
 use App\Models\Stackholder;
 use App\Models\TaskProject;
 use Livewire\Component;
+use Livewire\Attributes\On;
+
 
 class ProjectDetail extends Component
 {
@@ -102,7 +104,6 @@ class ProjectDetail extends Component
 
         return $result;
     }
-
 
 
     public function render()
