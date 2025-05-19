@@ -18,7 +18,6 @@ use App\Models\TaskProject;
 use Flux\Flux;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
-use Livewire\Attributes\On;
 
 
 class ProjectTasksList extends Component
