@@ -19,12 +19,12 @@
             <flux:tab.panel name="profile">
                 @foreach ($tasks as $task)
                     <div class="mb-6 border-b pb-4">
-                        <p class="font-semibold text-base text-gray-700 mb-2">{{ $task['name_phase'] }}</p>
+                        <p class="font-semibold text-base text-gray-700 mb-2">{{ $task->phase->microArea->name}}</p>
                         
                         <div class="flex gap-4 text-sm text-gray-600 mb-2">
                             <div class="flex items-center gap-1">
                                 <flux:icon.at-symbol class="w-4 h-4" />
-                                <span>{{ $task['user'] }}</span>
+                                <span>{{ $task->phase->user->name . ' ' . $task->phase->user->last_name  }}</span>
                             </div>
                             <div class="flex items-center gap-1">
                                 <flux:icon.calendar class="w-4 h-4" />

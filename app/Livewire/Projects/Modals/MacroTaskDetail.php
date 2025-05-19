@@ -9,6 +9,7 @@ use Livewire\Attributes\On;
 use App\Models\TaskProject;
 use App\Models\Task;
 use App\Models\Phase;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -20,7 +21,7 @@ class MacroTaskDetail extends ModalComponent
 
     public function mount($id)
     {
-        $this->tasks = Task::where('id', $id)->get();
+        $this->tasks = Task::with(['phase.microArea', 'phase.user', 'assignee'])->where('id', $id)->get();
         $this->notes = NoteProject::where('project_id', $id)->get();
     }
 
