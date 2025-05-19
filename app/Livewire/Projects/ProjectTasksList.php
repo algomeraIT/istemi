@@ -107,9 +107,6 @@ class ProjectTasksList extends Component
                     ->update(['status' => $value]);
 
                 Flux::toast('Stato aggiornato con successo!');
-
-                $this->dispatch('refresh');
-
             } else {
                 Flux::toast('Errore: Il task ha più di un campo compilato o nessun campo compilato...');
             }
@@ -128,9 +125,6 @@ class ProjectTasksList extends Component
             $model->save();
 
             Flux::toast('MicroTask eliminato con successo!');
-
-            $this->dispatch('refresh');
-
         } catch (\Exception $e) {
             logger()->error("Errore nella cancellazione: " . $e->getMessage());
             Flux::toast('Errore durante la cancellazione del MicroTask.');
@@ -164,16 +158,12 @@ class ProjectTasksList extends Component
             $model->status = "deleted";
             $model->save();
 
-            Flux::toast('MacroTask eliminato con successo!');
-
-            $this->dispatch('refresh');
-
+            Flux::toast('MicroTask eliminato con successo!');
         } catch (\Exception $e) {
+            dd($e);
             Flux::toast('Errore durante la cancellazione del MacroTask.');
         }
     }
-
-    #[On('refresh')]
     public function render()
     {
         $tasks = ProjectStart::where('project_id', $this->project->id)->get();
