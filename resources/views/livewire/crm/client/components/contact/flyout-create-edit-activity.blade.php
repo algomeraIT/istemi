@@ -17,11 +17,11 @@
                         <flux:icon.at-symbol />
                         <flux:label>Attività</flux:label>
                     </div>
-                    <flux:select variant="listbox" wire:model.live="historyForm.action">
-                        <flux:select.option value="call">Chiama</flux:select.option>
-                        <flux:select.option value="email">Invia e-mail</flux:select.option>
+                    <flux:select variant="listbox" wire:model.live="activityForm.title">
+                        <flux:select.option value="chiama">Chiama</flux:select.option>
+                        <flux:select.option value="invia e-mail">Invia e-mail</flux:select.option>
                     </flux:select>
-                    <flux:error name="clientForm.action" />
+                    <flux:error name="clientForm.title" />
                 </flux:field>
             </div>
 
@@ -31,14 +31,14 @@
                         <flux:icon.at-symbol />
                         <flux:label>Assegnata a</flux:label>
                     </div>
-                    <flux:select variant="listbox" wire:model.live="historyForm.user_id" searchable>
+                    <flux:select variant="listbox" wire:model.live="activityForm.assigned" searchable>
                         @foreach ($users as $user)
                             <flux:select.option value="{{ $user->id }}">
                                 {{ $user->full_name }}
                             </flux:select.option>
                         @endforeach
                     </flux:select>
-                    <flux:error name="clientForm.user_id" />
+                    <flux:error name="clientForm.assigned" />
                 </flux:field>
             </div>
 
@@ -48,12 +48,12 @@
                         <flux:icon.calendar-days />
                         <flux:label>Scadenza</flux:label>
                     </div>
-                    <flux:date-picker wire:model.live="historyForm.name">
+                    <flux:date-picker wire:model.live="activityForm.expiration">
                         <x-slot name="trigger">
                             <flux:date-picker.input />
                         </x-slot>
                     </flux:date-picker>
-                    <flux:error name="historyForm.name" />
+                    <flux:error name="activityForm.expiration" />
                 </flux:field>
             </div>
 
@@ -63,12 +63,12 @@
                         <flux:icon.document-text class="size-4 text-[#B0B0B0]" />
                         <flux:label class="text-xs !font-light !text-[#B0B0B0]">Nota</flux:label>
                     </div>
-                    <flux:editor wire:model="historyForm.note" class="**:data-[slot=content]:min-h-[150px]!" />
+                    <flux:editor wire:model="activityForm.note" class="**:data-[slot=content]:min-h-[150px]!" />
                 </div>
             </div>
         </div>
 
-        <flux:button variant="primary" data-variant="primary" wire:click="createReferent" data-color="teal">
+        <flux:button variant="primary" data-variant="primary" wire:click="createActivity" data-color="teal">
             Programma
         </flux:button>
     </div>

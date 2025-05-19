@@ -26,7 +26,7 @@ class ActivityFactory extends Factory
 
         return [
             'client_id' => fake()->randomElement($clientIds),
-            'title' => $this->faker->word,
+            'title' =>  fake()->randomElement(['chiama', 'invia e-mail']),
             'note' => $this->faker->paragraph,
             'status' => fake()->randomElement($status),
             'expiration' => $expiration,

@@ -95,7 +95,7 @@
                         </div>
 
                         <div class="mt-5 overflow-auto h-[500px]">
-                            @foreach ($activities->groupBy(fn($activity) => $activity->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $records)
+                            @foreach ($activities->groupBy(fn($record) => $record->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $records)
                                 <div class="mt-8 mb-4 flex items-center relative">
                                     <div class="absolute h-px bg-gray-300 w-full"></div>
                                     <span
@@ -104,7 +104,7 @@
                                     </span>
                                 </div>
 
-                                @foreach ($records as $record)
+                                @foreach ($records as $activity)
                                     <div class="border w-full p-4 mt-6">
                                         <div class="flex items-center space-x-3">
                                             <div
@@ -114,14 +114,14 @@
                                             <div class="flex-1">
                                                 <div class="flex items-center space-x-2 text-sm">
                                                     <span
-                                                        class="text-sm font-medium">{{ $record->user?->full_name }}</span>
+                                                        class="text-sm font-medium">{{ $activity->user?->full_name }}</span>
                                                     <span class="text-[#B0B0B0] text-xs capitalize"> -
-                                                        {{ $record->user?->role_name }}</span>
+                                                        {{ $activity->user?->role_name }}</span>
                                                 </div>
                                                 <div class="flex items-center text-xs text-gray-600 mt-1">
                                                     <span class="italic">ha programmato un'attività</span>
                                                     <div class="w-1 h-1 bg-black rounded-full mx-2"></div>
-                                                    <span>{{ $record->created_at->diffForHumans() }}</span>
+                                                    <span>{{ $activity->created_at->diffForHumans() }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,14 +132,14 @@
                                                     <flux:icon.briefcase class="size-4" />
                                                     <span class="text-xs font-light ">Attività</span>
                                                 </div>
-                                                <span class="font-semibold ml-4">Chiama</span>
+                                                <span class="font-semibold ml-4">{{ $activity->title }}</span>
                                             </div>
                                             <div class="text-[#B0B0B0]">
                                                 <div class="flex items-center gap-1">
                                                     <flux:icon.at-symbol class="size-4" />
                                                     <span class="text-xs font-light ">Assegnato a</span>
                                                 </div>
-                                                @foreach ($record->assigned as $user)
+                                                @foreach ($activity->assigned as $user)
                                                     <span class="font-semibold ml-4">{{ $user->full_name }}</span>
                                                 @endforeach
                                             </div>
@@ -151,22 +151,22 @@
                                                 <span class="font-semibold ml-4">{{ dateItFormat(now()) }}</span>
                                             </div>
 
-                                            <flux:badge size="sm" data-step="{{ $record->status }}">
-                                                {{ $record->status }}
+                                            <flux:badge size="sm" data-step="{{ $activity->status }}" class="capitalize">
+                                                {{ $activity->status }}
 
                                                 <flux:dropdown offset="-15" gap="2">
-                                                    <button class="flex items-center">
+                                                    <button class="flex items-center cursor-pointer">
                                                         <flux:icon.chevron-down class="text-white" variant="micro" />
                                                     </button>
 
                                                     <flux:menu>
-                                                        <flux:menu.item wire:click="updateStatus('chiusa')"
-                                                            class="!text-custom-9C1216">Presa in carico
+                                                        <flux:menu.item wire:click="updateActivityStatus('presa in carico', {{ $activity->id }})"
+                                                            class="!text-custom-9C1216">Presa in carico 
                                                         </flux:menu.item>
-                                                        <flux:menu.item wire:click="updateStatus('aperta')"
-                                                            class="!text-custom-126C9C">Svolto
+                                                        <flux:menu.item wire:click="updateActivityStatus('completato', {{ $activity->id }})"
+                                                            class="!text-custom-126C9C">Completato
                                                         </flux:menu.item>
-                                                        <flux:menu.item wire:click="updateStatus('aperta')"
+                                                        <flux:menu.item wire:click="updateActivityStatus('in ritardo', {{ $activity->id }})"
                                                             class="!text-custom-126C9C">In ritardo
                                                         </flux:menu.item>
                                                     </flux:menu>
@@ -174,12 +174,16 @@
                                             </flux:badge>
                                         </div>
 
-                                        <flux:button variant="ghost" icon:trailing="arrow-right" data-color="teal">
+                                        <flux:button wire:click='showActivity({{ $activity->id }})' variant="ghost"
+                                            icon:trailing="arrow-right" data-color="teal">
                                             Mostra di più
                                         </flux:button>
                                     </div>
                                 @endforeach
                             @endforeach
+
+                            @include('livewire.crm.client.components.contact.flyout-show-activity')
+
                         </div>
                     </flux:tab.panel>
 

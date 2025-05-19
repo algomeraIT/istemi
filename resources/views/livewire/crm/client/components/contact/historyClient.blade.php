@@ -63,6 +63,12 @@
                             @endif
                         @endif
 
+                        @if ($history->type == 'activity')
+                            <p class="mt-1 mb-4 text-xs font-light italic text-gray-600">
+                                ha assegnato una attività a {{ $history->model->assigned->first()->full_name }}
+                            </p>
+                        @endif
+
                         @if ($history->type == 'email')
                             <p class="mt-1 mb-4 text-xs font-light italic text-gray-600">
                                 ha inviato una mail

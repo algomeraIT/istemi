@@ -1,6 +1,6 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @import "./safelist.css";
-@import '../../vendor/livewire/flux/dist/flux.css';
+@import "../../vendor/livewire/flux/dist/flux.css";
 
 @source "../views";
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -10,282 +10,286 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-    --color-zinc-50: #fafafa;
-    --color-zinc-100: #f5f5f5;
-    --color-zinc-200: #e5e5e5;
-    --color-zinc-300: #d4d4d4;
-    --color-zinc-400: #a3a3a3;
-    --color-zinc-500: #737373;
-    --color-zinc-600: #525252;
-    --color-zinc-700: #404040;
-    --color-zinc-800: #262626;
-    --color-zinc-900: #171717;
-    --color-zinc-950: #0a0a0a;
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f5f5f5;
+  --color-zinc-200: #e5e5e5;
+  --color-zinc-300: #d4d4d4;
+  --color-zinc-400: #a3a3a3;
+  --color-zinc-500: #737373;
+  --color-zinc-600: #525252;
+  --color-zinc-700: #404040;
+  --color-zinc-800: #262626;
+  --color-zinc-900: #171717;
+  --color-zinc-950: #0a0a0a;
+  --color-teal: #10BDD4;
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
-    --color-accent-foreground: var(--color-white);
+  --color-accent: var(--color-neutral-800);
+  --color-accent-content: var(--color-neutral-800);
+  --color-accent-DEFAULT: var(--color-teal);
+  --color-accent-foreground: var(--color-white);
 }
 
 @layer theme {
-    .dark {
-        --color-accent: var(--color-white);
-        --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
-    }
+  .dark {
+    --color-accent: var(--color-white);
+    --color-accent-content: var(--color-white);
+    --color-accent-foreground: var(--color-neutral-800);
+  }
 }
 
 @layer base {
-
-    *,
-    ::after,
-    ::before,
-    ::backdrop,
-    ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
-    }
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
 @layer utilities {
-    [x-cloak] {
-        display: none;
-    }
+  [x-cloak] {
+    display: none;
+  }
 }
 
 [data-color="teal"] {
-    @apply text-[#10BDD4];
+  @apply text-accent-DEFAULT hover:bg-accent-DEFAULT/10;
 }
 
 [data-flux-field][data-input] > div:first-child {
-    @apply mb-1;
-    
-    svg {
-        @apply inline size-4 text-[#B0B0B0];
-    }
+  @apply mb-1;
 
-    [data-flux-label] {
-        @apply !font-extralight !mb-0 text-[13px] !text-[#B0B0B0];
-    }
+  svg {
+    @apply inline size-4 text-[#B0B0B0];
+  }
+
+  [data-flux-label] {
+    @apply !font-extralight !mb-0 text-[13px] !text-[#B0B0B0];
+  }
 }
 
 [data-flux-field] {
-    @apply relative;
+  @apply relative;
 
-    &[data-input] {
-        [data-flux-input-group] {
-            @apply gap-0
-        }
-
-        [data-flux-input-group-prefix] {
-            @apply rounded-none shadow-none bg-white h-8 mb-0 px-2 font-light !text-[#B0B0B0] border-[#B0B0B0] border-r focus:!border-r-[#B0B0B0] z-10;
-        }
-
-        [data-flux-input] {
-            @apply mb-0;
-
-            div {
-                @apply mb-0;
-            }
-            
-            input {
-                @apply rounded-none shadow-none h-8 !text-[#B0B0B0] border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0;
-            }
-        
-            &[data-variant="search"] {
-                @apply lg:w-40;
-            }
-        
-            &[data-variant="list"] {
-                @apply lg:w-40 ;
-            }
-
-            &[data-variant="filter"] {
-                @apply lg:w-40 rounded-none h-8 shadow-none;
-            }
-        }
-
-        
-        [data-flux-select] {
-            button {
-                @apply rounded-none shadow-none h-8 !text-[#B0B0B0] border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0;
-            }
-        }
-        
-        [data-flux-error] {
-            @apply text-[10px] mt-1 absolute left-0
-        }
+  &[data-input] {
+    [data-flux-input-group] {
+      @apply gap-0;
     }
+
+    [data-flux-input-group-prefix] {
+      @apply rounded-none shadow-none bg-white h-8 mb-0 px-2 font-light !text-[#B0B0B0] border-[#B0B0B0] border-r focus:!border-r-[#B0B0B0] z-10;
+    }
+
+    [data-flux-input] {
+      @apply mb-0;
+
+      div {
+        @apply mb-0;
+      }
+
+      input {
+        @apply rounded-none shadow-none h-8 !text-[#B0B0B0] border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0;
+      }
+
+      &[data-variant="search"] {
+        @apply lg:w-40;
+      }
+
+      &[data-variant="list"] {
+        @apply lg:w-40;
+      }
+
+      &[data-variant="filter"] {
+        @apply lg:w-40 rounded-none h-8 shadow-none;
+      }
+    }
+
+    [data-flux-select] {
+      button {
+        @apply rounded-none shadow-none h-8 !text-[#B0B0B0] border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0;
+      }
+    }
+
+    [data-flux-error] {
+      @apply text-[10px] mt-1 absolute left-0;
+    }
+  }
 }
 
 [data-flux-select-native] {
-    @apply rounded-none shadow-none text-[#B0B0B0] font-light h-8 py-0 border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0 z-10;
+  @apply rounded-none shadow-none text-[#B0B0B0] font-light h-8 py-0 border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0 z-10;
 
-    &[data-variant="status"] {
-        @apply lg:w-40 ;
-    }
+  &[data-variant="status"] {
+    @apply lg:w-40;
+  }
 }
 [data-flux-select][data-custom] {
-    @apply w-fit;
+  @apply w-fit;
 
-    button {
-        @apply lg:w-46 rounded-none shadow-none text-[#B0B0B0] font-light h-8 py-0 border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0 z-10;
-    }
+  button {
+    @apply lg:w-46 rounded-none shadow-none text-[#B0B0B0] font-light h-8 py-0 border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0 z-10;
+  }
 }
-
 
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
-    @apply outline-hidden focus:ring-0 ring-offset-2 ring-offset-accent-foreground;
+  @apply outline-hidden focus:ring-0 ring-offset-2 ring-offset-accent-foreground;
 }
 
-
-
 [data-flux-button] {
-    @apply rounded-none shadow-none cursor-pointer;
+  @apply rounded-none shadow-none cursor-pointer;
 
-    &[data-variant="primary"] {
-        @apply border-none;
+  &[data-variant="primary"] {
+    @apply border-none;
 
-        &[data-color="teal"] {
-            @apply bg-[#10BDD4] text-white hover:bg-[#00C0D9];
-        }
-
-        &[data-color="small"] {
-            @apply bg-[#10BDD4] text-white font-extralight hover:bg-[#00C0D9] w-24 h-6;
-        }
-
-        &[data-color="project"] {
-            @apply bg-[#10BDD4] text-white text-[16px] font-light hover:bg-[#00C0D9] w-16 h-8;
-        }
+    &[data-color="teal"] {
+      @apply bg-[#10BDD4] text-white hover:bg-[#00C0D9];
     }
 
-
-    &[data-variant="ghost"] {
-        &[data-rounded] {
-            @apply rounded-full;
-        }
-
-        &[data-color="teal"] {
-            @apply text-[#10BDD4] hover:bg-[#F5FCFD];
-        }
-
-        &[data-color="gray"] {
-            @apply text-[#6C757D] hover:bg-[#6C757D1A];
-        }
-
-        &[data-color="red"] {
-            @apply text-[#E63946] hover:bg-red-50;
-        }
+    &[data-color="small"] {
+      @apply bg-[#10BDD4] text-white font-extralight hover:bg-[#00C0D9] w-24 h-6;
     }
+
+    &[data-color="project"] {
+      @apply bg-[#10BDD4] text-white text-[16px] font-light hover:bg-[#00C0D9] w-16 h-8;
+    }
+  }
+
+  &[data-variant="ghost"] {
+    &[data-rounded] {
+      @apply rounded-full;
+    }
+
+    &[data-color="teal"] {
+      @apply text-[#10BDD4] hover:bg-[#F5FCFD];
+    }
+
+    &[data-color="gray"] {
+      @apply text-[#6C757D] hover:bg-[#6C757D1A];
+    }
+
+    &[data-color="red"] {
+      @apply text-[#E63946] hover:bg-red-50;
+    }
+  }
 }
 
 [data-flux-badge] {
-    &[data-step="nuovo"] {
-        @apply bg-[#339CFF] text-white;
-    }
+  &[data-step="nuovo"] {
+    @apply bg-[#339CFF] text-white;
+  }
 
-    &[data-step="assegnato"] {
-        @apply bg-[#8A63D2] text-white;
-    }
+  &[data-step="assegnato"] {
+    @apply bg-[#8A63D2] text-white;
+  }
 
-    &[data-step="da riassegnare"] {
-        @apply bg-[#F85C5C] text-white;
-    }
+  &[data-step="da riassegnare"] {
+    @apply bg-[#F85C5C] text-white;
+  }
 
-    &[data-step="in contatto"] {
-        @apply bg-[#F7C548] text-white;
-    }
-    
-    &[data-step="in transito"] {
-        @apply bg-[#F7C548] text-white;
-    }
+  &[data-step="in ritardo"] {
+    @apply bg-[#F85C5C] text-white;
+  }
 
-    &[data-step="consegnato"] {
-        @apply bg-[#5AC88D] text-white;
-    }
+  &[data-step="in contatto"] {
+    @apply bg-[#F7C548] text-white;
+  }
 
-    &[data-step="completato"] {
-        @apply bg-[#5AC88D] text-white;
-    }
+  &[data-step="in transito"] {
+    @apply bg-[#F7C548] text-white;
+  }
 
-    &[data-step="non idoneo"] {
-        @apply bg-[#A0A7AF] text-white;
-    }
+  &[data-step="presa in carico"] {
+    @apply bg-[#F7C548] text-white;
+  }
 
-    &[data-step="sospeso"] {
-        @apply bg-[#A0A7AF] text-white;
-    }
+  &[data-step="consegnato"] {
+    @apply bg-[#5AC88D] text-white;
+  }
 
-    &[data-step="in attesa"] {
-        @apply bg-[#A0A7AF] text-white;
-    }
+  &[data-step="completato"] {
+    @apply bg-[#5AC88D] text-white;
+  }
 
-    &[data-step="call center"] {
-        @apply bg-[#F6B663] text-white;
-    }
+  &[data-step="non idoneo"] {
+    @apply bg-[#A0A7AF] text-white;
+  }
 
-    &[data-step="censimento"] {
-        @apply bg-[#45AEBB] text-white;
-    }
+  &[data-step="sospeso"] {
+    @apply bg-[#A0A7AF] text-white;
+  }
+
+  &[data-step="in attesa"] {
+    @apply bg-[#A0A7AF] text-white;
+  }
+
+  &[data-step="call center"] {
+    @apply bg-[#F6B663] text-white;
+  }
+
+  &[data-step="censimento"] {
+    @apply bg-[#45AEBB] text-white;
+  }
 }
 
 [data-flux-tabs] {
-    @apply bg-transparent;
+  @apply bg-transparent;
 }
 
 [data-flux-tab] {
-    @apply bg-white border-1 rounded-none border-[#10BDD4] text-[#888888] text-base  font-medium ;
+  @apply bg-white border-1 rounded-none border-[#10BDD4] text-[#888888] text-base  font-medium;
 
-    &[data-active] {
-        @apply bg-[#F5FCFD] text-[#10BDD4];
-    }
+  &[data-active] {
+    @apply bg-[#F5FCFD] text-[#10BDD4];
+  }
 
-    &[data-variant="detail"] {
-        @apply !border-none;
-    }
+  &[data-variant="detail"] {
+    @apply !border-none;
+  }
 
-    &[data-variant="projectDetail"] {
-        @apply bg-white;
-    }
+  &[data-variant="projectDetail"] {
+    @apply bg-white;
+  }
 
-    &[data-variant="detailNoBorders"] {
-        @apply  bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-b-cyan-200;
-    }
+  &[data-variant="detailNoBorders"] {
+    @apply bg-transparent border-t-0 border-l-0 border-r-0 border-b-2 border-b-cyan-200;
+  }
 }
 
 [data-flux-column] {
-    @apply font-medium;
-    color: #B0B0B0;
+  @apply font-medium;
+  color: #b0b0b0;
 
-    &[data-th-action] {
-        @apply flex justify-end;
-    }
+  &[data-th-action] {
+    @apply flex justify-end;
+  }
 }
 
 [data-flux-cell] {
-    @apply font-medium py-1;
-    color: #232323;
-    font-size: 18px;
+  @apply font-medium py-1;
+  color: #232323;
+  font-size: 18px;
 
-    &[data-detail="detail"] {
-        font-size: 12px;
-        justify-items: center;
-        padding: 0;
-        text-align: center;
-    }
+  &[data-detail="detail"] {
+    font-size: 12px;
+    justify-items: center;
+    padding: 0;
+    text-align: center;
+  }
 }
 
 [data-flux-column] {
-
-    &[data-detail="detailColumn"] {
-        font-size: 12px;
-        justify-items: center;
-        padding: 10px;
-        text-align: center;
-    }
+  &[data-detail="detailColumn"] {
+    font-size: 12px;
+    justify-items: center;
+    padding: 10px;
+    text-align: center;
+  }
 }
 
 /* \[:where(&)\]:size-4 {

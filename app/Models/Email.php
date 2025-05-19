@@ -14,6 +14,8 @@ class Email extends Model
 {
     use HasFactory, InteractsWithMedia, BlameableTrait;
 
+    protected $guarded = [];
+
     protected $casts = [
         'to' => 'array',
     ];

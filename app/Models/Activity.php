@@ -13,8 +13,6 @@ class Activity extends Model
 {
     use HasFactory, BlameableTrait;
 
-    protected $table = 'activities';
-
     protected $fillable = [
         'client_id',
         'title',
