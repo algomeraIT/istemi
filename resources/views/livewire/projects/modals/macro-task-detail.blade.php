@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="font-extralight">
-                            <select wire:change="updateStatusStart({{ $task['id'] }}, $event.target.value, '{{ $NameTable }}')"
+                            <select wire:change="updateStatusStart({{ $task['id'] }}, $event.target.value)"
                                 class="bg-transparent w-full appearance-none px-2 py-1 border-none focus:outline-none text-left
                                             {{ $task['status'] === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
                                 <option value="Svolto" {{ $task['status'] === 'Svolto' ? 'selected' : '' }}>Svolto
