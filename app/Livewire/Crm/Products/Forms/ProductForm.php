@@ -3,7 +3,6 @@
 namespace App\Livewire\Crm\Products\Forms;
 
 use App\Enums\MeasurementUnitEnum;
-use App\Enums\ParentProductCategoryEnum;
 use App\Models\Product;
 use Livewire\Form;
 use Livewire\Attributes\Rule;
@@ -39,8 +38,6 @@ class ProductForm extends Form
 
     #[Validate('required|string')]
     public $unique_code = null;
-
-
 
 
     public function setProduct(Product $product): void

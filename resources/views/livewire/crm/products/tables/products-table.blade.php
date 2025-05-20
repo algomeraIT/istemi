@@ -109,6 +109,7 @@
                             <div class="text-lg font-semibold text-teal-500 ms-3.5">{{ $item->unique_code }}</div>
                         </div>
 
+
                         {{-- Titolo --}}
                         <div class="space-y-1">
                             <div class="text-xs font-extralight text-[#B0B0B0]">Titolo</div>
@@ -169,12 +170,6 @@
             </flux:table.row>
         @endif
     </flux:table>
-
-    @if (!$products || $products->isEmpty())
-        <div class="mt-4">
-            <p class="text-gray-500 text-center">Nessun prodotto da mostrare</p>
-        </div>
-    @endif
 
     <div class="-mx-4 mt-4">
         {{ $products->links('customPagination') }}

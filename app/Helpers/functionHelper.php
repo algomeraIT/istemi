@@ -168,4 +168,108 @@ if (!function_exists('generateUniqueCode')) {
             ];
         }
     }
+
+
+    if (!function_exists('badgeQuoteStatus')) {
+        function badgeQuoteStatus($status)
+        {
+            $result = [
+                'bg' => '#FFFFFF',
+                'text' => '#6C757D',
+                'label' => 'Sconosciuto'
+            ];
+
+            switch ($status) {
+                case 'draft': // Bozza
+                    $result = [
+                        'bg' => '#A0A7AF1A',
+                        'text' => '#A0A7AF',
+                        'label' => 'Bozza'
+                    ];
+                    break;
+
+                case 'review_area': // In revisione - R.A.
+                    $result = [
+                        'bg' => '#F7C5481A',
+                        'text' => '#F7C548',
+                        'label' => 'In revisione - R.A.'
+                    ];
+                    break;
+
+                case 'approved_area': // Approvato - R.A.
+                    $result = [
+                        'bg' => '#5AC88D1A',
+                        'text' => '#5AC88D',
+                        'label' => 'Approvato - R.A.'
+                    ];
+                    break;
+
+                case 'rejected_area': // Rifiutato - R.A.
+                    $result = [
+                        'bg' => '#F85C5C1A',
+                        'text' => '#F85C5C',
+                        'label' => 'Rifiutato - R.A.'
+                    ];
+                    break;
+
+                case 'review_management': // In revisione - Direzione
+                    $result = [
+                        'bg' => '#F7C5481A',
+                        'text' => '#F7C548',
+                        'label' => 'In revisione - Direzione'
+                    ];
+                    break;
+
+                case 'approved_management': // Approvato - Direzione
+                    $result = [
+                        'bg' => '#5AC88D1A',
+                        'text' => '#5AC88D',
+                        'label' => 'Approvato - Direzione'
+                    ];
+                    break;
+
+                case 'rejected_management': // Rifiutato - Direzione
+                    $result = [
+                        'bg' => '#F85C5C1A',
+                        'text' => '#F85C5C',
+                        'label' => 'Rifiutato - Direzione'
+                    ];
+                    break;
+
+                case 'sent': // Inviato al cliente
+                    $result = [
+                        'bg' => '#F7C5481A',
+                        'text' => '#F7C548',
+                        'label' => 'Inviato al cliente'
+                    ];
+                    break;
+
+                case 'accepted': // Approvato dal cliente
+                    $result = [
+                        'bg' => '#5AC88D1A',
+                        'text' => '#5AC88D',
+                        'label' => 'Approvato dal cliente'
+                    ];
+                    break;
+
+                case 'rejected': // Rifiutato dal cliente
+                    $result = [
+                        'bg' => '#F85C5C1A',
+                        'text' => '#F85C5C',
+                        'label' => 'Rifiutato dal cliente'
+                    ];
+                    break;
+
+                case 'expired': // Scaduto
+                    $result = [
+                        'bg' => '#FFFFFF',
+                        'text' => '#6C757D',
+                        'label' => 'Scaduto'
+                    ];
+                    break;
+            }
+
+            return $result;
+        }
+    }
 }

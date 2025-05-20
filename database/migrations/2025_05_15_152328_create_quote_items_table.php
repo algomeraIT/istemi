@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\MeasurementUnitEnum;
 use App\Models\Product;
 use App\Models\Quote;
 use App\Models\QuoteItemGroup;
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->foreignIdFor(QuoteItemGroup::class)->nullable()->constrained();
             $table->enum('type',['product','note']);
             $table->decimal('quantity',10,2)->default(1)->nullable();
-            $table->foreignId('uom_id')->nullable()->constrained('uoms');
+            $table->enum('uom', MeasurementUnitEnum::valuesArray())->comment('unità di misura');
             $table->decimal('unit_price',12,2)->default(0);
             $table->unsignedTinyInteger('discount_pct')->default(0);
             $table->decimal('line_total',12,2)->default(0);

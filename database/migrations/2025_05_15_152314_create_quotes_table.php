@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\QuoteStatusEnum;
 use App\Models\Client;
 use App\Models\Issuer;
 use App\Models\PriceList;
@@ -21,8 +22,7 @@ return new class extends Migration
             $table->string('code')->unique();                       // es. PRV20250064
             $table->foreignIdFor(Issuer::class)->nullable()->constrained();
             $table->foreignIdFor(Client::class)->nullable()->constrained();
-            $table->enum('status', ['draft','sent','accepted','rejected','expired'])
-                ->default('draft');
+            $table->enum('status', QuoteStatusEnum::valuesArray())->default(QuoteStatusEnum::DRAFT);
             $table->date('due_date');                   // scadenza
             $table->decimal('total', 12, 2)->default(0);             // totale
             $table->string('billing_country');
@@ -34,10 +34,10 @@ return new class extends Migration
             $table->string('delivery_province');
             $table->string('delivery_address');
             $table->string('subject');                  // oggetto
-            $table->foreignIdFor(PriceList::class)->nullable()->nullable()->constrained();
-            $table->foreignIdFor(QuoteTemplate::class)->nullable()->nullable()->constrained();
+            $table->foreignIdFor(PriceList::class)->nullable()->constrained();
+            $table->foreignIdFor(QuoteTemplate::class)->nullable()->constrained();
             $table->json('terms')->nullable();
-            $table->foreignIdFor(TaxRate::class)->nullable()->nullable()->constrained();
+            $table->foreignIdFor(TaxRate::class)->nullable()->constrained();
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete();
