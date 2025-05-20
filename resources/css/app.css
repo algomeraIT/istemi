@@ -131,6 +131,10 @@
             @apply rounded-none shadow-none bg-white h-8 mb-0 px-2 font-light !text-[#B0B0B0] border-[#B0B0B0] border-r focus:!border-r-[#B0B0B0] z-10;
         }
 
+        [data-flux-input-group-suffix] {
+            @apply rounded-none shadow-none bg-white h-8 mb-0 px-2 font-light !text-[#B0B0B0] border-[#B0B0B0] border-r focus:!border-r-[#B0B0B0] z-10;
+        }
+
         [data-flux-input] {
             @apply mb-0;
 
@@ -355,6 +359,8 @@ select:focus[data-flux-control] {
         text-align: center;
     }
 }
+
+
 
 /* \[:where(&)\]:size-4 {
     @apply size-4;
