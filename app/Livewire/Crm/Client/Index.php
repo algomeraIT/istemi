@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Client;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use App\Livewire\Forms\ClientForm;
 use Livewire\WithoutUrlPagination;
