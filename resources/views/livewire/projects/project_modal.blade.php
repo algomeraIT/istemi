@@ -85,7 +85,7 @@
                                         <flux:icon.document class="w-4 h-4 mr-2 text-gray-500" />
                                         Pratica
                                     </label>
-                                    <select id="n_file" wire:model="formData.n_file"
+                                    <select id="estimate" wire:model="formData.estimate"
                                         class="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white">
                                         <option selected value="">Seleziona</option>
                                         @foreach ($estimates as $estimate)

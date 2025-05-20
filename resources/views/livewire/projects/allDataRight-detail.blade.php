@@ -8,9 +8,9 @@
                 <h2 class="text-2xl font-bold text-left">{{ $project->estimate }}</h2>
             </div>
             <div class="">
-                <flux:button variant="primary" data-variant="primary" data-color="small"
+           {{--      <flux:button variant="primary" data-variant="primary" data-color="small"
                     icon="archive-box">
-                    Archivia</flux:button>
+                    Archivia</flux:button> --}}
             </div>
         </div>
         @php

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Projects;
 
+use Livewire\Attributes\On;
+
 use App\Models\Client;
 use App\Models\Estimate;
 use App\Models\Project;
@@ -16,7 +18,12 @@ class Projects extends Component
     use WithPagination;
 
     private const PHASES = [
-        'Non Definito', 'Avvio', 'Pianificazione', 'Esecuzione', 'Verifica', 'Chiusura',
+        'Non Definito',
+        'Avvio',
+        'Pianificazione',
+        'Esecuzione',
+        'Verifica',
+        'Chiusura',
     ];
 
     public array $areas = [];
@@ -27,7 +34,7 @@ class Projects extends Component
     public int $currentTab = 1;
 
     public string $activeTab = 'list';
-    #[Url( as :'currentTab', except: 'list')]
+    #[Url(as: 'currentTab', except: 'list')]
     public string $kanbanTab = 'current_phase';
     public string $detailTab = 'task';
     public string $detailActiveTab = 'detail-list';
@@ -36,7 +43,7 @@ class Projects extends Component
     public string $query_phase = '';
     public string $query_search = '';
     public string $search = '';
-    public string $sortField = 'n_file';
+    public string $sortField = 'estimate';
     public string $sortDirection = 'asc';
     public string $activePhase = '';
     public string $selectedReferent = '';
@@ -53,7 +60,6 @@ class Projects extends Component
     public $formData;
     private const DEFAULT_FORM = [
         'estimate' => '',
-        'n_file' => '',
         'name_project' => '',
         'id_client' => '',
         'client_type' => '',
@@ -99,7 +105,9 @@ class Projects extends Component
     }
 
     public function updatingSearch()
-    {$this->resetPage();}
+    {
+        $this->resetPage();
+    }
 
     public function updatingActiveTab($value)
     {
@@ -114,9 +122,13 @@ class Projects extends Component
         $this->resetPage();
     }
     public function updatingSortField()
-    {$this->resetPage();}
+    {
+        $this->resetPage();
+    }
     public function updatingSortDirection()
-    {$this->resetPage();}
+    {
+        $this->resetPage();
+    }
 
     public function search()
     {
@@ -128,7 +140,6 @@ class Projects extends Component
         $this->resetForm();
 
         $this->isOpen = true;
-
     }
 
     public function closeModal()
@@ -150,7 +161,7 @@ class Projects extends Component
 
     public function goToDetail($projectId)
     {
-        return redirect()->route('projects.project-detail', ['project' => $projectId]);
+        return redirect()->route('projects.project-detail', ['id' => $projectId]);
     }
 
     public function edit()
@@ -201,13 +212,12 @@ class Projects extends Component
     {
 
         return Project::query()
-            ->when($this->search, fn($q) => $q->where('n_file', 'like', "%{$this->search}%"))
+            ->when($this->search, fn($q) => $q->where('estimate', 'like', "%{$this->search}%"))
             ->when($this->query, fn($q) => $q->where('responsible', 'like', '%' . $this->query . '%'))
             ->when($this->query_project, fn($q) => $q->where('client_type', 'like', '%' . $this->query_project . '%'))
             ->when($this->query_phase, fn($q) => $q->where('current_phase', 'like', '%' . $this->query_phase . '%'))
             ->when($this->query_search, fn($q) => $q->where('client_name', 'like', '%' . $this->query_search . '%'))
-/*             ->when($this->query_search, fn($q) => $q->where('n_file', 'like', '%' . $this->query_search . '%'))
- */    ->when($this->status, fn($q) => $q->where('status', $this->status))
+            ->when($this->status, fn($q) => $q->where('status', $this->status))
             ->where('status', '!=', 'deleted');
     }
 
@@ -220,12 +230,11 @@ class Projects extends Component
             $project->save();
 
             Flux::toast('Progetto eliminato...');
-
         } catch (\Exception $e) {
             Flux::toast('Non è stato possibile eliminare il progetto.');
         }
     }
-
+    #[On('taskAdded')]
     public function render()
     {
         $referents = Referent::paginate(10);
@@ -254,5 +263,4 @@ class Projects extends Component
             'estimates' => $this->estimates,
         ]);
     }
-
 }

@@ -16,7 +16,6 @@ class Project extends Model
 
     protected $fillable = [
         'general_info',
-        'n_file',
         'estimate',
         'id_client',
         'name_project',
@@ -45,7 +44,6 @@ class Project extends Model
         'project_scope',
         'expected_results',
         'stackholder_id',
-        'phase_id',
         'responsible',
         'current_phase',
     ];
@@ -73,10 +71,9 @@ class Project extends Model
         $getNameArea = User::where('role', 'area')->find($formData['id_chief_area'] ?? null);
         $getNameProject = User::where('role', 'project')->find($formData['id_chief_project'] ?? null);
         $getClient = Client::find($formData['id_client'] ?? null);
-        $getEstimate = Estimate::find($formData['n_file'] ?? null);
 
         $formData['phase'] = "ok";
-        $formData['estimate'] = $getEstimate?->serial_number ?? null;
+        $formData['estimate'] = $formData['estimate'];
         $formData['chief_area'] = $getNameArea ? $getNameArea->name . ' ' . $getNameArea->last_name : null;
         $formData['chief_project'] = $getNameProject ? $getNameProject->name . ' ' . $getNameProject->last_name : null;
         $formData['responsible'] = $formData['chief_project'];

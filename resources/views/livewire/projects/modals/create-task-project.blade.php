@@ -1,80 +1,84 @@
 <div class="fixed inset-0 bg-[oklch(0.97_0_0_/_0.5)] bg-opacity-20 flex justify-end z-50">
-    <div class="w-1/3 bg-white">
-        <div class="flex-col justify-between items-start p-6 bg-white h-24">
-            <div class="flex justify-between items-start p-6 bg-white ">
-                <h2 class="text-2xl font-bold">Aggiungi attività</h2>
-                <button wire:click="$dispatch('closeModal')" class="hover:cursor-pointer">Chiudi</button>
-            </div>
+    <div class="w-1/3 bg-white p-8 rounded shadow-lg">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-semibold">
+                {{ $taskId ? 'Modifica attività' : 'Aggiungi attività' }}
+            </h2>
+            <button wire:click="$dispatch('closeModal')" class="text-gray-500 hover:text-gray-700 text-sm">Chiudi</button>
+        </div>
 
+        <!-- Form -->
+        <div class="space-y-4">
+            <!-- Titolo attività -->
+            <flux:field>
+                <div class="flex items-center space-x-1 mb-1 text-xs text-gray-600">
+                    <flux:icon.map-pin class="w-4 h-4" />
+                    <flux:label class="text-xs">Titolo attività</flux:label>
+                </div>
+                <flux:input wire:model="title" />
+                <flux:error name="title" />
+            </flux:field>
 
+            <!-- Assegnato a -->
+            <flux:field>
+                <div class="flex items-center space-x-1 mb-1 text-xs text-gray-600">
+                    <flux:icon.at-symbol class="w-4 h-4" />
+                    <flux:label class="text-xs">Assegnato a</flux:label>
+                </div>
+                <flux:input wire:model="assignee" />
+                <flux:error name="assignee" />
+            </flux:field>
 
-            <!-- Title -->
-            <div class="pl-10 pr-10 pb-4 pt-10">
-                <label class="flex text-sm text-gray-600"><flux:icon.map-pin />Titolo attività</label>
-                <input type="text" wire:model="title" class="w-full mt-1 border-gray-300 border-1 h-8" />
-                @error('title')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
+            <!-- Conoscenza -->
+            <flux:field>
+                <div class="flex items-center space-x-1 mb-1 text-xs text-gray-600">
+                    <flux:icon.at-symbol class="w-4 h-4" />
+                    <flux:label class="text-xs">Conoscenza</flux:label>
+                </div>
+                <flux:input wire:model="cc" />
+                <flux:error name="cc" />
+            </flux:field>
 
-            <!-- Assegnatario -->
-            <div class="pl-10 pr-10 pb-4">
-                <label class="flex text-sm text-gray-600"><flux:icon.at-symbol />Assegnato a</label>
-                <input type="text" wire:model="assignee" class="w-full mt-1 border-gray-300  border-1 h-8" />
-                @error('assignee')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <!-- CC -->
-            <div class="pl-10 pr-10 pb-4">
-                <label class="text-sm text-gray-600"><flux:icon.at-symbol />Conoscenza</label>
-                <input type="text" wire:model="cc" class="w-full mt-1 border-gray-300  border-1 h-8" />
-                @error('cc')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <!-- Scadenza -->
-            <div class="pl-10 pr-10 pb-4">
-                <label class="flex text-sm text-gray-600">
-                    <flux:icon.calendar />Data di scadenza
-                </label>
-                <input type="date" wire:model="expire" class="w-full mt-1 border-gray-300  border-1 h-8" />
-                @error('expire')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
+            <!-- Data di scadenza -->
+            <flux:field>
+                <div class="flex items-center space-x-1 mb-1 text-xs text-gray-600">
+                    <flux:icon.calendar class="w-4 h-4" />
+                    <flux:label class="text-xs">Data di scadenza</flux:label>
+                </div>
+                <flux:input type="date" wire:model="expire" />
+                <flux:error name="expire" />
+            </flux:field>
 
             <!-- Note -->
-            <div class="p-10">
-                <label class="flex text-sm text-gray-600">
-                    <flux:icon.document />Note
-                </label>
-                <textarea wire:model="note" class="w-full mt-1 border-gray-300  border-1 h-8" rows="3"></textarea>
-                @error('note')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
+            <flux:field>
+                <div class="flex items-center space-x-1 mb-1 text-xs text-gray-600">
+                    <flux:icon.document class="w-4 h-4" />
+                    <flux:label class="text-xs">Note</flux:label>
+                </div>
+                <flux:textarea wire:model="note" rows="3" />
+                <flux:error name="note" />
+            </flux:field>
 
             <!-- Stato -->
-            <div class="pl-10 pr-10 pb-4">
-                <label class="text-sm text-gray-600">Stato</label>
-                <select wire:model="status" class="w-full mt-1 border-gray-300  border-1 h-8">
+            <flux:field>
+                <div class="flex items-center space-x-1 mb-1 text-xs text-gray-600">
+                    <flux:label class="text-xs">Stato</flux:label>
+                </div>
+                <flux:select wire:model="status">
                     <option value="">-- Seleziona stato --</option>
                     <option value="In attesa">In attesa</option>
                     <option value="Svolto">Svolto</option>
-                </select>
-                @error('status')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
+                </flux:select>
+                <flux:error name="status" />
+            </flux:field>
 
             <!-- Save Button -->
-            <div class="text-left pl-10 pr-10 pb-4">
-                <button wire:click="create" class="px-4 py-2 bg-[#00C0D9] text-white  hover:bg-blue-700">
-                    Assegna
-                </button>
+            <div class="pt-4">
+                <button wire:click="save"
+                class="px-4 py-2 bg-[#00C0D9] text-white rounded hover:bg-[#00A4B8] text-sm">
+                {{ $taskId ? 'Aggiorna' : 'Assegna' }}
+            </button>
             </div>
         </div>
     </div>

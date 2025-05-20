@@ -426,8 +426,7 @@
                                                                     { label: 'Lead', icon: '/icon/menu_exploded/lead.svg', route: '{{ route('crm.client.index', 'lead') }}' },
                                                                     { label: 'Contatti', icon: '/icon/menu_exploded/contatti.svg', route: '{{ route('crm.client.index', 'contatto') }}' },
                                                                     { label: 'Clienti', icon: '/icon/menu_exploded/clienti.svg', route: '{{ route('crm.client.index', 'cliente') }}' },
-                                                                    { label: 'Vendite', icon: '/icon/menu_exploded/vendite.svg', route: '#' },
-                                                                    { label: 'Servizi & prezzi', icon: '/icon/menu_exploded/servizi e prezzi.svg', route: '#' }
+                                                                    { label: 'Servizi & prezzi', icon: '/icon/menu_exploded/servizi e prezzi.svg', route: '{{ route('crm.products.index', 'servizi') }}' }
                                                             ]"
                                                 :key="item.label">
 

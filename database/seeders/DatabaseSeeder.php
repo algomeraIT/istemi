@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder
             ActivitySeeder::class,
             EmailSeeder::class,
             NoteSeeder::class,
-            // PhaseSeeder::class,
             // NoteProjectSeeder::class,
             // ProjectStartSeeder::class,
             // TaskProjectStartSeeder::class,
@@ -48,6 +47,25 @@ class DatabaseSeeder extends Seeder
             // CloseActivitySeeder::class,
             // NoteTaskProjectStartSeeder::class,
             // TaskProjectSeeder::class
+            DocumentProjectSeeder::class,
+            TaskProjectSeeder::class,
+            AreaSeeder::class,
+            MicroAreaSeeder::class,
+            PhaseSeeder::class,
+            NoteProjectSeeder::class,
+            TaskSeeder::class,
+            MicroTaskNoteSeeder::class,
+
+            //non necessari
+            IssuersSeeder::class,
+            GeneralTermsSeeder::class,
+            PriceListsSeeder::class,
+            TaxRatesTableSeeder::class,
+            QuoteTemplatesSeeder::class,
+
+            //necessari
+            CategoriesSeeder::class,
+            ProductsSeeder::class,
         ]);
 
         // Referent::factory()->count(40)->create();
@@ -64,8 +82,8 @@ class DatabaseSeeder extends Seeder
 
         // AccountingInvoice::factory()->count(40)->create();
         // $this->command->info('Fatture create con successo.');
-
-        // ActivityPhase::factory()->count(40)->create();
-        // $this->command->info('Attivita Progetti creati con successo.');
+        
+        AccountingInvoice::factory()->count(40)->create();
+        $this->command->info('Fatture create con successo.');
     }
 }

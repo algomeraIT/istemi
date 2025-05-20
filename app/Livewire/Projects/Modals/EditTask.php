@@ -4,33 +4,17 @@ namespace App\Livewire\Projects\Modals;
 
 use Flux\Flux;
 use LivewireUI\Modal\ModalComponent;
+use App\Models\Phase;
+
 
 class EditTask extends ModalComponent
 {
     public $task;
-    public $name_phase, $user, $status, $nameSection, $modelClass, $form;
+    public $name_phase, $user, $status, $form;
 
-    public function mount($id, $nameSection)
+    public function mount($id)
     {
-        $collections = [
-            'Avvio progetto' => 'ProjectStart',
-            'Verifica tecnico contabile' => 'AccountingValidation',
-            'Chiusura attività' => 'CloseActivity',
-            'Pianificazione cantiere' => 'ConstructionSitePlane',
-            'Elaborazione dati' => 'Data',
-            'Verifica esterna' => 'ExternalValidation',
-            'Fattura e acconto SAL' => 'InvoicesSal',
-            'Gestione non conformità' => 'NonComplianceManagement',
-            'Report' => 'Report',
-        ];
-
-        $modelClass = class_exists($nameSection) ? $collections[$nameSection] : 'App\\Models\\' . $collections[$nameSection] ;
-
-        if (!class_exists($modelClass)) {
-            Flux::toast("Model {$modelClass} non esiste...");
-        }
-
-        $this->task = $modelClass::findOrFail($id);
+        $this->task = Phase::findOrFail($id);
 
         $this->form = $this->task->only([
             'name_phase', 'user', 'status',
@@ -49,7 +33,12 @@ class EditTask extends ModalComponent
             'status' => $this->status,
         ]);
 
+        $this->closeModal();
+
         Flux::toast('Task aggiornato con successo!');
+
+        $this->dispatch('refresh');
+
     }
 
     public function render()

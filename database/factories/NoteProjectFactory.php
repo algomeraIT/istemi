@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\NoteProject;
 use App\Models\Project;
-use App\Models\Client;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,29 +13,12 @@ class NoteProjectFactory extends Factory
 
     public function definition()
     {
-        $clientIds = Client::pluck('id')->toArray();
-
         return [
-            'project_id' => Project::factory(),
-            'client_id' => fake()->randomElement($clientIds),
+            'project_id' => Project::inRandomOrder()->value('id'),
             'note' => $this->faker->paragraph(3),
             'user_name' => $this->faker->name(),
-            'user_id'    => User::factory(),
+            'user_id'    => User::inRandomOrder()->value('id'),
             'role' => $this->faker->randomElement(['Admin', 'User']),
         ];
-    }
-
-    public function fixed(): Factory
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'client_id' => 1,
-                'project_id' => Project::factory(),
-                'note' => $this->faker->paragraph(3),
-                'user_id' => 1,
-                'user_name' => "Admin Lastname",
-                'role' => "Admin",
-            ];
-        });
     }
 }
