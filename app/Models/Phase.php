@@ -9,23 +9,31 @@ class Phase extends Model
 {
     use HasFactory;
 
-    const PHASE_ARRAY = [
-        1 => "Avvio",
-        2 => "Pianificazione",
-        3 => "Esecuzione",
-        4 => "Verifica",
-        5 => "Chiusura",
-    ];
-    const phases = ["Non Definito","Avvio", "Pianificazione", "Esecuzione", "Verifica", "Chiusura"];
-    const AVVIO = 1;
-    const PIANIFICAZIONE = 2;
-    const ESECUZIONE = 3;
-    const VERIFICA = 4;
-    const CHIUSURA = 5;
-
-
     protected $fillable = [
-        'name',
-        'status'
+        'id_area',
+        'id_micro_area',
+        'id_project',
+        'id_user',
+        'status',
     ];
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'id_area');
+    }
+
+    public function microArea()
+    {
+        return $this->belongsTo(MicroArea::class, 'id_micro_area');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class, 'id_phases');
+    }
 }

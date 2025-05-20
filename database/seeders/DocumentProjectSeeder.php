@@ -13,7 +13,7 @@ class DocumentProjectSeeder extends Seeder
     public function run(): void
     {
         \App\Models\DocumentProject::factory()
-        ->count(50)
+        ->count(10)
         ->create();
     }
 }

@@ -87,7 +87,6 @@
         </div>
 
     </div>
-
     <!-- Tab Panels -->
     <flux:tab.panel name="list">
         @include('livewire.projects.project_list', ['projects' => $listProjects])

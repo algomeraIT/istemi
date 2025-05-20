@@ -1,97 +1,80 @@
 <?php
 
 namespace App\Livewire\Projects\Modals;
+use Livewire\Attributes\On;
 
-use App\Models\TaskProject;
-use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 use Flux\Flux;
 
 class CreateTaskProject extends ModalComponent
 {
-    public $project_id;
-    public $client_id;
-    public $user_id;
-    public $user_name;
+    public ?int $taskId = null;
 
-    public $title;
-    public $assignee;
-    public $cc;
-    public $expire;
-    public $note;
-    public $media;
-    public $status = 'In attesa';
+    public string $title = '';
+    public string $assignee = '';
+    public string $cc = '';
+    public string $note = '';
+    public string $status = 'In attesa';
+    public ?string $expire = null;
 
-    public $linkedPhaseType; 
-    public $linkedPhaseId;
-
-    protected $rules = [
-        'title' => 'required|string|max:255',
-        'assignee' => 'required|string|max:255',
-        'expire' => 'nullable|date',
-        'note' => 'nullable|string',
-        'status' => 'required|string',
-    ];
-
-    public function mount($project_id, $phase, $id)
+    public function mount(?int $taskId = null)
     {
-        $this->project_id = $project_id;
-        $this->linkedPhaseType = $phase; 
-        $this->linkedPhaseId = $id;       
-        $this->user_id = Auth::id();
-        $this->user_name = Auth::user()?->name . ' ' . Auth::user()?->last_name  ?? 'Utente';
-    }
+        $this->taskId = $taskId;
 
-    public function create()
-    {
-        $this->validate();
-
-        try {
-            $task = new TaskProject();
-            $task->project_id = $this->project_id;
-
-            $getProject = Project::where('id', $this->project_id)->get();
-
-            $task->client_id = $getProject[0]->id_client;
-            $task->user_id = $this->user_id;
-            $task->user_name = $this->user_name;
-       
-            // This sets the correct phase column dynamically
-            if (in_array($this->linkedPhaseType, [
-                'project_start_id',
-                'project_activity_id',
-                'project_accounting_id',
-                'project_data_id',
-                'project_construction_site_plane_id',
-                'project_external_validations_id',
-                'project_invoices_sal_id',
-                'project_non_compliance_id',
-                'project_report_id',
-                'project_close_id',
-            ])) {
-                $task->{$this->linkedPhaseType} = $this->linkedPhaseId;
-            }
-
-            $task->title = $this->title;
-            $task->assignee = $this->assignee;
-            $task->cc = $this->cc;
-            $task->expire = $this->expire;
-            $task->note = $this->note;
-            $task->media = $this->media;
-            $task->status = $this->status;
-
-            $task->save();
-
-            Flux::toast('Task aggiunto con successo!');
-            $this->dispatch('taskCreated');
-            $this->closeModal();
-
-        } catch (\Exception $e) {
-            Flux::toast('Errore durante la creazione del task.');
+        if ($taskId) {
+            $task = Task::findOrFail($taskId);
+            $this->title = $task->title ?? '';
+            $this->assignee = $task->assignee ?? '';
+            $this->cc = $task->cc ?? '';
+            $this->note = $task->note ?? '';
+            $this->status = $task->status ?? 'In attesa';
+            $this->expire = $task->expire ?? null;
         }
     }
 
+    public function rules(): array
+    {
+        return [
+            'title' => 'required|string|max:255',
+            'assignee' => 'nullable|string|max:255',
+            'cc' => 'nullable|string|max:255',
+            'note' => 'nullable|string',
+            'status' => 'required|string|in:In attesa,Svolto',
+            'expire' => 'nullable|date',
+        ];
+    }
+
+    public function save()
+    {
+        $this->validate();
+
+        $data = [
+            'title' => $this->title,
+            'assignee' => $this->assignee,
+            'cc' => $this->cc,
+            'note' => $this->note,
+            'status' => $this->status,
+            'expire' => $this->expire,
+        ];
+
+        if ($this->taskId) {
+            Task::findOrFail($this->taskId)->update($data);
+            Flux::toast('Attività aggiornata con successo!');
+        } else {
+            Task::create(array_merge($data, [
+                'id_phases' => 1, 
+                'id_assignee' => Auth::id(),
+            ]));
+            Flux::toast('Attività creata con successo!');
+        }
+
+        $this->closeModal();
+        $this->dispatch('refresh');
+    }
+
+    #[On('taskCreated')]
     public function render()
     {
         return view('livewire.projects.modals.create-task-project');

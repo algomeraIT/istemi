@@ -6,74 +6,9 @@
     </flux:tabs>      
 
     <flux:tab.panel name="list">
-        @if (count($this->projectStart) > 0)
+        @if (count($this->phasesTable) > 0)
             @include('livewire.projects.project-detail-list-component', [
-                'elements' => $this->projectStart,
-                'nameSection' => 'Avvio progetto',
-                'NameTable' => 'ProjectStart',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->invoicesSal) > 0)
-            @include('livewire.projects.project-detail-list-component', [
-                'elements' => $this->invoicesSal,
-                'nameSection' => 'Fattura e acconto SAL',
-                'NameTable' => 'InvoicesSal',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->constructionSitePlane) > 0)
-            @include('livewire.projects.project-detail-list-component', [
-                'elements' => $this->constructionSitePlane,
-                'nameSection' => 'Pianificazione cantiere',
-                'NameTable' => 'ConstructionSitePlane',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->data) > 0)
-            @include('livewire.projects.project-detail-list-component', [
-                'elements' => $this->data,
-                'nameSection' => 'Elaborazione dati',
-                'NameTable' => 'Data',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->externalValidation) > 0)
-            @include('livewire.projects.project-detail-list-component', [
-                'elements' => $this->externalValidation,
-                'nameSection' => 'Verifica esterna',
-                'NameTable' => 'ExternalValidation',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->accountingValidation) > 0)
-            @include('livewire.projects.project-detail-list-component', [
-                'elements' => $this->accountingValidation,
-                'nameSection' => 'Verifica tecnico contabile',
-                'NameTable' => 'AccountingValidation',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->nonComplianceManagement) > 0)
-            @include('livewire.projects.project-detail-list-component', [
-                'elements' => $this->nonComplianceManagement,
-                'nameSection' => 'Gestione non conformità',
-                'NameTable' => 'NonComplianceManagement',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->closeActivity) > 0)
-            @include('livewire.projects.project-detail-list-component', [
-                'elements' => $this->closeActivity,
-                'nameSection' => 'Chiusura attività',
-                'NameTable' => 'CloseActivity',
+                'elements' => $this->phasesTable,
                 'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif
@@ -82,74 +17,9 @@
 
     <flux:tab.panel name="kanban" class="flex overflow-auto max-w-[1000px]">
 
-        @if (count($this->projectStart) > 0)
+        @if (count($this->phasesTable) > 0)
             @include('livewire.projects.project-detail-kanban-component', [
-                'elements' => $this->projectStart,
-                'nameSection' => 'Avvio progetto',
-                'NameTable' => 'ProjectStart',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->invoicesSal) > 0)
-            @include('livewire.projects.project-detail-kanban-component', [
-                'elements' => $this->invoicesSal,
-                'nameSection' => 'Fattura e acconto SAL',
-                'NameTable' => 'InvoicesSal',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->constructionSitePlane) > 0)
-            @include('livewire.projects.project-detail-kanban-component', [
-                'elements' => $this->constructionSitePlane,
-                'nameSection' => 'Pianificazione cantiere',
-                'NameTable' => 'ConstructionSitePlane',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->data) > 0)
-            @include('livewire.projects.project-detail-kanban-component', [
-                'elements' => $this->data,
-                'nameSection' => 'Elaborazione dati',
-                'NameTable' => 'Data',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->externalValidation) > 0)
-            @include('livewire.projects.project-detail-kanban-component', [
-                'elements' => $this->externalValidation,
-                'nameSection' => 'Verifica esterna',
-                'NameTable' => 'ExternalValidation',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->accountingValidation) > 0)
-            @include('livewire.projects.project-detail-kanban-component', [
-                'elements' => $this->accountingValidation,
-                'nameSection' => 'Verifica tecnico contabile',
-                'NameTable' => 'AccountingValidation',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->nonComplianceManagement) > 0)
-            @include('livewire.projects.project-detail-kanban-component', [
-                'elements' => $this->nonComplianceManagement,
-                'nameSection' => 'Gestione non conformità',
-                'NameTable' => 'NonComplianceManagement',
-                'groupedMicroTasks' => $this->groupedMicroTasks
-            ])
-        @endif
-
-        @if (count($this->closeActivity) > 0)
-            @include('livewire.projects.project-detail-kanban-component', [
-                'elements' => $this->closeActivity,
-                'nameSection' => 'Chiusura attività',
-                'NameTable' => 'CloseActivity',
+                'elements' => $this->phasesTable,
                 'groupedMicroTasks' => $this->groupedMicroTasks
             ])
         @endif

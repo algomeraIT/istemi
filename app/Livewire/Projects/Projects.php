@@ -43,7 +43,7 @@ class Projects extends Component
     public string $query_phase = '';
     public string $query_search = '';
     public string $search = '';
-    public string $sortField = 'n_file';
+    public string $sortField = 'estimate';
     public string $sortDirection = 'asc';
     public string $activePhase = '';
     public string $selectedReferent = '';
@@ -60,7 +60,6 @@ class Projects extends Component
     public $formData;
     private const DEFAULT_FORM = [
         'estimate' => '',
-        'n_file' => '',
         'name_project' => '',
         'id_client' => '',
         'client_type' => '',
@@ -213,7 +212,7 @@ class Projects extends Component
     {
 
         return Project::query()
-            ->when($this->search, fn($q) => $q->where('n_file', 'like', "%{$this->search}%"))
+            ->when($this->search, fn($q) => $q->where('estimate', 'like', "%{$this->search}%"))
             ->when($this->query, fn($q) => $q->where('responsible', 'like', '%' . $this->query . '%'))
             ->when($this->query_project, fn($q) => $q->where('client_type', 'like', '%' . $this->query_project . '%'))
             ->when($this->query_phase, fn($q) => $q->where('current_phase', 'like', '%' . $this->query_phase . '%'))

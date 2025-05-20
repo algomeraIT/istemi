@@ -26,21 +26,21 @@
                                 </flux:tabs>
 
                                 <div class="sm:flex md:flex-wrap lg:flex-nowrap gap-4 p-1">
-                                    <flux:select wire:model.live="query_project" data-variant="status">
-                                        <flux:select.option value="">Tutti gli stati</flux:select.option>
-                                        <flux:select.option value="Pubblico">Pubblico</flux:select.option>
-                                        <flux:select.option value="Privato">Privato</flux:select.option>
-                                    </flux:select>
-                                    <flux:select wire:model.live="query_project" data-variant="status">
-                                        <flux:select.option value="">Assegnati a tutti</flux:select.option>
-                                        <flux:select.option value="Pubblico">Pubblico</flux:select.option>
-                                        <flux:select.option value="Privato">Privato</flux:select.option>
-                                    </flux:select>
-                                    <!-- Search -->
-                        <flux:field data-input>
+                                {{--         <flux:select wire:model.live="query_project" data-variant="status">
+                                            <flux:select.option value="">Tutti gli stati</flux:select.option>
+                                            <flux:select.option value="Pubblico">Pubblico</flux:select.option>
+                                            <flux:select.option value="Privato">Privato</flux:select.option>
+                                        </flux:select>
+                                        <flux:select wire:model.live="query_project" data-variant="status">
+                                            <flux:select.option value="">Assegnati a tutti</flux:select.option>
+                                            <flux:select.option value="Pubblico">Pubblico</flux:select.option>
+                                            <flux:select.option value="Privato">Privato</flux:select.option>
+                                        </flux:select> --}}
+                                    <!-- Search --> 
+            {{--             <flux:field data-input>
                             <flux:input wire:model.live="query" data-variant="search" :loading="false" clearable
                                 icon="magnifying-glass" placeholder="Cerca" />
-                        </flux:field>
+                        </flux:field> --}}
                                 </div>
                             </div>
                             <flux:tab.panel name="task">

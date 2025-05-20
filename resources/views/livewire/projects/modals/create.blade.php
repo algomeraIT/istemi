@@ -1,35 +1,11 @@
-<div class="p-4  w-10 h-10">
-    <style>
-        .ql-toolbar {
-            background-color: #F5FCFD;
-            height: 35px;
-            padding: 2px;
-            display: flex;
-            align-items: center;
-        }
-
-        .ql-snow.ql-toolbar button,
-        .ql-snow .ql-toolbar {
-            width: 60px;
-            font-size: 0.75rem;
-            white-space: normal;
-            padding: 4px;
-        }
-
-        .ql-list .ql-link .ql-image {
-            width: 20px !important;
-            font-size: 0.75rem;
-            white-space: normal;
-            padding: 4px;
-        }
-    </style>
-    <div class="fixed inset-0 flex items-center justify-center bg-opacity-10 ">
-        <div class="bg-white w-3/4  p-5 relative">
+<div class="p-4 w-10 h-10">
+    <div class="fixed inset-0 flex items-center justify-center  bg-opacity-10 z-50">
+        <div class="bg-white w-3/4 p-5 relative rounded shadow-xl">
             @include('livewire.general.close')
 
             <div class="flex">
                 <!-- Sidebar Tabs -->
-                <div class="w-1/4 p-4 flex flex-col items-center relative">
+                <div class="w-1/4 p-4 flex flex-col items-center relative h-[50vh]">
                     <div class="absolute top-6 bottom-6  bg-cyan-400 max-h-72 w-[3px]"></div>
 
                     <ul class="flex flex-col space-y-4 items-center z-10 mt-16">
@@ -74,13 +50,13 @@
                         <div class="grid grid-cols-2 gap-4">
                             <flux:field data-input>
                                 <div><flux:icon.document /><flux:label>Pratica</flux:label></div>
-                                <flux:select wire:model.live="formData.n_file">
+                                <flux:select wire:model.live="formData.estimate">
                                     <option value="">Seleziona</option>
                                     @foreach ($estimates as $estimate)
                                         <option value="{{ $estimate['id'] }}">{{ $estimate['serial_number'] }}</option>
                                     @endforeach
                                 </flux:select>
-                                <flux:error name="formData.n_file" />
+                                <flux:error name="formData.estimate" />
                             </flux:field>
 
                             <flux:field data-input>

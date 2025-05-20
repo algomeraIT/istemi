@@ -7,15 +7,14 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::table('stackholders', function (Blueprint $table) {
-            $table->dropColumn('last_name');
+        Schema::create('areas', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
         });
     }
 
     public function down(): void
     {
-        Schema::table('stackholders', function (Blueprint $table) {
-            $table->string('last_name'); 
-        });
+        Schema::dropIfExists('areas');
     }
 };

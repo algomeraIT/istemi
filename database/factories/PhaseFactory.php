@@ -2,16 +2,31 @@
 
 namespace Database\Factories;
 
-use App\Models\Phase;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Area;
+use App\Models\MicroArea;
+use App\Models\Project;
+use App\Models\User;
 
-class PhaseFactory extends Factory {
-    protected $model = Phase::class;
-
-    public function definition() {
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Phase>
+ */
+class PhaseFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
         return [
-            'name' => $this->faker->word(),
-            'status' => $this->faker->boolean(80) ? 1 : 0,
+            'id_area' => Area::inRandomOrder()->value('id'),
+            'id_micro_area' => MicroArea::inRandomOrder()->value('id'),
+            'id_project' => Project::inRandomOrder()->value('id'),
+            'id_user' => User::inRandomOrder()->value('id'),
+            'status' => $this->faker->randomElement(['In attesa', 'Svolto']),
         ];
     }
 }
+   

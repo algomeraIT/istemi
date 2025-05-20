@@ -17,16 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('user_id');
             $table->string('user_name');
-            $table->unsignedBigInteger('project_start_id')->nullable();
-            $table->unsignedBigInteger('project_activity_id')->nullable();
-            $table->unsignedBigInteger('project_accounting_id')->nullable();
-            $table->unsignedBigInteger('project_data_id')->nullable();
-            $table->unsignedBigInteger('project_construction_site_plane_id')->nullable();
-            $table->unsignedBigInteger('project_external_validations_id')->nullable();
-            $table->unsignedBigInteger('project_invoices_sal_id')->nullable();
-            $table->unsignedBigInteger('project_non_compliance_id')->nullable();
-            $table->unsignedBigInteger('project_report_id')->nullable();
-            $table->unsignedBigInteger('project_close_id')->nullable();
             $table->string('title');
             $table->string('assignee')->nullable();
             $table->string('cc')->nullable();

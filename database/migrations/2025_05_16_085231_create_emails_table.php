@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->foreignId('sent_by')->constrained('users')->onDelete('cascade');
 
-            $table->json('to'); // array JSON di indirizzi
+            $table->json('to'); 
             $table->string('subject');
-            $table->longText('body'); // HTML
+            $table->longText('body'); 
 
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
