@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\NoteProject;
 use App\Models\Project;
-use App\Models\Phase;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -16,7 +15,6 @@ class NoteProjectFactory extends Factory
     {
         return [
             'project_id' => Project::inRandomOrder()->value('id'),
-            'id_phase' => Phase::inRandomOrder()->value('id'),
             'note' => $this->faker->paragraph(3),
             'user_name' => $this->faker->name(),
             'user_id'    => User::inRandomOrder()->value('id'),

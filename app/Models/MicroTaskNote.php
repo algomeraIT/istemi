@@ -10,10 +10,12 @@ class MicroTaskNote extends Model
     use HasFactory;
 
     protected $fillable = [
+        'project_id',
+        'id_phase',
         'note',
-        'id_task',
-        'id_user',
-        'status',
+        'user_name',
+        'user_id',
+        'role'
     ];
 
     public function task()

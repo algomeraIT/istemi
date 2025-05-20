@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('micro_task_notes', function (Blueprint $table) {
             $table->id();
-            $table->text('note')->nullable();
-            $table->unsignedBigInteger('id_task');
-            $table->unsignedBigInteger('id_user');
-            $table->string('status')->default('attivo');
+            $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
+            $table->foreignId('id_phase')->constrained('phases')->onDelete('cascade');
+            $table->string('user_name');
+            $table->string('role');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->text('note');
             $table->timestamps();
-    
-            $table->foreign('id_task')->references('id')->on('tasks')->onDelete('cascade');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

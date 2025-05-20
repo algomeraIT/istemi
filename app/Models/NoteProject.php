@@ -12,7 +12,6 @@ class NoteProject extends Model {
 
     protected $fillable = [
         'project_id',
-        'id_phase',
         'note',
         'user_name',
         'user_id',

@@ -57,7 +57,6 @@
                                 component: 'projects.modals.create-task-project',
                                 arguments: {
                                     project_id: {{ $phase->id_project }},
-                                    phase: 'project_start_id',
                                     id: {{ $phase->id }}
                                 }
                             })"
@@ -85,10 +84,17 @@
                                     variant="ghost" data-variant="ghost" data-color="teal" data-rounded
                                     icon="eye" size="sm" />
 
-                                <flux:button
-                                    wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $phase->id }}}})"
+                              
+
+                          {{--           <flux:button
+                                    wire:click="$dispatch('openModal', {
+                                        component: 'projects.modals.create-task-project',
+                                        project_id: {{ $phase->id_project }},
+                                        taskId: {{ $phase->id }}
+                                    })"
                                     variant="ghost" data-variant="ghost" data-color="gray" data-rounded
-                                    icon="pencil" size="sm" />
+                                    icon="pencil" size="sm">
+                                </flux:button> --}}
    
                                     <flux:button
                                     wire:click="deleteMacroTask({{ $phase->id }})"

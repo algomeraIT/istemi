@@ -3,7 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\MicroTaskNote;
-use App\Models\Task;
+use App\Models\Project;
+use App\Models\Phase;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,10 +15,12 @@ class MicroTaskNoteFactory extends Factory
     public function definition(): array
     {
         return [
-            'note' => $this->faker->paragraph,
-            'id_task' => Task::factory(),
-            'id_user' => User::factory(),
-            'status' => $this->faker->randomElement(['attivo', 'completato']),
+            'project_id' => Project::inRandomOrder()->value('id'),
+            'id_phase' => Phase::inRandomOrder()->value('id'),
+            'note' => $this->faker->paragraph(3),
+            'user_name' => $this->faker->name(),
+            'user_id'    => User::inRandomOrder()->value('id'),
+            'role' => $this->faker->randomElement(['Admin', 'User']),
         ];
     }
 }

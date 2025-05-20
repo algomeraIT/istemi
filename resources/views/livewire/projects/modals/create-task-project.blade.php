@@ -2,7 +2,9 @@
     <div class="w-1/3 bg-white p-8 rounded shadow-lg">
         <!-- Header -->
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-lg font-semibold">Aggiungi attività</h2>
+            <h2 class="text-lg font-semibold">
+                {{ $taskId ? 'Modifica attività' : 'Aggiungi attività' }}
+            </h2>
             <button wire:click="$dispatch('closeModal')" class="text-gray-500 hover:text-gray-700 text-sm">Chiudi</button>
         </div>
 
@@ -73,9 +75,10 @@
 
             <!-- Save Button -->
             <div class="pt-4">
-                <button wire:click="create" class="px-4 py-2 bg-[#00C0D9] text-white rounded hover:bg-[#00A4B8] text-sm">
-                    Assegna
-                </button>
+                <button wire:click="save"
+                class="px-4 py-2 bg-[#00C0D9] text-white rounded hover:bg-[#00A4B8] text-sm">
+                {{ $taskId ? 'Aggiorna' : 'Assegna' }}
+            </button>
             </div>
         </div>
     </div>

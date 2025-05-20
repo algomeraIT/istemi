@@ -26,7 +26,7 @@ class CreateNote extends ModalComponent
     
         try {
             $project = Project::where('id', $this->id)->first();
-    
+ 
             if (!$project) {
                 throw new \Exception("Project not found.");
             }
@@ -34,6 +34,7 @@ class CreateNote extends ModalComponent
             NoteProject::create([
                 'note' => $this->note,
                 'project_id' => $this->id,
+                'id_phase' => null,
                 'client_id' => $project->id_client,
                 'user_name' => $user->name . ' ' . $user->last_name,
                 'role' => $user->role,
@@ -45,7 +46,7 @@ class CreateNote extends ModalComponent
             Flux::toast('Nota creata con successo!');
             $this->closeModal();
     
-        } catch (\Exception $e) {
+        } catch (\Exception $e) {dd($e);
             DB::rollBack();
             Flux::toast('Errore durante la creazione della nota: ' . $e->getMessage());
         }

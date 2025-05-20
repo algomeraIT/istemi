@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Projects\Modals;
 
+use App\Models\MicroTaskNote;
 use App\Models\NoteProject;
 use LivewireUI\Modal\ModalComponent;
 use Flux\Flux;
@@ -21,7 +22,7 @@ class MacroTaskDetail extends ModalComponent
     {
         $this->id = $id;
         $this->tasks = Task::with(['phase.microArea', 'phase.user', 'assignee'])->where('id_phases', $id)->get();
-        $this->notes = NoteProject::where('id_phase', $id)->get();
+        $this->notes = MicroTaskNote::where('id_phase', $id)->get();
     }
 
     public function updateStatusStart($id, $value)
@@ -46,7 +47,7 @@ class MacroTaskDetail extends ModalComponent
             'note' => 'required|string|min:2',
         ]);
 
-        NoteProject::create([
+        MicroTaskNote::create([
             'id_phase' => $id,
             'note' => $this->note,
             'user_id' => Auth::user()->id,

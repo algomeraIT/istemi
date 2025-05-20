@@ -10,66 +10,68 @@ use Flux\Flux;
 
 class CreateTaskProject extends ModalComponent
 {
-    public $project_id;
-    public $client_id;
-    public $user_id;
-    public $user_name;
+    public ?int $taskId = null;
 
-    public $title;
-    public $assignee;
-    public $cc;
-    public $expire;
-    public $note;
-    public $media;
-    public $status = 'In attesa';
+    public string $title = '';
+    public string $assignee = '';
+    public string $cc = '';
+    public string $note = '';
+    public string $status = 'In attesa';
+    public ?string $expire = null;
 
-    public $linkedPhaseType; 
-    public $linkedPhaseId;
-
-    protected $rules = [
-        'title' => 'required|string|max:255',
-        'assignee' => 'required|string|max:255',
-        'expire' => 'nullable|date',
-        'note' => 'nullable|string',
-        'status' => 'required|string',
-    ];
-
-    public function mount($project_id, $phase, $id)
+    public function mount(?int $taskId = null)
     {
-        $this->project_id = $project_id;
-        $this->linkedPhaseType = $phase; 
-        $this->linkedPhaseId = $id;       
-        $this->user_id = Auth::id();
-        $this->user_name = Auth::user()?->name . ' ' . Auth::user()?->last_name  ?? 'Utente';
+        $this->taskId = $taskId;
+
+        if ($taskId) {
+            $task = Task::findOrFail($taskId);
+            $this->title = $task->title ?? '';
+            $this->assignee = $task->assignee ?? '';
+            $this->cc = $task->cc ?? '';
+            $this->note = $task->note ?? '';
+            $this->status = $task->status ?? 'In attesa';
+            $this->expire = $task->expire ?? null;
+        }
     }
 
-    public function create()
+    public function rules(): array
+    {
+        return [
+            'title' => 'required|string|max:255',
+            'assignee' => 'nullable|string|max:255',
+            'cc' => 'nullable|string|max:255',
+            'note' => 'nullable|string',
+            'status' => 'required|string|in:In attesa,Svolto',
+            'expire' => 'nullable|date',
+        ];
+    }
+
+    public function save()
     {
         $this->validate();
 
-        try {
+        $data = [
+            'title' => $this->title,
+            'assignee' => $this->assignee,
+            'cc' => $this->cc,
+            'note' => $this->note,
+            'status' => $this->status,
+            'expire' => $this->expire,
+        ];
 
-            $task = new Task();
-            $task->id_phases = $this->linkedPhaseId;
-            $task->id_assignee = $this->user_id;
-            $task->title = $this->title;
-            $task->assignee = $this->assignee;
-            $task->cc = $this->cc;
-            $task->expire = $this->expire;
-            $task->note = $this->note;
-            $task->media = $this->media;
-            $task->status = $this->status;
-
-            $task->save();
-
-            Flux::toast('Task aggiunto con successo!');
-            $this->dispatch('taskCreated');
-            $this->closeModal();
-
-        } catch (\Exception $e) {
-            dd($e);
-            Flux::toast('Errore durante la creazione del task.');
+        if ($this->taskId) {
+            Task::findOrFail($this->taskId)->update($data);
+            Flux::toast('Attività aggiornata con successo!');
+        } else {
+            Task::create(array_merge($data, [
+                'id_phases' => 1, 
+                'id_assignee' => Auth::id(),
+            ]));
+            Flux::toast('Attività creata con successo!');
         }
+
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
     #[On('taskCreated')]

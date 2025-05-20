@@ -26,7 +26,7 @@ class ProjectTasksList extends Component
         $this->project = Project::findOrFail($id);
         $this->groupedMicroTasks = TaskProject::where("project_id", $id)->where('status', '!=', 'deleted')->get();
         $this->phasesTable = Phase::with(['area', 'microArea', 'user', 'task'])
-            ->where('id_project', $id)
+            ->where('id_project', $id)->where('status', '!=', 'deleted')
             ->get();
     }
 
@@ -113,7 +113,7 @@ class ProjectTasksList extends Component
         }
     }
 
-    public function deleteMacroTask($id, $nameTable)
+    public function deleteMacroTask($id)
     {
         try {
   
