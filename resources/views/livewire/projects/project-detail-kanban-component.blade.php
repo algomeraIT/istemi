@@ -15,16 +15,17 @@
                                     <p class="text-sm font-medium text-gray-800">{{ $element->name_phase }}</p>
                                     <div class="flex items-center text-xs text-gray-600 mt-1 font-extralight">
                                         <div class="flex items-center mr-2">
-                                            <div class="h-6 w-6 flex items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
+                                            <div
+                                                class="h-6 w-6 flex items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
                                                 <flux:icon.user variant="micro" />
                                             </div>
-                                            <span class="ml-2">{{ $element->user->name . ' ' . $element->user->last_name}}</span>
+                                            <span
+                                                class="ml-2">{{ $element->user->name . ' ' . $element->user->last_name }}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-center w-[140px]">
-                                    <select
-                                        wire:change="updateStatusStart({{ $element->id }}, $event.target.value)"
+                                <div class="text-center ">
+                                    <select wire:change="updateStatusStart({{ $element->id }}, $event.target.value)"
                                         class="bg-transparent w-full appearance-none px-2 py-1 border-none focus:outline-none text-center
                                             {{ $element->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
                                         <option value="Svolto" @selected($element->status === 'Svolto')>Svolto</option>
@@ -37,13 +38,13 @@
                             <div class="flex space-x-2 mt-3 justify-between">
                                 <div>
                                     <flux:button
-                                        wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $element->id }} }})"
-                                        variant="ghost" icon="pencil" size="sm" />
-
-                                    <flux:button
-                                        wire:click="deleteMacroTask({{ $element->id }})"
-                                        wire:confirm="Sei sicuro di voler archiviare questo micro task?"
-                                        variant="ghost" icon="trash" data-color="red" size="sm" />
+                                        wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $project->id }}}})"
+                                        variant="ghost" data-variant="ghost" data-color="gray" data-rounded
+                                        icon="pencil" size="sm" />
+                                    <flux:button wire:click="deleteMacroTask({{ $project->id }})"
+                                        wire:confirm="Sei sicuro di voler archiviare questo macro task?" variant="ghost"
+                                        data-variant="ghost" data-color="red" data-rounded icon="trash"
+                                        size="sm" />
                                 </div>
                                 <flux:button
                                     wire:click="$dispatch('openModal', {
@@ -77,7 +78,8 @@
                                                     class="bg-transparent px-1 py-0.5 text-xs focus:outline-none
                                                         {{ $micro->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
                                                     <option value="Svolto" @selected($micro->status === 'Svolto')>Svolto</option>
-                                                    <option value="In attesa" @selected($micro->status === 'In attesa')>In attesa</option>
+                                                    <option value="In attesa" @selected($micro->status === 'In attesa')>In attesa
+                                                    </option>
                                                 </select>
 
                                                 <flux:button
