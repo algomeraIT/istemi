@@ -3,7 +3,7 @@
         <flux:tab.group wire:model="datasheettabs" class="w-full flex">
             {{-- Left: Vertical Tabs --}}
 
-            <flux:tabs class="flex flex-col gap-2 border-none">
+            <flux:tabs class="flex flex-col  border-none">
                 <flux:tab data-variant="detail" name="info">
                     Informazioni generali
                 </flux:tab>
@@ -226,21 +226,22 @@
                 </div>
             </flux:tab.panel>
             <flux:tab.panel name="phases">
+
                 @php
-                   /*  $statusPhases = $this->getStatusPhasesList(); */
+                    $groupedPhases = collect($statusPhases)->groupBy(fn($item) => $item['area']['name']);
                 @endphp
 
-          {{--       @foreach ($statusPhases as $section => $phases)
-                    <p class="text-[13px] font-semibold mt-4">{{ $section }}</p>
-                    <ul class="ml-4 list-disc text-sm">
-                        @foreach ($phases as $phase => $status)
-                            <li class="font-semibold text-[#A0A0A0] text-[15px] list-none">
-                                {{ ucwords(str_replace('_', ' ', $phase)) }}
-                         
-                            </li>
-                        @endforeach
-                    </ul>
-                @endforeach --}}
+                @foreach ($groupedPhases as $areaName => $phases)
+                    <div class="mb-4">
+                        <h3 class="text-lg font-semibold text-cyan-700 mb-2">{{ $areaName }}</h3>
+                        <ul class="ml-4 list-disc text-gray-700">
+                            @foreach ($phases as $phase)
+                                <li class="list-none">{{ $phase->microArea->name }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
+
             </flux:tab.panel>
 
         </flux:tab.group>
