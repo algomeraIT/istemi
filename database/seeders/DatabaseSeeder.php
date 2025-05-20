@@ -31,24 +31,12 @@ class DatabaseSeeder extends Seeder
             ActivitySeeder::class,
             EmailSeeder::class,
             NoteSeeder::class,
-            NoteProjectSeeder::class,
-           /*  ProjectStartSeeder::class, */
-          /*   TaskProjectStartSeeder::class, */
             DocumentProjectSeeder::class,
-        /*     InvoicesSalSeeder::class,
-            ConstructionSitePlaneSeeder::class,
-            DataSeeder::class,
-            ReportSeeder::class,
-            AccountingSeeder::class,
-            ExternalValidationSeeder::class,
-            AccountingValidationSeeder::class,
-            NonComplianceManagementSeeder::class,
-            CloseActivitySeeder::class, 
-            NoteTaskProjectStartSeeder::class,*/
             TaskProjectSeeder::class,
             AreaSeeder::class,
             MicroAreaSeeder::class,
             PhaseSeeder::class,
+            NoteProjectSeeder::class,
             TaskSeeder::class,
             MicroTaskNoteSeeder::class,
         ]);

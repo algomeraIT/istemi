@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notes_projects', function (Blueprint $table) {
-            $table->id(); // This automatically creates an auto-incrementing primary key
+            $table->id();
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->foreignId('id_phase')->constrained('phases')->onDelete('cascade');
             $table->string('user_name');

@@ -24,7 +24,7 @@ class AreaSeeder extends Seeder
         ];
 
         foreach ($names as $name) {
-            Area::create(['name' => $name]);
+            Area::firstOrCreate(['name' => $name]);
         }
     }
 }

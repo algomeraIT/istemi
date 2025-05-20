@@ -13,7 +13,7 @@ class DocumentProjectFactory extends Factory
     {
         return [
             'document_name' => $this->faker->words(3, true),
-            'project_id' => \App\Models\Project::factory(),
+            'project_id' => \App\Models\Project::inRandomOrder()->value('id'),
             'phase' => $this->faker->randomElement([
                 'Avvio progetto',
                 'Fatture e acconto SAL',
@@ -25,7 +25,7 @@ class DocumentProjectFactory extends Factory
                 'Gestione non conformità',
                 'Chiusura attività',
             ]),
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => \App\Models\User::inRandomOrder()->value('id'),
             'user_name' => $this->faker->name(),
             'status' => $this->faker->randomElement(['loaded', 'deleted']),
             'created_at' => now(),

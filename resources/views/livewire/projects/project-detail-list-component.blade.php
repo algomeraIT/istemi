@@ -43,7 +43,7 @@
                         @foreach ($groupedPhases as $phase)
                             <flux:table.row >
                                 <flux:table.cell class="border px-4 py-2">
-                                    @if (isset($groupedMicroTasks[0]) && $groupedMicroTasks[0]->project_start_id === $element->id)
+                                    @if (isset($groupedMicroTasks[0]) && $groupedMicroTasks[0]->project_start_id === $phase->id)
                                     <flux:icon.arrow-down @click="openMicro = !openMicro" />
                                 @endif
                                 </flux:table.cell>

@@ -23,6 +23,7 @@ class EditProject extends ModalComponent
     public $projectUsers = [];
     public $stackholderIds = [];
     public $selectedPhases = [];
+    public $id = '';
 
     protected array $rules = [];
     public bool $canProceed = true;
@@ -38,50 +39,35 @@ class EditProject extends ModalComponent
     public function mount($id)
     {
         $this->project = Project::findOrFail($id);
-        $this->clients = Client::select('id', 'name')->get()->toArray();
-        $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)->get()->toArray();
+
+        $this->formData = [
+            'estimate' => (string) $this->project->estimate,
+            'name_project' => $this->project->name_project,
+            'id_client' => (string) $this->project->id_client,
+            'client_type' => $this->project->client_type,
+            'is_from_agent' => (bool) $this->project->is_from_agent,
+            'total_budget' => $this->project->total_budget,
+            'id_chief_area' => (string) $this->project->id_chief_area,
+            'id_chief_project' => (string) $this->project->id_chief_project,
+            'start_at' => $this->project->start_at,
+            'end_at' => $this->project->end_at,
+            'starting_price' => $this->project->starting_price,
+            'discount_percentage' => $this->project->discount_percentage,
+            'discounted' => $this->project->discounted,
+            'n_firms' => $this->project->n_firms,
+            'firms_and_percentage' => $this->project->firms_and_percentage,
+            'note' => $this->project->note,
+            'goals' => $this->project->goals,
+            'project_scope' => $this->project->project_scope,
+            'expected_results' => $this->project->expected_results,
+
+        ];
+
+
+        $this->clients = Client::select('id', 'name')->with('estimate')->get()->toArray();
+        $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', $this->project->client_id)->get()->toArray();
         $this->area = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->get()->toArray();
         $this->projectUsers = User::select('id', 'name', 'last_name', 'role')->where('role', 'project')->get()->toArray();
-
-        $this->formData = array_merge(
-            $this->formData,
-            $this->project->only([
-                'estimate',
-                'name_project',
-                'id_client',
-                'client_type',
-                'client_name',
-                'current_phase',
-                'is_from_agent',
-                'total_budget',
-                'id_chief_area',
-                'id_chief_project',
-                'chief_area',
-                'chief_project',
-                'responsible',
-                'start_at',
-                'end_at',
-                'starting_price',
-                'discount_percentage',
-                'discounted',
-                'n_firms',
-                'firms_and_percentage',
-                'note',
-                'general_info',
-                'note_client',
-                'goals',
-                'project_scope',
-                'expected_results',
-                'stackholder_id',
-                'status',
-            ])
-        );
-
-        $selectedPhasesToMerge = [];
-
-
-
-        $this->formData['selectedPhases'] = array_unique($selectedPhasesToMerge);
     }
 
     public function toggleAllPhases()
@@ -206,17 +192,8 @@ class EditProject extends ModalComponent
     }
 
 
-    public function update()
+    public function save()
     {
-        $this->validate([
-            'formData.name_project' => 'required|string|max:255',
-            'formData.client_name' => 'required|string|max:255',
-            'formData.client_type' => 'nullable|string',
-            'formData.total_budget' => 'nullable|numeric',
-            'formData.status' => 'nullable|string|max:255',
-            'formData.goals' => 'nullable|string',
-        ]);
-
         $this->formData = Project::prepareFormData($this->formData);
 
         try {
@@ -224,8 +201,8 @@ class EditProject extends ModalComponent
             $this->closeModal();
             Flux::toast('Progetto aggiornato con successo!');
             $this->dispatch('refresh');
-         
         } catch (\Exception $e) {
+            dd($e);
             Flux::toast('Errore durante l\'aggiornamento del progetto.');
         }
     }
