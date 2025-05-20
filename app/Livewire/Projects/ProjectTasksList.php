@@ -4,21 +4,9 @@ namespace App\Livewire\Projects;
 
 use Livewire\Attributes\On;
 
-use App\Models\AccountingValidation;
-use App\Models\CloseActivity;
-use App\Models\ConstructionSitePlane;
-use App\Models\Data;
-use App\Models\ExternalValidation;
-use App\Models\InvoicesSal;
-use App\Models\NonComplianceManagement;
 use App\Models\Project;
-use App\Models\ProjectStart;
-use App\Models\Report;
 use App\Models\TaskProject;
-
-use App\Models\Task;
 use App\Models\Phase;
-
 use Flux\Flux;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
@@ -36,23 +24,10 @@ class ProjectTasksList extends Component
     public function mount($id)
     {
         $this->project = Project::findOrFail($id);
-    /*     $this->projectStart = ProjectStart::where("project_id", $id)->where('status', '!=', 'deleted')->get(); */
         $this->groupedMicroTasks = TaskProject::where("project_id", $id)->where('status', '!=', 'deleted')->get();
-
-        /*         $this->tasks = Task::where("id_project", $id)->get();
- */
-        $this->phasesTable = Phase::with(['area', 'microArea', 'user'])
+        $this->phasesTable = Phase::with(['area', 'microArea', 'user', 'task'])
             ->where('id_project', $id)
             ->get();
-
-        /*         $this->accountingValidation = AccountingValidation::where("project_id", $id)->where('status', '!=', 'deleted')->get();
-        $this->closeActivity = CloseActivity::where("project_id", $id)->where('status', '!=', 'deleted')->get();
-        $this->constructionSitePlane = ConstructionSitePlane::where("project_id", $id)->where('status', '!=', 'deleted')->get();
-        $this->data = Data::where("project_id", $id)->where('status', '!=', 'deleted')->get();
-        $this->externalValidation = ExternalValidation::where("project_id", $id)->where('status', '!=', 'deleted')->get();
-        $this->invoicesSal = InvoicesSal::where("project_id", $id)->where('status', '!=', 'deleted')->get();
-        $this->nonComplianceManagement = NonComplianceManagement::where("project_id", $id)->where('status', '!=', 'deleted')->get();
-        $this->report = Report::where("project_id", $id)->where('status', '!=', 'deleted')->get(); */
     }
 
     public function show($id)

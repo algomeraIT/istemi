@@ -1,5 +1,7 @@
 <div>
     @if (!empty($phasesTable))
+
+
         @foreach ($phasesTable->groupBy(fn($item) => $item->area->name ?? 'Sconosciuto') as $areaName => $groupedPhases)
             <div x-data="{ open: false }" class="bg-white border rounded-md shadow-sm my-4">
                 <!-- Collapsible Header -->

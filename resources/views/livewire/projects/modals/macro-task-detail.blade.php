@@ -47,13 +47,12 @@
                         </div>
 
                         <div>
-                            <select wire:change="updateStatusStart({{ $task['id'] }}, $event.target.value)"
-                                class="text-sm w-full rounded border p-1 
-                                {{ $task['status'] === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
-                                <option value="Svolto" {{ $task['status'] === 'Svolto' ? 'selected' : '' }}>Svolto
-                                </option>
-                                <option value="In attesa" {{ $task['status'] === 'In attesa' ? 'selected' : '' }}>In
-                                    attesa</option>
+                            <select wire:change="updateStatusStart({{ $task->phase->id }}, $event.target.value)"
+                                class="w-full bg-transparent text-sm border-none focus:outline-none text-center
+                                {{ $task->phase->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
+                                
+                                <option value="In attesa" @selected($task->phase->status === 'In attesa')>In attesa</option>
+                                <option value="Svolto" @selected($task->phase->status === 'Svolto')>Svolto</option>
                             </select>
                         </div>
                     </div>

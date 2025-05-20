@@ -31,4 +31,9 @@ class Phase extends Model
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class, 'id_phases');
+    }
 }

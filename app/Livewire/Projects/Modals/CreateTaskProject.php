@@ -3,8 +3,7 @@
 namespace App\Livewire\Projects\Modals;
 use Livewire\Attributes\On;
 
-use App\Models\TaskProject;
-use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 use Flux\Flux;
@@ -49,31 +48,10 @@ class CreateTaskProject extends ModalComponent
         $this->validate();
 
         try {
-            $task = new TaskProject();
-            $task->project_id = $this->project_id;
 
-            $getProject = Project::where('id', $this->project_id)->get();
-
-            $task->client_id = $getProject[0]->id_client;
-            $task->user_id = $this->user_id;
-            $task->user_name = $this->user_name;
-       
-            // This sets the correct phase column dynamically
-            if (in_array($this->linkedPhaseType, [
-                'project_start_id',
-                'project_activity_id',
-                'project_accounting_id',
-                'project_data_id',
-                'project_construction_site_plane_id',
-                'project_external_validations_id',
-                'project_invoices_sal_id',
-                'project_non_compliance_id',
-                'project_report_id',
-                'project_close_id',
-            ])) {
-                $task->{$this->linkedPhaseType} = $this->linkedPhaseId;
-            }
-
+            $task = new Task();
+            $task->id_phases = $this->linkedPhaseId;
+            $task->id_assignee = $this->user_id;
             $task->title = $this->title;
             $task->assignee = $this->assignee;
             $task->cc = $this->cc;
@@ -89,6 +67,7 @@ class CreateTaskProject extends ModalComponent
             $this->closeModal();
 
         } catch (\Exception $e) {
+            dd($e);
             Flux::toast('Errore durante la creazione del task.');
         }
     }

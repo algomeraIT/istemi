@@ -8,18 +8,6 @@ use App\Models\Client;
 use App\Models\Estimate;
 use App\Models\User;
 
-use App\Models\Accounting;
-use App\Models\AccountingValidation;
-use App\Models\ActivityPhase;
-use App\Models\CloseActivity;
-use App\Models\ConstructionSitePlane;
-use App\Models\Data;
-use App\Models\ExternalValidation;
-use App\Models\InvoicesSal;
-use App\Models\NonComplianceManagement;
-use App\Models\ProjectStart;
-use App\Models\Report;
-use App\Models\Stackholder;
 use Livewire\Attributes\On;
 
 

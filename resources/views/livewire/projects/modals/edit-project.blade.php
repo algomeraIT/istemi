@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- Tab Content -->
-                <div class="w-3/4 p-4 mt-10 mr-10 border overflow-y-auto max-h-[500px] bg-[#F8FEFF] rounded">
+                <div class="w-3/4 p-4 mt-10 mr-10 border overflow-y-auto max-h-[500px] bg-[#F8FEFF] rounded  h-[50vh]">
                     @if ($currentTab == 1)
                         <h2 class="text-lg font-medium italic mb-4">Informazioni Generali</h2>
                         <div class="grid grid-cols-2 gap-4">
