@@ -36,6 +36,8 @@ class ProjectDetail extends Component
         $this->referent = Referent::get();
         $this->document = DocumentProject::where("project_id", $id)->get();
         $this->notes = NoteProject::where("project_id", $id)->orderBy('created_at', 'desc')->get();
+        $this->statusPhases = Phase::with(['area', 'microArea'])->where("id_project", $id)->where('status', '!=', 'deleted')->get();
+
 
         $ids = json_decode($this->project['stackholder_id'], true);
 
