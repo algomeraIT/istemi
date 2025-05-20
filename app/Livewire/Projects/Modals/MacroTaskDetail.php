@@ -6,23 +6,22 @@ use App\Models\NoteProject;
 use LivewireUI\Modal\ModalComponent;
 use Flux\Flux;
 use Livewire\Attributes\On;
-use App\Models\TaskProject;
 use App\Models\Task;
 use App\Models\Phase;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
 class MacroTaskDetail extends ModalComponent
 {
-    public $tasks, $groupedTasks, $monthTasks, $notes;
+    public $tasks, $groupedTasks, $monthTasks, $notes, $id;
 
     public string $note = '';
 
     public function mount($id)
     {
-        $this->tasks = Task::with(['phase.microArea', 'phase.user', 'assignee'])->where('id', $id)->get();
-        $this->notes = NoteProject::where('project_id', $id)->get();
+        $this->id = $id;
+        $this->tasks = Task::with(['phase.microArea', 'phase.user', 'assignee'])->where('id_phases', $id)->get();
+        $this->notes = NoteProject::where('id_phase', $id)->get();
     }
 
     public function updateStatusStart($id, $value)
@@ -41,15 +40,14 @@ class MacroTaskDetail extends ModalComponent
         }
     }
 
-    public function saveNote($id, $projectId, $clientId)
+    public function saveNote($id)
     {
         $this->validate([
             'note' => 'required|string|min:2',
         ]);
 
-        TaskProject::create([
-            'project_id' => $projectId,
-            'client_id' => $clientId,
+        NoteProject::create([
+            'id_phase' => $id,
             'note' => $this->note,
             'user_id' => Auth::user()->id,
             'title' => '',

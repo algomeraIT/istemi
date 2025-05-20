@@ -2,17 +2,6 @@
 
 use Carbon\Carbon;
 
-function extractSelectedPhases($projectId, array $fields, string $modelClass): array
-{
-    $record = $modelClass::where('project_id', $projectId)->first();
-    if (!$record) return [];
-
-    return collect($record->only($fields))
-        ->filter(fn($value) => $value === true)
-        ->keys()
-        ->all();
-}
-
 if (!function_exists('dateItFormat')) {
     function dateItFormat($date, $m = 'm')
     {

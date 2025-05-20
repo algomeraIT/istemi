@@ -8,10 +8,14 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-
-            $table->string('name');
             $table->unsignedBigInteger('id_phases');
             $table->unsignedBigInteger('id_assignee');
+            $table->string('title')->nullable();
+            $table->string('assignee')->nullable();
+            $table->string('cc')->nullable();
+            $table->date('expire')->nullable();
+            $table->text('note')->nullable();
+            $table->json('media')->nullable();
             $table->string('status')->default('In attesa');
 
             $table->timestamps();

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('notes_projects', function (Blueprint $table) {
             $table->id(); // This automatically creates an auto-incrementing primary key
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
-            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
+            $table->foreignId('id_phase')->constrained('phases')->onDelete('cascade');
             $table->string('user_name');
             $table->string('role');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

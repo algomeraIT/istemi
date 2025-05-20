@@ -36,7 +36,7 @@ class ProjectTasksList extends Component
     public function mount($id)
     {
         $this->project = Project::findOrFail($id);
-        $this->projectStart = ProjectStart::where("project_id", $id)->where('status', '!=', 'deleted')->get();
+    /*     $this->projectStart = ProjectStart::where("project_id", $id)->where('status', '!=', 'deleted')->get(); */
         $this->groupedMicroTasks = TaskProject::where("project_id", $id)->where('status', '!=', 'deleted')->get();
 
         /*         $this->tasks = Task::where("id_project", $id)->get();
@@ -158,7 +158,7 @@ class ProjectTasksList extends Component
     #[On('refresh')]
     public function render()
     {
-        $tasks = ProjectStart::where('project_id', $this->project->id)->get();
-        return view('livewire.projects.project-tasks-list', compact('tasks'))->layout('layout.main');
+/*         $tasks = ProjectStart::where('project_id', $this->project->id)->get();
+ */        return view('livewire.projects.project-tasks-list')->layout('layout.main');
     }
 }

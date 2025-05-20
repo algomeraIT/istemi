@@ -16,12 +16,10 @@ class CreateStackholdersTable extends Migration
         Schema::create('stackholders', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('last_name');
             $table->string('role');
             $table->string('email')->unique();
             $table->unsignedBigInteger('project_id');
             $table->timestamps();
-            // $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

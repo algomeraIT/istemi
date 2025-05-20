@@ -1,29 +1,5 @@
 <div class="p-4  w-10 h-10">
-    <style>
-        .ql-toolbar {
-            background-color: #F5FCFD;
-            height: 35px;
-            padding: 2px;
-            display: flex;
-            align-items: center;
-        }
-
-        .ql-snow.ql-toolbar button,
-        .ql-snow .ql-toolbar {
-            width: 60px;
-            font-size: 0.75rem;
-            white-space: normal;
-            padding: 4px;
-        }
-
-        .ql-list .ql-link .ql-image {
-            width: 20px !important;
-            font-size: 0.75rem;
-            white-space: normal;
-            padding: 4px;
-        }
-    </style>
-    <div class="fixed inset-0 flex items-center justify-center bg-opacity-10 ">
+    <div class="fixed inset-0 flex items-center justify-center bg-gray-50 bg-opacity-10 ">
         <div class="bg-white w-3/4  p-5 relative">
             @include('livewire.general.close')
 
