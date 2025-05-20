@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tax_rates', function (Blueprint $table) {
-            $table->id();                  // ← qui!
+            $table->id();
             $table->string('name');         // “IVA 22%”, “IVA 10%”…
             $table->decimal('rate', 5, 2);  // 22.00, 10.00…
             $table->boolean('active')->default(true);

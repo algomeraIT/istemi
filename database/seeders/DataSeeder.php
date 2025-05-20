@@ -15,15 +15,5 @@ class DataSeeder extends Seeder
     public function run(): void
     {
         Data::factory()->count(10)->create();
-
-        $this->call([
-            IssuersSeeder::class,
-            GeneralTermsSeeder::class,
-            PriceListsSeeder::class,
-            TaxRatesTableSeeder::class,
-            QuoteTemplatesSeeder::class,
-            CategoriesSeeder::class,
-            ProductsSeeder::class,
-        ]);
     }
 }

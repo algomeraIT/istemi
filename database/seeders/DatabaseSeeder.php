@@ -39,6 +39,17 @@ class DatabaseSeeder extends Seeder
             NoteProjectSeeder::class,
             TaskSeeder::class,
             MicroTaskNoteSeeder::class,
+
+            //non necessari
+            IssuersSeeder::class,
+            GeneralTermsSeeder::class,
+            PriceListsSeeder::class,
+            TaxRatesTableSeeder::class,
+            QuoteTemplatesSeeder::class,
+
+            //necessari
+            CategoriesSeeder::class,
+            ProductsSeeder::class,
         ]);
 
         Referent::factory()->count(40)->create();
