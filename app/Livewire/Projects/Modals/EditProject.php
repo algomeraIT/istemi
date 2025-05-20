@@ -20,6 +20,8 @@ use App\Models\NonComplianceManagement;
 use App\Models\ProjectStart;
 use App\Models\Report;
 use App\Models\Stackholder;
+use Livewire\Attributes\On;
+
 
 use Flux\Flux;
 
@@ -309,14 +311,16 @@ class EditProject extends ModalComponent
 
         try {
             $this->project->update($this->formData);
+            $this->closeModal();
             Flux::toast('Progetto aggiornato con successo!');
             $this->dispatch('refresh');
-            $this->closeModal();
+         
         } catch (\Exception $e) {
             Flux::toast('Errore durante l\'aggiornamento del progetto.');
         }
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.projects.modals.edit-project');

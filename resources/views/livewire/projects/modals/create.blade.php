@@ -68,729 +68,341 @@
                 <!-- Tab Content -->
                 <div class="w-3/4 p-4 mt-10 mr-10 border-1 overflow-y-auto max-h-[500px] bg-[#F8FEFF]">
                     <div class="">
-                        @if ($currentTab == 1)
-                            <div class="">
-                                <h2 class="text-lg font-medium italic mb-2">Informazioni Generali</h2>
-          
-                                <div class="lg:flex p-1">
-                                    <div class=" p-4 ">
+                        @if ($currentTab === 1)
+                        <h2 class="text-lg font-medium italic mb-4">Informazioni Generali</h2>
 
-                                        <label class="flex items-center text-sm font-medium text-gray-700">
-                                            <flux:icon.document class="w-4 h-4 mr-2 text-gray-500" />
-                                            Pratica
-                                        </label>
-                                        <select id="n_file" wire:model="formData.n_file"
-                                            class="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white">
-                                            <option selected value="">Seleziona</option>
-                                            @foreach ($estimates as $estimate)
-                                                <option value="{{ $estimate['id'] }}">{{ $estimate['serial_number'] }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('formData.n_file')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
+                        <div class="grid grid-cols-2 gap-4">
+                            <flux:field data-input>
+                                <div><flux:icon.document /><flux:label>Pratica</flux:label></div>
+                                <flux:select wire:model.live="formData.n_file">
+                                    <option value="">Seleziona</option>
+                                    @foreach ($estimates as $estimate)
+                                        <option value="{{ $estimate['id'] }}">{{ $estimate['serial_number'] }}</option>
+                                    @endforeach
+                                </flux:select>
+                                <flux:error name="formData.n_file" />
+                            </flux:field>
 
-                                    </div>
-                                    <div class=" p-4 w-full">
-                                        <label class="flex items-center text-sm font-medium text-gray-700">
-                                            <img src="/icon/menu/progetti.svg" alt="Progetto"
-                                                class="w-4 h-4 mr-2 text-gray-500">
+                            <flux:field data-input>
+                                <div><flux:icon.clipboard /><flux:label>Nome progetto</flux:label></div>
+                                <flux:input wire:model.live="formData.name_project" placeholder="Nome del Progetto" />
+                                <flux:error name="formData.name_project" />
+                            </flux:field>
 
-                                            Nome progetto
-                                        </label>
-                                        <input type="text" wire:model="formData.name_project"
-                                            placeholder="Nome del Progetto"
-                                            class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white">
-                                        @error('formData.name_project')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="lg:flex p-1 items-center">
-                                    <div class=" p-4">
-                                        <label class="flex items-center text-sm font-medium text-gray-700">
-                                            <flux:icon.user class="w-4 h-4 mr-2 text-gray-500" />
-                                            Cliente
-                                        </label>
-                                        <select id="id_client" wire:model="formData.id_client"
-                                            class="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white">
-                                            <option selected>Seleziona</option>
-                                            @foreach ($clients as $client)
-                                                <option value="{{ $client['id'] }}">{{ $client['name'] }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('formData.id_client')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class=" p-4 w-52">
-                                        <label class="flex items-center text-sm font-medium text-gray-700">
-                                            <flux:icon.tag class="w-4 h-4 mr-2 text-gray-500" />
-                                            Tipo cliente
-                                        </label>
-                                        <select wire:model="formData.client_type"
-                                            class="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white">
-                                            <option value="" disabled selected>Seleziona</option>
-                                            <option value="Pubblico">Pubblico</option>
-                                            <option value="Privato">Privato</option>
-                                        </select>
-                                        @error('formData.client_type')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="p-4 w-2xs">
-                                        <label class="inline-flex items-center space-x-2 p-2 cursor-pointer">
-                                            <input  type="checkbox" class="phase-checkbox"  wire:model="formData.is_from_agent"
-                                                class="h-5 w-5 text-cyan-600 border-gray-300 rounded focus:ring-cyan-500" />
-                                            <span class="text-sm font-medium text-gray-700">Provenienza da Agente</span>
-                                        </label>
-                                        @error('formData.is_from_agent')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class=" p-4">
-                                        <label class="flex items-center text-sm font-medium text-gray-700">
-                                            <flux:icon.currency-euro class="w-4 h-4 mr-2 text-gray-500" />
-                                            Budget allocato
-                                        </label>
-                                        <div class="relative">
-                                            <span
-                                                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">€</span>
-                                            <input type="number" min="0" step="0.01"
-                                                wire:model="formData.total_budget"
-                                                class=" p-2 w-full pl-8 mt-1 rounded bg-white" placeholder="0.00">
-                                            @error('formData.total_budget')
-                                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="lg:flex p-1">
-                                    <div class=" p-4">
-                                        <label class="flex items-center text-sm font-medium text-gray-700">
-                                            <flux:icon.at-symbol class="w-4 h-4 mr-2 text-gray-500" />
-                                            Responsabile di area
-                                        </label>
-                                        <select id="id_chief_area" wire:model="formData.id_chief_area"
-                                            class="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white">
-                                            <option selected>Seleziona</option>
-                                            @foreach ($area as $a)
-                                                <option value="{{ $a['id'] }}">{{ $a['name'] . ' ' . $a['last_name'] }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('formData.id_chief_area')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class=" p-4">
-                                        <label class="flex items-center text-sm font-medium text-gray-700">
-                                            <flux:icon.at-symbol class="w-4 h-4 mr-2 text-gray-500" />
-                                            Responsabile di progetto
-                                        </label>
-                                        <select id="id_chief_project" wire:model="formData.id_chief_project"
-                                            class="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white">
-                                            <option selected>Seleziona</option>
-                                            @foreach ($projectUser as $p)
-                                                <option value="{{ $p['id'] }}">{{ $p['name'] . ' ' . $p['last_name'] }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('formData.id_chief_project')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class=" p-4">
-                                        <label class="flex items-center text-sm font-medium text-gray-700">
-                                            <flux:icon.calendar class="w-4 h-4 mr-2 text-gray-500" />
-                                            Data inizio
-                                        </label>
-                                        <input type="date" wire:model="formData.start_at"
-                                            class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white">
-                                        @error('formData.start_at')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class=" p-4">
-                                        <label class="flex items-center text-sm font-medium text-gray-700">
-                                            <flux:icon.calendar class="w-4 h-4 mr-2 text-gray-500" />
-                                            Data fine
-                                        </label>
-                                        <input type="date" wire:model="formData.end_at"
-                                            class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white">
-                                        @error('formData.end_at')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
+                            <flux:field data-input>
+                                <div><flux:icon.user /><flux:label>Cliente</flux:label></div>
+                                <flux:select wire:model.live="formData.id_client">
+                                    <option value="">Seleziona</option>
+                                    @foreach ($clients as $client)
+                                        <option value="{{ $client['id'] }}">{{ $client['name'] }}</option>
+                                    @endforeach
+                                </flux:select>
+                                <flux:error name="formData.id_client" />
+                            </flux:field>
+
+                            <flux:field data-input>
+                                <div><flux:icon.tag /><flux:label>Tipo cliente</flux:label></div>
+                                <flux:select wire:model.live="formData.client_type">
+                                    <option value="">Seleziona</option>
+                                    <option value="Pubblico">Pubblico</option>
+                                    <option value="Privato">Privato</option>
+                                </flux:select>
+                                <flux:error name="formData.client_type" />
+                            </flux:field>
+
+                            <flux:field data-input>
+                                <div><flux:label>Provenienza da Agente</flux:label></div>
+                                <flux:checkbox wire:model.live="formData.is_from_agent" />
+                                <flux:error name="formData.is_from_agent" />
+                            </flux:field>
+
+                            <flux:field data-input>
+                                <div><flux:icon.currency-euro /><flux:label>Budget Allocato</flux:label></div>
+                                <flux:input type="number" step="0.01" min="0" wire:model.live="formData.total_budget" placeholder="0.00" />
+                                <flux:error name="formData.total_budget" />
+                            </flux:field>
+
+                            <flux:field data-input>
+                                <div><flux:icon.at-symbol /><flux:label>Responsabile di Area</flux:label></div>
+                                <flux:select wire:model.live="formData.id_chief_area">
+                                    <option value="">Seleziona</option>
+                                    @foreach ($area as $a)
+                                        <option value="{{ $a['id'] }}">{{ $a['name'] . ' ' . $a['last_name'] }}</option>
+                                    @endforeach
+                                </flux:select>
+                                <flux:error name="formData.id_chief_area" />
+                            </flux:field>
+
+                            <flux:field data-input>
+                                <div><flux:icon.at-symbol /><flux:label>Responsabile di Progetto</flux:label></div>
+                                <flux:select wire:model.live="formData.id_chief_project">
+                                    <option value="">Seleziona</option>
+                                    @foreach ($projectUser as $p)
+                                        <option value="{{ $p['id'] }}">{{ $p['name'] . ' ' . $p['last_name'] }}</option>
+                                    @endforeach
+                                </flux:select>
+                                <flux:error name="formData.id_chief_project" />
+                            </flux:field>
+
+                            <flux:field data-input>
+                                <div><flux:icon.calendar /><flux:label>Data Inizio</flux:label></div>
+                                <flux:input type="date" wire:model.live="formData.start_at" />
+                                <flux:error name="formData.start_at" />
+                            </flux:field>
+
+                            <flux:field data-input>
+                                <div><flux:icon.calendar /><flux:label>Data Fine</flux:label></div>
+                                <flux:input type="date" wire:model.live="formData.end_at" />
+                                <flux:error name="formData.end_at" />
+                            </flux:field>
+                        </div>
+             
                         @elseif ($currentTab == 2)
-                            <div>
-                                <h2 class="text-lg font-medium italic mb-2">A cura dell'Area Gare</h2>
-
-                                <!-- First row (3 inputs) -->
-                                <div class="lg:flex p-1">
-                                    <div class="p-4 flex-1">
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Base D'Asta</label>
-                                        <input type="number" step="0.01" min="0"
-                                            wire:model="formData.starting_price" placeholder="Base D'Asta"
-                                            class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white rounded" />
-                                        @error('formData.starting_price')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
+                        <div>
+                            <h2 class="text-lg font-medium italic mb-4">A cura dell'Area Gare</h2>
+                        
+                            <div class="lg:flex gap-4">
+                                <flux:field data-input class="flex-1">
+                                    <div>
+                                        <flux:icon.currency-euro />
+                                        <flux:label>Base D'Asta</flux:label>
                                     </div>
-
-                                    <div class="p-4 flex-1">
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Percentuale di
-                                            Ribasso</label>
-                                        <input type="number" step="0.01" min="0"
-                                            wire:model="formData.discount_percentage"
-                                            placeholder="Percentuale di Ribasso"
-                                            class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white rounded" />
-                                        @error('formData.discount_percentage')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
+                                    <flux:input type="number" step="0.01" min="0" placeholder="Base D'Asta" wire:model.live="formData.starting_price" />
+                                    <flux:error name="formData.starting_price" />
+                                </flux:field>
+                        
+                                <flux:field data-input class="flex-1">
+                                    <div>
+                                        <flux:icon.percent-badge />
+                                        <flux:label>Percentuale di Ribasso</flux:label>
                                     </div>
-
-                                    <div class="p-4 flex-1">
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Ribassato</label>
-                                        <input type="number" step="0.01" min="0"
-                                            wire:model="formData.discounted" placeholder="Ribassato"
-                                            class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white rounded" />
-                                        @error('formData.discounted')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
+                                    <flux:input type="number" step="0.01" min="0" placeholder="Percentuale di Ribasso" wire:model.live="formData.discount_percentage" />
+                                    <flux:error name="formData.discount_percentage" />
+                                </flux:field>
+                        
+                                <flux:field data-input class="flex-1">
+                                    <div>
+                                        <flux:icon.percent-badge />
+                                        <flux:label>Ribassato</flux:label>
                                     </div>
-                                </div>
-
-                                <!-- Second row (3 inputs + textarea) -->
-                                <div class="lg:flex p-1">
-                                    <div class="p-4 flex-1">
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Componenti del
-                                            Raggruppamento</label>
-                                        <input type="number" wire:model="formData.n_firms"
-                                            placeholder="Componenti del Raggruppamento"
-                                            class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white rounded" />
-                                        @error('formData.n_firms')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="p-4 flex-1">
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Percentuali del
-                                            Raggruppamento</label>
-                                        <input type="number" wire:model="formData.firms_and_percentage"
-                                            placeholder="Percentuali del Raggruppamento"
-                                            class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white rounded" />
-                                        @error('formData.firms_and_percentage')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="p-4 flex-1">
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Note</label>
-                                        <textarea wire:model="formData.note" placeholder="Notes"
-                                            class="w-full border border-gray-200 text-sm p-2 focus:outline-none bg-white rounded h-24"></textarea>
-                                        @error('formData.note')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
+                                    <flux:input type="number" step="0.01" min="0" placeholder="Ribassato" wire:model.live="formData.discounted" />
+                                    <flux:error name="formData.discounted" />
+                                </flux:field>
                             </div>
+                        
+                            <div class="lg:flex gap-4 mt-6">
+                                <flux:field data-input class="flex-1">
+                                    <div>
+                                        <flux:icon.users />
+                                        <flux:label>Componenti del Raggruppamento</flux:label>
+                                    </div>
+                                    <flux:input type="number" placeholder="Componenti del Raggruppamento" wire:model.live="formData.n_firms" />
+                                    <flux:error name="formData.n_firms" />
+                                </flux:field>
+                        
+                                <flux:field data-input class="flex-1">
+                                    <div>
+                                        <flux:icon.percent-badge />
+                                        <flux:label>Percentuali del Raggruppamento</flux:label>
+                                    </div>
+                                    <flux:input type="number" placeholder="Percentuali del Raggruppamento" wire:model.live="formData.firms_and_percentage" />
+                                    <flux:error name="formData.firms_and_percentage" />
+                                </flux:field>
+                        
+                                <flux:field data-input class="flex-1">
+                                    <div>
+                                        <flux:icon.clipboard />
+                                        <flux:label>Note</flux:label>
+                                    </div>
+                                    <flux:textarea wire:model.live="formData.note" placeholder="Notes" />
+                                    <flux:error name="formData.note" />
+                                </flux:field>
+                            </div>
+                        </div>
+                        
                         @elseif ($currentTab == 3)
-                            <div>
-                                <h2 class="text-lg font-bold mb-2">Descrizione</h2>
-
-                                <!-- First row: Goals & Project Scope -->
-                                <div class=" p-1">
-                                    <div class="p-4 flex-1">
-
-                                        <!-- Nota (rich text) -->
-
-
-                                        {{-- The x-init directive allows you to hook into the initialization phase of any element in Alpine. --}}
-                                        <div x-data x-init="$nextTick(() => {
-                                            const Icon = Quill.import('ui/icons');
-                                            Icon['bold'] = 'grassetto';
-                                            Icon['italic'] = 'corsivo';
-                                            Icon['underline'] = 'sottolineato';
-                                        
-                                            const quill = new Quill($refs.quillEditor, {
-                                                theme: 'snow',
-                                                placeholder: 'Scrivi qualcosa…',
-                                                modules: {
-                                                    toolbar: [
-                                                        ['bold', 'italic', 'underline'],
-                                                        [{ 'list': 'bullet' }, 'link', 'image'],
-                                        
-                                                    ]
-                                                }
-                                            });
-                                        
-                                            quill.root.innerHTML = $refs.hiddenInput.value;
-                                            quill.on('text-change', () => {
-                                                $refs.hiddenInput.value = quill.root.innerHTML;
-                                                $refs.hiddenInput.dispatchEvent(new Event('input'));
-                                            });
-                                            Livewire.hook('message.processed', () => {
-                                                quill.root.innerHTML = $refs.hiddenInput.value;
-                                            });
-                                        })" wire:ignore>
-                                            <label class="text-xs flex items-center gap-2 mb-1 text-[#B0B0B0]">
-                                                <flux:icon.clipboard class="w-[10px] text-gray-500" />
-                                                Obiettivi
-                                            </label>
-
-                                            <!-- This is where Quill will render -->
-                                            <div x-ref="quillEditor"
-                                                class="bg-white border border-gray-200 h-[200px] mb-4 p-2 overflow-y-auto">
-                                            </div>
-
-                                            <!-- Hidden field Livewire listens to -->
-                                            <input type="hidden" wire:model="formData.goals" x-ref="hiddenInput" />
-                                            @error('formData.goals')
-                                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-
-
-
+                        <div class="">
+                            <h2 class="text-lg font-bold mb-4">Descrizione</h2>
+                        
+                            <div class="flex flex-col">
+                                {{-- Obiettivi --}}
+                                <flux:field data-input>
+                                    <div>
+                                        <flux:icon.clipboard />
+                                        <flux:label>Obiettivi</flux:label>
                                     </div>
-                                    {{-- Ambito del progetto --}}
-                                    <div class="p-4 flex-1">
-                                        <div x-data x-init="$nextTick(() => {
-                                            const Icon = Quill.import('ui/icons');
-                                            Icon['bold'] = 'grassetto';
-                                            Icon['italic'] = 'corsivo';
-                                            Icon['underline'] = 'sottolineato';
-                                        
-                                            const quill = new Quill($refs.quillEditor, {
-                                                theme: 'snow',
-                                                placeholder: 'Scrivi qualcosa…',
-                                                modules: {
-                                                    toolbar: [
-                                                        ['bold', 'italic', 'underline'],
-                                                        [{ 'list': 'bullet' }, 'link', 'image'],
-                                        
-                                                    ]
-                                                }
-                                            });
-                                        
-                                            quill.root.innerHTML = $refs.hiddenInput.value;
-                                            quill.on('text-change', () => {
-                                                $refs.hiddenInput.value = quill.root.innerHTML;
-                                                $refs.hiddenInput.dispatchEvent(new Event('input'));
-                                            });
-                                            Livewire.hook('message.processed', () => {
-                                                quill.root.innerHTML = $refs.hiddenInput.value;
-                                            });
-                                        })" wire:ignore>
-                                            <label class="text-xs flex items-center gap-2 mb-1 text-[#B0B0B0]">
-                                                <flux:icon.clipboard class="w-[10px] text-gray-500" />
-                                                Ambito del Progetto
-                                            </label>
-
-                                            <!-- This is where Quill will render -->
-                                            <div x-ref="quillEditor"
-                                                class="bg-white border border-gray-200 h-[200px] mb-4 p-2 overflow-y-auto">
-                                            </div>
-
-                                            <!-- Hidden field Livewire listens to -->
-                                            <input type="hidden" wire:model="formData.project_scope"
-                                                x-ref="hiddenInput" />
-                                            @error('formData.project_scope')
-                                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-
+                                    <flux:editor class="**:data-[slot=content]:min-h-[100px]!" wire:model.live="formData.goals" placeholder="Scrivi gli obiettivi..." />
+                                    <flux:error name="formData.goals" />
+                                </flux:field>
+                        
+                                {{-- Ambito del Progetto --}}
+                                <flux:field data-input>
+                                    <div>
+                                        <flux:icon.clipboard />
+                                        <flux:label>Ambito del Progetto</flux:label>
                                     </div>
-
-                                    {{-- risultati attesi --}}
-                                    <div class="p-4 flex-1">
-                                        <div x-data x-init="$nextTick(() => {
-                                            const Icon = Quill.import('ui/icons');
-                                            Icon['bold'] = 'grassetto';
-                                            Icon['italic'] = 'corsivo';
-                                            Icon['underline'] = 'sottolineato';
-                                        
-                                            const quill = new Quill($refs.quillEditor, {
-                                                theme: 'snow',
-                                                placeholder: 'Scrivi qualcosa…',
-                                                modules: {
-                                                    toolbar: [
-                                                        ['bold', 'italic', 'underline'],
-                                                        [{ 'list': 'bullet' }, 'link', 'image'],
-                                        
-                                                    ]
-                                                }
-                                            });
-                                        
-                                            quill.root.innerHTML = $refs.hiddenInput.value;
-                                            quill.on('text-change', () => {
-                                                $refs.hiddenInput.value = quill.root.innerHTML;
-                                                $refs.hiddenInput.dispatchEvent(new Event('input'));
-                                            });
-                                            Livewire.hook('message.processed', () => {
-                                                quill.root.innerHTML = $refs.hiddenInput.value;
-                                            });
-                                        })" wire:ignore>
-                                            <label class="text-xs flex items-center gap-2 mb-1 text-[#B0B0B0]">
-                                                <flux:icon.clipboard class="w-[10px] text-gray-500" />
-                                                Risultati attesi
-                                            </label>
-
-                                            <!-- This is where Quill will render -->
-                                            <div x-ref="quillEditor"
-                                                class="bg-white border border-gray-200 h-[200px] mb-4 p-2 overflow-y-auto">
-                                            </div>
-
-                                            <!-- Hidden field Livewire listens to -->
-                                            <input type="hidden" wire:model="formData.expected_results"
-                                                x-ref="hiddenInput" />
-                                            @error('formData.expected_results')
-                                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-
+                                    <flux:editor class="**:data-[slot=content]:min-h-[100px]!" wire:model.live="formData.project_scope" placeholder="Descrivi l'ambito..." />
+                                    <flux:error name="formData.project_scope" />
+                                </flux:field>
+                        
+                                {{-- Risultati attesi --}}
+                                <flux:field data-input>
+                                    <div>
+                                        <flux:icon.clipboard />
+                                        <flux:label>Risultati Attesi</flux:label>
                                     </div>
-                                    {{-- stackholder --}}
-                                    {{-- quando clicco in avanti devo già inviare i dati al component inviare usare @entangle --}}
-                                        <div class="p-4 flex-1">
-                                            <div
-                                            x-data="{
-                                                newStack: { name: '', role: '', email: '' },
-                                                stackholders: @entangle('formData.stackholders').live,
-                                                add() {
-                                                    if (!this.newStack.name.trim() || !this.newStack.email.trim() || !this.newStack.role) return;
-                                                    this.stackholders.push({ ...this.newStack });
-                                                    this.newStack = { name: '', role: '', email: '' };
-                                                },
-                                                remove(idx) {
-                                                    this.stackholders.splice(idx, 1);
-                                                }
-                                            }"
-                                            class="p-4 border-none mt-6"
-                                        >
-                                            <div class="flex items-center space-x-2 mb-4">
-                                                <flux:icon.user class="w-5 h-5 text-gray-600" />
-                                                <h3 class="text-sm font-medium text-gray-700">Stackholder coinvolti</h3>
+                                    <flux:editor class="**:data-[slot=content]:min-h-[100px]!" wire:model.live="formData.expected_results" placeholder="Inserisci i risultati attesi..." />
+                                    <flux:error name="formData.expected_results" />
+                                </flux:field>
+                            </div>
+                        
+                            {{-- Stackholders --}}
+                            <div class="mt-8">
+                                <div
+                                    x-data="{
+                                        newStack: { name: '', role: '', email: '' },
+                                        stackholders: @entangle('formData.stackholders').live,
+                                        add() {
+                                            if (!this.newStack.name.trim() || !this.newStack.email.trim() || !this.newStack.role) return;
+                                            this.stackholders.push({ ...this.newStack });
+                                            this.newStack = { name: '', role: '', email: '' };
+                                        },
+                                        remove(idx) {
+                                            this.stackholders.splice(idx, 1);
+                                        }
+                                    }">
+                                    <div class="flex items-center space-x-2 mb-4">
+                                        <flux:icon.user class="w-5 h-5 text-gray-600" />
+                                        <h3 class="text-sm font-medium text-gray-700">Stackholder coinvolti</h3>
+                                    </div>
+                        
+                                    <div class="flex flex-wrap gap-2">
+                                        <flux:input x-model="newStack.name" placeholder="Nome e Cognome" class="w-[300px]" />
+                                        <flux:input type="email" x-model="newStack.email" placeholder="Email" class="w-[250px]" />
+                                        <select x-model="newStack.role" class="border px-2 py-1 text-sm rounded">
+                                            <option value="">Ruolo</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="User">User</option>
+                                        </select>
+                                        <button @click="add()" type="button" class="w-10 h-10 bg-cyan-600 text-white rounded">+</button>
+                                    </div>
+                        
+                                    <template x-for="(stk, i) in stackholders" :key="i">
+                                        <div class="mt-4 bg-gray-50 p-2 border rounded">
+                                            <div class="flex justify-between items-center">
+                                                <p class="text-sm"><strong x-text="stk.name"></strong> - <span x-text="stk.role"></span> - <span x-text="stk.email"></span></p>
+                                                <button type="button" @click="remove(i)" class="text-red-500 hover:text-red-700">&times;</button>
                                             </div>
-                                        
-                                            <div class="flex lg:items-end space-x-2">
-                                                <input type="text" x-model="newStack.name" placeholder="Nome e cognome"
-                                                    class="w-[400px] border border-gray-200 text-sm p-2 rounded" />
-                                                <input type="email" x-model="newStack.email" placeholder="Email"
-                                                    class="w-[200px] border border-gray-200 text-sm p-2 rounded" />
-                                                <select x-model="newStack.role" class="w-[100px] border border-gray-200 text-sm p-2 rounded">
-                                                    <option value="">Ruolo</option>
-                                                    <option value="Admin">Admin</option>
-                                                    <option value="User">User</option>
-                                                </select>
-                                                <button @click="add()" type="button"
-                                                    class="w-10 h-10 bg-cyan-600 text-white rounded hover:bg-cyan-700 flex items-center justify-center">
-                                                    +
-                                                </button>
-                                            </div>
-                                        
-                                            <!-- Render list and wire:model inputs -->
-                                            <template x-for="(stk, i) in stackholders" :key="i">
-                                                <div class="mt-4 bg-gray-50 p-2 border rounded">
-                                                    <div class="flex justify-between items-center">
-                                                        <div>
-                                                            <p class="text-sm"><strong x-text="stk.name"></strong> &mdash; <span x-text="stk.role"></span> &mdash; <span x-text="stk.email"></span></p>
-                                                        </div>
-                                                        <button type="button" @click="remove(i)" class="text-red-500 hover:text-red-700">&times;</button>
-                                                    </div>
-                                        
-                                                    <!-- Livewire-compatible hidden fields -->
-                                                    <input type="hidden" :name="'formData.stackholders['+i+'][name]'" :value="stk.name" wire:model="formData.stackholders[i].name" />
-                                                    <input type="hidden" :name="'formData.stackholders['+i+'][email]'" :value="stk.email" wire:model="formData.stackholders[i].email" />
-                                                    <input type="hidden" :name="'formData.stackholders['+i+'][role]'" :value="stk.role" wire:model="formData.stackholders[i].role" />
-                                                </div>
-                                            </template>
-                                        
-                                            <div x-show="!stackholders.length" class="text-sm text-gray-400 mt-2 italic">
-                                                Nessun stackholder aggiunto
-                                            </div>
+                                            <input type="hidden" :name="'formData.stackholders['+i+'][name]'" :value="stk.name" wire:model="formData.stackholders[i].name" />
+                                            <input type="hidden" :name="'formData.stackholders['+i+'][email]'" :value="stk.email" wire:model="formData.stackholders[i].email" />
+                                            <input type="hidden" :name="'formData.stackholders['+i+'][role]'" :value="stk.role" wire:model="formData.stackholders[i].role" />
                                         </div>
-
-                                    </div> 
+                                    </template>
+                        
+                                    <div x-show="!stackholders.length" class="text-sm text-gray-400 mt-2 italic">
+                                        Nessun stackholder aggiunto
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        
                         @elseif ($currentTab == 4)
+                        <div>
                             <h2 class="text-lg font-medium italic mb-2">Fasi previste</h2>
-                            <div x-data="{ selectAll: false }" x-init="$watch('selectAll', val => {
-                                $el.querySelectorAll('.phase-checkbox').forEach(cb => cb.checked = val);
-                            })">
-                                <!-- “Select All” master checkbox -->
-                                <input type="checkbox" wire:click="toggleAllPhases" class="mr-2" />
-                                Seleziona tutti
-                                <!-- project_start fields -->
-                                <h3>Avvio progetto</h3>
-                                <ul class="ml-5 space-y-1">
-                                    {{-- This is Livewire’s two-way binding. It means: when this checkbox is checked, its value (contract_ver) will be added to the array formData.selectedPhases. If it’s unchecked, Livewire will remove it from the array. --}}
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="contract_ver" value="contract_ver" data-phase wire:model="formData.selectedPhases">
-                                        <label for="contract_ver">Verifica contratto</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="cme_ver" value="cme_ver" data-phase wire:model="formData.selectedPhases">
-                                        <label for="cme_ver">Verifica CME - Piano d'indagine e capitolato</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="reserves" value="reserves" data-phase wire:model="formData.selectedPhases">
-                                        <label for="reserves">Riserve</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="expiring_date_project" value="expiring_date_project" data-phase wire:model="formData.selectedPhases">
-                                        <label for="expiring_date_project">Impostare la data di scadenza del progetto</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="communication_plan" value="communication_plan" data-phase wire:model="formData.selectedPhases">
-                                        <label for="communication_plan">Definizione del piano di comunicazione</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="extension" value="extension" data-phase wire:model="formData.selectedPhases">
-                                        <label for="extension">Proroga</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="sal" value="sal" data-phase wire:model="formData.selectedPhases">
-                                        <label for="sal">Possibilità di produrre dei SAL</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="warranty" value="warranty" data-phase wire:model="formData.selectedPhases">
-                                        <label for="warranty">Garanzia definitiva</label>
-                                    </li>
-                                </ul>
-
-                                <!-- invoices_sal fields -->
-                                <h3>Fatture acconto e SAL</h3>
-                                <ul class="ml-5 space-y-1">
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="emission_invoice" value="emission_invoice" data-phase wire:model="formData.selectedPhases">
-                                        <label for="emission_invoice">Emissione fattura</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="payment_invoice" value="payment_invoice" data-phase wire:model="formData.selectedPhases">
-                                        <label for="payment_invoice">Pagamento fattura</label>
-                                    </li>
-                                </ul>
-
-                                <!-- construction_site_plane fields -->
-                                <h3>Pianificazione cantiere</h3>
-                                <ul class="ml-5 space-y-1">
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="construction_site_plane" value="construction_site_plane" wire:model="formData.selectedPhases">
-                                        <label for="construction_site_plane">Verifica accesibilità e sopralluogo</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="travel" value="travel" wire:model="formData.selectedPhases">
-                                        <label for="travel">Organizzazione trasferte</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="site_pass" value="site_pass" wire:model="formData.selectedPhases">
-                                        <label for="site_pass">Permessi/pass accesso al sito</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="ztl" value="ztl" wire:model="formData.selectedPhases">
-                                        <label for="ztl">Permessi/pass ZTL</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="supplier" value="supplier" wire:model="formData.selectedPhases">
-                                        <label for="supplier">Selezione fornitori</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="timetable" value="timetable" wire:model="formData.selectedPhases">
-                                        <label for="timetable">Cronoprogramma</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="security" value="security" wire:model="formData.selectedPhases">
-                                        <label for="security">Sicurezza</label>
-                                    </li>
-                                </ul>
-
-                                <!-- activities fields -->
-                                <h3>Esecuzione attività</h3>
-                                <ul class="ml-5 space-y-1">
-                               {{--      <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="activities" value="activities" wire:model="formData.selectedPhases">
-                                        <label for="activities">Activities</label>
-                                    </li> --}}
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="team" value="team" wire:model="formData.selectedPhases">
-                                        <label for="team">Selezione della squadra (caposquadra + altre risorse)</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="field_activities" value="field_activities" wire:model="formData.selectedPhases">
-                                        <label for="field_activities">Impartire indicazioni utili allo svolgimento delle attività in campo</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="daily_check_activities" value="daily_check_activities" wire:model="formData.selectedPhases">
-                                        <label for="daily_check_activities">Riepilogo giornaliero delle attività eseguite</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="contruction_site_media" value="contruction_site_media" wire:model="formData.selectedPhases">
-                                        <label for="contruction_site_media">Caricamento dati di cantiere (foto/grafici/schizzi ecc...)</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="activity_validation" value="activity_validation" wire:model="formData.selectedPhases">
-                                        <label for="activity_validation">Controllo avanzamento attività/budget (PM)</label>
-                                    </li>
-                                </ul>
-
-                                <!-- data fields -->
-                                <h3>Elaborazione dati</h3>
-                                <ul class="ml-5 space-y-1">
-                              {{--       <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="data" value="data" wire:model="formData.selectedPhases">
-                                        <label for="data">Data</label>
-                                    </li> --}}
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="foreman_docs" value="foreman_docs" wire:model="formData.selectedPhases">
-                                        <label for="foreman_docs">Controllo documentazione fornita dal Caposquadra</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="sanding_sample_lab" value="sanding_sample_lab" wire:model="formData.selectedPhases">
-                                        <label for="sanding_sample_lab">Spedizione campione ai laboratori</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="data_validation" value="data_validation" wire:model="formData.selectedPhases">
-                                        <label for="data_validation">Avvio attività di analisi dati</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="internal_validation" value="internal_validation" wire:model="formData.selectedPhases">
-                                        <label for="internal_validation">Validazione interna degli elaborati prodotti</label>
-                                    </li>
-                                </ul>
-
-                                <!-- Report fields -->
-                                <h3>trasmissione report</h3>
-                                <ul class="ml-5 space-y-1">
-                                {{--     <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="Report" value="Report" wire:model="formData.selectedPhases">
-                                        <label for="Report">Report</label>
-                                    </li> --}}
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="create_note" value="create_note" wire:model="formData.selectedPhases">
-                                        <label for="create_note">Predisposizione di nota di trasmissione</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="sending_note" value="sending_note" wire:model="formData.selectedPhases">
-                                        <label for="sending_note">Invio nota di trasmissione</label>
-                                    </li>
-                                </ul>
-
-                                <!-- accounting fields -->
-                                <h3>Contabilità</h3>
-                                <ul class="ml-5 space-y-1">
-                                  {{--   <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="accounting" value="accounting" wire:model="formData.selectedPhases">
-                                        <label for="accounting">accounting</label>
-                                    </li> --}}
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="accounting_dec" value="accounting_dec" wire:model="formData.selectedPhases">
-                                        <label for="accounting_dec">Predisporre la contabilità delle attività eseguite ed inviarla al DEC</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="create_cre" value="create_cre" wire:model="formData.selectedPhases">
-                                        <label for="create_cre">Produrre riciesta CRE</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="expense_allocation" value="expense_allocation" wire:model="formData.selectedPhases">
-                                        <label for="expense_allocation">Riparto spese</label>
-                                    </li>
-                                </ul>
-
-                                <!-- external_validation fields -->
-                                <h3>Conferma esterna</h3>
-                                <ul class="ml-5 space-y-1">
-                            {{--         <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="external_validation" value="external_validation" wire:model="formData.selectedPhases">
-                                        <label for="external_validation">external_validation</label>
-                                    </li> --}}
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="cre" value="cre" wire:model="formData.selectedPhases">
-                                        <label for="cre">CRE</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="liquidation" value="liquidation" wire:model="formData.selectedPhases">
-                                        <label for="liquidation">Liquidazione</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="balance_invoice" value="balance_invoice" wire:model="formData.selectedPhases">
-                                        <label for="balance_invoice">Predisposizione della fattura di saldo</label>
-                                    </li>
-                                </ul>
-
-                                <!-- accounting_validation fields -->
-                                <h3>Verifica tecnico contabile</h3>
-                                <ul class="ml-5 space-y-1">
-                            {{--         <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="accounting_validation" value="accounting_validation" wire:model="formData.selectedPhases">
-                                        <label for="accounting_validation">accounting_validation</label>
-                                    </li> --}}
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="balance" value="balance" wire:model="formData.selectedPhases">
-                                        <label for="balance">Saldo</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="cre_archiving" value="cre_archiving" wire:model="formData.selectedPhases">
-                                        <label for="cre_archiving">Archiviazione CRE</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="pay_suppliers" value="pay_suppliers" wire:model="formData.selectedPhases">
-                                        <label for="pay_suppliers">Pagamento fornitori</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="pay_allocation_expenses" value="pay_allocation_expenses" wire:model="formData.selectedPhases">
-                                        <label for="pay_allocation_expenses">Pagamento riparto spese</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="learned_lesson" value="learned_lesson" wire:model="formData.selectedPhases">
-                                        <label for="learned_lesson">Lezioni apprese</label>
-                                    </li>
-                                </ul>
-
-                                <!-- non_compliance_management fields -->
-                                <h3>Non-Compliance Management</h3>
-                                <ul class="ml-5 space-y-1">
-                                {{--     <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="non_compliance_management" value="non_compliance_management" wire:model="formData.selectedPhases">
-                                        <label for="non_compliance_management">non_compliance_management</label>
-                                    </li> --}}
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="sa" value="sa" wire:model="formData.selectedPhases">
-                                        <label for="sa">Accogliere le richieste/integrazioni della S.A.</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="integrate_doc" value="integrate_doc" wire:model="formData.selectedPhases">
-                                        <label for="integrate_doc">Produrre ed inviare documentazione integrativa</label>
-                                    </li>
-                                </ul>
-
-                                <!-- activity fields -->
-                                <h3>Chiusura attività</h3>
-                                <ul class="ml-5 space-y-1">
-                              {{--       <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="close_activity" value="close_activity" wire:model="formData.selectedPhases">
-                                        <label for="close_activity">close activity</label>
-                                    </li> --}}
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="sale" value="sale" wire:model="formData.selectedPhases">
-                                        <label for="sale">Fatturato specifico</label>
-                                    </li>
-                                    <li>
-                                        <input  type="checkbox" class="phase-checkbox"  id="release" value="release" wire:model="formData.selectedPhases">
-                                        <label for="release">Svincolo della polizza</label>
-                                    </li>
-                                </ul>
+                    
+                            <div x-data="{ selectAll: false }" x-init="$watch('selectAll', val => { $el.querySelectorAll('.phase-checkbox').forEach(cb => cb.checked = val); })">
+                                <div class="flex items-center mb-4">
+                                    <input type="checkbox" wire:click="toggleAllPhases" class="mr-2" />
+                                    <span>Seleziona tutti</span>
+                                </div>
+                    
+                                @php
+                                    $phaseGroups = [
+                                        'Avvio progetto' => [
+                                            'contract_ver' => 'Verifica contratto',
+                                            'cme_ver' => "Verifica CME - Piano d'indagine e capitolato",
+                                            'reserves' => 'Riserve',
+                                            'expiring_date_project' => 'Impostare la data di scadenza del progetto',
+                                            'communication_plan' => 'Definizione del piano di comunicazione',
+                                            'extension' => 'Proroga',
+                                            'sal' => 'Possibilità di produrre dei SAL',
+                                            'warranty' => 'Garanzia definitiva',
+                                        ],
+                                        'Fatture acconto e SAL' => [
+                                            'emission_invoice' => 'Emissione fattura',
+                                            'payment_invoice' => 'Pagamento fattura',
+                                        ],
+                                        'Pianificazione cantiere' => [
+                                            'construction_site_plane' => 'Verifica accesibilità e sopralluogo',
+                                            'travel' => 'Organizzazione trasferte',
+                                            'site_pass' => 'Permessi/pass accesso al sito',
+                                            'ztl' => 'Permessi/pass ZTL',
+                                            'supplier' => 'Selezione fornitori',
+                                            'timetable' => 'Cronoprogramma',
+                                            'security' => 'Sicurezza',
+                                        ],
+                                        'Esecuzione attività' => [
+                                            'team' => 'Selezione della squadra (caposquadra + altre risorse)',
+                                            'field_activities' => 'Indicazioni per lo svolgimento delle attività in campo',
+                                            'daily_check_activities' => 'Riepilogo giornaliero delle attività',
+                                            'contruction_site_media' => 'Caricamento dati di cantiere',
+                                            'activity_validation' => 'Controllo avanzamento attività/budget (PM)',
+                                        ],
+                                        'Elaborazione dati' => [
+                                            'foreman_docs' => 'Controllo documentazione Caposquadra',
+                                            'sanding_sample_lab' => 'Spedizione campione ai laboratori',
+                                            'data_validation' => 'Avvio analisi dati',
+                                            'internal_validation' => 'Validazione interna elaborati',
+                                        ],
+                                        'Trasmissione report' => [
+                                            'create_note' => 'Predisposizione nota di trasmissione',
+                                            'sending_note' => 'Invio nota di trasmissione',
+                                        ],
+                                        'Contabilità' => [
+                                            'accounting_dec' => 'Contabilità attività eseguite (DEC)',
+                                            'create_cre' => 'Produrre richiesta CRE',
+                                            'expense_allocation' => 'Riparto spese',
+                                        ],
+                                        'Conferma esterna' => [
+                                            'cre' => 'CRE',
+                                            'liquidation' => 'Liquidazione',
+                                            'balance_invoice' => 'Fattura di saldo',
+                                        ],
+                                        'Verifica tecnico contabile' => [
+                                            'balance' => 'Saldo',
+                                            'cre_archiving' => 'Archiviazione CRE',
+                                            'pay_suppliers' => 'Pagamento fornitori',
+                                            'pay_allocation_expenses' => 'Pagamento riparto spese',
+                                            'learned_lesson' => 'Lezioni apprese',
+                                        ],
+                                        'Gestione non conformità' => [
+                                            'sa' => 'Accogliere richieste della S.A.',
+                                            'integrate_doc' => 'Inviare documentazione integrativa',
+                                        ],
+                                        'Chiusura attività' => [
+                                            'sale' => 'Fatturato specifico',
+                                            'release' => 'Svincolo della polizza',
+                                        ],
+                                    ];
+                                @endphp
+                    
+                                @foreach ($phaseGroups as $groupTitle => $phases)
+                                    <div class="mt-6">
+                                        <h3 class="text-md font-semibold text-cyan-800">{{ $groupTitle }}</h3>
+                                        <div class="flex flex-col">
+                                            @foreach ($phases as $id => $label)
+                                                <label class="flex items-center space-x-2">
+                                                    <input type="checkbox" class="phase-checkbox" id="{{ $id }}" value="{{ $id }}" wire:model="formData.selectedPhases">
+                                                    <span>{{ $label }}</span>
+                                                </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
-                            {{--      @elseif ($currentTab == 5)
-                            <h2 class="text-lg font-bold mb-2">Crea Progetto</h2>
-                            <label class="flex items-center space-x-2">
-                                <input  type="checkbox" class="phase-checkbox"  wire:model="formData.agreement" class="form-checkbox">
-                                <span>Seleziona</span>
-                            </label> --}}
-                        @endif
+                        </div>
+                    @endif
+                    
                     </div>
                 </div>
 
