@@ -16,9 +16,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class User extends Authenticatable
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
+
+class User extends Authenticatable implements HasMedia
 {
-    use HasFactory, Notifiable, HasRoles, SoftDeletes;
+    use HasFactory, Notifiable, HasRoles, SoftDeletes, InteractsWithMedia;
 
     protected $table = 'users';
 
@@ -63,7 +69,7 @@ class User extends Authenticatable
 
     public function activities(): BelongsToMany
     {
-        return $this->belongsToMany(Activity::class);
+        return $this->belongsToMany(Activity::class)->withPivot('role');
     }
 
     public function getFullNameAttribute()
@@ -121,5 +127,23 @@ class User extends Authenticatable
             DB::rollBack();
             return redirect()->route('home')->with('error', 'Errore nel cambiare la password, per favore prova di nuovo...');
         }
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('userImage')
+            ->useDisk('public')
+            ->singleFile();
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        // Preview
+        $this->addMediaConversion('preview')
+            ->fit(Fit::Crop, 40, 40)
+            ->sharpen(10)
+            ->background('FFFFFF')
+            ->nonOptimized()
+            ->nonQueued();
     }
 }

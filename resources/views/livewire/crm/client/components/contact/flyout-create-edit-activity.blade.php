@@ -7,20 +7,22 @@
 
     <div class="flex flex-col justify-start items-start gap-10">
         <h2 class="text-2xl font-bold text-left">
-            Programma attività
+            @if ($activityForm->activity)
+                Modifica attivita
+            @else
+                Programma attività
+            @endif
         </h2>
 
         <div class="w-full grid grid-cols-2 gap-x-5 gap-y-8">
             <div class="col-span-2">
                 <flux:field data-input>
                     <div>
-                        <flux:icon.at-symbol />
-                        <flux:label>Attività</flux:label>
+                        <flux:icon.briefcase />
+                        <flux:label>Titolo attività</flux:label>
                     </div>
-                    <flux:select variant="listbox" wire:model.live="activityForm.title">
-                        <flux:select.option value="chiama">Chiama</flux:select.option>
-                        <flux:select.option value="invia e-mail">Invia e-mail</flux:select.option>
-                    </flux:select>
+
+                    <flux:input wire:model="activityForm.title" />
                     <flux:error name="clientForm.title" />
                 </flux:field>
             </div>
@@ -31,7 +33,7 @@
                         <flux:icon.at-symbol />
                         <flux:label>Assegnata a</flux:label>
                     </div>
-                    <flux:select variant="listbox" wire:model.live="activityForm.assigned" searchable>
+                    <flux:select variant="listbox" wire:model="activityForm.assigned" searchable multiple>
                         <x-slot name="search">
                             <flux:select.search placeholder="Cerca..." />
                         </x-slot>
@@ -49,10 +51,31 @@
             <div class="col-span-2">
                 <flux:field data-input>
                     <div>
+                        <flux:icon.at-symbol />
+                        <flux:label>Conoscenza</flux:label>
+                    </div>
+                    <flux:select variant="listbox" wire:model="activityForm.contacts" searchable>
+                        <x-slot name="search">
+                            <flux:select.search placeholder="Cerca..." />
+                        </x-slot>
+
+                        @foreach ($users as $user)
+                            <flux:select.option value="{{ $user->id }}">
+                                {{ $user->full_name }}
+                            </flux:select.option>
+                        @endforeach
+                    </flux:select>
+                    <flux:error name="clientForm.contacts" />
+                </flux:field>
+            </div>
+
+            <div class="col-span-2">
+                <flux:field data-input>
+                    <div>
                         <flux:icon.calendar-days />
                         <flux:label>Scadenza</flux:label>
                     </div>
-                    <flux:date-picker wire:model.live="activityForm.expiration">
+                    <flux:date-picker wire:model="activityForm.expiration">
                         <x-slot name="trigger">
                             <flux:date-picker.input />
                         </x-slot>
@@ -72,8 +95,14 @@
             </div>
         </div>
 
-        <flux:button variant="primary" data-variant="primary" wire:click="createActivity" data-color="teal">
-            Programma
-        </flux:button>
+        @if ($activityForm->activity)
+            <flux:button variant="primary" data-variant="primary" wire:click="updateActivity" data-color="teal">
+                Modifica
+            </flux:button>
+        @else
+            <flux:button variant="primary" data-variant="primary" wire:click="createActivity" data-color="teal">
+                Assegna
+            </flux:button>
+        @endif
     </div>
 </flux:modal>

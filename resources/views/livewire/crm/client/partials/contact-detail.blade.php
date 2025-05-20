@@ -55,290 +55,84 @@
     <div class="flex-grow xl:w-2/3">
         <flux:tab.group>
             <flux:tabs variant="segmented">
-                <flux:tab data-variant="detail" name="history">Storico</flux:tab>
+                {{-- <flux:tab data-variant="detail" name="history">Storico</flux:tab> --}}
                 <flux:tab data-variant="detail" name="communications">Comunicazioni</flux:tab>
-                <flux:tab data-variant="detail" name="quotes">Preventivi</flux:tab>
+                {{-- <flux:tab data-variant="detail" name="quotes">Preventivi</flux:tab> --}}
             </flux:tabs>
 
-            <flux:tab.panel name="history">
+            {{-- <flux:tab.panel name="history">
                 @include('livewire.crm.client.components.contact.historyClient')
-            </flux:tab.panel>
+            </flux:tab.panel> --}}
 
             <flux:tab.panel name="communications">
-                <flux:tab.group>
-                    <flux:tabs variant="segmented">
-                        <flux:tab name="activity">
-                            <flux:icon.calendar class="size-5" /> Attività
-                        </flux:tab>
-                        <flux:tab name="email">
-                            <flux:icon.paper-airplane class="size-5" /> E-mail
-                        </flux:tab>
-                        <flux:tab name="note">
-                            <flux:icon.pencil class="size-5" /> Note
-                        </flux:tab>
-                    </flux:tabs>
+                <div class="flex items-center justify-between">
+                    <flux:dropdown>
+                        <flux:button icon="plus" size="sm" data-color="teal">Aggiungi</flux:button>
 
-                    <flux:tab.panel name="activity">
-                        <div class="flex items-center justify-between">
+                        <flux:menu class="text-[#B0B0B0]">
                             <flux:modal.trigger name="new-activity">
-                                <flux:button variant="primary" size="sm" data-variant="primary" data-color="teal">
-                                    Programma attività
-                                </flux:button>
+                                <flux:menu.item icon="calendar"
+                                    class="!text-[#B0B0B0] hover:!text-[#E873A0] hover:!bg-[#F9EDF1]">Attività
+                                </flux:menu.item>
                             </flux:modal.trigger>
-
-                            @include('livewire.crm.client.components.contact.flyout-create-edit-activity')
-
-                            <flux:field data-input>
-                                <flux:input wire:model.live="search" data-variant="search" :loading="false"
-                                    clearable icon="magnifying-glass" placeholder="Cerca" />
-                            </flux:field>
-                        </div>
-
-                        <div class="mt-5 overflow-auto h-[500px]">
-                            @foreach ($activities->groupBy(fn($record) => $record->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $records)
-                                <div class="mt-8 mb-4 flex items-center relative">
-                                    <div class="absolute h-px bg-gray-300 w-full"></div>
-                                    <span
-                                        class="bg-[#F5FCFD] text-[#10BDD4] z-10 px-3 py-1 border-[#E8E8E8] border-1 text-[13px] font-semibold ml-12">
-                                        {{ $month }}
-                                    </span>
-                                </div>
-
-                                @foreach ($records as $activity)
-                                    <div class="border w-full p-4 mt-6">
-                                        <div class="flex items-center space-x-3">
-                                            <div
-                                                class="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
-                                                <flux:icon.user class="size-4" />
-                                            </div>
-                                            <div class="flex-1">
-                                                <div class="flex items-center space-x-2 text-sm">
-                                                    <span
-                                                        class="text-sm font-medium">{{ $activity->user?->full_name }}</span>
-                                                    <span class="text-[#B0B0B0] text-xs capitalize"> -
-                                                        {{ $activity->user?->role_name }}</span>
-                                                </div>
-                                                <div class="flex items-center text-xs text-gray-600 mt-1">
-                                                    <span class="italic">ha programmato un'attività</span>
-                                                    <div class="w-1 h-1 bg-black rounded-full mx-2"></div>
-                                                    <span>{{ $activity->created_at->diffForHumans() }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="flex items-start gap-8 my-5 ml-8">
-                                            <div class="text-[#B0B0B0]">
-                                                <div class="flex items-center gap-1">
-                                                    <flux:icon.briefcase class="size-4" />
-                                                    <span class="text-xs font-light ">Attività</span>
-                                                </div>
-                                                <span class="font-semibold ml-4">{{ $activity->title }}</span>
-                                            </div>
-                                            <div class="text-[#B0B0B0]">
-                                                <div class="flex items-center gap-1">
-                                                    <flux:icon.at-symbol class="size-4" />
-                                                    <span class="text-xs font-light ">Assegnato a</span>
-                                                </div>
-                                                @foreach ($activity->assigned as $user)
-                                                    <span class="font-semibold ml-4">{{ $user->full_name }}</span>
-                                                @endforeach
-                                            </div>
-                                            <div class="text-[#B0B0B0]">
-                                                <div class="flex items-center gap-1">
-                                                    <flux:icon.calendar-days class="size-4" />
-                                                    <span class="text-xs font-light ">Scadenza</span>
-                                                </div>
-                                                <span class="font-semibold ml-4">{{ dateItFormat(now()) }}</span>
-                                            </div>
-
-                                            <flux:badge size="sm" data-step="{{ $activity->status }}" class="capitalize">
-                                                {{ $activity->status }}
-
-                                                <flux:dropdown offset="-15" gap="2">
-                                                    <button class="flex items-center cursor-pointer">
-                                                        <flux:icon.chevron-down class="text-white" variant="micro" />
-                                                    </button>
-
-                                                    <flux:menu>
-                                                        <flux:menu.item wire:click="updateActivityStatus('presa in carico', {{ $activity->id }})"
-                                                            class="!text-custom-9C1216">Presa in carico 
-                                                        </flux:menu.item>
-                                                        <flux:menu.item wire:click="updateActivityStatus('completato', {{ $activity->id }})"
-                                                            class="!text-custom-126C9C">Completato
-                                                        </flux:menu.item>
-                                                        <flux:menu.item wire:click="updateActivityStatus('in ritardo', {{ $activity->id }})"
-                                                            class="!text-custom-126C9C">In ritardo
-                                                        </flux:menu.item>
-                                                    </flux:menu>
-                                                </flux:dropdown>
-                                            </flux:badge>
-                                        </div>
-
-                                        <flux:button wire:click='showActivity({{ $activity->id }})' variant="ghost"
-                                            icon:trailing="arrow-right" data-color="teal">
-                                            Mostra di più
-                                        </flux:button>
-                                    </div>
-                                @endforeach
-                            @endforeach
-
-                            @include('livewire.crm.client.components.contact.flyout-show-activity')
-
-                        </div>
-                    </flux:tab.panel>
-
-                    <flux:tab.panel name="email">
-                        <div class="flex items-center justify-between">
                             <flux:modal.trigger name="new-email">
-                                <flux:button variant="primary" size="sm" data-variant="primary" data-color="teal">
-                                    Invia e-mail
-                                </flux:button>
+                                <flux:menu.item icon="paper-airplane"
+                                    class="!text-[#B0B0B0] hover:!text-[#10BDD4] hover:!bg-[#E2EDF7]">E-mail
+                                </flux:menu.item>
                             </flux:modal.trigger>
-
-                            @include('livewire.crm.client.components.contact.flyout-create-edit-mail')
-
-                            <flux:field data-input>
-                                <flux:input wire:model.live="search" data-variant="search" :loading="false"
-                                    clearable icon="magnifying-glass" placeholder="Cerca" />
-                            </flux:field>
-                        </div>
-
-                        <div class="mt-5 overflow-auto h-[500px]">
-                            @foreach ($emails->groupBy(fn($email) => $email->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $records)
-                                <div class="mt-8 mb-4 flex items-center relative">
-                                    <div class="absolute h-px bg-gray-300 w-full"></div>
-                                    <span
-                                        class="bg-[#F5FCFD] text-[#10BDD4] z-10 px-3 py-1 border-[#E8E8E8] border-1 text-[13px] font-semibold ml-12">
-                                        {{ $month }}
-                                    </span>
-                                </div>
-
-                                @foreach ($records as $record)
-                                    <div class="border w-full p-4 mt-6">
-                                        <div class="flex items-center space-x-3">
-                                            <div
-                                                class="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
-                                                <flux:icon.user class="size-4" />
-                                            </div>
-                                            <div class="flex-1">
-                                                <div class="flex items-center space-x-2 text-sm">
-                                                    <span
-                                                        class="text-sm font-medium">{{ $record->user?->full_name }}</span>
-                                                    <span class="text-[#B0B0B0] text-xs capitalize"> -
-                                                        {{ $record->user?->role_name }}</span>
-                                                </div>
-                                                <div class="flex items-center text-xs text-gray-600 mt-1">
-                                                    <span class="italic">ha inviato un'email</span>
-                                                    <div class="w-1 h-1 bg-black rounded-full mx-2"></div>
-                                                    <span>{{ $record->created_at->diffForHumans() }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="flex items-start gap-8 my-5 ml-8">
-                                            <div class="text-[#B0B0B0]">
-                                                <div class="flex items-center gap-1">
-                                                    <flux:icon.paper-airplane class="size-4" />
-                                                    <span class="text-xs font-light">Mittente</span>
-                                                </div>
-                                                <span
-                                                    class="font-semibold ml-4">{{ $record->sendBy->full_name }}</span>
-                                            </div>
-                                            <div class="text-[#B0B0B0]">
-                                                <div class="flex items-center gap-1">
-                                                    <flux:icon.at-symbol class="size-4" />
-                                                    <span class="text-xs font-light ">Assegnato a</span>
-                                                </div>
-                                                <span class="font-semibold ml-4">{{ $record->user->email }}</span>
-                                            </div>
-                                            <div class="text-[#B0B0B0]">
-                                                <div class="flex items-center gap-1">
-                                                    <flux:icon.paper-clip class="size-4" />
-                                                    <span class="text-xs font-light ">Allegati</span>
-                                                </div>
-                                                <span class="font-semibold ml-4">sample.pdf</span>
-                                            </div>
-                                        </div>
-
-                                        <flux:button variant="ghost" icon:trailing="arrow-right" data-color="teal">
-                                            Mostra di più
-                                        </flux:button>
-                                    </div>
-                                @endforeach
-                            @endforeach
-                        </div>
-                    </flux:tab.panel>
-
-                    <flux:tab.panel name="note">
-                        <div class="flex items-center justify-between">
-                            <flux:modal.trigger name="new-note">
-                                <flux:button variant="primary" size="sm" data-variant="primary"
-                                    data-color="teal">
-                                    Scrivi nota
-                                </flux:button>
+                            {{-- <flux:modal.trigger name="new-note">
+                                <flux:menu.item icon="pencil"
+                                    class="!text-[#B0B0B0] hover:!text-[#B0B0B0] hover:!bg-[#F3F3F3]">Nota
+                                </flux:menu.item>
                             </flux:modal.trigger>
+                            <flux:modal.trigger name="new-call">
+                                <flux:menu.item icon="phone"
+                                    class="!text-[#B0B0B0] hover:!text-[#A259F4] hover:!bg-[#F2EAFA]">Chiamata
+                                </flux:menu.item>
+                            </flux:modal.trigger> --}}
+                        </flux:menu>
+                    </flux:dropdown>
 
-                            @include('livewire.crm.client.components.contact.flyout-create-edit-note')
+                    {{-- Flyout Modals --}}
+                    @include('livewire.crm.client.components.contact.flyout-create-edit-activity')
+                    @include('livewire.crm.client.components.contact.flyout-create-edit-mail')
+                    @include('livewire.crm.client.components.contact.flyout-create-edit-note')
+                    @include('livewire.crm.client.components.contact.flyout-create-edit-call')
 
-                            <flux:field data-input>
-                                <flux:input wire:model.live="search" data-variant="search" :loading="false"
-                                    clearable icon="magnifying-glass" placeholder="Cerca" />
-                            </flux:field>
-                        </div>
+                    {{-- Filter --}}
+                    <flux:field data-input>
+                        <flux:select wire:model.live="communicationType" variant="listbox" clearable
+                            placeholder="Seleziona tipologia" class="min-w-44">
+                            <flux:select.option>Attivita</flux:select.option>
+                            <flux:select.option>E-mail</flux:select.option>
+                            <flux:select.option>Nota</flux:select.option>
+                            <flux:select.option>Chiamata</flux:select.option>
+                        </flux:select>
+                    </flux:field>
+                </div>
 
+                <div class="overflow-auto h-[530px]">
+                    @foreach ($communications as $record)
+                        @if ($record instanceof \App\Models\Activity)
+                            @include('livewire.crm.client.components.contact.item-activity', [
+                                'activity' => $record,
+                            ])
+                        @elseif ($record instanceof \App\Models\Email)
+                            @include('livewire.crm.client.components.contact.item-email', [
+                                'email' => $record,
+                            ])
+                        @elseif ($record instanceof \App\Models\Note)
+                            @include('livewire.crm.client.components.contact.item-note', [
+                                'note' => $record,
+                            ])
+                        @endif
+                    @endforeach
 
-                        <div class="mt-5 overflow-auto h-[500px]">
-                            @foreach ($notes->groupBy(fn($note) => $note->created_at->locale('it')->isoFormat('MMMM YYYY')) as $month => $records)
-                                <div class="mt-8 mb-4 flex items-center relative">
-                                    <div class="absolute h-px bg-gray-300 w-full"></div>
-                                    <span
-                                        class="bg-[#F5FCFD] text-[#10BDD4] z-10 px-3 py-1 border-[#E8E8E8] border-1 text-[13px] font-semibold ml-12">
-                                        {{ $month }}
-                                    </span>
-                                </div>
-
-                                @foreach ($records as $record)
-                                    <div class="border w-full p-4 mt-6">
-                                        <div class="flex items-center space-x-3">
-                                            <div
-                                                class="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
-                                                <flux:icon.user class="size-4" />
-                                            </div>
-                                            <div class="flex-1">
-                                                <div class="flex items-center space-x-2 text-sm">
-                                                    <span
-                                                        class="text-sm font-medium">{{ $record->user?->full_name }}</span>
-                                                    <span class="text-[#B0B0B0] text-xs capitalize"> -
-                                                        {{ $record->user?->role_name }}</span>
-                                                </div>
-                                                <div class="flex items-center text-xs text-gray-600 mt-1">
-                                                    <span class="italic">ha scritto una nota</span>
-                                                    <div class="w-1 h-1 bg-black rounded-full mx-2"></div>
-                                                    <span>{{ $record->created_at->diffForHumans() }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="text-[#B0B0B0] mt-5 ml-8">
-                                            <div class="flex items-center gap-1">
-                                                <flux:icon.paper-clip class="size-4" />
-                                                <span class="text-xs font-light ">Allegati</span>
-                                            </div>
-                                            <span class="font-semibold ml-4">sample.pdf</span>
-                                        </div>
-
-                                        <p class="mt-4 ml-12 text-lg font-light text-[#B0B0B0]">
-                                            {{ $record->content }}
-                                        </p>
-                                    </div>
-                                @endforeach
-                            @endforeach
-                        </div>
-                    </flux:tab.panel>
-                </flux:tab.group>
+                    @include('livewire.crm.client.components.contact.flyout-show-activity')
+                </div>
             </flux:tab.panel>
 
-            <flux:tab.panel name="quotes">
+            {{-- <flux:tab.panel name="quotes">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 mb-4">
                     <div class="flex gap-4 items-center">
                         <select wire:model.live="status_estimate" class=" border rounded p-2">
@@ -354,7 +148,7 @@
                 </div>
 
                 @include('livewire.crm.utilities.estimate-sub-table', ['estimates' => $estimates])
-            </flux:tab.panel>
+            </flux:tab.panel> --}}
         </flux:tab.group>
     </div>
 </div>

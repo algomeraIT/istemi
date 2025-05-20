@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Crm\Client\Partials;
 
-use Exception;
 use Flux\Flux;
 use Carbon\Carbon;
 use App\Models\Sale;
@@ -16,14 +15,7 @@ use App\Models\Communication;
 use Livewire\WithFileUploads;
 use App\Models\AccountingOrder;
 use App\Models\AccountingInvoice;
-use Illuminate\Support\Facades\DB;
 use App\Livewire\Forms\ReferentForm;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Models\NoteCommunicationClientHistory;
-use App\Models\EmailCommunicationClientHistory;
-use App\Models\ActivityCommunicationClientHistory;
-
 class ClientTab extends Component
 {
     use WithPagination, WithFileUploads;
@@ -226,114 +218,6 @@ class ClientTab extends Component
         $this->logo = null;
         $this->logoPreview = null;
     }
-
-    // public function saveEmail()
-    // {
-    //     try {
-    //         DB::beginTransaction();
-    //         $this->isSending = true;
-
-    //         $validatedData = $this->validate([
-    //             'client_id' => 'required|exists:clients,id',
-    //             'task' => 'nullable|string|max:255',
-    //             'assigned_to' => 'nullable|string|max:255',
-    //             'receiver' => 'required|array',
-    //             'receiver.*' => 'required|email',
-    //             'action' => 'required|string|max:255',
-    //             'note' => 'nullable|string',
-    //             'logo' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpeg,jpg,png|max:6144', //6MB
-    //             'logo.max' => 'La dimensione del file supera i 6MB.',
-    //             'logo.mimes' => 'Solo PDF, DOC, DOCX, XLS, JPEG, JPG, PNG file sono permessi.',
-
-    //         ]);
-
-    //         $validatedData['sender'] = Auth::user()->email;
-    //         $validatedData['user_id'] = Auth::user()->id;
-    //         $validatedData['name_user'] = Auth::user()->name;
-    //         $validatedData['last_name_user'] = Auth::user()->last_name;
-    //         $validatedData['job_position_user'] = Auth::user()->job_position;
-    //         $validatedData['status_user'] = Auth::user()->status;
-    //         $validatedData['receiver'] = implode(',', $validatedData['receiver']);
-
-
-    //         Mail::send('email.email-communication', ['emailRecord' => $emailRecord], function ($message) use ($emailRecord, $receivers) {
-    //             $fromEmail = Auth::user()->email;
-    //             if (!$fromEmail) {
-    //                 throw new Exception("L'email del mittente non è stata trovata...");
-    //             }
-
-    //             $message->from($fromEmail, env('MAIL_FROM_NAME'));
-
-    //             if (count($receivers) > 0) {
-    //                 $message->to($receivers);
-    //             } else {
-    //                 throw new Exception('Email del destinatario, o dei destinatari, non valide');
-    //             }
-
-    //             $message->subject($emailRecord->action);
-
-    //             if ($emailRecord->getFirstMediaUrl('emailCommunicationFile')) {
-    //                 $message->attach($emailRecord->getFirstMediaUrl('emailCommunicationFile'));
-    //             }
-    //         });
-    //         $this->isSending = false;
-
-    //         DB::commit();
-
-    //         session()->flash('message', 'Email inviata con successo.');
-
-    //         $this->closeModal();
-    //     } catch (Exception $e) {
-    //         DB::rollBack();
-    //         $this->isSending = false;
-    //         $this->closeModal();
-    //         dd($e);
-    //         session()->flash('error', 'Si è verificato un errore durante l\'invio dell\'email. Riprova più tardi...');
-    //     }
-    // }
-
-    // public function saveNote()
-    // {
-    //     try {
-    //         DB::beginTransaction();
-
-    //         $validatedData = $this->validate([
-    //             'client_id' => 'required|integer|exists:clients,id',
-    //             'note' => 'nullable|string',
-    //             'logo' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,jpeg,jpg,png|max:6144', // 6MB
-    //         ]);
-
-    //         $validatedData['user_id'] = Auth::user()->id;
-    //         $validatedData['name_user'] = Auth::user()->name;
-    //         $validatedData['last_name_user'] = Auth::user()->last_name;
-    //         $validatedData['role_user'] = Auth::user()->role;
-
-    //         $noteRecord = NoteCommunicationClientHistory::updateOrCreate(
-    //             ['id' => $this->activity_id],
-    //             $validatedData
-    //         );
-
-    //         if ($this->logo) {
-    //             $noteRecord->clearMediaCollection('noteCommunicationFile');
-
-    //             $noteRecord->addMedia($this->logo)
-    //                 ->toMediaCollection('noteCommunicationFile');
-
-    //             $getFilePath[] = $noteRecord->getFirstMediaUrl('noteCommunicationFile');
-    //             $noteRecord->path = json_encode($getFilePath);
-    //             $noteRecord->save();
-    //         }
-
-    //         DB::commit();
-
-    //         session()->flash('message', $this->editing ? 'Nota aggiornata con successo!' : 'Nota creata con successo!');
-    //         $this->closeModal();
-    //     } catch (\Exception $e) {
-    //         DB::rollBack(); // Rollback transaction on error
-    //         dd($e);
-    //         session()->flash('error', 'Si è verificato un errore durante il salvataggio. Riprova più tardi.');
-    //     }
-    // }
 
     public function delete($id)
     {

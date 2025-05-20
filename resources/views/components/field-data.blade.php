@@ -1,4 +1,4 @@
-@props(['label', 'data', 'copy' => false])
+@props(['label', 'data' => null, 'copy' => false])
 
 <div class="text-[#B0B0B0] flex flex-col items-start justify-start gap-2">
     <div class="flex items-center gap-1">
@@ -6,7 +6,9 @@
         <small class="font-light">{{ $label }}</small>
     </div>
     <div class="ml-5 text-left max-h-32 overflow-x-hidden overflow-y-auto">
-        <span>{{ $data ?? '---' }}</span>
+        <span>{{ $data ?? '' }}</span>
+
+        {{ $avatar ?? '' }}
 
         @if ($copy)
             <button title="Copia" wire:click="copy('{{ $data }}')" x-on:click="$flux.toast('Copiato con successo.')"

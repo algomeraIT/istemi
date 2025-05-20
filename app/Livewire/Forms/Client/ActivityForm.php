@@ -13,6 +13,7 @@ class ActivityForm extends Form
     public $client_id, $title, $note, $expiration, $completed_at;
     public $status = 'nuovo';
     public $assigned;
+    public $contacts;
 
     public function rules()
     {
@@ -61,7 +62,8 @@ class ActivityForm extends Form
         $this->activity = $activity;
 
         $this->fill($activity->only($activity->getFillable()));
-        $this->assigned = $activity->assigned()->pluck('user_id')->toArray();
+        $this->assigned = $activity->assigned()->where('role', 'assegnato')->pluck('user_id')->toArray();
+        $this->contacts = $activity->assigned()->where('role', 'conoscenza')->pluck('user_id')->toArray();
     }
 
     public function store()
@@ -73,11 +75,11 @@ class ActivityForm extends Form
             $validated['note'] = Purifier::clean($validated['note']);
         }
 
-        $assigned = is_array($validated['assigned']) ? $validated['assigned'] : [$validated['assigned']];
         unset($validated['assigned']);
 
         $activity = Activity::create($validated);
-        $activity->assigned()->attach($assigned);
+
+        $activity->assigned()->sync($this->buildUserRoleMap());
     }
 
     public function update()
@@ -89,7 +91,6 @@ class ActivityForm extends Form
             $validated['note'] = Purifier::clean($validated['note']);
         }
 
-        $assigned = is_array($validated['assigned']) ? $validated['assigned'] : [$validated['assigned']];
         unset($validated['assigned']);
 
         if (!$this->activity) {
@@ -97,6 +98,26 @@ class ActivityForm extends Form
         }
 
         $this->activity->update($validated);
-        $this->activity->assigned()->sync($assigned);
+
+        $this->activity->assigned()->sync($this->buildUserRoleMap());
+    }
+
+    private function buildUserRoleMap(): array
+    {
+        $assigned = is_array($this->assigned) ? $this->assigned : [$this->assigned];
+        $contacts = is_array($this->contacts) ? $this->contacts : [$this->contacts];
+
+        $assignedMap = collect($assigned)
+            ->mapWithKeys(fn($userId) => [
+                $userId => ['role' => 'assegnato']
+            ]);
+
+        $contactMap = collect($contacts)
+            ->reject(fn($userId) => isset($assignedMap[$userId])) // evita duplicati
+            ->mapWithKeys(fn($userId) => [
+                $userId => ['role' => 'conoscenza']
+            ]);
+
+        return $contactMap->union($assignedMap)->toArray();
     }
 }

@@ -15,15 +15,18 @@ use App\Models\HistoryClient;
 use App\Livewire\Forms\Client\NoteForm;
 use App\Livewire\Forms\Client\EmailForm;
 use App\Livewire\Forms\Client\ActivityForm;
-
+use App\Livewire\Crm\Client\Traits\ActivityActions;
 class Show extends Component
 {
+    use ActivityActions;
     public ActivityForm $activityForm;
+    
     public EmailForm $emailForm;
     public NoteForm $noteForm;
 
     public $client;
     public $references;
+    public $communicationType;
 
     public function mount($id)
     {
@@ -54,46 +57,19 @@ class Show extends Component
         );
     }
 
-    // Function Tab Activity
-    public function createActivity()
+    public function sendEmails()
     {
-        $this->activityForm->client_id = $this->client->id;
-        $this->activityForm->store();
-
-        Flux::toast(
-            text: "Nuova attività inserita.",
-            variant: 'success',
-        );
-
-        Flux::modals()->close();
-    }
-
-    public function showActivity($id)
-    {
-        $activity = Activity::findOrFail($id);
-
-        $this->activityForm->setActivity($activity);
-
-        Flux::modal('show-activity')->show();
-    }
-
-    public function updateActivityStatus($status, $activityId = null,)
-    {
-        if ($activityId) {
-            $activity = Activity::findOrFail($activityId);
-            $activity->status = $status;
-            $activity->save();
-        } else {
-            $this->activityForm->status = $status;
-            $this->activityForm->update();
-        }
+        $this->emailForm->client_id = $this->client->id;
+        $this->emailForm->store();
 
         $this->dispatch('refresh');
 
         Flux::toast(
-            text: "Attività aggiornata.",
+            text: "Invio E-mail in corso.",
             variant: 'success',
         );
+
+        Flux::modals()->close();
     }
 
 
@@ -110,6 +86,25 @@ class Show extends Component
 
         $all = $users->concat($clients);
 
+        $communications = collect();
+
+        if ($this->communicationType === 'Attivita') {
+            $communications = $activities;
+        } elseif ($this->communicationType === 'E-mail') {
+            $communications = $emails;
+        } elseif ($this->communicationType === 'Nota') {
+            $communications = $notes;
+        } else {
+            $communications = collect()
+                ->merge($activities)
+                ->merge($emails)
+                ->merge($notes);
+        }
+
+        $communications = $communications
+            ->sortByDesc(fn($record) => $record->created_at)
+            ->values();
+
         return view('livewire.crm.client.show', [
             'estimates' => $estimates,
             'histories' => $histories,
@@ -118,6 +113,7 @@ class Show extends Component
             'notes' => $notes,
             'users' => $users,
             'all' => $all,
+            'communications' => $communications,
         ]);
     }
 }

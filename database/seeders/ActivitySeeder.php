@@ -23,9 +23,16 @@ class ActivitySeeder extends Seeder
                 $activity->updated_by = fake()->randomElement($userIds);
                 $activity->saveQuietly();
 
-                $activity->assigned()->attach(
-                    fake()->randomElements($userIds, $client->status === 'cliente' ? 2 : 1)
-                );
+                $assignedUsers = collect(fake()->randomElements($userIds, 2))
+                    ->mapWithKeys(fn($userId) => [$userId => ['role' => 'assegnato']])
+                    ->toArray();
+
+                $contactUsers = collect(fake()->randomElements($userIds, 2))
+                    ->reject(fn($userId) => array_key_exists($userId, $assignedUsers))
+                    ->mapWithKeys(fn($userId) => [$userId => ['role' => 'conoscenza']])
+                    ->toArray();
+
+                $activity->assigned()->attach($assignedUsers + $contactUsers);
 
                 HistoryClient::create([
                     'client_id' => $client->id,

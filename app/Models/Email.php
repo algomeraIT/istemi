@@ -14,7 +14,13 @@ class Email extends Model
 {
     use HasFactory, InteractsWithMedia, BlameableTrait;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'client_id',
+        'sent_by',
+        'to',
+        'subject',
+        'body',
+    ];
 
     protected $casts = [
         'to' => 'array',
@@ -33,6 +39,11 @@ class Email extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function to()
+    {
+        return User::whereIn('email', $this->to ?? [])->get();
     }
 
     protected static function booted()

@@ -29,7 +29,7 @@ class Activity extends Model
 
     public function assigned(): BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withPivot('role');
     }
 
     public function user(): BelongsTo
