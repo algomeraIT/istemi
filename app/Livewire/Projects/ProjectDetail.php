@@ -9,6 +9,7 @@ use App\Models\Referent;
 use App\Models\Stackholder;
 use App\Models\TaskProject;
 use App\Models\Phase;
+use App\Models\Task;
 use Livewire\Component;
 
 use Livewire\Attributes\On;
@@ -24,7 +25,7 @@ class ProjectDetail extends Component
     public string $datasheettabs = 'info';
     public $isOpen = false;
     public $selectedProjectStartId = null;
-    public $id;
+    public $id, $tasks;
     public $groupedMicroTasks;
     public $stackholder, $statusPhases;
     public string $datasheetHideDiv = 'task';
@@ -37,6 +38,9 @@ class ProjectDetail extends Component
         $this->document = DocumentProject::where("project_id", $id)->get();
         $this->notes = NoteProject::where("project_id", $id)->orderBy('created_at', 'desc')->get();
         $this->statusPhases = Phase::with(['area', 'microArea'])->where("id_project", $id)->where('status', '!=', 'deleted')->get();
+        $projectId = $id;
+        $phaseIds = Phase::where('id_project', $projectId)->pluck('id');
+        $this->tasks = Task::whereIn('id_phases', $phaseIds)->get();
 
 
         $ids = json_decode($this->project['stackholder_id'], true);

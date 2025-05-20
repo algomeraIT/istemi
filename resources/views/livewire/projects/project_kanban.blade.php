@@ -303,9 +303,9 @@
                                                     </span>
                                                 </div>
                                                 <div class="flex gap-2 text-left">
-                                                    <flux:button wire:click="edit({{ $project['id'] }})"
+                                          {{--           <flux:button wire:click="edit({{ $project['id'] }})"
                                                         variant="ghost" data-variant="ghost" data-color="gray"
-                                                        data-rounded icon="pencil" size="sm" />
+                                                        data-rounded icon="pencil" size="sm" /> --}}
 
                                                     {{--  <button wire:click="delete({{ $project['id'] }})"
                                                 class="text-gray-400 hover:text-red-500 transition"><flux:icon.x-mark /></button> --}}
