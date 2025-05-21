@@ -24,12 +24,12 @@
         "richan-fongdasen/eloquent-blameable": "^1.11",
         "spatie/laravel-medialibrary": "^11.12",
         "spatie/laravel-permission": "^6.18",
-        "wire-elements/modal": "^3.0"
+        "wire-elements/modal": "^3.0",
+        "fakerphp/faker": "^1.23"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",
         "fabioserembe/blade-svg-pro": "^1.0",
-        "fakerphp/faker": "^1.23",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",
         "laravel/sail": "^1.41",
