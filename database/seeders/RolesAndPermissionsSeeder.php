@@ -29,7 +29,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'description' => 'Questo ruolo sarà riservato alla proprietà o alla dirigenza superiore dell\'azienda. Avrà la possibilità di visualizzare, modifIcare e gestire tutte le informazioni presenti nel sistema,senza restrizioni.'
             ],
             [
-                'name' => 'responsabile aerea',
+                'name' => 'responsabile area',
                 'description' => 'Gli utenti con questo ruolo potranno gestire le informazioni anagrafiche dei clienti, creare e modificare appuntamenti nel calendario condiviso e gestire le pratiche amministrative e burocratiche legate ai clienti e alle commesse. Avrà la supervisione delle attività dei venditori e del personale operativo all\'interno della propria arrea di competenza. Avrà accesso alle informazioni e alle funzionalità necessarie per monitorare e supportare il team. Avrà accesso al lavoro del P.M qualora questo afferisce alla sua Area.'
             ],
             [

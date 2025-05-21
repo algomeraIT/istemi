@@ -570,7 +570,6 @@
                     </div>
                 </div>
 
-
                 <!-- Hidden Extra Content (Will be shown when expanded) -->
                 <div id="expanded-content" class="overflow-x-auto" x-show="isExpanded">
                     <div class="flex space-x-6 min-w-max">
@@ -578,7 +577,7 @@
                     </div>
                 </div>
 
-     
+        
             </div>
         </div>
 </div>

@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
 
         $roleEmailMap = [
             'direttore generale' => 'direttore',
-            'responsabile aerea' => 'responsabile_aerea',
+            'responsabile area' => 'responsabile_area',
             'responsabile unità produttiva locale' => 'responsabile_unita_produttiva_locale',
             'project manager' => 'project_manager',
             'commerciale' => 'commerciale',
