@@ -73,8 +73,8 @@ class Create extends ModalComponent
     {
         $this->clients = Client::select('id', 'name')->get()->toArray();
         $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)->get()->toArray();
-        $this->area = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->get()->toArray();
-        $this->projectUser = User::select('id', 'name', 'last_name', 'role')->where('role', 'project')->get()->toArray();
+        $this->area = User::select('id', 'name', 'last_name')->role('responsabile_aerea')->get()->toArray();
+        $this->projectUser = User::select('id', 'name', 'last_name')->role('project_manager')->get()->toArray();
     }
 
     public function toggleAllPhases()
