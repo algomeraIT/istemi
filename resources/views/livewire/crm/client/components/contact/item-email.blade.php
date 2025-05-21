@@ -1,13 +1,22 @@
 <div class="border w-full p-4 mt-5 shadow">
+    <div class="w-36 bg-[#E2EDF7] text-[#1278D4] flex items-center justify-center gap-2 py-2 -ml-8 mb-6">
+        <flux:icon.envelope class="size-4" />
+        <span class="text-xs font-bold">E-mail</span>
+    </div>
+
     <div class="flex items-center space-x-3">
-        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
-            <flux:icon.user class="size-4" />
-        </div>
+        @if ($email->user?->hasMedia('userImage'))
+            <flux:avatar circle size="sm" src="{{ $email->user->getFirstMediaUrl('userImage', 'preview') }}" />
+        @else
+            <flux:avatar circle size="sm" name="{{ $email->user->full_name }}"
+                title="{{ $email->user->full_name }}" />
+        @endif
+
         <div class="flex-1">
             <div class="flex items-center space-x-2 text-sm">
-                <span class="text-sm font-medium">{{ $email->user?->full_name }}</span>
+                <span class="text-sm font-medium">{{ $email->user->full_name }}</span>
                 <span class="text-[#B0B0B0] text-xs capitalize"> -
-                    {{ $email->user?->role_name }}</span>
+                    {{ $email->user->role_name }}</span>
             </div>
             <div class="flex items-center text-xs text-gray-600 mt-1">
                 <span class="italic">ha inviato un'email</span>

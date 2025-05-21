@@ -106,7 +106,7 @@
                                 </flux:modal.trigger>
                                 <flux:modal.trigger name="new-email">
                                     <flux:menu.item icon="paper-airplane"
-                                        class="!text-[#B0B0B0] hover:!text-[#10BDD4] hover:!bg-[#E2EDF7]">E-mail
+                                        class="!text-[#B0B0B0] hover:!text-[#1278D4] hover:!bg-[#E2EDF7]">E-mail
                                     </flux:menu.item>
                                 </flux:modal.trigger>
                                 {{-- <flux:modal.trigger name="new-note">

@@ -1,8 +1,16 @@
 <div class="border w-full px-8 py-4 mt-5 shadow">
+    <div class="w-36 bg-[#F9EDF1] text-[#E873A0] flex items-center justify-center gap-2 py-2 -ml-8 mb-6">
+        <flux:icon.calendar class="size-4" />
+        <span class="text-xs font-bold">Attività</span>
+    </div>
+
     <div class="flex items-center space-x-3">
-        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
-            <flux:icon.user class="size-4" />
-        </div>
+        @if ($activity->user?->hasMedia('userImage'))
+            <flux:avatar circle size="sm" src="{{ $activity->user->getFirstMediaUrl('userImage', 'preview') }}" />
+        @else
+            <flux:avatar circle size="sm" name="{{ $activity->user->full_name }}" title="{{ $activity->user->full_name }}" />
+        @endif
+
         <div class="flex-1">
             <div class="flex items-center space-x-2 text-sm">
                 <span class="text-sm font-medium">{{ $activity->user?->full_name }}</span>
