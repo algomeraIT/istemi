@@ -39,7 +39,7 @@
                         <flux:button variant="ghost" wire:click="setReferent({{ $referent->id }}, 'edit')"
                             data-variant="ghost" data-color="gray" icon="pencil" size="sm" />
 
-                        <flux:button wire:click="delete({{ $referent->id }})"
+                        <flux:button wire:click="deleteReferent({{ $referent->id }})"
                             wire:confirm="Sei sicuro di voler eliminare questo referente?" variant="ghost"
                             data-variant="ghost" data-color="red" icon="trash" size="sm" />
                     </flux:table.cell>

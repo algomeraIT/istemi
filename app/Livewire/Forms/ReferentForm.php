@@ -9,7 +9,7 @@ use Mews\Purifier\Facades\Purifier;
 class ReferentForm extends Form
 {
     public $referent;
-    private $referentId;
+    public $referentId;
 
     public $client_id, $name, $last_name, $title, $job_position, $email, $telephone, $note;
 

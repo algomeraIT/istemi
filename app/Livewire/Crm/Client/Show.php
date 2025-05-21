@@ -10,17 +10,26 @@ use App\Models\Client;
 use Livewire\Component;
 use App\Models\Activity;
 use App\Models\Estimate;
+use App\Models\Referent;
 use Livewire\Attributes\On;
 use App\Models\HistoryClient;
+use App\Livewire\Forms\ReferentForm;
 use App\Livewire\Forms\Client\NoteForm;
 use App\Livewire\Forms\Client\EmailForm;
 use App\Livewire\Forms\Client\ActivityForm;
+
+// Traits
 use App\Livewire\Crm\Client\Traits\ActivityActions;
+use App\Livewire\Crm\Client\Traits\ReferentActions;
+
 class Show extends Component
 {
     use ActivityActions;
     public ActivityForm $activityForm;
-    
+
+    use ReferentActions;
+    public ReferentForm $referentForm;
+
     public EmailForm $emailForm;
     public NoteForm $noteForm;
 
@@ -28,9 +37,32 @@ class Show extends Component
     public $references;
     public $communicationType;
 
+    public $tabs = [];
+    public $search;
+
+
     public function mount($id)
     {
         $this->client = Client::with('user', 'referents', 'estimate')->findOrFail($id);
+        $this->setTabs();
+    }
+
+    private function setTabs()
+    {
+        if ($this->client->status == 'cliente') {
+            $this->tabs = [
+                'referenti',
+                // 'commercio',
+                // 'contabilità',
+                'comunicazioni'
+            ];
+        } else {
+            $this->tabs = [
+                // 'storico',
+                'comunicazioni',
+                // 'preventivi'
+            ];
+        }
     }
 
     public function copy($text)
@@ -39,6 +71,7 @@ class Show extends Component
             'text' => $text
         ]);
     }
+
 
     public function newQuote()
     {
@@ -114,6 +147,18 @@ class Show extends Component
             'users' => $users,
             'all' => $all,
             'communications' => $communications,
+            'referents' => Referent::where('client_id', $this->client->id)->when(
+                $this->search,
+                fn($q) => $q->where(
+                    function ($query) {
+                        $query->filter('name', $this->search)
+                            ->orFilter('last_name', $this->search);
+                    }
+                )
+            )->paginate(10),
+
+            'email_all_users' => User::pluck('email')->toArray(),
+
         ]);
     }
 }

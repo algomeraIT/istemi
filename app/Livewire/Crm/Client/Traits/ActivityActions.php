@@ -61,7 +61,7 @@ trait ActivityActions
             $this->activityForm->update();
         }
 
-        $this->dispatchEvent('refresh');
+        $this->dispatch('refresh');
 
         Flux::toast(
             text: "Stato attività aggiornato.",
@@ -74,18 +74,11 @@ trait ActivityActions
         $activity = Activity::findOrFail($id);
         $activity->delete();
 
-        $this->dispatchEvent('refresh');
+        $this->dispatch('refresh');
 
         Flux::toast(
             text: "Attività eliminata.",
             variant: 'warning',
         );
-    }
-    
-    protected function dispatchEvent(string $event, array $params = [])
-    {
-        if (method_exists($this, 'dispatch')) {
-            $this->dispatch($event, ...$params);
-        }
-    }
+    }    
 }
