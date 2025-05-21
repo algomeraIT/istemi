@@ -342,12 +342,47 @@ select:focus[data-flux-control] {
     color: #232323;
     font-size: 18px;
 
+    [data-flux-input] input, [data-flux-select] button {
+        @apply
+        border-0
+        shadow-none
+        h-8
+        bg-transparent
+        text-[#B0B0B0]
+
+        focus:outline-none
+        focus:ring-0
+        focus:ring-transparent
+        focus:ring-offset-0
+        focus:ring-offset-transparent
+    }
+
+
+    [data-flux-input-group-prefix] {
+        @apply h-8 mb-0 bg-transparent !border-none shadow-none font-light !text-[#B0B0B0] z-10 !px-1.5;
+    }
+
+    input[data-flux-control]:focus{
+        /* azzera tutte le variabili del ring */
+        --tw-ring-offset-width: 0;
+        --tw-ring-offset-color: transparent;
+        --tw-ring-width: 0;
+        --tw-ring-color: transparent;
+    }
+
+
+
+
     &[data-detail="detail"] {
         font-size: 12px;
         justify-items: center;
         padding: 0;
         text-align: center;
     }
+
+
+
+
 }
 
 [data-flux-column] {
@@ -359,6 +394,9 @@ select:focus[data-flux-control] {
         text-align: center;
     }
 }
+
+
+
 
 
 

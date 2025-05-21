@@ -16,7 +16,7 @@ class QuoteForm extends Form
      */
     public ?Quote $quote = null;
 
-    // Informazioni base preventivo
+    // Basic quote information
     #[Validate('required|exists:issuers,id')]
     public ?int $issuer_id = null;
 
@@ -35,7 +35,7 @@ class QuoteForm extends Form
     #[Validate('required|numeric|min:0')]
     public float $total = 0.0;
 
-    // Indirizzi
+    // Addresses
     #[Validate('required|string')]
     public string $billing_country = 'Italia';
 
@@ -47,6 +47,9 @@ class QuoteForm extends Form
 
     #[Validate('required|string')]
     public string $billing_address = '';
+
+    #[Validate('nullable|string')]
+    public ?string $billing_cap = null;
 
     #[Validate('required|string')]
     public string $delivery_country = 'Italia';
@@ -60,7 +63,10 @@ class QuoteForm extends Form
     #[Validate('required|string')]
     public string $delivery_address = '';
 
-    // Dettagli preventivo
+    #[Validate('nullable|string')]
+    public ?string $delivery_cap = null;
+
+    // Quote details
     #[Validate('required|string')]
     public string $subject = '';
 
@@ -76,7 +82,7 @@ class QuoteForm extends Form
     #[Validate('nullable|exists:tax_rates,id')]
     public ?int $tax_rate_id = null;
 
-    // Fields that are not directly on the model
+    // Fields not directly on the model
     public bool $same_as_billing = false;
     public array $area_managers = [];
     public array $tech_users = [];
@@ -85,7 +91,7 @@ class QuoteForm extends Form
     public string $payment_method = 'Da definire';
 
     /**
-     * Set the quote data from model
+     * Set quote data from model
      */
     public function setQuote(Quote $quote): void
     {
@@ -129,6 +135,8 @@ class QuoteForm extends Form
 
     /**
      * Store a new quote with all its relationships
+     *
+     * @return Quote|string Quote instance on success, error message on failure
      */
     public function store()
     {
@@ -145,6 +153,11 @@ class QuoteForm extends Form
                 'subject', 'price_list_id', 'quote_template_id', 'terms', 'tax_rate_id'
             ]);
 
+            // Generate a unique code if not already set
+            if (empty($quoteData['code'])) {
+                $quoteData['code'] = 'PRV' . now()->format('Ymd') . str_pad(Quote::count() + 1, 4, '0', STR_PAD_LEFT);
+            }
+
             $quote = Quote::create($quoteData);
 
             // 2. Create area user relationships (pivot)
@@ -159,6 +172,11 @@ class QuoteForm extends Form
 
             // 4. Create quote item groups and items
             foreach ($this->item_groups as $index => $group) {
+                // Skip groups with no items
+                if (empty($group['items'])) {
+                    continue;
+                }
+
                 // Create the group
                 $quoteGroup = new QuoteItemGroup();
                 $quoteGroup->quote_id = $quote->id;
@@ -194,6 +212,8 @@ class QuoteForm extends Form
 
     /**
      * Update an existing quote with all its relationships
+     *
+     * @return bool Success status
      */
     public function update(): bool
     {
@@ -224,6 +244,11 @@ class QuoteForm extends Form
             $updatedGroups = [];
 
             foreach ($this->item_groups as $index => $group) {
+                // Skip empty groups on update
+                if (empty($group['items'])) {
+                    continue;
+                }
+
                 // If group already exists (has ID), update it
                 if (isset($group['id'])) {
                     $quoteGroup = QuoteItemGroup::find($group['id']);

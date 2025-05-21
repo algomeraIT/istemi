@@ -17,7 +17,7 @@ class Create extends Component
 {
     public QuoteForm $form;
 
-    // Liste di dati per i select
+    // List data for dropdowns
     public $issuers = [];
     public $clients = [];
     public $price_lists = [];
@@ -25,7 +25,7 @@ class Create extends Component
     public $users = [];
     public $products = [];
 
-    // Calcoli totali
+    // Totals calculation
     public $subtotal = 0;
     public $total_discounts = 0;
     public $cnpaia_base = 0;
@@ -35,15 +35,12 @@ class Create extends Component
     public $tax_amount = 0;
     public $total = 0;
 
-    // Indice del gruppo corrente
-    public $current_group = 0;
-
     public function mount()
     {
-        // Carica le liste per i select
+        // Load dropdown data
         $this->loadLists();
 
-        // Imposta i valori predefiniti
+        // Set default values
         $this->setDefaultValues();
 
         $this->form->same_as_billing = true;
@@ -55,11 +52,10 @@ class Create extends Component
         $this->clients = Client::orderBy('name')->get();
         $this->price_lists = PriceList::orderBy('name')->get();
         $this->templates = QuoteTemplate::orderBy('name')->get();
-        $this->users = User::orderBy('last_name')->take(5)->get();
+        $this->users = User::orderBy('last_name')->take(10)->get();
         $this->products = Product::with('category')
             ->where('is_active', true)
             ->orderBy('title')
-            ->take(5) // oppure ->limit(5)
             ->get();
     }
 
@@ -72,7 +68,7 @@ class Create extends Component
         $this->form->delivery_country = 'Italia';
         $this->form->status = 'draft';
 
-        // Inizializza con un gruppo vuoto
+        // Initialize with an empty group
         $this->form->item_groups = [
             [
                 'title' => '',
@@ -113,19 +109,23 @@ class Create extends Component
         $this->form->delivery_country = $this->form->billing_country;
     }
 
-    public function updatedFormTemplateId($templateId)
+    public function updatedFormQuoteTemplateId($templateId)
     {
         if ($templateId) {
             $template = QuoteTemplate::with('lines.product')->find($templateId);
             if ($template) {
-                // Se esiste già un gruppo, lo usiamo, altrimenti ne creiamo uno nuovo
+                // If we already have groups, use the first one
+                // or create a new one if none exist
                 if (empty($this->form->item_groups)) {
-                    $this->addItemGroup();
+                    $this->form->item_groups[] = [
+                        'title' => '',
+                        'items' => []
+                    ];
                 }
 
                 $groupIndex = 0;
 
-                // Aggiungiamo i prodotti dal template
+                // Add products from template
                 foreach ($template->lines as $line) {
                     if ($line->product_id) {
                         $product = $line->product;
@@ -143,7 +143,7 @@ class Create extends Component
                             'type' => 'product'
                         ];
                     } else {
-                        // Se è un testo/nota
+                        // If it's a text/note
                         $this->form->item_groups[$groupIndex]['items'][] = [
                             'product_id' => null,
                             'product_code' => '',
@@ -164,49 +164,36 @@ class Create extends Component
         }
     }
 
-    public function addItemGroup()
-    {
-        $this->form->item_groups[] = [
-            'title' => '',
-            'items' => []
-        ];
-        $this->current_group = count($this->form->item_groups) - 1;
-    }
-
-    public function removeItemGroup($index)
-    {
-        unset($this->form->item_groups[$index]);
-        $this->form->item_groups = array_values($this->form->item_groups);
-        $this->calculateTotals();
-    }
-
-    // Nel componente Create.php
-
+    /**
+     * Add a new title (creates a new group)
+     */
     public function addTitle()
     {
-        // Crea un nuovo gruppo con un titolo
+        // Create a new group with a title
         $this->form->item_groups[] = [
             'title' => 'Nuovo Titolo',
             'items' => []
         ];
-
-        // Imposta il nuovo gruppo come corrente
-        $this->current_group = count($this->form->item_groups) - 1;
     }
 
+    /**
+     * Add a product to the current group (last group)
+     */
     public function addProduct()
     {
-        // Se non ci sono gruppi, crea un gruppo senza titolo
+        // If no groups exist, create one
         if (empty($this->form->item_groups)) {
             $this->form->item_groups[] = [
                 'title' => '',
                 'items' => []
             ];
-            $this->current_group = 0;
         }
 
-        // Aggiungi un prodotto al gruppo corrente
-        $this->form->item_groups[$this->current_group]['items'][] = [
+        // Get the last group index
+        $lastGroupIndex = count($this->form->item_groups) - 1;
+
+        // Add a product to the last group
+        $this->form->item_groups[$lastGroupIndex]['items'][] = [
             'product_id' => null,
             'product_code' => '',
             'title' => '',
@@ -222,20 +209,24 @@ class Create extends Component
         $this->calculateTotals();
     }
 
-
+    /**
+     * Add a note to the current group (last group)
+     */
     public function addNote()
     {
-        // Se non ci sono gruppi, crea un gruppo senza titolo
+        // If no groups exist, create one
         if (empty($this->form->item_groups)) {
             $this->form->item_groups[] = [
                 'title' => '',
                 'items' => []
             ];
-            $this->current_group = 0;
         }
 
-        // Aggiungi una nota al gruppo corrente
-        $this->form->item_groups[$this->current_group]['items'][] = [
+        // Get the last group index
+        $lastGroupIndex = count($this->form->item_groups) - 1;
+
+        // Add a note to the last group
+        $this->form->item_groups[$lastGroupIndex]['items'][] = [
             'product_id' => null,
             'product_code' => '',
             'title' => '',
@@ -249,6 +240,9 @@ class Create extends Component
         ];
     }
 
+    /**
+     * Remove an item from a group
+     */
     public function removeItem($groupIndex, $itemIndex)
     {
         unset($this->form->item_groups[$groupIndex]['items'][$itemIndex]);
@@ -256,6 +250,9 @@ class Create extends Component
         $this->calculateTotals();
     }
 
+    /**
+     * Handle product selection
+     */
     public function selectProduct($groupIndex, $itemIndex, $productId)
     {
         $product = Product::find($productId);
@@ -271,6 +268,9 @@ class Create extends Component
         }
     }
 
+    /**
+     * Calculate the total for a specific item
+     */
     public function calculateItemTotal($groupIndex, $itemIndex)
     {
         $item = $this->form->item_groups[$groupIndex]['items'][$itemIndex];
@@ -286,6 +286,9 @@ class Create extends Component
         $this->calculateTotals();
     }
 
+    /**
+     * Calculate all totals
+     */
     public function calculateTotals()
     {
         $this->subtotal = 0;
@@ -310,37 +313,35 @@ class Create extends Component
             }
         }
 
-        // Calcolo CNPAIA (4%)
+        // CNPAIA calculation (4%)
         $this->cnpaia_amount = $this->cnpaia_base * 0.04;
 
-        // Imponibile IVA
+        // Taxable amount
         $this->taxable_amount = $this->subtotal + $this->cnpaia_amount;
 
-        // Calcolo IVA
+        // VAT calculation
         $this->tax_amount = $this->taxable_amount * ($this->tax_rate / 100);
 
-        // Totale generale
+        // Total
         $this->total = $this->taxable_amount + $this->tax_amount;
 
-        // Aggiorna il valore nel form
+        // Update form value
         $this->form->total = $this->total;
     }
 
-    public function addShipping()
-    {
-        // Implementare logica per aggiungere spese di spedizione
-    }
-
+    /**
+     * Save the quote
+     */
     public function saveQuote()
     {
-        // Aggiorna il totale nel form prima di salvare
+        // Update total in form before saving
         $this->form->total = $this->total;
 
-        // Ora utilizza il metodo store del form che gestisce tutto
+        // Use form's store method
         $result = $this->form->store();
 
         if ($result instanceof \App\Models\Quote) {
-            // Successo
+            // Success
             Flux::toast(
                 text: "Preventivo " . $result->code . " creato con successo!",
                 variant: 'success',
@@ -348,7 +349,7 @@ class Create extends Component
 
             return redirect()->route('crm.quotes.show', $result);
         } else {
-            // Errore
+            // Error
             Flux::toast(
                 text: "Errore durante la creazione del preventivo: " . $result,
                 variant: 'error',

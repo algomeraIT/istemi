@@ -432,85 +432,7 @@
                             </flux:button>
                         </div>
 
-                        <div class="p-6">
-                            <flux:table class="border-collapse">
-                                {{-- Header: span=2 sulla colonna Servizio --}}
-                                <flux:table.columns>
-                                    <flux:table.column span="2" class="px-4 py-2">Servizio</flux:table.column>
-                                    <flux:table.column align="end" class="px-4 py-2">Quantità</flux:table.column>
-                                    <flux:table.column          class="px-4 py-2">UdM</flux:table.column>
-                                    <flux:table.column align="end" class="px-4 py-2">Prezzo unitario</flux:table.column>
-                                    <flux:table.column align="end" class="px-4 py-2">Sconto</flux:table.column>
-                                    <flux:table.column align="end" class="px-4 py-2">Totale riga</flux:table.column>
-                                    <flux:table.column align="center" class="px-4 py-2"></flux:table.column>
-                                </flux:table.columns>
-
-                                {{-- Righe di esempio --}}
-                                <flux:table.rows>
-                                    @foreach([1,2] as $i)
-                                        <flux:table.row>
-                                            {{-- span=2 qui dentro --}}
-                                            <flux:table.cell
-                                                    span="2"
-                                                    class="relative pl-6 pr-4 py-2 border-y border-l border-gray-200 first:rounded-l-lg"
-                                            >
-                                                APPR00
-                                                <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
-                                            </flux:table.cell>
-
-                                            <flux:table.cell
-                                                    align="end"
-                                                    class="relative px-4 py-2 border-y border-r border-gray-200"
-                                            >
-                                                1
-                                                <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
-                                            </flux:table.cell>
-
-                                            <flux:table.cell
-                                                    class="relative px-4 py-2 border-y border-r border-gray-200"
-                                            >
-                                                a corpo
-                                                <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
-                                            </flux:table.cell>
-
-                                            <flux:table.cell
-                                                    align="end" variant="strong"
-                                                    class="relative px-4 py-2 border-y border-r border-gray-200"
-                                            >
-                                                € 10.000,00
-                                                <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
-                                            </flux:table.cell>
-
-                                            <flux:table.cell
-                                                    align="end"
-                                                    class="relative px-4 py-2 border-y border-r border-gray-200"
-                                            >
-                                                100 %
-                                                <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
-                                            </flux:table.cell>
-
-                                            <flux:table.cell
-                                                    align="end" variant="strong"
-                                                    class="relative px-4 py-2 border-y border-r border-gray-200"
-                                            >
-                                                € 0,00
-                                                <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
-                                            </flux:table.cell>
-
-                                            <flux:table.cell
-                                                    align="center"
-                                                    class="px-4 py-2 border-y border-r-0 border-gray-200 last:rounded-r-lg"
-                                            >
-                                                <flux:icon name="trash" size="sm"/>
-                                            </flux:table.cell>
-                                        </flux:table.row>
-                                    @endforeach
-                                </flux:table.rows>
-                            </flux:table>
-                        </div>
-
-
-                    @foreach($form->item_groups as $groupIndex => $group)
+                        @foreach($form->item_groups as $groupIndex => $group)
                             <div class="mb-8 border-b pb-4">
                                 @if(!empty($group['title']))
                                     <div class="mb-4">
@@ -524,33 +446,173 @@
                                     </div>
                                 @endif
 
-                                    {{-- reset flag --}}
-                                    @php($printedHeader = false)
+                                {{-- Tabella per i prodotti in questo gruppo --}}
+                                @if(count(array_filter($group['items'], fn($item) => $item['type'] === 'product')) > 0)
+                                    <flux:table class="table-fixed border-separate mb-4">
+                                        {{-- Header: intestazioni delle colonne --}}
+                                        <flux:table.columns>
+                                            <flux:table.column class=" w-80 !font-extralight text-[13px] !text-[#B0B0B0]">Servizio</flux:table.column>
+                                            <flux:table.column align="end" class="w-24 !font-extralight text-[13px] !text-[#B0B0B0]">Quantità</flux:table.column>
+                                            <flux:table.column class="w-28 !font-extralight text-[13px] !text-[#B0B0B0]">UdM</flux:table.column>
+                                            <flux:table.column align="end" class="w-36 !font-extralight text-[13px] !text-[#B0B0B0]">Prezzo unitario</flux:table.column>
+                                            <flux:table.column align="end" class="w-24 !font-extralight text-[13px] !text-[#B0B0B0]">Sconto</flux:table.column>
+                                            <flux:table.column align="end" class="w-36 !font-extralight text-[13px] !text-[#B0B0B0]">Totale riga</flux:table.column>
+                                            <flux:table.column align="center" class="w-12 !font-extralight text-[13px] !text-[#B0B0B0]"></flux:table.column>
+                                        </flux:table.columns>
 
-                                    @foreach($group['items'] as $itemIndex => $item)
-                                        @if($item['type'] === 'product')
+                                        <flux:table.rows>
+                                            @foreach($group['items'] as $itemIndex => $item)
+                                                @if($item['type'] === 'product')
+                                                    <flux:table.row>
+                                                        {{-- Servizio --}}
+                                                        <flux:table.cell class="max-w-80 relative border-y border-l border-gray-200 first:rounded-l-[1px]">
+                                                            <flux:select
+                                                                    wire:model.live="form.item_groups.{{ $groupIndex }}.items.{{ $itemIndex }}.product_id"
+                                                                    wire:change="selectProduct({{ $groupIndex }}, {{ $itemIndex }}, $event.target.value)"
+                                                                    variant="listbox"
+                                                                    searchable
+                                                                    clearable
+                                                                    placeholder="Cerca per parola chiave o codice"
+                                                                    class="w-full"
+                                                            >
+                                                                @foreach($products as $product)
+                                                                    <flux:select.option value="{{ $product->id }}">
+                                                                        {{ $product->unique_code }} - {{ $product->title }}
+                                                                    </flux:select.option>
+                                                                @endforeach
+                                                            </flux:select>
+                                                            <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
+                                                        </flux:table.cell>
 
+                                                        {{-- Quantità --}}
+                                                        <flux:table.cell align="end" class="relative border-y border-gray-200">
+                                                            <flux:field>
+                                                                <flux:input
+                                                                        wire:model.live="form.item_groups.{{ $groupIndex }}.items.{{ $itemIndex }}.quantity"
+                                                                        wire:change="calculateItemTotal({{ $groupIndex }}, {{ $itemIndex }})"
+                                                                        type="number"
+                                                                        step="0.01"
+                                                                        min="0"
+                                                                        class="w-full text-right"
+                                                                        :loading="false"
+                                                                />
+                                                            </flux:field>
+                                                            <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
+                                                        </flux:table.cell>
 
-                                        @else
-                                            <!-- Nota -->
-                                            <div class="grid grid-cols-12 gap-4">
-                                                <div class="col-span-11">
-                                                    <flux:field data-input>
-                                                        <flux:label>Nota</flux:label>
-                                                        <flux:input
-                                                                wire:model="form.item_groups.{{ $groupIndex }}.items.{{ $itemIndex }}.title"
-                                                                placeholder="Scrivi una nota.."
-                                                        />
-                                                    </flux:field>
-                                                </div>
+                                                        {{-- UdM --}}
+                                                        <flux:table.cell class="relative border-y border-gray-200">
+                                                            <flux:select
+                                                                    wire:model="form.item_groups.{{ $groupIndex }}.items.{{ $itemIndex }}.uom"
+                                                                    variant="listbox"
+                                                                    searchable
+                                                                    class="w-full"
+                                                            >
+                                                                @foreach(\App\Enums\MeasurementUnitEnum::valuesArray() as $uom)
+                                                                    <flux:select.option value="{{ $uom }}">
+                                                                        {{ $uom }}
+                                                                    </flux:select.option>
+                                                                @endforeach
+                                                            </flux:select>
+                                                            <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
+                                                        </flux:table.cell>
 
-                                                <!-- Azioni -->
-                                                <div class="col-span-1 flex items-end justify-end pb-1">
-                                                    <flux:button type="button" wire:click="removeItem({{ $groupIndex }}, {{ $itemIndex }})" variant="ghost" data-variant="ghost" data-color="red" icon="trash" size="sm" />
-                                                </div>
+                                                        {{-- Prezzo unitario --}}
+                                                        <flux:table.cell align="end" variant="strong" class="relative border-y border-gray-200 py-2">
+                                                            <flux:input.group>
+                                                                <flux:input.group.prefix class="bg-[#F5FCFD]">
+                                                                    <span class="font-semibold text-[#10BDD4]">€</span>
+                                                                </flux:input.group.prefix>
+                                                                <flux:input
+                                                                        wire:model.live="form.item_groups.{{ $groupIndex }}.items.{{ $itemIndex }}.unit_price"
+                                                                        wire:change="calculateItemTotal({{ $groupIndex }}, {{ $itemIndex }})"
+                                                                        type="number"
+                                                                        step="0.01"
+                                                                        min="0"
+                                                                        class="w-full text-right"
+                                                                        :loading="false"
+                                                                />
+                                                            </flux:input.group>
+                                                            <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
+                                                        </flux:table.cell>
+
+                                                        {{-- Sconto --}}
+                                                        <flux:table.cell align="end" class="w-36 relative border-y border-gray-200">
+                                                            <flux:input.group>
+                                                                <flux:input.group.prefix class="bg-[#F5FCFD]">
+                                                                    <span class="font-semibold text-[#10BDD4]">%</span>
+                                                                </flux:input.group.prefix>
+                                                                <flux:input
+                                                                        wire:model.live="form.item_groups.{{ $groupIndex }}.items.{{ $itemIndex }}.discount_pct"
+                                                                        wire:change="calculateItemTotal({{ $groupIndex }}, {{ $itemIndex }})"
+                                                                        type="number"
+                                                                        step="1"
+                                                                        min="0"
+                                                                        max="100"
+                                                                        class="w-full text-right"
+                                                                />
+                                                            </flux:input.group>
+                                                            <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
+                                                        </flux:table.cell>
+
+                                                        {{-- Totale riga --}}
+                                                        <flux:table.cell align="end" variant="strong" class="relative border-y border-gray-200">
+                                                            @if($item['discount_pct'] == 100)
+                                                                <span class="text-[#B0B0B0] font-semibold text-sm pr-2">€ OMAGGIO</span>
+                                                            @else
+                                                                <span class="text-[#B0B0B0] font-semibold text-sm pr-2">€ {{ number_format($item['line_total'], 2, ',', '.') }}</span>
+                                                            @endif
+                                                            <div class="absolute top-2 bottom-2 right-0 w-px bg-gray-200"></div>
+                                                        </flux:table.cell>
+
+                                                        {{-- Azioni --}}
+                                                        <flux:table.cell align="center" class="border-y border-r border-gray-200 last:rounded-l-[1px] !px-1.5 py-2">
+                                                            <flux:button
+                                                                    type="button"
+                                                                    wire:click="removeItem({{ $groupIndex }}, {{ $itemIndex }})"
+                                                                    variant="ghost"
+                                                                    data-variant="ghost"
+                                                                    data-color="red"
+                                                                    icon="trash"
+                                                                    size="xs"
+                                                                    class="mx-auto w-6 h-6"
+                                                            />
+                                                        </flux:table.cell>
+                                                    </flux:table.row>
+                                                @endif
+                                            @endforeach
+                                        </flux:table.rows>
+                                    </flux:table>
+                                @endif
+
+                                {{-- Note in questo gruppo --}}
+                                @foreach($group['items'] as $itemIndex => $item)
+                                    @if($item['type'] === 'note')
+                                        <div class="grid grid-cols-12 gap-4 mb-4">
+                                            <div class="col-span-11">
+                                                <flux:field data-input>
+                                                    <flux:label>Nota</flux:label>
+                                                    <flux:input
+                                                            wire:model="form.item_groups.{{ $groupIndex }}.items.{{ $itemIndex }}.title"
+                                                            placeholder="Scrivi una nota.."
+                                                    />
+                                                </flux:field>
                                             </div>
-                                        @endif
-                                    </div>
+
+                                            {{-- Azioni --}}
+                                            <div class="col-span-1 flex items-end justify-end pb-1">
+                                                <flux:button
+                                                        type="button"
+                                                        wire:click="removeItem({{ $groupIndex }}, {{ $itemIndex }})"
+                                                        variant="ghost"
+                                                        data-variant="ghost"
+                                                        data-color="red"
+                                                        icon="trash"
+                                                        size="sm"
+                                                />
+                                            </div>
+                                        </div>
+                                    @endif
                                 @endforeach
                             </div>
                         @endforeach
@@ -614,5 +676,6 @@
                     </flux:button>
                 </div>
             </div>
+        </div>
     </form>
 </div>
