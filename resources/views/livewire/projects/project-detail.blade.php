@@ -25,7 +25,7 @@
                         </flux:tabs>
 
                         <div class="sm:flex md:flex-wrap lg:flex-nowrap gap-4 p-1">
-                     {{--        <flux:select wire:model.live="query_project" data-variant="status">
+                            {{--        <flux:select wire:model.live="query_project" data-variant="status">
                                 <flux:select.option value="">Tutti gli stati</flux:select.option>
                                 <flux:select.option value="In attesa">In attesa</flux:select.option>
                                 <flux:select.option value="Svolto">Svolto</flux:select.option>
@@ -111,17 +111,17 @@
                                                                     <flux:table.cell class="whitespace-nowrap border "
                                                                         data-detail="detail">
 
-                                                                        <flux:button
+                                                                    {{--     <flux:button
                                                                             wire:click="$dispatch('openModal', {
-                                        component: 'projects.modals.create-task-project',
-                                        arguments: {
-                                            project_id: {{ $phase->id_project }},
-                                            id: {{ $phase->id }}
-                                        }
-                                    })"
+                                                                                component: 'projects.modals.create-task-project',
+                                                                                arguments: {
+                                                                                    project_id: {{ $phase->id_project }},
+                                                                                    id: {{ $phase->id }}
+                                                                                }
+                                                                            })"
                                                                             variant="ghost" data-variant="ghost"
                                                                             icon="plus">
-                                                                        </flux:button>
+                                                                        </flux:button> --}}
                                                                     </flux:table.cell>
                                                                     <flux:table.cell class="border px-4 py-2">
                                                                         {{ $phase->user->name . ' ' . $phase->user->last_name }}
@@ -235,7 +235,7 @@
                                                                     <!-- Action Buttons -->
                                                                     <div class="flex space-x-2 mt-3 justify-between">
                                                                         <div>
-                                                                      {{--       <flux:button
+                                                                            {{--       <flux:button
                                                                                 wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $project->id }}}})"
                                                                                 variant="ghost" data-variant="ghost"
                                                                                 data-color="gray" data-rounded
