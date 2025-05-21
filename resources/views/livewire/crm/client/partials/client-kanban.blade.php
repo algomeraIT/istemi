@@ -72,14 +72,19 @@
 
             {{-- Action Buttons --}}
             <div class="text-right flex justify-end gap-2">
-                <flux:button href="{{ route('crm.client.show', [$clientStatus, $client->id]) }}" variant="ghost"
-                    data-variant="ghost" data-color="teal" icon="eye" size="sm" />
+                @if ($clientStatus === 'lead')
+                    <flux:button wire:click='setLead({{ $client->id }})' variant="ghost" data-variant="ghost"
+                        data-color="teal" icon="eye" size="sm" />
+                @else
+                    <flux:button href="{{ route('crm.client.show', [$clientStatus, $client->id]) }}" variant="ghost"
+                        data-variant="ghost" data-color="teal" icon="eye" size="sm" />
+                @endif
 
                 @if ($clientStatus === 'cliente')
                     <flux:button wire:click="edit({{ $client->id }})" variant="ghost" data-variant="ghost"
                         data-color="gray" data-rounded icon="pencil" size="sm" />
                 @endif
-                
+
                 <flux:button wire:click="delete({{ $client->id }})"
                     wire:confirm="Sei sicuro di voler eliminare questo client?" variant="ghost" data-variant="ghost"
                     data-color="red" data-rounded icon="trash" size="sm" />
