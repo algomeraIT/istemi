@@ -10,10 +10,9 @@ return new class extends Migration {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id')->nullable()->constrained('clients')->cascadeOnDelete();
-            $table->foreignId('assigned_to')->nullable()->constrained('users')->onDelete('set null');
             $table->string('title');
-            $table->text('note');
-            $table->enum('status', ['nuovo', 'in attesa', 'completato', 'sospeso'])->default('nuovo');
+            $table->text('note')->nullable();
+            $table->string('status')->default('nuovo');
             $table->date('expiration')->nullable();
             $table->timestamp('completed_at')->nullable();
 

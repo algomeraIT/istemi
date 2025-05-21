@@ -37,7 +37,7 @@ class CreateNote extends ModalComponent
                 'id_phase' => null,
                 'client_id' => $project->id_client,
                 'user_name' => $user->name . ' ' . $user->last_name,
-                'role' => $user->role,
+                'role' => $user->role_name,
                 'user_id' => $user->id,
             ]);
     

@@ -13,6 +13,7 @@
         "cknow/laravel-money": "^8.4",
         "dasundev/livewire-dropzone": "^2.0",
         "doctrine/dbal": "^4.2",
+        "laravel-lang/common": "^6.7",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.0",
@@ -22,6 +23,7 @@
         "nesbot/carbon": "^3.9",
         "richan-fongdasen/eloquent-blameable": "^1.11",
         "spatie/laravel-medialibrary": "^11.12",
+        "spatie/laravel-permission": "^6.18",
         "wire-elements/modal": "^3.0"
     },
     "require-dev": {

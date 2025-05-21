@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+
 use App\Models\User;
+
 class UserTableSeeder extends Seeder
 {
     /**
@@ -13,27 +14,36 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'name' => 'Admin',
-            'last_name' => 'Lastname',
+        $admin = User::factory()->create([
+            'name' => 'Super',
+            'last_name' => 'Admin',
             'email' => 'admin@example.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('password'),
-            'has_to_change_password' => false,
-            'image_path' => null,
-            'cellphone' => null,
-            'address' => null,
-            'city' => null,
-            'province' => null,
-            'cap' => null,
-            'role' => 'admin',
-            'job_position' => 'Fullstack Developer',
-            'status' => 1, //1 == active, 0 == disable
-            'created_at' => now(),
-            'updated_at' => now(),
-            'remember_me' => 0,
         ]);
-  
-        User::factory()->count(20)->create();
+        $admin->assignRole('superAdmin');
+
+        $roleEmailMap = [
+            'direttore generale' => 'direttore',
+            'responsabile aerea' => 'responsabile_aerea',
+            'responsabile unità produttiva locale' => 'responsabile_unita_produttiva_locale',
+            'project manager' => 'project_manager',
+            'commerciale' => 'commerciale',
+            'dipendente/collaboratore' => 'dipendente_collaboratore',
+            'responsabile attività in campo' => 'responsabile_attivita',
+            'unità esterna' => 'unita_esterna',
+        ];
+
+        $roles = Role::where('name', '!=', 'superAdmin')->get();
+
+        foreach ($roles as $role) {
+            $normalizedRoleName = $roleEmailMap[$role->name] ?? 'ruolo_generico';
+
+            for ($i = 1; $i <= 5; $i++) {
+                $user = User::factory()->create([
+                    'email' => "{$normalizedRoleName}{$i}@example.com",
+                ]);
+
+                $user->assignRole($role->name);
+            }
+        }
     }
 }

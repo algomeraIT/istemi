@@ -2,9 +2,9 @@
     <flux:tabs variant="segmented">
         <flux:tab data-variant="detail" name="referenti">Referenti</flux:tab>
         {{-- TODO da sviluppare le altre tab --}}
-        {{-- <flux:tab data-variant="detail" name="commercio">Vendite e acquisti</flux:tab>
-        <flux:tab data-variant="detail" name="contabilita">Contabilità</flux:tab>
-        <flux:tab data-variant="detail" name="comunicazioni">Comunicazioni</flux:tab> --}}
+        {{-- <flux:tab data-variant="detail" name="commercio">Vendite e acquisti</flux:tab> --}}
+        {{-- <flux:tab data-variant="detail" name="contabilita">Contabilità</flux:tab> --}}
+        {{-- <flux:tab data-variant="detail" name="comunicazioni">Comunicazioni</flux:tab> --}}
     </flux:tabs>
 
     <flux:tab.panel name="referenti">
@@ -28,7 +28,7 @@
         @include('livewire.crm.client.components.client.flyout-show')
     </flux:tab.panel>
 
-    <flux:tab.panel name="commercio">
+    {{-- <flux:tab.panel name="commercio">
         <flux:tab.group>
             <div class="flex items-center place-content-between">
                 <flux:tabs variant="segmented">
@@ -54,9 +54,9 @@
                 @include('livewire.crm.utilities.acquisition-table', ['acquisitions' => $acquisitions])
             </flux:tab.panel>
         </flux:tab.group>
-    </flux:tab.panel>
+    </flux:tab.panel> --}}
 
-    <flux:tab.panel name="contabilita">
+    {{-- <flux:tab.panel name="contabilita">
         <div class="flex  pt-[10px] pl-[40px] pb-[20px] h-[65px]">
             <button @click="activeTabAccounting = 'orders'"
                 :class="{ ' text-[#10BDD4]': activeTabAccounting === 'orders' }"
@@ -111,76 +111,73 @@
                 'accounting_invoices' => $accounting_invoices,
             ])
         </div>
-    </flux:tab.panel>
+    </flux:tab.panel> --}}
 
-    <flux:tab.panel name="comunicazioni">
-        <div x-data="{ open: false }" class="relative inline-block text-left mb-8">
-            <!-- Trigger Button -->
-            <flux:button @click="open = !open"
-                class="bg-white  text-sm font-semibold px-4 py-2 rounded shadow-sm border border-gray-200 hover:bg-gray-50 transition duration-200 flex items-center gap-2">
+    {{-- <flux:tab.panel name="communications">
+        <div class="flex items-center justify-between">
+            <flux:dropdown>
+                <flux:button icon="plus" size="sm" data-color="teal">Aggiungi</flux:button>
 
-                <flux:icon.plus class="w-4 h-4" />
-                Aggiungi
-                <svg class="w-4 h-4 transform transition-transform duration-200" :class="{ 'rotate-180': open }"
-                    fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-            </flux:button>
+                <flux:menu class="text-[#B0B0B0]">
+                    <flux:modal.trigger name="new-activity">
+                        <flux:menu.item icon="calendar"
+                            class="!text-[#B0B0B0] hover:!text-[#E873A0] hover:!bg-[#F9EDF1]">Attività
+                        </flux:menu.item>
+                    </flux:modal.trigger>
+                    <flux:modal.trigger name="new-email">
+                        <flux:menu.item icon="paper-airplane"
+                            class="!text-[#B0B0B0] hover:!text-[#10BDD4] hover:!bg-[#E2EDF7]">E-mail
+                        </flux:menu.item>
+                    </flux:modal.trigger>
+                    <flux:modal.trigger name="new-note">
+                        <flux:menu.item icon="pencil"
+                            class="!text-[#B0B0B0] hover:!text-[#B0B0B0] hover:!bg-[#F3F3F3]">Nota
+                        </flux:menu.item>
+                    </flux:modal.trigger>
+                    <flux:modal.trigger name="new-call">
+                        <flux:menu.item icon="phone"
+                            class="!text-[#B0B0B0] hover:!text-[#A259F4] hover:!bg-[#F2EAFA]">Chiamata
+                        </flux:menu.item>
+                    </flux:modal.trigger>
+                </flux:menu>
+            </flux:dropdown>
 
-            <!-- Dropdown Items -->
-            <div x-show="open" @click.away="open = false"
-                class="absolute mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200 z-50"
-                x-transition:enter="transition ease-out duration-100" x-transition:enter-start="opacity-0 scale-95"
-                x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75"
-                x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+            @include('livewire.crm.client.components.contact.flyout-create-edit-activity')
+            @include('livewire.crm.client.components.contact.flyout-create-edit-mail')
+            @include('livewire.crm.client.components.contact.flyout-create-edit-note')
+            @include('livewire.crm.client.components.contact.flyout-create-edit-call')
 
-                <div class="py-1 space-y-1">
-                    <flux:button wire:click="openModalActivity"
-                        class="flex w-full border-0  justify-start text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600 ">
-                        <flux:icon.calendar-days class="w-4 h-4" />
-                        Attività
-                    </flux:button>
-
-                    <flux:button wire:click="openModalEmail"
-                        class="w-full  border-0 justify-start text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600 transition flex items-center gap-2 px-4 py-2">
-                        <flux:icon.envelope class="w-4 h-4" />
-                        E-mail
-                    </flux:button>
-
-                    <flux:button wire:click="openModalNote"
-                        class="w-full  border-0 justify-start text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600 transition flex items-center gap-2 px-4 py-2">
-                        <flux:icon.pencil class="w-4 h-4" />
-                        Nota
-                    </flux:button>
-
-                    <flux:button wire:click="openModalNote"
-                        class="w-full border-0  justify-start text-sm text-gray-700 hover:bg-gray-100 hover:text-cyan-600 transition flex items-center gap-2 px-4 py-2">
-                        <flux:icon.phone class="w-4 h-4" />
-                        Chiamata
-                    </flux:button>
-                </div>
-            </div>
+            <flux:field data-input>
+                <flux:select wire:model.live="communicationType" variant="listbox" clearable
+                    placeholder="Seleziona tipologia" class="min-w-44">
+                    <flux:select.option>Attivita</flux:select.option>
+                    <flux:select.option>E-mail</flux:select.option>
+                    <flux:select.option>Nota</flux:select.option>
+                    <flux:select.option>Chiamata</flux:select.option>
+                </flux:select>
+            </flux:field>
         </div>
 
-        {{-- @include('livewire.crm.utilities.activity-com-table', [
-            'activity_communications' => $activity_communications,
-        ])
+        <div class="overflow-auto h-[530px]">
+            @foreach ($communications as $record)
+                @if ($record instanceof \App\Models\Activity)
+                    @include('livewire.crm.client.components.contact.item-activity', [
+                        'activity' => $record,
+                    ])
+                @elseif ($record instanceof \App\Models\Email)
+                    @include('livewire.crm.client.components.contact.item-email', [
+                        'email' => $record,
+                    ])
+                @elseif ($record instanceof \App\Models\Note)
+                    @include('livewire.crm.client.components.contact.item-note', [
+                        'note' => $record,
+                    ])
+                @endif
+            @endforeach
 
-        @include('livewire.crm.utilities.note-com-table', [
-            'note_communications' => $note_communications,
-            'activity_communications' => $activity_communications,
-        ])
-
-        @include('livewire.crm.utilities.email-com-table', [
-            'email_communications' => $email_communications,
-            'activity_communications' => $activity_communications,
-        ])
-
-        @include('livewire.crm.utilities.call-com-table', [
-            'call_communications' => $note_communications,
-            'activity_communications' => $activity_communications,
-        ]) --}}
-    </flux:tab.panel>
+            @include('livewire.crm.client.components.contact.flyout-show-activity')
+        </div>
+    </flux:tab.panel> --}}
 
     @include('livewire.crm.referent.modal', [
         'showModalActivity' => $showModalActivity,

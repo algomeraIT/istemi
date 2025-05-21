@@ -24,7 +24,7 @@
                         <flux:icon.user />
                         <flux:label>Nome</flux:label>
                     </div>
-                    <flux:input wire:model.live="referentForm.name" />
+                    <flux:input wire:model="referentForm.name" />
                     <flux:error name="referentForm.name" />
                 </flux:field>
             </div>
@@ -35,7 +35,7 @@
                         <flux:icon.user />
                         <flux:label>Cognome</flux:label>
                     </div>
-                    <flux:input wire:model.live="referentForm.last_name" />
+                    <flux:input wire:model="referentForm.last_name" />
                     <flux:error name="referentForm.last_name" />
                 </flux:field>
             </div>
@@ -46,7 +46,7 @@
                         <flux:icon.tag />
                         <flux:label>Titolo</flux:label>
                     </div>
-                    <flux:input wire:model.live="referentForm.title" />
+                    <flux:input wire:model="referentForm.title" />
                     <flux:error name="referentForm.title" />
                 </flux:field>
             </div>
@@ -57,7 +57,7 @@
                         <flux:icon.briefcase />
                         <flux:label>Posizione lavorativa</flux:label>
                     </div>
-                    <flux:input wire:model.live="referentForm.job_position" />
+                    <flux:input wire:model="referentForm.job_position" />
                     <flux:error name="referentForm.job_position" />
                 </flux:field>
             </div>
@@ -68,7 +68,7 @@
                         <flux:icon.at-symbol />
                         <flux:label>e-mail</flux:label>
                     </div>
-                    <flux:input type="email" wire:model.live="referentForm.email" />
+                    <flux:input type="email" wire:model="referentForm.email" />
                     <flux:error name="referentForm.email" />
                 </flux:field>
             </div>
@@ -83,7 +83,7 @@
                         <flux:select class="max-w-fit">
                             <flux:select.option selected>+39</flux:select.option>
                         </flux:select>
-                        <flux:input wire:model.live="referentForm.telephone" mask="999 99 99 999" />
+                        <flux:input wire:model="referentForm.telephone" mask="999 99 99 999" />
                     </flux:input.group>
 
                     <flux:error name="referentForm.telephone" />

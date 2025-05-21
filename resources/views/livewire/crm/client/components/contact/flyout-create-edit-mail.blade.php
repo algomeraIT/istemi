@@ -17,8 +17,18 @@
                         <flux:icon.paper-airplane />
                         <flux:label>Mittente</flux:label>
                     </div>
-                    <flux:input wire:model.live="referentForm.name" />
-                    <flux:error name="referentForm.name" />
+                    <flux:select variant="listbox" wire:model="emailForm.sent_by" searchable>
+                        <x-slot name="search">
+                            <flux:select.search placeholder="Cerca..." />
+                        </x-slot>
+
+                        @foreach ($users as $user)
+                            <flux:select.option value="{{ $user->id }}">
+                                {{ $user->full_name }}
+                            </flux:select.option>
+                        @endforeach
+                    </flux:select>
+                    <flux:error name="emailForm.sent_by" />
                 </flux:field>
             </div>
 
@@ -28,14 +38,31 @@
                         <flux:icon.at-symbol />
                         <flux:label>Destinatari</flux:label>
                     </div>
-                    <flux:select variant="listbox" wire:model.live="clientForm.country" searchable multiple>
+                    <flux:select variant="listbox" wire:model="emailForm.to" searchable multiple>
+                        <x-slot name="search">
+                            <flux:select.search placeholder="Cerca..." />
+                        </x-slot>
+
                         @foreach ($all as $user)
-                            <flux:select.option value="{{ $user->id }}">
-                                {{ $user->full_name }}
+                            <flux:select.option value="{{ $user->email }}">
+                                <div class="flex items-center gap-2">
+                                    <div
+                                        class="w-8 h-8 rounded-full border overflow-hidden flex items-center justify-center shadow-inner">
+                                        <flux:icon.user class="size-4" />
+                                    </div>
+
+                                    <div class="flex flex-col">
+                                        <div class="flex items-center gap-2">
+                                            <span>{{ $user->full_name }}</span>
+                                            <small class="text-[#B0B0B0] font-light">{{ $user->role_name }}</small>
+                                        </div>
+                                        <small>{{ $user->email }}</small>
+                                    </div>
+                                </div>
                             </flux:select.option>
                         @endforeach
                     </flux:select>
-                    <flux:error name="clientForm.country" />
+                    <flux:error name="emailForm.to" />
                 </flux:field>
             </div>
 
@@ -45,8 +72,8 @@
                         <flux:icon.document-text />
                         <flux:label>Oggetto</flux:label>
                     </div>
-                    <flux:input wire:model.live="referentForm.name" />
-                    <flux:error name="referentForm.name" />
+                    <flux:input wire:model="emailForm.subject" />
+                    <flux:error name="emailForm.subject" />
                 </flux:field>
             </div>
 
@@ -56,12 +83,12 @@
                         <flux:icon.document-text class="size-4 text-[#B0B0B0]" />
                         <flux:label class="text-xs !font-light !text-[#B0B0B0]">Email</flux:label>
                     </div>
-                    <flux:editor wire:model="referentForm.note" class="**:data-[slot=content]:min-h-[200px]!" />
+                    <flux:editor wire:model="emailForm.body" class="**:data-[slot=content]:min-h-[200px]!" />
                 </div>
             </div>
         </div>
 
-        <flux:button variant="primary" data-variant="primary" wire:click="newHistory" data-color="teal">
+        <flux:button variant="primary" data-variant="primary" wire:click="sendEmails" data-color="teal">
             Invia
         </flux:button>
     </div>

@@ -21,11 +21,11 @@
                             <div class="flex flex-col items-start ml-[20px]">
                                 <span
                                     class="text-lg leading-[21px] font-normal text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
-                                    {{ $activity->name . ' ' . $activity->last_name . ' - ' . $activity->role }}
+                                    {{ $activity->name . ' ' . $activity->last_name . ' - ' . $activity->role_name }}
                                 </span>
                                 <span
                                     class="text-[17px] leading-[20px] font-light text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
-                                    {{ Auth::user()->role }}</span>
+                                    {{ Auth::user()->role_name }}</span>
                                 <span class="font-extralight">{{ $activity->created_at->diffForHumans() }}</span>
                             </div>
 
