@@ -25,13 +25,13 @@
                         </flux:tabs>
 
                         <div class="sm:flex md:flex-wrap lg:flex-nowrap gap-4 p-1">
-                            <flux:select wire:model.live="query_project" data-variant="status">
+                     {{--        <flux:select wire:model.live="query_project" data-variant="status">
                                 <flux:select.option value="">Tutti gli stati</flux:select.option>
                                 <flux:select.option value="In attesa">In attesa</flux:select.option>
                                 <flux:select.option value="Svolto">Svolto</flux:select.option>
                             </flux:select>
 
-                            <flux:input wire:model.live="query" data-variant="search" placeholder="Cerca fase" />
+                            <flux:input wire:model.live="query" data-variant="search" placeholder="Cerca fase" /> --}}
                         </div>
                     </div>
                     <flux:tab.panel name="task">
@@ -235,11 +235,11 @@
                                                                     <!-- Action Buttons -->
                                                                     <div class="flex space-x-2 mt-3 justify-between">
                                                                         <div>
-                                                                            <flux:button
+                                                                      {{--       <flux:button
                                                                                 wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $project->id }}}})"
                                                                                 variant="ghost" data-variant="ghost"
                                                                                 data-color="gray" data-rounded
-                                                                                icon="pencil" size="sm" />
+                                                                                icon="pencil" size="sm" /> --}}
                                                                             <flux:button
                                                                                 wire:click="deleteMacroTask({{ $project->id }})"
                                                                                 wire:confirm="Sei sicuro di voler archiviare questo macro task?"
