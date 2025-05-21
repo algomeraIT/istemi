@@ -38,8 +38,7 @@ class ProjectDetail extends Component
         $this->document = DocumentProject::where("project_id", $id)->get();
         $this->notes = NoteProject::where("project_id", $id)->orderBy('created_at', 'desc')->get();
         $this->statusPhases = Phase::with(['area', 'microArea'])->where("id_project", $id)->where('status', '!=', 'deleted')->get();
-        $projectId = $id;
-        $phaseIds = Phase::where('id_project', $projectId)->pluck('id');
+        $phaseIds = Phase::where('id_project', $id)->pluck('id');
         $this->tasks = Task::whereIn('id_phases', $phaseIds)->get();
 
 
