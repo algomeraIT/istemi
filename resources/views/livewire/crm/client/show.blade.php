@@ -17,14 +17,15 @@
         <div class="flex-grow xl:w-2/3">
             <flux:tab.group>
                 <flux:tabs variant="segmented">
-                    @foreach ($tabs as $tab)
-                        <flux:tab data-variant="detail" name="{{ $tab }}">{{ $tab }}</flux:tab>
+                    @foreach ($tabs as $key => $tab)
+                        <flux:tab wire:key='{{ $key }}-{{ $tab }}' data-variant="detail"
+                            name="{{ $tab }}">{{ $tab }}</flux:tab>
                     @endforeach
                 </flux:tabs>
 
-                <flux:tab.panel name="storico">
+                {{-- <flux:tab.panel name="storico">
                     @include('livewire.crm.client.components.contact.historyClient')
-                </flux:tab.panel>
+                </flux:tab.panel> --}}
 
                 <flux:tab.panel name="preventivi">
                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 mb-4">
@@ -144,23 +145,30 @@
                         @if (count($communications))
                             @foreach ($communications as $record)
                                 @if ($record instanceof \App\Models\Activity)
-                                    @include('livewire.crm.client.components.contact.item-activity', [
-                                        'activity' => $record,
-                                    ])
+                                    <div wire:key="activity-{{ $record->id }}">
+                                        @include('livewire.crm.client.components.contact.item-activity', [
+                                            'activity' => $record,
+                                        ])
+                                    </div>
                                 @elseif ($record instanceof \App\Models\Email)
-                                    @include('livewire.crm.client.components.contact.item-email', [
-                                        'email' => $record,
-                                    ])
+                                    <div wire:key="email-{{ $record->id }}">
+                                        @include('livewire.crm.client.components.contact.item-email', [
+                                            'email' => $record,
+                                        ])
+                                    </div>
                                 @elseif ($record instanceof \App\Models\Note)
-                                    @include('livewire.crm.client.components.contact.item-note', [
-                                        'note' => $record,
-                                    ])
+                                    <div wire:key="note-{{ $record->id }}">
+                                        @include('livewire.crm.client.components.contact.item-note', [
+                                            'note' => $record,
+                                        ])
+                                    </div>
                                 @endif
                             @endforeach
                         @else
                             <div class="w-full h-full flex items-center justify-center">
-                                <p class="text-[#B0B0B0] text-2xl font-medium">Nessuna
-                                    comunicazione al momento</p>
+                                <p class="text-[#B0B0B0] text-2xl font-medium">
+                                    Nessuna comunicazione al momento
+                                </p>
                             </div>
                         @endif
 

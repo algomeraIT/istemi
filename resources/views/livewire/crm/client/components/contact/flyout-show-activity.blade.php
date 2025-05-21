@@ -40,10 +40,10 @@
                         data-variant="ghost" data-color="gray" icon="pencil" size="sm"
                         class="text-[#6C757D] text-xs font-medium">Modifica</flux:button>
 
-                    <flux:button wire:click="deleteActivity({{ $activityForm->activity->id }})"
+                    {{-- <flux:button wire:click="deleteActivity({{ $activityForm->activity->id }})"
                         wire:confirm="Sei sicuro di voler eliminare questa attività?" variant="ghost"
                         data-variant="ghost" data-color="red" icon="trash" size="sm"
-                        class="text-[#E63946] text-xs font-medium">Elimina</flux:button>
+                        class="text-[#E63946] text-xs font-medium">Elimina</flux:button> --}}
                 </div>
             </div>
 

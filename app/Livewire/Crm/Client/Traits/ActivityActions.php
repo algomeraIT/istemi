@@ -35,7 +35,7 @@ trait ActivityActions
     public function setActivity($id)
     {
         Flux::modals()->close();
-        
+
         $activity = Activity::findOrFail($id);
 
         $this->activityForm->setActivity($activity);
@@ -71,14 +71,16 @@ trait ActivityActions
 
     public function deleteActivity($id)
     {
+        Flux::modals()->close();
+
         $activity = Activity::findOrFail($id);
         $activity->delete();
-
-        $this->dispatch('refresh');
 
         Flux::toast(
             text: "Attività eliminata.",
             variant: 'warning',
         );
-    }    
+        
+        $this->dispatch('refresh');
+    }
 }
