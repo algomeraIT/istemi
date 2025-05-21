@@ -176,7 +176,7 @@
                         </div>
 
                         @elseif ($currentTab == 4)
-                        <h2 class="text-lg font-medium italic mb-4">Fasi previste</h2>
+                        <h2 class="text-lg font-medium italic mb-4">Fasi previste </h2>
 
                         <div>
                             @php
