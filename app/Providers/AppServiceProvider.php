@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         Model::unguard();
         Carbon::setLocale('it');
 
-        require_once app_path('Helpers/FunctionHelper.php');
+        require_once app_path('Helpers/FunctionGlobalHelper.php');
 
         Authenticate::redirectUsing(function ($request) { 
             return route('home'); 
