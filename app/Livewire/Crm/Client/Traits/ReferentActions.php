@@ -25,12 +25,12 @@ trait ReferentActions
 
         Flux::modals()->close();
 
+        $this->dispatch('refresh');
+        
         Flux::toast(
             text: "Nuovo referente inserito con successo.",
             variant: 'success',
         );
-
-        $this->dispatch('refresh');
     }
 
     public function updateReferent()
@@ -39,17 +39,23 @@ trait ReferentActions
 
         Flux::modals()->close();
 
+        $this->dispatch('refresh');
+
         Flux::toast(
-            text: "Referent aggiornato con successo.",
+            text: "Referente aggiornato con successo.",
             variant: 'success',
         );
-
-        $this->dispatch('refresh');
     }
 
     public function deleteReferent($id)
     {
         Referent::find($id)->delete();
-        session()->flash('message', 'Referente eliminato con successo!');
+
+        $this->dispatch('refresh');
+
+        Flux::toast(
+            text: "Referente eliminato.",
+            variant: 'warning',
+        );
     }
 }

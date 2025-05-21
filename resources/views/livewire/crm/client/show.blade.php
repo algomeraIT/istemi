@@ -29,19 +29,19 @@
                 <flux:tab.panel name="preventivi">
                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 mb-4">
                         <div class="flex gap-4 items-center">
-                            <select wire:model.live="status_estimate" class=" border rounded p-2">
+                            <select class=" border rounded p-2">
                                 <option value="">Filtro</option>
                                 <option value="0">In scadenza</option>
                                 <option value="1">Valido</option>
                                 <option value="2">Scaduto</option>
                             </select>
     
-                            <input type="text" wire:model.live="query_estimate" placeholder="Cerca…"
+                            <input type="text" placeholder="Cerca…"
                                 class="border rounded p-2 flex-1 max-w-sm" />
                         </div>
                     </div>
     
-                    @include('livewire.crm.utilities.estimate-sub-table', ['estimates' => $estimates])
+                    {{-- @include('livewire.crm.utilities.estimate-sub-table') --}}
                 </flux:tab.panel>
     
                 <flux:tab.panel name="referenti">
@@ -123,7 +123,7 @@
                             </flux:menu>
                         </flux:dropdown>
     
-                        {{-- Flyout Modals --}}
+                        {{-- Flyout Modals Create/Edit --}}
                         @include('livewire.crm.client.components.contact.flyout-create-edit-activity')
                         @include('livewire.crm.client.components.contact.flyout-create-edit-mail')
                         @include('livewire.crm.client.components.contact.flyout-create-edit-note')
@@ -136,7 +136,7 @@
                                 <flux:select.option>Attivita</flux:select.option>
                                 <flux:select.option>E-mail</flux:select.option>
                                 <flux:select.option>Nota</flux:select.option>
-                                <flux:select.option>Chiamata</flux:select.option>
+                                {{-- <flux:select.option>Chiamata</flux:select.option> --}}
                             </flux:select>
                         </flux:field>
                     </div>
@@ -157,8 +157,10 @@
                                 ])
                             @endif
                         @endforeach
-    
+                        
+                        {{-- Flyout Modals Show --}}
                         @include('livewire.crm.client.components.contact.flyout-show-activity')
+                        @include('livewire.crm.client.components.contact.flyout-show-mail')
                     </div>
                 </flux:tab.panel>
             </flux:tab.group>

@@ -52,9 +52,7 @@ class EmailForm extends Form
     {
         $this->email = $email;
 
-        $data = $email->only($email->getFillable());
-        $data['to'] = json_decode($data['to'], true);
-        $this->fill($data);
+        $this->fill($email->only($email->getFillable()));
     }
 
     public function store()

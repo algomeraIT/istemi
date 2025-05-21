@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Forms;
+namespace App\Livewire\Forms\Client;
 
 use Livewire\Form;
 use App\Models\Referent;

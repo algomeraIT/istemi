@@ -51,7 +51,7 @@
     </div>
 
     <div class="mt-5">
-        <flux:button variant="ghost" wire:click='showMail({{ $email->id }})' data-variant="ghost" data-color="teal"
+        <flux:button variant="ghost" wire:click='setEmail({{ $email->id }})' data-variant="ghost" data-color="teal"
             icon="eye" size="sm" />
     </div>
 </div>

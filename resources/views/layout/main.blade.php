@@ -36,6 +36,28 @@
     @livewire('wire-elements-modal')
 
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Livewire.on('copyLink', (data) => {
+                var copyText = data[0]['text'];
+                console.log(copyText);
+                
+
+                if (!navigator.clipboard) {
+                    console.warn("Clipboard API non disponibile, utilizzo metodo alternativo.");
+                    fallbackCopyText(copyText);
+                    return;
+                }
+
+                navigator.clipboard.writeText(copyText)
+                    .catch(err => {
+                        console.error("Errore nella copia del link", err);
+                        fallbackCopyText(copyText); // Usa un metodo alternativo
+                    });
+            });
+        });
+    </script>
+
     @stack('scripts')
     
     @persist('toast')

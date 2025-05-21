@@ -187,25 +187,3 @@
         </div>
     </flux:modal>
 </flux:tab.group>
-
-@push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Livewire.on('copyLink', (data) => {
-                var copyText = data[0]['text'];
-
-                if (!navigator.clipboard) {
-                    console.warn("Clipboard API non disponibile, utilizzo metodo alternativo.");
-                    fallbackCopyText(copyText);
-                    return;
-                }
-
-                navigator.clipboard.writeText(copyText)
-                    .catch(err => {
-                        console.error("Errore nella copia del link", err);
-                        fallbackCopyText(copyText); // Usa un metodo alternativo
-                    });
-            });
-        });
-    </script>
-@endpush
