@@ -18,7 +18,6 @@ class NoteProjectFactory extends Factory
             'note' => $this->faker->paragraph(3),
             'user_name' => $this->faker->name(),
             'user_id'    => User::inRandomOrder()->value('id'),
-            'role' => $this->faker->randomElement(['Admin', 'User']),
         ];
     }
 }
