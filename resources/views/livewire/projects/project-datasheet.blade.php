@@ -121,7 +121,7 @@
                 @php
                 $firms = json_decode($this->project['firms_and_percentage'] ?? '', true);
                 $firms = json_decode($firms, true);
-        
+            
             @endphp
             
             @if (!empty($firms))
@@ -147,7 +147,7 @@
                             @foreach ($firms as $firm => $percentage)
                                 <div class="flex justify-between items-center border-b pb-1">
                                     
-                                    <span class="text-gray-700 font-medium">{{ $percentage['firms_and_percentage'] }}%</span>
+                                    <span class="text-gray-700 font-medium">{{ $percentage['firms_and_percentage']}}%</span>
                                 </div>
                             @endforeach
                         </div>
