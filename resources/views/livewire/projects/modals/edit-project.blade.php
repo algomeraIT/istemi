@@ -102,7 +102,7 @@
                                 </flux:select>
                                 <flux:error name="formData.id_chief_project" />
                             </flux:field>
-
+                        
                             <flux:field data-input>
                                 <div><flux:icon.calendar /><flux:label>Data Inizio</flux:label></div>
                                 <flux:input type="date" wire:model.live="formData.start_at" />

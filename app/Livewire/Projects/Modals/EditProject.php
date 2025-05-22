@@ -49,8 +49,8 @@ class EditProject extends ModalComponent
             'total_budget' => $this->project->total_budget,
             'id_chief_area' => (string) $this->project->id_chief_area,
             'id_chief_project' => (string) $this->project->id_chief_project,
-            'start_at' => $this->project->start_at,
-            'end_at' => $this->project->end_at,
+            'start_at' => \Carbon\Carbon::parse($this->project->start_at)->format('Y-m-d'),
+            'end_at' => \Carbon\Carbon::parse($this->project->end_at)->format('Y-m-d'),
             'starting_price' => $this->project->starting_price,
             'discount_percentage' => $this->project->discount_percentage,
             'discounted' => $this->project->discounted,
@@ -64,7 +64,7 @@ class EditProject extends ModalComponent
         ];
 
         $this->clients = Client::select('id', 'name')->with('estimate')->get()->toArray();
-        
+
         $this->estimates = Estimate::select('id', 'serial_number')
             ->where(function ($query) {
                 $query->where('client_id', $this->project->client_id)
@@ -78,7 +78,7 @@ class EditProject extends ModalComponent
             })
             ->values()
             ->toArray();
-            
+
         $this->area = User::select('id', 'name', 'last_name')->role('responsabile area')->get()->toArray();
         $this->projectUsers = User::select('id', 'name', 'last_name')->role('project manager')->get()->toArray();
     }
