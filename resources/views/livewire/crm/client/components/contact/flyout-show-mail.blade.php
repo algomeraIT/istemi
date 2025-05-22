@@ -89,6 +89,33 @@
                         </x-field-data>
                     </div>
 
+                    {{-- Attached --}}
+                    <div class="col-span-2">
+                        @if ($emailForm->email->getMedia('attached')->isNotEmpty())
+                            <div class="space-y-2">
+                                <div class="text-[#B0B0B0] flex items-center gap-1">
+                                    <flux:icon.paper-clip class="size-4" />
+                                    <span class="text-xs font-light">Allegati</span>
+                                </div>
+
+                                <div class="flex flex-wrap items-center gap-2">
+                                    @foreach ($emailForm->email->getMedia('attached') as $media)
+                                        <div class="w-40 border px-2 flex items-center justify-between gap-5">
+                                            <div class="flex items-center gap-2 text-[#888888]">
+                                                <flux:icon.document class="size-4" />
+                                                <span
+                                                    class="text-[11px] font-medium truncate">{{ $media->file_name }}</span>
+                                            </div>
+
+                                            <flux:button variant="ghost" href="{{ $media->getUrl() }}" target="_blank"
+                                                data-variant="ghost" data-color="teal" icon="eye" size="sm" />
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+
                     <div class="col-span-2 mt-4">
                         <div>
                             <div class="flex items-center gap-1 mb-1 ml-1">
@@ -100,16 +127,7 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- Conversazioni --}}
             </div>
-
-
-            {{-- TODO da abilitare a seguito di creazione risposte --}}
-            {{-- <div class="w-[calc(100%-200px)] fixed bottom-5">
-                <flux:editor wire:model="response" placeholder="Scrivi qualcosa..."
-                    class="**:data-[slot=content]:min-h-[100px]!" />
-            </div> --}}
         </div>
     @endif
 </flux:modal>

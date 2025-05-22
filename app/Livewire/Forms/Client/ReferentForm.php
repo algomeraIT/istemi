@@ -52,8 +52,8 @@ class ReferentForm extends Form
     {
         if ($referentId) {
             $this->referent = Referent::findOrFail($referentId);
-            $this->referentId = $referentId;
             $this->fill($this->referent->only($this->referent->getFillable()));
+            $this->referentId = $referentId;
         } else {
             $this->reset();
             $this->referent = null;

@@ -111,7 +111,7 @@
 
   &[data-input] {
         div:first-child {
-            @apply flex items-center gap-0.5 mb-1;
+            @apply items-center gap-0.5;
 
             [data-flux-icon] {
                 @apply size-4 text-[#B0B0B0];

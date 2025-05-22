@@ -55,6 +55,7 @@ class DatabaseSeeder extends Seeder
             NoteProjectSeeder::class,
             TaskSeeder::class,
             MicroTaskNoteSeeder::class,
+            MessageSeeder::class,
 
             //non necessari
             IssuersSeeder::class,

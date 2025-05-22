@@ -6,14 +6,18 @@ use Livewire\Form;
 use App\Models\Email;
 use App\Models\Client;
 use App\Mail\SendClientMail;
+use Livewire\WithFileUploads;
 use Mews\Purifier\Facades\Purifier;
 use Illuminate\Support\Facades\Mail;
 
 class EmailForm extends Form
 {
+    use WithFileUploads;
+
     public $email;
 
     public $client_id, $sent_by, $to, $subject, $body;
+    public $attachments = [];
 
     public function rules()
     {
@@ -24,6 +28,8 @@ class EmailForm extends Form
             'to.*' => ['required', 'email'],
             'subject' => ['required', 'string'],
             'body' => ['required', 'string'],
+            'attachments' => ['nullable', 'array'],
+            'attachments.*' => ['file', 'max:10240'],
         ];
     }
 
@@ -50,9 +56,9 @@ class EmailForm extends Form
 
     public function setMail($email)
     {
-        $this->email = $email;
-
         $this->fill($email->only($email->getFillable()));
+
+        $this->email = $email;
     }
 
     public function store()
@@ -66,10 +72,20 @@ class EmailForm extends Form
         $cc = $this->to;
 
         Mail::to($client->email)->send(
-            new SendClientMail($this->subject, $validated['body'], $client, $cc)
+            new SendClientMail($this->subject, $validated['body'], $client, $cc, $this->attachments)
         );
 
         $validated['to'] = $cc;
-        Email::create($validated);
+        unset($validated['attachments']);
+
+        $email = Email::create($validated);
+
+        if ($this->attachments && is_array($this->attachments)) {
+            foreach ($this->attachments as $file) {
+                $email->addMedia($file->getRealPath())
+                    ->usingFileName($file->getClientOriginalName())
+                    ->toMediaCollection('attached');
+            }
+        }
     }
 }

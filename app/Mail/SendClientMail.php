@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Client;
 
@@ -18,16 +19,18 @@ class SendClientMail extends Mailable
     protected $bodyContent;
     protected $recipientClient;
     protected $ccList;
+    protected $files = [];
 
     /**
      * Create a new message instance.
      */
-    public function __construct($subject, $body, $recipient, $cc)
+    public function __construct($subject, $body, $recipient, $cc, array $attachments = [])
     {
         $this->subjectLine = $subject;
         $this->bodyContent = $body;
         $this->recipientClient = $recipient;
         $this->ccList = $cc;
+        $this->files = $attachments;
     }
 
     /**
@@ -63,6 +66,11 @@ class SendClientMail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return collect($this->files)
+            ->map(function ($file) {
+                return Attachment::fromPath($file->getRealPath())
+                    ->as($file->getClientOriginalName());
+            })
+            ->all();
     }
 }

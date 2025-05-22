@@ -4,9 +4,12 @@ namespace App\Livewire\Crm\Client\Traits;
 
 use Flux\Flux;
 use App\Models\Activity;
+use Livewire\WithFileUploads;
 
 trait ActivityActions
 {
+    use WithFileUploads;
+
     public function createActivity()
     {
         $this->activityForm->client_id = $this->client->id;
@@ -19,6 +22,16 @@ trait ActivityActions
 
         Flux::modals()->close();
     }
+
+    public function modifyActivity($id)
+    {
+        Flux::modals()->close();
+
+        $this->setActivity($id);
+
+        Flux::modal('new-activity')->show();
+    }
+
 
     public function updateActivity()
     {
@@ -34,13 +47,9 @@ trait ActivityActions
 
     public function setActivity($id)
     {
-        Flux::modals()->close();
-
         $activity = Activity::findOrFail($id);
 
         $this->activityForm->setActivity($activity);
-
-        Flux::modal('new-activity')->show();
     }
 
     public function showActivity($id)
@@ -71,14 +80,52 @@ trait ActivityActions
     {
         Flux::modals()->close();
 
-        $activity = Activity::findOrFail($id);
-        $activity->delete();
+        Activity::findOrFail($id)->delete();
 
-        $this->activityForm->resetActivity();
+        $this->activityForm->reset();
 
         Flux::toast(
             text: "Attività eliminata.",
             variant: 'warning',
         );
+    }
+
+    public function sendMessage()
+    {
+        $this->validate([
+            'activityForm.responseMessage' => 'required',
+            'activityForm.attachments' => 'nullable|array',
+            'activityForm.attachments.*' => 'file|max:10240',
+        ]);
+
+        $message = $this->activityForm->activity->messages()->create([
+            'message' => $this->activityForm->responseMessage,
+        ]);
+
+        if ($this->activityForm->attachments && is_array($this->activityForm->attachments)) {
+            foreach ($this->activityForm->attachments as $file) {
+                $message->addMedia($file->getRealPath())
+                    ->usingFileName($file->getClientOriginalName())
+                    ->toMediaCollection('attached');
+            }
+        }
+
+        $this->activityForm->responseMessage = '';
+        $this->activityForm->attachments = [];
+
+        $this->dispatch('refresh');
+    }
+
+    public function removeActivityAttachmentByIndex($index)
+    {
+        if (isset($this->activityForm->attachments[$index])) {
+            unset($this->activityForm->attachments[$index]);
+            $this->activityForm->attachments = array_values($this->activityForm->attachments);
+        }
+    }
+
+    public function resetActivity()
+    {
+        $this->activityForm->reset();
     }
 }

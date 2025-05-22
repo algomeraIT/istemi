@@ -32,4 +32,17 @@ trait MailActions
 
         Flux::modal('show-email')->show();
     }
+
+    public function removeMailAttachmentByIndex($index)
+    {
+        if (isset($this->emailForm->attachments[$index])) {
+            unset($this->emailForm->attachments[$index]);
+            $this->emailForm->attachments = array_values($this->emailForm->attachments);
+        }
+    }
+
+    public function resetEmail()
+    {
+        $this->emailForm->reset();
+    }
 }

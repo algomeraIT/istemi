@@ -3,7 +3,7 @@
 
     <div class="mt-5 flex flex-col xl:flex-row gap-10">
         <!-- Right Section: Detail -->
-        <div class="order-first xl:order-last w-full xl:max-w-[419px] mt-6 lg:mt-0">
+        <div class="order-first xl:order-last w-full xl:max-w-[419px] mt-6 mb-5 lg:-mt-10">
             @if ($this->client->status == 'cliente')
                 @include('livewire.crm.client.partials.client-detail')
             @endif
@@ -95,7 +95,7 @@
                 </flux:tab.panel>
 
                 <flux:tab.panel name="comunicazioni">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center place-content-between">
                         <flux:dropdown>
                             <flux:button icon="plus" size="sm" data-color="teal">Aggiungi</flux:button>
 

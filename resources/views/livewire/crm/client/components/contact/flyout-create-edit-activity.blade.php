@@ -1,4 +1,4 @@
-<flux:modal name="new-activity" variant="flyout" :dismissible="false" class="w-2xl !px-32">
+<flux:modal name="new-activity" variant="flyout" @close="resetActivity" :dismissible="false" class="w-2xl !px-32">
     <button class="absolute top-4 right-4 text-lg z-10 bg-white text-[#A0A0A0] flex items-center gap-1 cursor-pointer"
         x-on:click="$flux.modals().close()">
         <flux:icon.x-mark class="size-4" />
@@ -84,13 +84,48 @@
                 </flux:field>
             </div>
 
+            @if (count($activityForm->attachments))
+                <div class="col-span-2 space-y-2">
+                    <div class="text-[#B0B0B0] flex items-center gap-1">
+                        <flux:icon.paper-clip class="size-4" />
+                        <span class="text-xs font-light">Allegati</span>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pl-4">
+                        @foreach ($activityForm->attachments as $file)
+                            <div class="border text-[#B0B0B0] px-4 py-1 shadow flex items-center gap-1">
+                                <flux:icon.document-plus class="size-4" />
+                                {{ $file->getClientOriginalName() }}
+
+                                <flux:icon.x-circle title="rimuovi"
+                                    class="size-4 ml-4 cursor-pointer text-[#6C757D] hover:text-red-600"
+                                    wire:click="removeActivityAttachmentByIndex({{ $loop->index }})" />
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             <div class="col-span-2">
                 <div>
                     <div class="flex items-center gap-1 mb-1 ml-1">
                         <flux:icon.document-text class="size-4 text-[#B0B0B0]" />
                         <flux:label class="text-xs !font-light !text-[#B0B0B0]">Nota</flux:label>
                     </div>
-                    <flux:editor wire:model="activityForm.note" class="**:data-[slot=content]:min-h-[150px]!" />
+
+                    <div class="w-full sticky bottom-0">
+                        <div class="absolute right-3 top-3">
+                            <input type="file" wire:model="activityForm.attachments"
+                                id="NewActivity-attachment-upload" multiple class="hidden" />
+
+                            <label for="NewActivity-attachment-upload"
+                                class="cursor-pointer flex items-center gap-1 text-[#6C757D] hover:text-[#4E4E4E]">
+                                <flux:icon.paper-clip class="size-5" />
+                            </label>
+                        </div>
+
+                        <flux:editor wire:model="activityForm.note" class="**:data-[slot=content]:min-h-[150px]!" />
+                    </div>
                 </div>
             </div>
         </div>

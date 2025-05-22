@@ -46,7 +46,6 @@ class Show extends Component
     public $tabs = [];
     public $search;
 
-
     public function mount($id)
     {
         $this->client = Client::with('user', 'referents', 'activities', 'emails', 'notes')->findOrFail($id);

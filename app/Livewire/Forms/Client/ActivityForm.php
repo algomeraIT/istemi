@@ -5,15 +5,22 @@ namespace App\Livewire\Forms\Client;
 use Livewire\Form;
 use App\Models\Activity;
 use Mews\Purifier\Facades\Purifier;
+use Livewire\WithFileUploads;
+
 
 class ActivityForm extends Form
 {
+    use WithFileUploads;
+
     public $activity;
 
     public $client_id, $title, $note, $expiration, $completed_at;
     public $status = 'nuovo';
     public $assigned;
     public $contacts;
+
+    public $responseMessage;
+    public $attachments = [];
 
     public function rules()
     {
@@ -59,24 +66,11 @@ class ActivityForm extends Form
 
     public function setActivity($activity)
     {
-        $this->activity = $activity;
-
         $this->fill($activity->only($activity->getFillable()));
+
+        $this->activity = $activity->load('messages');
         $this->assigned = $activity->assigned()->where('role', 'assegnato')->pluck('user_id')->toArray();
         $this->contacts = $activity->assigned()->where('role', 'conoscenza')->pluck('user_id')->toArray();
-    }
-
-    public function resetActivity()
-    {
-        $this->activity = null;
-        $this->client_id = null;
-        $this->title = null;
-        $this->note = null;
-        $this->expiration = null;
-        $this->completed_at = null;
-        $this->status = 'nuovo';
-        $this->assigned = [];
-        $this->contacts = [];
     }
 
     public function store()
@@ -92,7 +86,17 @@ class ActivityForm extends Form
 
         $activity = Activity::create($validated);
 
+        if (count($this->attachments)) {
+            foreach ($this->attachments as $file) {
+                $activity->addMedia($file->getRealPath())
+                    ->usingFileName($file->getClientOriginalName())
+                    ->toMediaCollection('attached');
+            }
+        }
+
         $activity->assigned()->sync($this->buildUserRoleMap());
+
+        $this->reset();
     }
 
     public function update()
@@ -113,6 +117,8 @@ class ActivityForm extends Form
         $this->activity->update($validated);
 
         $this->activity->assigned()->sync($this->buildUserRoleMap());
+
+        $this->reset();
     }
 
     private function buildUserRoleMap(): array

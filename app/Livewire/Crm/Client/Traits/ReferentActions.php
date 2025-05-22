@@ -25,8 +25,6 @@ trait ReferentActions
 
         Flux::modals()->close();
 
-        $this->dispatch('refresh');
-        
         Flux::toast(
             text: "Nuovo referente inserito con successo.",
             variant: 'success',
@@ -39,8 +37,6 @@ trait ReferentActions
 
         Flux::modals()->close();
 
-        $this->dispatch('refresh');
-
         Flux::toast(
             text: "Referente aggiornato con successo.",
             variant: 'success',
@@ -49,9 +45,9 @@ trait ReferentActions
 
     public function deleteReferent($id)
     {
-        Referent::find($id)->delete();
+        Referent::findOrFail($id)->delete();
 
-        $this->dispatch('refresh');
+        $this->referentForm->reset();
 
         Flux::toast(
             text: "Referente eliminato.",
