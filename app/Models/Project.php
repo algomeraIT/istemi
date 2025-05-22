@@ -66,6 +66,11 @@ class Project extends Model
         return $this->belongsTo(Phase::class, 'phase_id');
     }
 
+    public function phases()
+{
+    return $this->hasMany(\App\Models\Phase::class, 'id_project');
+}
+
     public function estimate()
     {
         return $this->belongsTo(Estimate::class, 'phase_id');

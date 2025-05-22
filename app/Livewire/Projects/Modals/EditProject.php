@@ -6,7 +6,10 @@ use LivewireUI\Modal\ModalComponent;
 use App\Models\Project;
 use App\Models\Client;
 use App\Models\Estimate;
+use App\Models\Area;
 use App\Models\User;
+use App\Models\MicroArea;
+use App\Models\Phase;
 
 use Livewire\Attributes\On;
 
@@ -23,6 +26,7 @@ class EditProject extends ModalComponent
     public $projectUsers = [];
     public $stackholderIds = [];
     public $selectedPhases = [];
+    public $phaseGroups = [];
     public $id = '';
 
     protected array $rules = [];
@@ -38,7 +42,15 @@ class EditProject extends ModalComponent
 
     public function mount($id)
     {
-        $this->project = Project::findOrFail($id);
+        $this->project = Project::with('phase')->findOrFail($id);
+
+        // Get all area/micro-area groupings
+        $this->phaseGroups = Area::with('microAreas')->get()->mapWithKeys(function ($area) {
+            return [$area->name => $area->microAreas->pluck('name', 'id')->toArray()];
+        })->toArray();
+
+        // Get selected micro_area IDs for this project
+        $this->selectedPhases = $this->project->phases->pluck('id_micro_area')->toArray();
 
         $this->formData = [
             'estimate' => (string) $this->project->estimate,
@@ -83,68 +95,7 @@ class EditProject extends ModalComponent
         $this->projectUsers = User::select('id', 'name', 'last_name')->role('project manager')->get()->toArray();
     }
 
-    public function toggleAllPhases()
-    {
-        $phases = [
-            'contract_ver',
-            'cme_ver',
-            'reserves',
-            'expiring_date_project',
-            'communication_plan',
-            'extension',
-            'sal',
-            'warranty',
-            'emission_invoice',
-            'payment_invoice',
-            'construction_site_plane',
-            'travel',
-            'site_pass',
-            'ztl',
-            'supplier',
-            'timetable',
-            'security',
-            'activities',
-            'team',
-            'field_activities',
-            'daily_check_activities',
-            'contruction_site_media',
-            'activity_validation',
-            'data',
-            'foreman_docs',
-            'sanding_sample_lab',
-            'data_validation',
-            'internal_validation',
-            'Report',
-            'create_note',
-            'sending_note',
-            'accounting',
-            'accounting_dec',
-            'create_cre',
-            'expense_allocation',
-            'external_validation',
-            'cre',
-            'liquidation',
-            'balance_invoice',
-            'accounting_validation',
-            'balance',
-            'cre_archiving',
-            'pay_suppliers',
-            'pay_allocation_expenses',
-            'learned_lesson',
-            'non_compliance_management',
-            'sa',
-            'integrate_doc',
-            'close_activity',
-            'sale',
-            'release'
-        ];
 
-        if (count($this->formData['selectedPhases']) === count($phases)) {
-            $this->formData['selectedPhases'] = [];
-        } else {
-            $this->formData['selectedPhases'] = $phases;
-        }
-    }
 
     public function getValidationRules()
     {
@@ -207,10 +158,24 @@ class EditProject extends ModalComponent
 
     public function save()
     {
-        $this->formData = Project::prepareFormData($this->formData);
-
         try {
             $this->project->update($this->formData);
+
+            Phase::where('id_project', $this->project->id)->delete();
+
+            foreach ($this->selectedPhases as $microAreaId) {
+                $microArea = MicroArea::find($microAreaId);
+                if ($microArea) {
+                    Phase::create([
+                        'id_area' => $microArea->area_id, 
+                        'id_micro_area' => $microArea->id,
+                        'id_project' => $this->project->id,
+                        'id_user' => auth()->user()->id, 
+                        'status' => 'In attesa',
+                    ]);
+                }
+            }
+
             $this->closeModal();
             Flux::toast('Progetto aggiornato con successo!');
             $this->dispatch('refresh');

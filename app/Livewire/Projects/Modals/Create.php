@@ -23,6 +23,7 @@ class Create extends ModalComponent
 {
 
     public $currentTab = 1;
+    public $phaseGroups;
     public $clients = [];
     public $estimates = [];
     public $area = [];
@@ -74,70 +75,16 @@ class Create extends ModalComponent
         $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)->get()->toArray();
         $this->area = User::select('id', 'name', 'last_name')->role('responsabile area')->get()->toArray();
         $this->projectUser = User::select('id', 'name', 'last_name')->role('project manager')->get()->toArray();
+
+        $this->phaseGroups = Area::with('microAreas')->get()->mapWithKeys(function ($area) {
+            return [
+                $area->name => $area->microAreas->pluck('name', 'id')->toArray()
+            ];
+        })->toArray();
+    
+        $this->formData['selectedPhases'] = []; 
     }
 
-    public function toggleAllPhases()
-    {
-        $phases = [
-            'contract_ver',
-            'cme_ver',
-            'reserves',
-            'expiring_date_project',
-            'communication_plan',
-            'extension',
-            'sal',
-            'warranty',
-            'emission_invoice',
-            'payment_invoice',
-            'construction_site_plane',
-            'travel',
-            'site_pass',
-            'ztl',
-            'supplier',
-            'timetable',
-            'security',
-            'activities',
-            'team',
-            'field_activities',
-            'daily_check_activities',
-            'contruction_site_media',
-            'activity_validation',
-            'data',
-            'foreman_docs',
-            'sanding_sample_lab',
-            'data_validation',
-            'internal_validation',
-            'Report',
-            'create_note',
-            'sending_note',
-            'accounting',
-            'accounting_dec',
-            'create_cre',
-            'expense_allocation',
-            'external_validation',
-            'cre',
-            'liquidation',
-            'balance_invoice',
-            'accounting_validation',
-            'balance',
-            'cre_archiving',
-            'pay_suppliers',
-            'pay_allocation_expenses',
-            'learned_lesson',
-            'non_compliance_management',
-            'sa',
-            'integrate_doc',
-            'close_activity',
-            'sale',
-            'release'
-        ];
-
-        if (count($this->formData['selectedPhases']) === count($phases)) {
-            $this->formData['selectedPhases'] = [];
-        } else {
-            $this->formData['selectedPhases'] = $phases;
-        }
-    }
 
     #[On('checkValid')]
     public function checkValid()
@@ -234,117 +181,32 @@ class Create extends ModalComponent
 
             Stackholder::insertFromForm($this->formToken, $project->id);
          
-            $selected = is_array($this->formPhase['selectedPhases']) ? $this->formPhase['selectedPhases'] : [];
 
-            $phaseGroups = [
-                'Avvio progetto' => [
-                    'contract_ver' => 'Verifica contratto',
-                    'cme_ver' => "Verifica CME - Piano d'indagine e capitolato",
-                    'reserves' => 'Riserve',
-                    'expiring_date_project' => 'Impostare la data di scadenza del progetto',
-                    'communication_plan' => 'Definizione del piano di comunicazione',
-                    'extension' => 'Proroga',
-                    'sal' => 'Possibilità di produrre dei SAL',
-                    'warranty' => 'Garanzia definitiva',
-                ],
-                'Fatture acconto e SAL' => [
-                    'emission_invoice' => 'Emissione fattura',
-                    'payment_invoice' => 'Pagamento fattura',
-                ],
-                'Pianificazione cantiere' => [
-                    'construction_site_plane' => 'Verifica accesibilità e sopralluogo',
-                    'travel' => 'Organizzazione trasferte',
-                    'site_pass' => 'Permessi/pass accesso al sito',
-                    'ztl' => 'Permessi/pass ZTL',
-                    'supplier' => 'Selezione fornitori',
-                    'timetable' => 'Cronoprogramma',
-                    'security' => 'Sicurezza',
-                ],
-                'Esecuzione attività' => [
-                    'team' => 'Selezione della squadra (caposquadra + altre risorse)',
-                    'field_activities' => 'Indicazioni per lo svolgimento delle attività in campo',
-                    'daily_check_activities' => 'Riepilogo giornaliero delle attività',
-                    'contruction_site_media' => 'Caricamento dati di cantiere',
-                    'activity_validation' => 'Controllo avanzamento attività/budget (PM)',
-                ],
-                'Elaborazione dati' => [
-                    'foreman_docs' => 'Controllo documentazione Caposquadra',
-                    'sanding_sample_lab' => 'Spedizione campione ai laboratori',
-                    'data_validation' => 'Avvio analisi dati',
-                    'internal_validation' => 'Validazione interna elaborati',
-                ],
-                'Trasmissione report' => [
-                    'create_note' => 'Predisposizione nota di trasmissione',
-                    'sending_note' => 'Invio nota di trasmissione',
-                ],
-                'Contabilità' => [
-                    'accounting_dec' => 'Contabilità attività eseguite (DEC)',
-                    'create_cre' => 'Produrre richiesta CRE',
-                    'expense_allocation' => 'Riparto spese',
-                ],
-                'Conferma esterna' => [
-                    'cre' => 'CRE',
-                    'liquidation' => 'Liquidazione',
-                    'balance_invoice' => 'Fattura di saldo',
-                ],
-                'Verifica tecnico contabile' => [
-                    'balance' => 'Saldo',
-                    'cre_archiving' => 'Archiviazione CRE',
-                    'pay_suppliers' => 'Pagamento fornitori',
-                    'pay_allocation_expenses' => 'Pagamento riparto spese',
-                    'learned_lesson' => 'Lezioni apprese',
-                ],
-                'Gestione non conformità' => [
-                    'sa' => 'Accogliere richieste della S.A.',
-                    'integrate_doc' => 'Inviare documentazione integrativa',
-                ],
-                'Chiusura attività' => [
-                    'sale' => 'Fatturato specifico',
-                    'release' => 'Svincolo della polizza',
-                ],
-            ];
-                        
-            $phaseData = collect($selected)->map(function ($key) use ($phaseGroups) {
-                foreach ($phaseGroups as $groupName => $groupItems) {
-                    if (array_key_exists($key, $groupItems)) {
-                        return [
-                            'key' => $key,
-                            'label' => $groupItems[$key],
-                            'area' => $groupName,
-                        ];
-                    }
-                }
-                return null;
-            })->filter();
-            
-            $microAreas = MicroArea::whereIn('name', $phaseData->pluck('label'))->get()->keyBy('name');
-            $areas = Area::whereIn('name', $phaseData->pluck('area'))->get()->keyBy('name');
 
-            foreach ($phaseData as $phase) {
-                $micro = $microAreas[$phase['label']] ?? null;
-                $area = $areas[$phase['area']] ?? null;
+            $selectedIds = is_array($this->formPhase['selectedPhases']) ? $this->formPhase['selectedPhases'] : [];
+
+            $microAreas = MicroArea::with('area')->whereIn('id', $selectedIds)->get();
             
-                if ($micro && $area) {
-                    $newPhase = Phase::create([
-                        'id_micro_area' => $micro->id,
-                        'id_area' => $area->id,
-                        'id_project' => $project->id,
-                        'id_user' => auth()->id(),
-                        'status' => 'In attesa',
-                    ]);
+            foreach ($microAreas as $microArea) {
+                $newPhase = Phase::create([
+                    'id_micro_area' => $microArea->id,
+                    'id_area' => $microArea->area_id,
+                    'id_project' => $project->id,
+                    'id_user' => auth()->id(),
+                    'status' => 'In attesa',
+                ]);
             
-                    Task::create([
-                        'id_phases' => $newPhase->id,
-                        'id_assignee' => auth()->id(), 
-                        'status' => 'In attesa',
-                        'title' => $phase['label'],
-                        'assignee' => auth()->user()->name . ' ' . auth()->user()->last_name,
-                        'cc' => null,
-                        'expire' => now()->addDays(7), 
-                        'note' => null,
-                        'media' => json_encode([]),
-                    ]);
-                }
+                Task::create([
+                    'id_phases' => $newPhase->id,
+                    'id_assignee' => auth()->id(),
+                    'status' => 'In attesa',
+                    'title' => $microArea->name,
+                    'assignee' => auth()->user()->name . ' ' . auth()->user()->last_name,
+                    'cc' => null,
+                    'expire' => now()->addDays(7),
+                    'note' => null,
+                    'media' => json_encode([]),
+                ]);
             }
 
 

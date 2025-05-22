@@ -286,96 +286,43 @@
                         <div>
                             <h2 class="text-lg font-medium italic mb-2">Fasi previste</h2>
                     
-                            <div x-data="{ selectAll: false }" x-init="$watch('selectAll', val => { $el.querySelectorAll('.phase-checkbox').forEach(cb => cb.checked = val); })">
-                                <div class="flex items-center mb-4">
-                                    <input type="checkbox" wire:click="toggleAllPhases" class="mr-2" />
-                                    <span>Seleziona tutti</span>
-                                </div>
-                    
-                                @php
-                                    $phaseGroups = [
-                                        'Avvio progetto' => [
-                                            'contract_ver' => 'Verifica contratto',
-                                            'cme_ver' => "Verifica CME - Piano d'indagine e capitolato",
-                                            'reserves' => 'Riserve',
-                                            'expiring_date_project' => 'Impostare la data di scadenza del progetto',
-                                            'communication_plan' => 'Definizione del piano di comunicazione',
-                                            'extension' => 'Proroga',
-                                            'sal' => 'Possibilità di produrre dei SAL',
-                                            'warranty' => 'Garanzia definitiva',
-                                        ],
-                                        'Fatture acconto e SAL' => [
-                                            'emission_invoice' => 'Emissione fattura',
-                                            'payment_invoice' => 'Pagamento fattura',
-                                        ],
-                                        'Pianificazione cantiere' => [
-                                            'construction_site_plane' => 'Verifica accesibilità e sopralluogo',
-                                            'travel' => 'Organizzazione trasferte',
-                                            'site_pass' => 'Permessi/pass accesso al sito',
-                                            'ztl' => 'Permessi/pass ZTL',
-                                            'supplier' => 'Selezione fornitori',
-                                            'timetable' => 'Cronoprogramma',
-                                            'security' => 'Sicurezza',
-                                        ],
-                                        'Esecuzione attività' => [
-                                            'team' => 'Selezione della squadra (caposquadra + altre risorse)',
-                                            'field_activities' => 'Indicazioni per lo svolgimento delle attività in campo',
-                                            'daily_check_activities' => 'Riepilogo giornaliero delle attività',
-                                            'contruction_site_media' => 'Caricamento dati di cantiere',
-                                            'activity_validation' => 'Controllo avanzamento attività/budget (PM)',
-                                        ],
-                                        'Elaborazione dati' => [
-                                            'foreman_docs' => 'Controllo documentazione Caposquadra',
-                                            'sanding_sample_lab' => 'Spedizione campione ai laboratori',
-                                            'data_validation' => 'Avvio analisi dati',
-                                            'internal_validation' => 'Validazione interna elaborati',
-                                        ],
-                                        'Trasmissione report' => [
-                                            'create_note' => 'Predisposizione nota di trasmissione',
-                                            'sending_note' => 'Invio nota di trasmissione',
-                                        ],
-                                        'Contabilità' => [
-                                            'accounting_dec' => 'Contabilità attività eseguite (DEC)',
-                                            'create_cre' => 'Produrre richiesta CRE',
-                                            'expense_allocation' => 'Riparto spese',
-                                        ],
-                                        'Conferma esterna' => [
-                                            'cre' => 'CRE',
-                                            'liquidation' => 'Liquidazione',
-                                            'balance_invoice' => 'Fattura di saldo',
-                                        ],
-                                        'Verifica tecnico contabile' => [
-                                            'balance' => 'Saldo',
-                                            'cre_archiving' => 'Archiviazione CRE',
-                                            'pay_suppliers' => 'Pagamento fornitori',
-                                            'pay_allocation_expenses' => 'Pagamento riparto spese',
-                                            'learned_lesson' => 'Lezioni apprese',
-                                        ],
-                                        'Gestione non conformità' => [
-                                            'sa' => 'Accogliere richieste della S.A.',
-                                            'integrate_doc' => 'Inviare documentazione integrativa',
-                                        ],
-                                        'Chiusura attività' => [
-                                            'sale' => 'Fatturato specifico',
-                                            'release' => 'Svincolo della polizza',
-                                        ],
-                                    ];
-                                @endphp
-                    
-                                @foreach ($phaseGroups as $groupTitle => $phases)
-                                    <div class="mt-6">
-                                        <h3 class="text-md font-semibold text-cyan-800">{{ $groupTitle }}</h3>
-                                        <div class="flex flex-col">
-                                            @foreach ($phases as $id => $label)
-                                                <label class="flex items-center space-x-2">
-                                                    <input type="checkbox" class="phase-checkbox" id="{{ $id }}" value="{{ $id }}" wire:model="formData.selectedPhases">
-                                                    <span>{{ $label }}</span>
-                                                </label>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                @endforeach
+                            <div
+                            x-data="{ selectAll: false }"
+                            x-init="$watch('selectAll', val => {
+                                $el.querySelectorAll('.phase-checkbox').forEach(cb => cb.checked = val);
+                                if (val) {
+                                    @this.set('formData.selectedPhases', @json(array_keys(array_merge(...array_values($phaseGroups)))));
+                                } else {
+                                    @this.set('formData.selectedPhases', []);
+                                }
+                            })"
+                        >
+                            <!-- Select All Toggle -->
+                            <div class="flex items-center mb-4">
+                                <input type="checkbox" x-model="selectAll" class="mr-2" />
+                                <span>Seleziona tutti</span>
                             </div>
+                        
+                            <!-- Dynamic Phase Group Checkboxes -->
+                            @foreach ($phaseGroups as $groupTitle => $phases)
+                                <div class="mt-6">
+                                    <h3 class="text-md font-semibold text-cyan-800">{{ $groupTitle }}</h3>
+                                    <div class="flex flex-col ml-4">
+                                        @foreach ($phases as $id => $label)
+                                            <label class="flex items-center space-x-2">
+                                                <input
+                                                    type="checkbox"
+                                                    class="phase-checkbox"
+                                                    value="{{ $id }}"
+                                                    wire:model="formData.selectedPhases"
+                                                />
+                                                <span>{{ $label }}</span>
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                         </div>
                     @endif
                     
