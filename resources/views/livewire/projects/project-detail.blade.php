@@ -372,11 +372,9 @@
                                                                     </div>
 
                                                                     <!-- Micro Tasks -->
-                                                                    {{--              @php
-                                                                        $microTasks = $groupedMicroTasks->where(
-                                                                            'project_start_id',
-                                                                            $element->id,
-                                                                        );
+                                                                                @php
+                                                                        $microTasks = $groupedMicroTasks[$phase->id] ??
+                                                                        collect();
                                                                     @endphp
 
                                                                     @if ($microTasks->count())
@@ -427,7 +425,7 @@
                                                                                 </div>
                                                                             @endforeach
                                                                         </div>
-                                                                    @endif --}}
+                                                                    @endif 
                                                                 </div>
                                                             @endforeach
                                                         </div>
