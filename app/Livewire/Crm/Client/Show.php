@@ -90,7 +90,7 @@ class Show extends Component
         $this->client->save();
 
         Flux::toast(
-            text: "Stato aggiornato per  {$this->client->name}.",
+            text: "Stato aggiornato per {$this->client->name}.",
             variant: 'success',
         );
     }

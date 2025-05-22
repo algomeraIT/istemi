@@ -1,4 +1,4 @@
-<div class="h-full bg-white p-10 pb-4 shadow">
+<div class="h-full bg-white p-10 pb-0 shadow">
     @include('livewire.general.goback')
 
     <div class="mt-5 flex flex-col xl:flex-row gap-10">
@@ -141,7 +141,7 @@
                         </flux:field>
                     </div>
 
-                    <div class="overflow-auto h-[530px]">
+                    <div class="overflow-auto h-[565px]">
                         @if (count($communications))
                             @foreach ($communications as $record)
                                 @if ($record instanceof \App\Models\Activity)

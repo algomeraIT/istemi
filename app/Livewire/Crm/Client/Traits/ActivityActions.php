@@ -61,8 +61,6 @@ trait ActivityActions
             $this->activityForm->update();
         }
 
-        $this->dispatch('refresh');
-
         Flux::toast(
             text: "Stato attività aggiornato.",
             variant: 'success',
@@ -76,11 +74,11 @@ trait ActivityActions
         $activity = Activity::findOrFail($id);
         $activity->delete();
 
+        $this->activityForm->resetActivity();
+
         Flux::toast(
             text: "Attività eliminata.",
             variant: 'warning',
         );
-        
-        $this->dispatch('refresh');
     }
 }

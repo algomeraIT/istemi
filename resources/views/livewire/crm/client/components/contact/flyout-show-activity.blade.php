@@ -40,17 +40,17 @@
                         data-variant="ghost" data-color="gray" icon="pencil" size="sm"
                         class="text-[#6C757D] text-xs font-medium">Modifica</flux:button>
 
-                    {{-- <flux:button wire:click="deleteActivity({{ $activityForm->activity->id }})"
+                    <flux:button wire:click="deleteActivity({{ $activityForm->activity->id }})"
                         wire:confirm="Sei sicuro di voler eliminare questa attività?" variant="ghost"
                         data-variant="ghost" data-color="red" icon="trash" size="sm"
-                        class="text-[#E63946] text-xs font-medium">Elimina</flux:button> --}}
+                        class="text-[#E63946] text-xs font-medium">Elimina</flux:button>
                 </div>
             </div>
 
             <div class="w-full flex-1 overflow-hidden overflow-y-auto">
                 <div class="w-full grid grid-cols-2 gap-x-5 gap-y-5 px-10 relative">
                     <div class="absolute left-4 top-12 bottom-0 w-px bg-[#232323]"></div>
-    
+
                     <div class="col-span-2 flex items-center space-x-3 -ml-10">
                         @if ($activityForm->activity->user->hasMedia('userImage'))
                             <flux:avatar circle size="sm"
@@ -60,7 +60,7 @@
                                 title="{{ $activityForm->activity->user->full_name }}">
                             </flux:avatar>
                         @endif
-    
+
                         <div class="flex-1">
                             <div class="flex items-center space-x-2">
                                 <span class="text-xs font-medium">
@@ -73,7 +73,7 @@
                                 class="text-xs font-light text-[#B0B0B0]">{{ dateItFormat($activityForm->activity->created_at) }}</span>
                         </div>
                     </div>
-    
+
                     <div class="col-span-1">
                         <x-field-data :label="'Attività'" :data="$activityForm->title">
                             <x-slot name="icon">
@@ -81,13 +81,13 @@
                             </x-slot>
                         </x-field-data>
                     </div>
-    
+
                     <div class="col-span-2 flex items-start justify-between">
                         <x-field-data :label="'Assegnato a'">
                             <x-slot name="icon">
                                 <flux:icon.at-symbol class="size-4" />
                             </x-slot>
-    
+
                             <x-slot name="avatar">
                                 <flux:avatar.group>
                                     @foreach ($activityForm->activity->assigned()->where('role', 'assegnato')->get() as $user)
@@ -103,12 +103,12 @@
                                 </flux:avatar.group>
                             </x-slot>
                         </x-field-data>
-    
+
                         <x-field-data :label="'Conoscenza'">
                             <x-slot name="icon">
                                 <flux:icon.at-symbol class="size-4" />
                             </x-slot>
-    
+
                             <x-slot name="avatar">
                                 <flux:avatar.group>
                                     @foreach ($activityForm->activity->assigned()->where('role', 'conoscenza')->get() as $user)
@@ -124,14 +124,14 @@
                                 </flux:avatar.group>
                             </x-slot>
                         </x-field-data>
-    
+
                         <x-field-data :label="'Scadenza'" :data="dateItFormat($activityForm->expiration)">
                             <x-slot name="icon">
                                 <flux:icon.calendar-days class="size-4" />
                             </x-slot>
                         </x-field-data>
                     </div>
-    
+
                     <div class="col-span-2 mt-4">
                         <div>
                             <div class="flex items-center gap-1 mb-1 ml-1">
@@ -143,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 {{-- Conversazioni --}}
             </div>
 

@@ -66,6 +66,19 @@ class ActivityForm extends Form
         $this->contacts = $activity->assigned()->where('role', 'conoscenza')->pluck('user_id')->toArray();
     }
 
+    public function resetActivity()
+    {
+        $this->activity = null;
+        $this->client_id = null;
+        $this->title = null;
+        $this->note = null;
+        $this->expiration = null;
+        $this->completed_at = null;
+        $this->status = 'nuovo';
+        $this->assigned = [];
+        $this->contacts = [];
+    }
+
     public function store()
     {
         $this->verifyValidation();
