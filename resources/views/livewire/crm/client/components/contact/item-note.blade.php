@@ -10,12 +10,12 @@
             @if ($note->user?->hasMedia('userImage'))
                 <flux:avatar circle size="sm" src="{{ $note->user->getFirstMediaUrl('userImage', 'preview') }}" />
             @else
-                <flux:avatar circle size="sm" name="{{ $note->user->full_name }}" title="{{ $note->user->full_name }}" />
+                <flux:avatar circle size="sm" name="{{ $note->user?->full_name }}" title="{{ $note->user?->full_name }}" />
             @endif
     
             <div class="flex-1">
                 <div class="flex items-center space-x-2 text-sm">
-                    <span class="text-sm font-medium">{{ $note->user->full_name }}</span>
+                    <span class="text-sm font-medium">{{ $note->user?->full_name }}</span>
                     <span class="text-xs capitalize"> -
                         {{ $note->user?->role_name }}</span>
                 </div>
