@@ -157,13 +157,13 @@
 
 
 
-                                                                        {{--           <flux:button
+                                                                    {{--     <flux:button
                                                                             wire:click="$dispatch('openModal', {
                                                                                 component: 'projects.modals.create-task-project',
-                                                                                project_id: {{ $phase->id_project }},
-                                                                                taskId: {{ $phase->id }}
+                                                                             project_id: {{ $phase->id_project }},phase_id: {{ $phase->id }}
                                                                             })"
-                                                                            variant="ghost" data-variant="ghost" data-color="gray" data-rounded
+                                                                            variant="ghost" data-variant="ghost"
+                                                                            data-color="gray" data-rounded
                                                                             icon="pencil" size="sm">
                                                                         </flux:button> --}}
 
@@ -176,128 +176,184 @@
                                                                     </flux:table.cell>
                                                                 </flux:table.row>
                                                                 @if ($openTable == 1 && $openPhaseId == $phase->id)
-                                                                <flux:table.row>
-                                                                    <flux:table.cell colspan="6" class="bg-gray-50 p-4">
-                                                                        @php
-                                                                            $tasksForPhase = $groupedMicroTasks[$phase->id] ?? collect();
-                                                                        @endphp
-                                                                    
-                                                                            <table class="w-full text-sm border">
-                                                                                <thead class="bg-gray-100">
-                                                                                    <tr>
-                                                                                        <th
-                                                                                            class="text-left px-2 py-1 border-b">
-                                                                                            Titolo</th>
-                                                                                        <th
-                                                                                            class="text-left px-2 py-1 border-b">
-                                                                                            Assegnato a</th>
-                                                                                        <th
-                                                                                            class="text-left px-2 py-1 border-b">
-                                                                                            Scadenza</th>
-                                                                                        <th
-                                                                                            class="text-left px-2 py-1 border-b">
-                                                                                            Stato</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    @foreach ($tasksForPhase as $task)
-                                                                                        <tr>
-                                                                                            <td class="px-2 py-1 border-t">
-                                                                                                {{ $task['title'] }}</td>
-                                                                                            <td class="px-2 py-1 border-t">
-                                                                                                {{ $task['assignee'] }}</td>
-                                                                                            <td class="px-2 py-1 border-t">
-                                                                                                {{ $task['expire'] ? \Carbon\Carbon::parse($task['expire'])->format('d/m/Y') : '—' }}
-                                                                                            </td>
-                                                                                            <td class="px-2 py-1 border-t">
-                                                                                                {{ $task['status'] }}</td>
-                                                                                        </tr>
-                                                                                    @endforeach
-                                                                                </tbody>
-                                                                            </table>
-                                                                      
-                                                                    </flux:table.cell>
-                                                                </flux:table.row>
-                                                            @endif
-                                                            @endforeach
-                                                        </flux:table>                                                       
-                                                  
+                                                                    <flux:table.row>
+                                                                        <flux:table.cell colspan="7"
+                                                                            class="bg-white p-4">
+                                                                            @php
+                                                                                $tasksForPhase =
+                                                                                    $groupedMicroTasks[$phase->id] ??
+                                                                                    collect();
+                                                                            @endphp
+
+                                                                            <flux:table
+                                                                                class="w-full text-[13px] border-l-4 border-r-1 border-t-1 border-b-1 border-[#4D1B83] bg-white ml-5 mt-4 mb-4">
+                                                                                <flux:table.columns
+                                                                                    class="bg-white text-center text-xs font-semibold text-gray-600">
+                                                                                    <flux:table.column
+                                                                                        class=" border-b text-center">
+                                                                                        Attività</flux:table.column>
+                                                                                    <flux:table.column
+                                                                                        class="border-b text-center">
+                                                                                        Assegnato a</flux:table.column>
+                                                                                    <flux:table.column
+                                                                                        class="  border-b text-center">
+                                                                                        Scadenza</flux:table.column>
+                                                                                    <flux:table.column
+                                                                                        class="  border-b text-center">
+                                                                                        Stato</flux:table.column>
+                                                                                    <flux:table.column
+                                                                                        class="  border-b text-center">
+                                                                                        Azioni</flux:table.column>
+                                                                                </flux:table.columns>
+
+                                                                                @foreach ($tasksForPhase as $task)
+                                                                                    <flux:table.row
+                                                                                        class="hover:bg-gray-50">
+                                                                                        <flux:table.cell
+                                                                                            class="  border-t text-center">
+                                                                                            {{ $task['title'] }}
+                                                                                        </flux:table.cell>
+                                                                                        <flux:table.cell
+                                                                                            class="  border-t text-center">
+                                                                                            {{ $task['assignee'] }}
+                                                                                        </flux:table.cell>
+                                                                                        <flux:table.cell
+                                                                                            class="  border-t text-center">
+                                                                                            {{ $task['expire'] ? \Carbon\Carbon::parse($task['expire'])->format('d/m/Y') : '—' }}
+                                                                                        </flux:table.cell>
+                                                                                        <flux:table.cell
+                                                                                            class="  border-t">
+                                                                                            <select
+                                                                                                wire:change="updateStatusStartMicro({{ $task['id'] }}, $event.target.value)"
+                                                                                                class="w-full bg-transparent text-sm border-none focus:outline-none text-center
+                                                                                                        {{ $task['status'] === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
+
+                                                                                                <option
+                                                                                                    value="In attesa"
+                                                                                                    @selected($task['status'] === 'In attesa')>
+                                                                                                    In attesa
+                                                                                                </option>
+                                                                                                <option value="Svolto"
+                                                                                                    @selected($task['status'] === 'Svolto')>
+                                                                                                    Svolto
+                                                                                                </option>
+                                                                                            </select>
+                                                                                        </flux:table.cell>
+                                                                                        <flux:table.cell
+                                                                                            class="  border-t text-center">
+                                                                                   {{--          <flux:button
+                                                                                                wire:click="$dispatch('openModal', { component: 'projects.modals.show-micro-task', arguments: { id: {{ $phase->id }} }})"
+                                                                                                variant="ghost"
+                                                                                                data-variant="ghost"
+                                                                                                data-color="teal"
+                                                                                                data-rounded
+                                                                                                icon="eye"
+                                                                                                size="sm" /> --}}
+
+                                                                             {{--                <flux:button
+                                                                                                wire:click="$dispatch('openModal', {
+                                                                                    component: 'projects.modals.edit-micro-task',
+                                                                                    project_id: {{ $phase->id_project }},
+                                                                                    taskId: {{ $phase->id }}
+                                                                                })"
+                                                                                                variant="ghost"
+                                                                                                data-variant="ghost"
+                                                                                                data-color="gray"
+                                                                                                data-rounded
+                                                                                                icon="pencil"
+                                                                                                size="sm">
+                                                                                            </flux:button> --}}
+
+                                                                                   {{--          <flux:button
+                                                                                                wire:click="microDeleteTask({{ $phase->id }})"
+                                                                                                wire:confirm="Sei sicuro di voler archiviare questo macro task?"
+                                                                                                variant="ghost"
+                                                                                                data-variant="ghost"
+                                                                                                data-color="red"
+                                                                                                data-rounded
+                                                                                                icon="trash"
+                                                                                                size="sm" /> --}}
+                                                                                    </flux:table.row>
+                                                                        </flux:table.cell>
+                                                                @endforeach
+                                                        </flux:table>
+
+                                                        </flux:table.cell>
+                                                        </flux:table.row>
+                                            @endif
+                                        @endforeach
+                                        </flux:table>
+
+                                    </div>
+                        </div>
+                        @endforeach
+                        @endif
+            </div>
+
+
+            </flux:tab.panel>
+
+            <flux:tab.panel name="kanban" class="flex overflow-auto max-w-[1000px]">
+
+                @if (count($this->phasesTable) > 0)
+                    <div class="max-h-screen bg-white p-4 overflow-x-auto">
+                        <div class="flex space-x-6 min-w-fit">
+                            @foreach ($phasesTable->groupBy(fn($el) => $el->area->name ?? 'Sconosciuto') as $areaName => $groupedElements)
+                                <div class="min-w-[320px] w-96  bg-white p-4 flex-shrink-0">
+                                    <!-- Area Header -->
+                                    <h3 class="text-[#4D1B83] text-sm font-semibold mb-2">
+                                        {{ $areaName }}</h3>
+
+                                    <!-- Area Columns -->
+                                    <div class="space-y-6">
+                                        @foreach ($groupedElements as $element)
+                                            <!-- Parent Task Card -->
+                                            <div
+                                                class="w-full border-l-4 border-[#08468B] p-4 shadow rounded bg-white">
+                                                <div class="flex justify-between items-start">
+                                                    <div>
+                                                        <p class="text-sm font-medium text-gray-800">
+                                                            {{ $element->name_phase }}</p>
+                                                        <div
+                                                            class="flex items-center text-xs text-gray-600 mt-1 font-extralight">
+                                                            <div class="flex items-center mr-2">
+                                                                <div
+                                                                    class="h-6 w-6 flex items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
+                                                                    <flux:icon.user variant="micro" />
+                                                                </div>
+                                                                <span
+                                                                    class="ml-2">{{ $element->user->name . ' ' . $element->user->last_name }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center ">
+                                                        <select
+                                                            wire:change="updateStatusStart({{ $element->id }}, $event.target.value)"
+                                                            class="bg-transparent w-full appearance-none px-2 py-1 border-none focus:outline-none text-center
+                                                    {{ $element->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
+                                                            <option value="Svolto" @selected($element->status === 'Svolto')>Svolto
+                                                            </option>
+                                                            <option value="In attesa" @selected($element->status === 'In attesa')>In
+                                                                attesa</option>
+                                                        </select>
                                                     </div>
                                                 </div>
-                                            @endforeach
-                                        @endif
-                                    </div>
 
-
-                                </flux:tab.panel>
-
-                                <flux:tab.panel name="kanban" class="flex overflow-auto max-w-[1000px]">
-
-                                    @if (count($this->phasesTable) > 0)
-                                        <div class="max-h-screen bg-white p-4 overflow-x-auto">
-                                            <div class="flex space-x-6 min-w-fit">
-                                                @foreach ($phasesTable->groupBy(fn($el) => $el->area->name ?? 'Sconosciuto') as $areaName => $groupedElements)
-                                                    <div class="min-w-[320px] w-96  bg-white p-4 flex-shrink-0">
-                                                        <!-- Area Header -->
-                                                        <h3 class="text-[#4D1B83] text-sm font-semibold mb-2">
-                                                            {{ $areaName }}</h3>
-
-                                                        <!-- Area Columns -->
-                                                        <div class="space-y-6">
-                                                            @foreach ($groupedElements as $element)
-                                                                <!-- Parent Task Card -->
-                                                                <div
-                                                                    class="w-full border-l-4 border-[#08468B] p-4 shadow rounded bg-white">
-                                                                    <div class="flex justify-between items-start">
-                                                                        <div>
-                                                                            <p
-                                                                                class="text-sm font-medium text-gray-800">
-                                                                                {{ $element->name_phase }}</p>
-                                                                            <div
-                                                                                class="flex items-center text-xs text-gray-600 mt-1 font-extralight">
-                                                                                <div class="flex items-center mr-2">
-                                                                                    <div
-                                                                                        class="h-6 w-6 flex items-center justify-center rounded-full bg-[#F5FCFD] text-[#10BDD4]">
-                                                                                        <flux:icon.user
-                                                                                            variant="micro" />
-                                                                                    </div>
-                                                                                    <span
-                                                                                        class="ml-2">{{ $element->user->name . ' ' . $element->user->last_name }}</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="text-center ">
-                                                                            <select
-                                                                                wire:change="updateStatusStart({{ $element->id }}, $event.target.value)"
-                                                                                class="bg-transparent w-full appearance-none px-2 py-1 border-none focus:outline-none text-center
-                                                    {{ $element->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
-                                                                                <option value="Svolto"
-                                                                                    @selected($element->status === 'Svolto')>Svolto
-                                                                                </option>
-                                                                                <option value="In attesa"
-                                                                                    @selected($element->status === 'In attesa')>In
-                                                                                    attesa</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <!-- Action Buttons -->
-                                                                    <div class="flex space-x-2 mt-3 justify-between">
-                                                                        <div>
-                                                                            {{--       <flux:button
+                                                <!-- Action Buttons -->
+                                                <div class="flex space-x-2 mt-3 justify-between">
+                                                    <div>
+                                                        {{--       <flux:button
                                                                                 wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $project->id }}}})"
                                                                                 variant="ghost" data-variant="ghost"
                                                                                 data-color="gray" data-rounded
                                                                                 icon="pencil" size="sm" /> --}}
-                                                                            <flux:button
-                                                                                wire:click="deleteMacroTask({{ $project->id }})"
-                                                                                wire:confirm="Sei sicuro di voler archiviare questo macro task?"
-                                                                                variant="ghost" data-variant="ghost"
-                                                                                data-color="red" data-rounded
-                                                                                icon="trash" size="sm" />
-                                                                        </div>
-                                                                        <flux:button
-                                                                            wire:click="$dispatch('openModal', {
+                                                        <flux:button wire:click="deleteMacroTask({{ $project->id }})"
+                                                            wire:confirm="Sei sicuro di voler archiviare questo macro task?"
+                                                            variant="ghost" data-variant="ghost" data-color="red"
+                                                            data-rounded icon="trash" size="sm" />
+                                                    </div>
+                                                    <flux:button
+                                                        wire:click="$dispatch('openModal', {
                                                 component: 'projects.modals.create-task-project',
                                                 arguments: {
                                                     project_id: {{ $project->id }},
@@ -305,11 +361,11 @@
                                                     id: {{ $element->id }}
                                                 }
                                             })"
-                                                                            variant="ghost" icon="plus" />
-                                                                    </div>
+                                                        variant="ghost" icon="plus" />
+                                                </div>
 
-                                                                    <!-- Micro Tasks -->
-                                                                    {{--              @php
+                                                <!-- Micro Tasks -->
+                                                {{--              @php
                                                                         $microTasks = $groupedMicroTasks->where(
                                                                             'project_start_id',
                                                                             $element->id,
@@ -365,45 +421,45 @@
                                                                             @endforeach
                                                                         </div>
                                                                     @endif --}}
-                                                                </div>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                @endforeach
                                             </div>
-                                        </div>
-
-                                    @endif
-
-                                </flux:tab.panel>
-
-
-                            </flux:tab.group>
-
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
+                    </div>
 
-                    </flux:tab.panel>
+                @endif
 
-                    <flux:tab.panel name="document">
-                        @include('livewire.projects.document-detail')
-                    </flux:tab.panel>
+            </flux:tab.panel>
 
-                    <flux:tab.panel name="note">
-                        @include('livewire.projects.note-detail', ['id' => $id])
-                    </flux:tab.panel>
 
-                    <flux:tab.panel name="data-sheet">
-                        @include('livewire.projects.project-datasheet')
-                    </flux:tab.panel>
-                </flux:tab.group>
+            </flux:tab.group>
 
-            </div>
-            @unless ($datasheetHideDiv === 'data-sheet')
-                <div class="xl:w-1/4">
-                    @include('livewire.projects.allDataRight-detail')
-                </div>
-            @endunless
         </div>
 
+        </flux:tab.panel>
+
+        <flux:tab.panel name="document">
+            @include('livewire.projects.document-detail')
+        </flux:tab.panel>
+
+        <flux:tab.panel name="note">
+            @include('livewire.projects.note-detail', ['id' => $id])
+        </flux:tab.panel>
+
+        <flux:tab.panel name="data-sheet">
+            @include('livewire.projects.project-datasheet')
+        </flux:tab.panel>
+        </flux:tab.group>
+
     </div>
+    @unless ($datasheetHideDiv === 'data-sheet')
+        <div class="xl:w-1/4">
+            @include('livewire.projects.allDataRight-detail')
+        </div>
+    @endunless
+</div>
+
+</div>
 </div>

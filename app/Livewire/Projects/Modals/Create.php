@@ -32,6 +32,8 @@ class Create extends ModalComponent
     protected array $rules = [];
     public $formToken, $formPhase;
     public bool $canProceed = true;
+    public array $firms_and_percentage_keys = [''];
+    public array $firms_and_percentage_values = [0];
     private const DEFAULT_FORM = [
         'estimate' => '',
         'name_project' => '',
@@ -51,8 +53,9 @@ class Create extends ModalComponent
         'starting_price' => '',
         'discount_percentage' => '',
         'discounted' => '',
-        'n_firms' => '',
-        'firms_and_percentage' => '',
+        'firms_and_percentage' => [
+            ['n_firms' => '', 'firms_and_percentage' => ''],
+        ],
         'note' => '',
         'general_info' => '',
         'note_client' => '',
@@ -81,15 +84,27 @@ class Create extends ModalComponent
                 $area->name => $area->microAreas->pluck('name', 'id')->toArray()
             ];
         })->toArray();
-    
-        $this->formData['selectedPhases'] = []; 
+
+        $this->formData['selectedPhases'] = [];
     }
 
+
+    private function sanitizeNumericFields()
+    {
+        foreach (['total_budget', 'starting_price', 'discount_percentage', 'discounted'] as $key) {
+            if (isset($this->formData[$key])) {
+                // Replace commas with dots
+                $this->formData[$key] = str_replace(',', '.', $this->formData[$key]);
+            }
+        }
+    }
 
     #[On('checkValid')]
     public function checkValid()
     {
         try {
+            $this->sanitizeNumericFields();
+
             $this->validate($this->getValidationRules());
             $this->dispatchBrowserEvent('canProceed-updated', ['detail' => true]);
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -122,7 +137,8 @@ class Create extends ModalComponent
                     'formData.starting_price' => 'required|numeric|min:0',
                     'formData.discount_percentage' => 'required|numeric|min:0',
                     'formData.discounted' => 'required|numeric|min:0',
-                    'formData.n_firms' => 'required|numeric',
+                    'formData.firms_and_percentage.*.n_firms' => 'required|string',
+                    'formData.firms_and_percentage.*.firms_and_percentage' => 'required|numeric|min:0',
                 ];
             case 3:
                 return [
@@ -141,6 +157,26 @@ class Create extends ModalComponent
             default:
                 return [];
         }
+    }
+
+    public function addFirmGroup()
+    {
+        $this->formData['firms_and_percentage'][] = ['n_firms' => '', 'firms_and_percentage' => ''];
+    }
+
+    public function addFirm()
+    {
+        $this->firms_and_percentage_keys[] = '';
+        $this->firms_and_percentage_values[] = 0;
+    }
+
+    public function removeFirm($index)
+    {
+        unset($this->firms_and_percentage_keys[$index]);
+        unset($this->firms_and_percentage_values[$index]);
+
+        $this->firms_and_percentage_keys = array_values($this->firms_and_percentage_keys);
+        $this->firms_and_percentage_values = array_values($this->firms_and_percentage_values);
     }
 
     public function nextTab()
@@ -165,12 +201,40 @@ class Create extends ModalComponent
         }
     }
 
+    public function updatedFormData($value, $key)
+    {
+        if (in_array($key, ['starting_price', 'discount_percentage'])) {
+            $this->recalculateDiscounted();
+        }
+    }
+
+    public function recalculateDiscounted()
+    {
+        $price = floatval(str_replace(',', '.', $this->formData['starting_price'] ?? 0));
+        $percentage = floatval(str_replace(',', '.', $this->formData['discount_percentage'] ?? 0));
+
+        if ($price > 0 && $percentage >= 0) {
+            $this->formData['discounted'] = round($price - ($price * $percentage / 100), 2);
+        } else {
+            $this->formData['discounted'] = 0;
+        }
+    }
+
     public function save()
     {
         DB::beginTransaction();
+        $this->sanitizeNumericFields();
 
         try {
-          
+            $firmsAssoc = [];
+
+            foreach ($this->firms_and_percentage_keys as $i => $label) {
+                if (!empty($label) && isset($this->firms_and_percentage_values[$i])) {
+                    $firmsAssoc[$label] = (float) $this->firms_and_percentage_values[$i];
+                }
+            }
+
+            $this->formData['firms_and_percentage'] = json_encode($firmsAssoc);
             $this->formData = Project::prepareFormData($this->formData);
 
             $this->formToken = $this->formData;
@@ -180,13 +244,13 @@ class Create extends ModalComponent
             $project = Project::create($this->formData);
 
             Stackholder::insertFromForm($this->formToken, $project->id);
-         
+
 
 
             $selectedIds = is_array($this->formPhase['selectedPhases']) ? $this->formPhase['selectedPhases'] : [];
 
             $microAreas = MicroArea::with('area')->whereIn('id', $selectedIds)->get();
-            
+
             foreach ($microAreas as $microArea) {
                 $newPhase = Phase::create([
                     'id_micro_area' => $microArea->id,
@@ -195,7 +259,7 @@ class Create extends ModalComponent
                     'id_user' => auth()->id(),
                     'status' => 'In attesa',
                 ]);
-            
+
                 Task::create([
                     'id_phases' => $newPhase->id,
                     'id_assignee' => auth()->id(),
@@ -217,6 +281,7 @@ class Create extends ModalComponent
             Flux::toast('Progetto creato con successo!');
             $this->dispatch('taskAdded');
         } catch (QueryException $e) {
+            dd($e);
             DB::rollBack();
             Flux::toast('Errore di database, contatta l’amministratore.');
         } catch (\Exception $e) {

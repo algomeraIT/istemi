@@ -89,54 +89,29 @@ class ProjectDetail extends Component
         }
     }
 
-    public function updateMicroStatusStart($id, $value)
+    public function updateStatusStartMicro($id, $value)
     {
         try {
-            $columns = [
-                'project_start_id',
-                'project_activity_id',
-                'project_accounting_id',
-                'project_data_id',
-                'project_construction_site_plane_id',
-                'project_external_validations_id',
-                'project_invoices_sal_id',
-                'project_non_compliance_id',
-                'project_report_id',
-                'project_close_id',
-            ];
+            $record = Task::findOrFail($id);
 
-            $task = DB::table('task_projects')->where('id', $id)->first();
+            $record->status = $value;
+            $record->save();
 
-            if (!$task) {
-                Flux::toast('Task non trovato.');
-                return;
-            }
+            Flux::toast('Stato aggiornato con successo!');
 
-            $notNullCount = collect($columns)->filter(function ($column) use ($task) {
-                return !is_null($task->{$column});
-            })->count();
-
-            if ($notNullCount === 1) {
-                DB::table('task_projects')
-                    ->where('id', $id)
-                    ->update(['status' => $value]);
-
-                $this->dispatch('refresh');
-
-                Flux::toast('Stato aggiornato con successo!');
-            } else {
-                Flux::toast('Errore: Il task ha più di un campo compilato o nessun campo compilato...');
-            }
+            $this->dispatch('refresh');
         } catch (\Exception $e) {
             Flux::toast('Errore durante la variazione di stato...');
         }
     }
 
+
+
     public function microDeleteTask($id)
     {
         try {
 
-            $model = TaskProject::findOrFail($id);
+            $model = Task::findOrFail($id);
 
             $model->status = "deleted";
             $model->save();

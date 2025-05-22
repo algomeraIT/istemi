@@ -98,6 +98,7 @@ class Project extends Model
         $formData['discount_percentage'] = $formData['discount_percentage'] !== '' ? (float) $formData['discount_percentage'] : null;
         $formData['discounted'] = $formData['discounted'] !== '' ? (float) $formData['discounted'] : null;
         $formData['total_budget'] = $formData['total_budget'] !== '' ? (float) $formData['total_budget'] : null;
+        $formData['firms_and_percentage'] = json_encode( $formData['firms_and_percentage'] );
 
         return $formData;
     }

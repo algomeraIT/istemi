@@ -3,7 +3,6 @@
 namespace App\Livewire\Projects\Modals;
 
 use Livewire\Attributes\On;
-
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +12,8 @@ use Flux\Flux;
 class CreateTaskProject extends ModalComponent
 {
     public ?int $taskId = null;
+    public ?int $phase_id = null;
+    public ?int $project_id = null;
 
     public string $title = '';
     public string $assignee = '';
@@ -21,20 +22,21 @@ class CreateTaskProject extends ModalComponent
     public string $status = 'In attesa';
     public ?string $expire = null;
     public array $users = [];
-    public ?int $phase_id = null;
 
-    public function mount(?int $taskId = null, ?int $phase_id = null)
+    public function mount(?int $taskId = null, ?int $phase_id = null, ?int $project_id = null)
     {
         $this->taskId = $taskId;
         $this->phase_id = $phase_id;
+        $this->project_id = $project_id;
 
         $this->users = User::select('name', 'last_name')->get()
             ->map(fn($user) => ['id' => $user->name . ' ' . $user->last_name])
             ->pluck('id')
             ->toArray();
 
-        if ($taskId) {
-            $task = Task::findOrFail($taskId);
+        if ($this->taskId) {
+            $task = Task::findOrFail($this->taskId);
+
             $this->title = $task->title ?? '';
             $this->assignee = $task->assignee ?? '';
             $this->cc = $task->cc ?? '';
