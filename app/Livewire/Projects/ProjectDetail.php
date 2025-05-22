@@ -144,6 +144,7 @@ class ProjectDetail extends Component
             Flux::toast('Errore durante la cancellazione del MacroTask.');
         }
     }
+
     #[On('refresh')]
     public function render()
     {
@@ -185,6 +186,6 @@ class ProjectDetail extends Component
             )
             ->get();
 
-        return view('livewire.projects.project-detail')->layout('layout.main');
+        return view('livewire.projects.project-detail');
     }
 }

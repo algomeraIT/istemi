@@ -58,10 +58,10 @@
                         <flux:table.cell align="end">
                             <flux:button wire:click="goToDetail({{ $project->id }})" variant="ghost"
                                 data-variant="ghost" data-color="teal" data-rounded icon="eye" size="sm" />
-                             {{--    <flux:button
+                                <flux:button
                                 wire:click="$dispatch('openModal', { component: 'projects.modals.edit-project', arguments: { id: {{ $project->id }} } })"
                                 variant="ghost" data-variant="ghost" data-color="gray" data-rounded
-                                icon="pencil" size="sm" /> --}}
+                                icon="pencil" size="sm" />
                                 
                         </flux:table.cell>
                     </flux:table.row>

@@ -63,11 +63,24 @@ class EditProject extends ModalComponent
 
         ];
 
-
         $this->clients = Client::select('id', 'name')->with('estimate')->get()->toArray();
-        $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', $this->project->client_id)->get()->toArray();
-        $this->area = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->get()->toArray();
-        $this->projectUsers = User::select('id', 'name', 'last_name', 'role')->where('role', 'project')->get()->toArray();
+        
+        $this->estimates = Estimate::select('id', 'serial_number')
+            ->where(function ($query) {
+                $query->where('client_id', $this->project->client_id)
+                    ->orWhereNull('client_id')
+                    ->orWhere('id', $this->project->estimate);
+            })
+            ->get()
+            ->sortByDesc(function ($estimate) {
+                // Move the selected to the top
+                return $estimate->serial_number === $this->project->estimate ? 1 : 0;
+            })
+            ->values()
+            ->toArray();
+            
+        $this->area = User::select('id', 'name', 'last_name')->role('responsabile area')->get()->toArray();
+        $this->projectUsers = User::select('id', 'name', 'last_name')->role('project manager')->get()->toArray();
     }
 
     public function toggleAllPhases()
