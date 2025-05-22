@@ -133,7 +133,7 @@
                         <div class="space-y-2">
                             @foreach ($firms as $firm => $percentage)
                                 <div class="flex justify-between items-center border-b pb-1">
-                                    <span class="text-gray-700 font-medium">{{ $firm }}</span>
+                                    <span class="text-gray-700 font-medium">{{ $firm}}</span>
                                 </div>
                             @endforeach
                         </div>
@@ -146,7 +146,8 @@
                         <div class="space-y-2">
                             @foreach ($firms as $firm => $percentage)
                                 <div class="flex justify-between items-center border-b pb-1">
-                                    <span class="text-gray-700 font-medium">{{ $percentage }}%</span>
+                                    
+                                    <span class="text-gray-700 font-medium">{{ $percentage['firms_and_percentage'] }}%</span>
                                 </div>
                             @endforeach
                         </div>

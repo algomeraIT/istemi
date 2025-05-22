@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Projects;
 
+use Livewire\Attributes\On;
+
 use App\Models\DocumentProject;
 use App\Models\NoteProject;
 use App\Models\Project;
@@ -13,7 +15,6 @@ use Livewire\Component;
 use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 
-use Livewire\Attributes\On;
 
 
 class ProjectDetail extends Component
@@ -38,9 +39,9 @@ class ProjectDetail extends Component
 
     public function mount($id)
     {
+        $this->id = $id;
         $this->project = Project::findOrFail($id);
         $this->document = DocumentProject::where("project_id", $id)->get();
-        $this->notes = NoteProject::where("project_id", $id)->orderBy('created_at', 'desc')->get();
         $this->statusPhases = Phase::with(['area', 'microArea'])->where("id_project", $id)->where('status', '!=', 'deleted')->get();
         $this->phaseID = Phase::where('id_project', $id)->pluck('id_micro_area');
         $this->groupedMicroTasks = Task::whereIn(
@@ -110,7 +111,6 @@ class ProjectDetail extends Component
     public function microDeleteTask($id)
     {
         try {
-
             $model = Task::findOrFail($id);
 
             $model->status = "deleted";
@@ -128,7 +128,6 @@ class ProjectDetail extends Component
     public function deleteMacroTask($id)
     {
         try {
-
             $model = Phase::findOrFail($id);
 
             $model->status = "deleted";
@@ -141,10 +140,13 @@ class ProjectDetail extends Component
             Flux::toast('Errore durante la cancellazione del MacroTask.');
         }
     }
+    
 
     #[On('refresh')]
     public function render()
     {
+        $this->notes = NoteProject::where("project_id", $this->id)->orderBy('created_at', 'desc')->get();
+
         return view('livewire.projects.project-detail');
     }
 }
