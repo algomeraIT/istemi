@@ -46,7 +46,7 @@ class ProjectDetail extends Component
         $this->phaseID = Phase::where('id_project', $id)->pluck('id_micro_area');
         $this->groupedMicroTasks = Task::whereIn(
             'id_phases',
-            Phase::where('id_project', $this->project->id)->pluck('id')->toArray()
+            Phase::where('id_project', $this->project->id)->pluck('id')
         )
         ->where('status', '!=', 'deleted')
         ->get()->groupBy('id_phases')->toArray();
