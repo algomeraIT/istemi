@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Livewire\Projects\Modals;
+
 use Livewire\Attributes\On;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 use Flux\Flux;
@@ -18,10 +20,18 @@ class CreateTaskProject extends ModalComponent
     public string $note = '';
     public string $status = 'In attesa';
     public ?string $expire = null;
+    public array $users = [];
+    public ?int $phase_id = null;
 
-    public function mount(?int $taskId = null)
+    public function mount(?int $taskId = null, ?int $phase_id = null)
     {
         $this->taskId = $taskId;
+        $this->phase_id = $phase_id;
+
+        $this->users = User::select('name', 'last_name')->get()
+            ->map(fn($user) => ['id' => $user->name . ' ' . $user->last_name])
+            ->pluck('id')
+            ->toArray();
 
         if ($taskId) {
             $task = Task::findOrFail($taskId);
@@ -64,7 +74,7 @@ class CreateTaskProject extends ModalComponent
             Flux::toast('Attività aggiornata con successo!');
         } else {
             Task::create(array_merge($data, [
-                'id_phases' => 1, 
+                'id_phases' => $this->phase_id,
                 'id_assignee' => Auth::id(),
             ]));
             Flux::toast('Attività creata con successo!');

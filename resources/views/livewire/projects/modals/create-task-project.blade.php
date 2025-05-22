@@ -26,7 +26,12 @@
                     <flux:icon.at-symbol class="w-4 h-4" />
                     <flux:label class="text-xs">Assegnato a</flux:label>
                 </div>
-                <flux:input wire:model="assignee" />
+                <flux:select wire:model="assignee">
+                    <option value="">-- Seleziona utente --</option>
+                    @foreach ($users as $name)
+                        <option value="{{ $name }}">{{ $name }}</option>
+                    @endforeach
+                </flux:select>
                 <flux:error name="assignee" />
             </flux:field>
 
@@ -36,7 +41,12 @@
                     <flux:icon.at-symbol class="w-4 h-4" />
                     <flux:label class="text-xs">Conoscenza</flux:label>
                 </div>
-                <flux:input wire:model="cc" />
+                <flux:select wire:model="cc">
+                    <option value="">-- Seleziona utente --</option>
+                    @foreach ($users as $name)
+                        <option value="{{ $name }}">{{ $name }}</option>
+                    @endforeach
+                </flux:select>
                 <flux:error name="cc" />
             </flux:field>
 
@@ -75,10 +85,9 @@
 
             <!-- Save Button -->
             <div class="pt-4">
-                <button wire:click="save"
-                class="px-4 py-2 bg-[#00C0D9] text-white rounded hover:bg-[#00A4B8] text-sm">
-                {{ $taskId ? 'Aggiorna' : 'Assegna' }}
-            </button>
+                <button wire:click="save" class="px-4 py-2 bg-[#00C0D9] text-white rounded hover:bg-[#00A4B8] text-sm">
+                    {{ $taskId ? 'Aggiorna' : 'Assegna' }}
+                </button>
             </div>
         </div>
     </div>

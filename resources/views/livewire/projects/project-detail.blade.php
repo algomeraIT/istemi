@@ -46,6 +46,7 @@
                                 <flux:tab.panel name="list">
                                     <div>
                                         @if (!empty($phasesTable))
+
                                             @foreach ($phasesTable->groupBy(fn($item) => $item->area->name ?? 'Sconosciuto') as $areaName => $groupedPhases)
                                                 <div x-data="{ open: false }"
                                                     class="bg-white border rounded-md shadow-sm my-4">
@@ -100,9 +101,13 @@
                                                             @foreach ($groupedPhases as $phase)
                                                                 <flux:table.row>
                                                                     <flux:table.cell class="border px-4 py-2">
-                                                                        @if (isset($groupedMicroTasks[0]) && $groupedMicroTasks[0]->project_start_id === $phase->id)
-                                                                            <flux:icon.arrow-down
-                                                                                @click="openMicro = !openMicro" />
+
+                                                                        @if (isset($groupedMicroTasks[$phase->id]))
+                                                                            <button
+                                                                                wire:click="togglePhase({{ $phase->id }})"
+                                                                                class="cursor-pointer">
+                                                                                <flux:icon.arrow-down />
+                                                                            </button>
                                                                         @endif
                                                                     </flux:table.cell>
                                                                     <flux:table.cell class="border px-4 py-2">
@@ -111,17 +116,16 @@
                                                                     <flux:table.cell class="whitespace-nowrap border "
                                                                         data-detail="detail">
 
-                                                                    {{--     <flux:button
+                                                                        <flux:button
                                                                             wire:click="$dispatch('openModal', {
-                                                                                component: 'projects.modals.create-task-project',
-                                                                                arguments: {
-                                                                                    project_id: {{ $phase->id_project }},
-                                                                                    id: {{ $phase->id }}
-                                                                                }
-                                                                            })"
+                                                                                                                component: 'projects.modals.create-task-project',
+                                                                                                                arguments: {
+                                                                                                                    project_id: {{ $phase->id_project }},phase_id: {{ $phase->id }}
+                                                                                                                }
+                                                                                                            })"
                                                                             variant="ghost" data-variant="ghost"
                                                                             icon="plus">
-                                                                        </flux:button> --}}
+                                                                        </flux:button>
                                                                     </flux:table.cell>
                                                                     <flux:table.cell class="border px-4 py-2">
                                                                         {{ $phase->user->name . ' ' . $phase->user->last_name }}
@@ -131,7 +135,7 @@
                                                                         <select
                                                                             wire:change="updateStatusStart({{ $phase->id }}, $event.target.value)"
                                                                             class="w-full bg-transparent text-sm border-none focus:outline-none text-center
-                                                {{ $phase->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
+                                                                                                {{ $phase->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
 
                                                                             <option value="In attesa"
                                                                                 @selected($phase->status === 'In attesa')>In attesa
@@ -154,14 +158,14 @@
 
 
                                                                         {{--           <flux:button
-                                            wire:click="$dispatch('openModal', {
-                                                component: 'projects.modals.create-task-project',
-                                                project_id: {{ $phase->id_project }},
-                                                taskId: {{ $phase->id }}
-                                            })"
-                                            variant="ghost" data-variant="ghost" data-color="gray" data-rounded
-                                            icon="pencil" size="sm">
-                                        </flux:button> --}}
+                                                                            wire:click="$dispatch('openModal', {
+                                                                                component: 'projects.modals.create-task-project',
+                                                                                project_id: {{ $phase->id_project }},
+                                                                                taskId: {{ $phase->id }}
+                                                                            })"
+                                                                            variant="ghost" data-variant="ghost" data-color="gray" data-rounded
+                                                                            icon="pencil" size="sm">
+                                                                        </flux:button> --}}
 
                                                                         <flux:button
                                                                             wire:click="deleteMacroTask({{ $phase->id }})"
@@ -171,8 +175,53 @@
                                                                             size="sm" />
                                                                     </flux:table.cell>
                                                                 </flux:table.row>
+                                                                @if ($openTable == 1 && $openPhaseId == $phase->id)
+                                                                <flux:table.row>
+                                                                    <flux:table.cell colspan="6" class="bg-gray-50 p-4">
+                                                                        @php
+                                                                            $tasksForPhase = $groupedMicroTasks[$phase->id] ?? collect();
+                                                                        @endphp
+                                                                    
+                                                                            <table class="w-full text-sm border">
+                                                                                <thead class="bg-gray-100">
+                                                                                    <tr>
+                                                                                        <th
+                                                                                            class="text-left px-2 py-1 border-b">
+                                                                                            Titolo</th>
+                                                                                        <th
+                                                                                            class="text-left px-2 py-1 border-b">
+                                                                                            Assegnato a</th>
+                                                                                        <th
+                                                                                            class="text-left px-2 py-1 border-b">
+                                                                                            Scadenza</th>
+                                                                                        <th
+                                                                                            class="text-left px-2 py-1 border-b">
+                                                                                            Stato</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    @foreach ($tasksForPhase as $task)
+                                                                                        <tr>
+                                                                                            <td class="px-2 py-1 border-t">
+                                                                                                {{ $task['title'] }}</td>
+                                                                                            <td class="px-2 py-1 border-t">
+                                                                                                {{ $task['assignee'] }}</td>
+                                                                                            <td class="px-2 py-1 border-t">
+                                                                                                {{ $task['expire'] ? \Carbon\Carbon::parse($task['expire'])->format('d/m/Y') : '—' }}
+                                                                                            </td>
+                                                                                            <td class="px-2 py-1 border-t">
+                                                                                                {{ $task['status'] }}</td>
+                                                                                        </tr>
+                                                                                    @endforeach
+                                                                                </tbody>
+                                                                            </table>
+                                                                      
+                                                                    </flux:table.cell>
+                                                                </flux:table.row>
+                                                            @endif
                                                             @endforeach
-                                                        </flux:table>
+                                                        </flux:table>                                                       
+                                                  
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -260,7 +309,7 @@
                                                                     </div>
 
                                                                     <!-- Micro Tasks -->
-                                                                    @php
+                                                                    {{--              @php
                                                                         $microTasks = $groupedMicroTasks->where(
                                                                             'project_start_id',
                                                                             $element->id,
@@ -288,7 +337,7 @@
                                                                                         <select
                                                                                             wire:change="updateMicroStatusStart({{ $micro->id }}, $event.target.value, '{{ $NameTable }}')"
                                                                                             class="bg-transparent px-1 py-0.5 text-xs focus:outline-none
-                                                                {{ $micro->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
+                                                                                                {{ $micro->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
                                                                                             <option value="Svolto"
                                                                                                 @selected($micro->status === 'Svolto')>
                                                                                                 Svolto</option>
@@ -315,7 +364,7 @@
                                                                                 </div>
                                                                             @endforeach
                                                                         </div>
-                                                                    @endif
+                                                                    @endif --}}
                                                                 </div>
                                                             @endforeach
                                                         </div>
