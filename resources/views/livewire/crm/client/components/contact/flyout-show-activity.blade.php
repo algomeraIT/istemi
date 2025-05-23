@@ -213,7 +213,7 @@
 
                                 <div class="flex flex-wrap items-center gap-2">
                                     @foreach ($message->getMedia('attached') as $media)
-                                        <div class="w-40 border px-2 flex items-center justify-between gap-5">
+                                        <div class="w-fit min-w-40 border px-2 flex items-center justify-between gap-5">
                                             <div class="flex items-center gap-2 text-[#888888]">
                                                 <flux:icon.document class="size-4" />
                                                 <span
@@ -229,7 +229,7 @@
                             </div>
                         @endif
 
-                        <div class="text-sm text-[#B0B0B0]">{!! $message->message !!}</div>
+                        <div class="text-sm text-[#B0B0B0] mt-5">{!! $message->message !!}</div>
                     </div>
                 @endforeach
             </div>

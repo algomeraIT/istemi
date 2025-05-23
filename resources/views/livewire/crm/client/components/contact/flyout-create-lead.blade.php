@@ -1,6 +1,5 @@
 <flux:modal name="now-lead" variant="flyout" :dismissible="false" class="w-2xl !px-32 relative">
-    <button
-        class="absolute top-4 right-4 text-lg z-10 bg-white text-[#A0A0A0] flex items-center gap-1 cursor-pointer"
+    <button class="absolute top-4 right-4 text-lg z-10 bg-white text-[#A0A0A0] flex items-center gap-1 cursor-pointer"
         x-on:click="$flux.modals().close()">
         <flux:icon.x-mark class="size-4" />
         <span>Annulla</span>
@@ -43,28 +42,14 @@
                 <flux:error name="clientForm.email" />
             </flux:field>
 
-            <flux:field data-input>
-                <div>
-                    <flux:icon.tag />
-                    <flux:label>Servizio</flux:label>
-                </div>
-                <flux:select variant="listbox" wire:model="clientForm.service">
-                    @foreach (['privato' => 0, 'pubblico' => 1] as $label => $value)
-                        <flux:select.option value="{{ $value }}">
-                            {{ ucfirst($label) }}
-                        </flux:select.option>
-                    @endforeach
-                </flux:select>
-                <flux:error name="clientForm.service" />
-            </flux:field>
-
-
             <div>
                 <div class="flex items-center gap-1 mb-1 ml-1">
                     <flux:icon.document-text class="size-4 text-[#B0B0B0]" />
                     <flux:label class="text-xs !font-light !text-[#B0B0B0]">Nota</flux:label>
                 </div>
-                <flux:editor wire:model="clientForm.note" class="**:data-[slot=content]:min-h-[100px]!" />
+                <flux:editor wire:model="clientForm.note" class="**:data-[slot=content]:min-h-[100px]!"
+                    placeholder="Scrivi qualcosa..." />
+                <flux:error name="clientForm.note" />
             </div>
 
             <flux:field data-input>

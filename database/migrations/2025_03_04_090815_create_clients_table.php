@@ -29,7 +29,6 @@ return new class extends Migration {
             $table->string('site')->nullable();
             $table->string('label')->nullable();
             $table->text('note')->nullable();
-            $table->string('service')->nullable();
             $table->string('provenance')->nullable();
             $table->string('registered_office_address')->nullable();
             $table->boolean('has_referent')->nullable();
