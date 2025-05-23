@@ -1,65 +1,57 @@
-<div class="fixed inset-0 bg-[oklch(0.97_0_0_/_0.5)] bg-opacity-20 flex justify-end z-50">
-    <!-- Left Section: Referents -->
-    <div class="w-1/3  bg-white">
-        <div class="flex flex-row justify-between align-top items-start mx-auto  h-24 p-6">
-            <h2 class="text-2xl font-bold text-left">Attività</h2>
-            <button wire:click="$dispatch('closeModal')" class="hover:cursor-pointer ">Chiudi</button>
+<div class="fixed inset-0 bg-black/50 flex justify-end z-50">
+    <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 bg-white h-full overflow-y-auto rounded-l-2xl shadow-xl">
+        
+        <!-- Modal Header -->
+        <div class="flex justify-between items-start p-6 border-b">
+            <h2 class="text-xl font-semibold text-gray-800">Attività</h2>
+            <button wire:click="$dispatch('closeModal')" class="text-sm text-gray-500 hover:text-gray-700">
+                Chiudi
+            </button>
         </div>
 
-        <div class="p-20 bg-white ">
-
+        <!-- Modal Content -->
+        <div class="p-6 space-y-8">
             @foreach ($this->microTask as $task)
-                <div>
-                    {{ $task['title'] }}
-                </div>
-                <div class="flex p-4 m-4 font-extralight">
-                    <div class=" p-4 m-4">
-                        <label class="flex"><flux:icon.at-symbol class="w-4 h-4" />Assegnato a</label>
-                        {{ $task['user_name'] }}
+                <div class="space-y-4 border-b pb-6">
+                    <h3 class="text-lg font-medium text-gray-900">{{ $task['title'] }}</h3>
+
+                    <div class="flex flex-wrap gap-6 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <flux:icon.at-symbol class="w-4 h-4 text-gray-400" />
+                            <span>Assegnato a:</span>
+                            <span class="font-medium text-gray-800">{{ $task['assignee'] }}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <flux:icon.calendar class="w-4 h-4 text-gray-400" />
+                            <span>Scadenza:</span>
+                            <span class="font-medium text-gray-800">
+                                {{ \Carbon\Carbon::parse($task['expire'])->format('d/m/Y') ?? '—' }}
+                            </span>
+                        </div>
                     </div>
-                    <div class=" p-4 m-4">
-                        <label class="flex">
-                            <flux:icon.calendar class="w-4 h-4" />Scadenza
-                        </label>
-                        {{ $task['expire'] }}
+
+                    <div class="text-sm text-gray-700 leading-relaxed">
+                        {{ $task['note'] }}
                     </div>
-                </div>
-                <div class=" font-extralight">
-                    {{ $task['note'] }}
-                </div>
-                <div class="flex mt-4  font-extralight">
-                    <p>Creato da: {{ $task['assignee'] }}</p>
-                    <div class="w-1 h-1 bg-gray-400 rounded-4xl self-center mr-1 ml-1"></div>
-                    {{ $task['created_at'] }}
-                </div>
 
-                <div class="w-full h-full px-4 py-2 text-left font-extralight">
-                    @php
-                        $isDone = $task['status'] === 'Svolto';
-                    @endphp
-                    <select wire:change="updateMicroStatusStart({{ $task['id'] }}, $event.target.value)"
-                        class="bg-transparent w-full appearance-none px-2 py-1 border-none focus:outline-none text-left
-                                            {{ $task['status'] === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
-                        <option value="Svolto" {{ $task['status'] === 'Svolto' ? 'selected' : '' }}>
-                            <flux:badge wire:click="updateMicroStatusStart({{ $task['id'] }}, 'Svolto')"
-                                class="cursor-pointer {{ $isDone ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-white text-gray-400 border border-gray-200' }}">
-                                Svolto
-                            </flux:badge>
-                        </option>
-                        <option value="In attesa" {{ $task['status'] === 'In attesa' ? 'selected' : '' }}>
-                            <flux:badge wire:click="updateMicroStatusStart({{ $task['id'] }}, 'In attesa')"
-                                class="cursor-pointer {{ !$isDone ? 'bg-[#FFF9E5] text-[#FEC106]' : 'bg-white text-gray-400 border border-gray-200' }}">
-                                In attesa
-                            </flux:badge>
-                        </option>
-                    </select>
+                    <div class="text-xs text-gray-500 flex items-center gap-2">
+                        <span>Creato da: {{ $task['assignee'] }}</span>
+                        <span class="w-1 h-1 rounded-full bg-gray-400"></span>
+                        <span>{{ \Carbon\Carbon::parse($task['created_at'])->diffForHumans() }}</span>
+                    </div>
 
-
+                    <div class="mt-4">
+                        @php $isDone = $task['status'] === 'Svolto'; @endphp
+                        <select
+                            wire:change="updateMicroStatus({{ $task['id'] }}, $event.target.value)"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-400 text-sm
+                                {{ $isDone ? 'bg-green-50 text-green-700' : 'bg-yellow-50 text-yellow-700' }}">
+                            <option value="In attesa" {{ !$isDone ? 'selected' : '' }}>In attesa</option>
+                            <option value="Svolto" {{ $isDone ? 'selected' : '' }}>Svolto</option>
+                        </select>
+                    </div>
                 </div>
             @endforeach
-
         </div>
-
-
     </div>
 </div>

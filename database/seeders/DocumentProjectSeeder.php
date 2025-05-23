@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Project;
+use App\Models\DocumentProject;
+
+
 
 class DocumentProjectSeeder extends Seeder
 {
@@ -12,8 +15,10 @@ class DocumentProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\DocumentProject::factory()
-        ->count(10)
-        ->create();
+        Project::all()->each(function ($project) {
+            DocumentProject::factory()->count(5)->create([
+                'project_id' => $project->id,
+            ]);
+        });
     }
 }

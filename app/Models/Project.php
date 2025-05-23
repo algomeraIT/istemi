@@ -66,6 +66,11 @@ class Project extends Model
         return $this->belongsTo(Phase::class, 'phase_id');
     }
 
+    public function phases()
+{
+    return $this->hasMany(\App\Models\Phase::class, 'id_project');
+}
+
     public function estimate()
     {
         return $this->belongsTo(Estimate::class, 'phase_id');
@@ -93,6 +98,7 @@ class Project extends Model
         $formData['discount_percentage'] = $formData['discount_percentage'] !== '' ? (float) $formData['discount_percentage'] : null;
         $formData['discounted'] = $formData['discounted'] !== '' ? (float) $formData['discounted'] : null;
         $formData['total_budget'] = $formData['total_budget'] !== '' ? (float) $formData['total_budget'] : null;
+        $formData['firms_and_percentage'] = json_encode( $formData['firms_and_percentage'] );
 
         return $formData;
     }

@@ -23,6 +23,7 @@ class Create extends ModalComponent
 {
 
     public $currentTab = 1;
+    public $phaseGroups;
     public $clients = [];
     public $estimates = [];
     public $area = [];
@@ -31,6 +32,8 @@ class Create extends ModalComponent
     protected array $rules = [];
     public $formToken, $formPhase;
     public bool $canProceed = true;
+    public array $firms_and_percentage_keys = [''];
+    public array $firms_and_percentage_values = [0];
     private const DEFAULT_FORM = [
         'estimate' => '',
         'name_project' => '',
@@ -50,8 +53,9 @@ class Create extends ModalComponent
         'starting_price' => '',
         'discount_percentage' => '',
         'discounted' => '',
-        'n_firms' => '',
-        'firms_and_percentage' => '',
+        'firms_and_percentage' => [
+            ['n_firms' => '', 'firms_and_percentage' => ''],
+        ],
         'note' => '',
         'general_info' => '',
         'note_client' => '',
@@ -74,68 +78,24 @@ class Create extends ModalComponent
         $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)->get()->toArray();
         $this->area = User::select('id', 'name', 'last_name')->role('responsabile area')->get()->toArray();
         $this->projectUser = User::select('id', 'name', 'last_name')->role('project manager')->get()->toArray();
+
+        $this->phaseGroups = Area::with('microAreas')->get()->mapWithKeys(function ($area) {
+            return [
+                $area->name => $area->microAreas->pluck('name', 'id')->toArray()
+            ];
+        })->toArray();
+
+        $this->formData['selectedPhases'] = [];
     }
 
-    public function toggleAllPhases()
-    {
-        $phases = [
-            'contract_ver',
-            'cme_ver',
-            'reserves',
-            'expiring_date_project',
-            'communication_plan',
-            'extension',
-            'sal',
-            'warranty',
-            'emission_invoice',
-            'payment_invoice',
-            'construction_site_plane',
-            'travel',
-            'site_pass',
-            'ztl',
-            'supplier',
-            'timetable',
-            'security',
-            'activities',
-            'team',
-            'field_activities',
-            'daily_check_activities',
-            'contruction_site_media',
-            'activity_validation',
-            'data',
-            'foreman_docs',
-            'sanding_sample_lab',
-            'data_validation',
-            'internal_validation',
-            'Report',
-            'create_note',
-            'sending_note',
-            'accounting',
-            'accounting_dec',
-            'create_cre',
-            'expense_allocation',
-            'external_validation',
-            'cre',
-            'liquidation',
-            'balance_invoice',
-            'accounting_validation',
-            'balance',
-            'cre_archiving',
-            'pay_suppliers',
-            'pay_allocation_expenses',
-            'learned_lesson',
-            'non_compliance_management',
-            'sa',
-            'integrate_doc',
-            'close_activity',
-            'sale',
-            'release'
-        ];
 
-        if (count($this->formData['selectedPhases']) === count($phases)) {
-            $this->formData['selectedPhases'] = [];
-        } else {
-            $this->formData['selectedPhases'] = $phases;
+    private function sanitizeNumericFields()
+    {
+        foreach (['total_budget', 'starting_price', 'discount_percentage', 'discounted'] as $key) {
+            if (isset($this->formData[$key])) {
+                // Replace commas with dots
+                $this->formData[$key] = str_replace(',', '.', $this->formData[$key]);
+            }
         }
     }
 
@@ -143,6 +103,8 @@ class Create extends ModalComponent
     public function checkValid()
     {
         try {
+            $this->sanitizeNumericFields();
+
             $this->validate($this->getValidationRules());
             $this->dispatchBrowserEvent('canProceed-updated', ['detail' => true]);
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -175,7 +137,8 @@ class Create extends ModalComponent
                     'formData.starting_price' => 'required|numeric|min:0',
                     'formData.discount_percentage' => 'required|numeric|min:0',
                     'formData.discounted' => 'required|numeric|min:0',
-                    'formData.n_firms' => 'required|numeric',
+                    'formData.firms_and_percentage.*.n_firms' => 'required|string',
+                    'formData.firms_and_percentage.*.firms_and_percentage' => 'required|numeric|min:0',
                 ];
             case 3:
                 return [
@@ -194,6 +157,26 @@ class Create extends ModalComponent
             default:
                 return [];
         }
+    }
+
+    public function addFirmGroup()
+    {
+        $this->formData['firms_and_percentage'][] = ['n_firms' => '', 'firms_and_percentage' => ''];
+    }
+
+    public function addFirm()
+    {
+        $this->firms_and_percentage_keys[] = '';
+        $this->firms_and_percentage_values[] = 0;
+    }
+
+    public function removeFirm($index)
+    {
+        unset($this->firms_and_percentage_keys[$index]);
+        unset($this->firms_and_percentage_values[$index]);
+
+        $this->firms_and_percentage_keys = array_values($this->firms_and_percentage_keys);
+        $this->firms_and_percentage_values = array_values($this->firms_and_percentage_values);
     }
 
     public function nextTab()
@@ -218,12 +201,41 @@ class Create extends ModalComponent
         }
     }
 
+    public function updatedFormData($value, $key)
+    {
+        if (in_array($key, ['starting_price', 'discount_percentage'])) {
+            $this->recalculateDiscounted();
+        }
+    }
+
+    public function recalculateDiscounted()
+    {
+        $price = floatval(str_replace(',', '.', $this->formData['starting_price'] ?? 0));
+        $percentage = floatval(str_replace(',', '.', $this->formData['discount_percentage'] ?? 0));
+
+        if ($price > 0 && $percentage >= 0) {
+            $this->formData['discounted'] = round($price - ($price * $percentage / 100), 2);
+        } else {
+            $this->formData['discounted'] = 0;
+        }
+    }
+
     public function save()
     {
         DB::beginTransaction();
+        $this->sanitizeNumericFields();
 
         try {
-          
+            $firmsAssoc = [];
+
+            foreach ($this->firms_and_percentage_keys as $i => $label) {
+                if (!empty($label) && isset($this->firms_and_percentage_values[$i])) {
+                    $firmsAssoc[$label] = (float) $this->firms_and_percentage_values[$i];
+                }
+            }
+
+         
+            $this->formData['firms_and_percentage'] = $firmsAssoc;
             $this->formData = Project::prepareFormData($this->formData);
 
             $this->formToken = $this->formData;
@@ -233,118 +245,33 @@ class Create extends ModalComponent
             $project = Project::create($this->formData);
 
             Stackholder::insertFromForm($this->formToken, $project->id);
-         
-            $selected = is_array($this->formPhase['selectedPhases']) ? $this->formPhase['selectedPhases'] : [];
 
-            $phaseGroups = [
-                'Avvio progetto' => [
-                    'contract_ver' => 'Verifica contratto',
-                    'cme_ver' => "Verifica CME - Piano d'indagine e capitolato",
-                    'reserves' => 'Riserve',
-                    'expiring_date_project' => 'Impostare la data di scadenza del progetto',
-                    'communication_plan' => 'Definizione del piano di comunicazione',
-                    'extension' => 'Proroga',
-                    'sal' => 'Possibilità di produrre dei SAL',
-                    'warranty' => 'Garanzia definitiva',
-                ],
-                'Fatture acconto e SAL' => [
-                    'emission_invoice' => 'Emissione fattura',
-                    'payment_invoice' => 'Pagamento fattura',
-                ],
-                'Pianificazione cantiere' => [
-                    'construction_site_plane' => 'Verifica accesibilità e sopralluogo',
-                    'travel' => 'Organizzazione trasferte',
-                    'site_pass' => 'Permessi/pass accesso al sito',
-                    'ztl' => 'Permessi/pass ZTL',
-                    'supplier' => 'Selezione fornitori',
-                    'timetable' => 'Cronoprogramma',
-                    'security' => 'Sicurezza',
-                ],
-                'Esecuzione attività' => [
-                    'team' => 'Selezione della squadra (caposquadra + altre risorse)',
-                    'field_activities' => 'Indicazioni per lo svolgimento delle attività in campo',
-                    'daily_check_activities' => 'Riepilogo giornaliero delle attività',
-                    'contruction_site_media' => 'Caricamento dati di cantiere',
-                    'activity_validation' => 'Controllo avanzamento attività/budget (PM)',
-                ],
-                'Elaborazione dati' => [
-                    'foreman_docs' => 'Controllo documentazione Caposquadra',
-                    'sanding_sample_lab' => 'Spedizione campione ai laboratori',
-                    'data_validation' => 'Avvio analisi dati',
-                    'internal_validation' => 'Validazione interna elaborati',
-                ],
-                'Trasmissione report' => [
-                    'create_note' => 'Predisposizione nota di trasmissione',
-                    'sending_note' => 'Invio nota di trasmissione',
-                ],
-                'Contabilità' => [
-                    'accounting_dec' => 'Contabilità attività eseguite (DEC)',
-                    'create_cre' => 'Produrre richiesta CRE',
-                    'expense_allocation' => 'Riparto spese',
-                ],
-                'Conferma esterna' => [
-                    'cre' => 'CRE',
-                    'liquidation' => 'Liquidazione',
-                    'balance_invoice' => 'Fattura di saldo',
-                ],
-                'Verifica tecnico contabile' => [
-                    'balance' => 'Saldo',
-                    'cre_archiving' => 'Archiviazione CRE',
-                    'pay_suppliers' => 'Pagamento fornitori',
-                    'pay_allocation_expenses' => 'Pagamento riparto spese',
-                    'learned_lesson' => 'Lezioni apprese',
-                ],
-                'Gestione non conformità' => [
-                    'sa' => 'Accogliere richieste della S.A.',
-                    'integrate_doc' => 'Inviare documentazione integrativa',
-                ],
-                'Chiusura attività' => [
-                    'sale' => 'Fatturato specifico',
-                    'release' => 'Svincolo della polizza',
-                ],
-            ];
-                        
-            $phaseData = collect($selected)->map(function ($key) use ($phaseGroups) {
-                foreach ($phaseGroups as $groupName => $groupItems) {
-                    if (array_key_exists($key, $groupItems)) {
-                        return [
-                            'key' => $key,
-                            'label' => $groupItems[$key],
-                            'area' => $groupName,
-                        ];
-                    }
-                }
-                return null;
-            })->filter();
-            
-            $microAreas = MicroArea::whereIn('name', $phaseData->pluck('label'))->get()->keyBy('name');
-            $areas = Area::whereIn('name', $phaseData->pluck('area'))->get()->keyBy('name');
 
-            foreach ($phaseData as $phase) {
-                $micro = $microAreas[$phase['label']] ?? null;
-                $area = $areas[$phase['area']] ?? null;
-            
-                if ($micro && $area) {
-                    $newPhase = Phase::create([
-                        'id_micro_area' => $micro->id,
-                        'id_area' => $area->id,
-                        'id_project' => $project->id,
-                        'id_user' => auth()->id(),
-                        'status' => 'In attesa',
-                    ]);
-            
-                    Task::create([
-                        'id_phases' => $newPhase->id,
-                        'id_assignee' => auth()->id(), 
-                        'status' => 'In attesa',
-                        'title' => $phase['label'],
-                        'assignee' => auth()->user()->name . ' ' . auth()->user()->last_name,
-                        'cc' => null,
-                        'expire' => now()->addDays(7), 
-                        'note' => null,
-                        'media' => json_encode([]),
-                    ]);
-                }
+
+            $selectedIds = is_array($this->formPhase['selectedPhases']) ? $this->formPhase['selectedPhases'] : [];
+
+            $microAreas = MicroArea::with('area')->whereIn('id', $selectedIds)->get();
+
+            foreach ($microAreas as $microArea) {
+                Phase::create([
+                    'id_micro_area' => $microArea->id,
+                    'id_area' => $microArea->area_id,
+                    'id_project' => $project->id,
+                    'id_user' => auth()->id(),
+                    'status' => 'In attesa',
+                ]);
+
+         /*        Task::create([
+                    'id_phases' => $newPhase->id,
+                    'id_assignee' => auth()->id(),
+                    'status' => 'In attesa',
+                    'title' => $microArea->name,
+                    'assignee' => auth()->user()->name . ' ' . auth()->user()->last_name,
+                    'cc' => null,
+                    'expire' => now()->addDays(7),
+                    'note' => null,
+                    'media' => json_encode([]),
+                ]); */
             }
 
 
@@ -355,6 +282,7 @@ class Create extends ModalComponent
             Flux::toast('Progetto creato con successo!');
             $this->dispatch('taskAdded');
         } catch (QueryException $e) {
+            dd($e);
             DB::rollBack();
             Flux::toast('Errore di database, contatta l’amministratore.');
         } catch (\Exception $e) {
