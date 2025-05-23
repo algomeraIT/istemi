@@ -116,6 +116,14 @@ class ActivityForm extends Form
 
         $this->activity->update($validated);
 
+        if (count($this->attachments)) {
+            foreach ($this->attachments as $file) {
+                $this->activity->addMedia($file->getRealPath())
+                    ->usingFileName($file->getClientOriginalName())
+                    ->toMediaCollection('attached');
+            }
+        }
+
         $this->activity->assigned()->sync($this->buildUserRoleMap());
 
         $this->reset();

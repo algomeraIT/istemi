@@ -81,6 +81,14 @@ class CallForm extends Form
 
         $this->call->update($validated);
 
+        if (count($this->attachments)) {
+            foreach ($this->attachments as $file) {
+                $this->call->addMedia($file->getRealPath())
+                    ->usingFileName($file->getClientOriginalName())
+                    ->toMediaCollection('attached');
+            }
+        }
+
         $this->reset();
     }
 }

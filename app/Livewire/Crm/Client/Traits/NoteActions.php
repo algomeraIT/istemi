@@ -72,6 +72,15 @@ trait NoteActions
         );
     }
 
+    public function removeNoteAttachmentByIndex($index)
+    {
+        if (isset($this->noteForm->attachments[$index])) {
+            unset($this->noteForm->attachments[$index]);
+            $this->noteForm->attachments = array_values($this->noteForm->attachments);
+        }
+    }
+
+
     public function resetNote()
     {
         $this->noteForm->reset();

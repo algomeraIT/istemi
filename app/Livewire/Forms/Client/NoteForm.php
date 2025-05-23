@@ -81,6 +81,14 @@ class NoteForm extends Form
 
         $this->note->update($validated);
 
+        if (count($this->attachments)) {
+            foreach ($this->attachments as $file) {
+                $this->note->addMedia($file->getRealPath())
+                    ->usingFileName($file->getClientOriginalName())
+                    ->toMediaCollection('attached');
+            }
+        }
+
         $this->reset();
     }
 }

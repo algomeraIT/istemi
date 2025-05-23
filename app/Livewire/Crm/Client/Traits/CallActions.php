@@ -72,6 +72,14 @@ trait CallActions
         );
     }
 
+    public function removeCallAttachmentByIndex($index)
+    {
+        if (isset($this->callForm->attachments[$index])) {
+            unset($this->callForm->attachments[$index]);
+            $this->callForm->attachments = array_values($this->callForm->attachments);
+        }
+    }
+
     public function resetCall()
     {
         $this->callForm->reset();

@@ -31,7 +31,7 @@
 
                             <flux:icon.x-circle title="rimuovi"
                                 class="size-4 ml-4 cursor-pointer text-[#6C757D] hover:text-red-600"
-                                wire:click="removeActivityAttachmentByIndex({{ $loop->index }})" />
+                                wire:click="removeNoteAttachmentByIndex({{ $loop->index }})" />
                         </div>
                     @endforeach
                 </div>
