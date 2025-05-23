@@ -194,10 +194,6 @@
 
 }
 
-[data-flux-column]{
-  @apply items-center text-center justify-items-center
-}
-
 [data-flux-tr]{
   @apply items-center text-center 
 }

@@ -1,7 +1,7 @@
 
 <div class="w-full">
 
-    @if ($projects)
+    @if ($listProjects)
         <flux:table>
             <flux:table.columns>
                 <flux:table.column>Preventivo</flux:table.column>
@@ -13,14 +13,13 @@
             </flux:table.columns>
 
             <flux:table.rows>
-                @foreach ($projects as $project)
+                @foreach ($listProjects as $project)
                     <flux:table.row :key="$project->id">
                         <flux:table.cell class="flex items-center gap-3">{{ $project->estimate }}</flux:table.cell>
                         <flux:table.cell class="whitespace-nowrap">{{ $project->client_name }}</flux:table.cell>
-                        <flux:table.cell class="whitespace-nowrap"> <span
-                                class="px-2 py-1 text-[12px] font-semibold border-none {{ $project->client_type === 'Pubblico' ? 'bg-[#F6F3F9] text-[#4D1A87] border-[#4D1B86]' : 'bg-[#F2F5F9] text-[#08468B] border-[#08468B]' }}">
-                                {{ $project->client_type }}
-                            </span></flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">
+                            <flux:badge color="{{ $project->client_type === 'Pubblico' ? 'violet' : 'blue' }}">{{ $project->client_type }}</flux:badge>
+                        </flux:table.cell>
                         <flux:table.cell class="whitespace-nowrap">
 
                             @php
@@ -52,7 +51,7 @@
                             </span>
                         </flux:table.cell>
 
-                        <flux:table.cell class="whitespace-nowrap">{{ $project->responsible }}</flux:table.cell>
+                        <flux:table.cell class="whitespace-nowrap">{{ $project->responsible()->first()->full_name }}</flux:table.cell>
 
 
                         <flux:table.cell align="end">
@@ -69,7 +68,7 @@
             </flux:table.rows>
         </flux:table>
         <div class="-mx-4 mt-4">
-            {{ $projects->links('customPagination') }}
+            {{ $listProjects->links('customPagination') }}
         </div>
     @else
         <p class="text-gray-500">Nessun elemento da mostrare</p>

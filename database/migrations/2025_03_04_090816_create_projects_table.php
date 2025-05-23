@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id(); // This automatically creates an auto-incrementing primary key         
             $table->string('estimate');
             $table->foreignId('id_client')->constrained('clients')->onDelete('cascade');
+            $table->foreignId('responsible_id')->nullable()->constrained('users')->setNullOnDelete();
             $table->unsignedBigInteger('id_chief_area')->nullable();
             $table->unsignedBigInteger('id_chief_project')->nullable();
             $table->string('current_phase')->nullable();

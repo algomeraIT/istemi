@@ -1,6 +1,6 @@
 <div wire:init="$refresh" wire:listener="projects-updated">
 
-    @if ($projects)
+    @if ($kanbanProjects)
         @if ($kanbanTab == 'current_phase')
             <div x-data="{ draggedItem: null }">
                 <div class="flex overflow-x-auto">
@@ -54,10 +54,10 @@
                                     </button>
                                     {{ $phaseLabel }}
                                     </h2>
-                                    @if (isset($projects[$phaseLabel]) && is_array($projects[$phaseLabel]))
+                                    @if (isset($kanbanProjects[$phaseLabel]) && is_array($kanbanProjects[$phaseLabel]))
                                         <div>
                                             <p class="text-[12px]">
-                                                {{ count($projects[$phaseLabel]) }}
+                                                {{ count($kanbanProjects[$phaseLabel]) }}
                                             </p>
                                         </div>
                                     @endif
@@ -67,12 +67,12 @@
 
                             <div
                                 class="grid sm:grid-cols-1 xl:grid-cols-1 gap-2 h-[500px] overflow-x-auto overflow-y-auto ">
-                                @if (!isset($projects) || !is_array($projects))
+                                @if (!isset($kanbanProjects) || !is_array($kanbanProjects))
                                     <p class="text-red-500">Errore: progetti non trovati</p>
                                 @endif
 
-                                @if (isset($projects[$phaseLabel]) && is_array($projects[$phaseLabel]))
-                                    @foreach ($projects[$phaseLabel] ?? [] as $project)
+                                @if (isset($kanbanProjects[$phaseLabel]) && is_array($kanbanProjects[$phaseLabel]))
+                                    @foreach ($kanbanProjects[$phaseLabel] ?? [] as $project)
                                         @php
                                             $phaseMap = [
                                                 'Avvio' => [
@@ -97,7 +97,7 @@
                                                 'bg' => 'bg-gray-400',
                                             ];
                                         @endphp
-                                        <div class="relative bg-white z-50"
+                                        <div class="relative bg-white z-10"
                                             wire:click="goToDetail({{ $project['id'] }})">
 
                                             <div class="bg-white border font-inter border-gray-300 p-4 text-sm rounded shadow cursor-pointer hover:shadow-lg transition w-[360px] h-[231px] overflow-hidden flex flex-col justify-between"
@@ -213,10 +213,10 @@
                                     </button>
                                     {{ $responsible }}
                                     </h2>
-                                    @if (isset($projects[$responsible]) && is_array($projects[$responsible]))
+                                    @if (isset($kanbanProjects[$responsible]) && is_array($kanbanProjects[$responsible]))
                                         <div>
                                             <p class="text-[12px]">
-                                                {{ count($projects[$responsible]) }}
+                                                {{ count($kanbanProjects[$responsible]) }}
                                             </p>
                                         </div>
                                     @endif
@@ -226,12 +226,12 @@
 
                             <div
                                 class="grid sm:grid-cols-1 xl:grid-cols-1 gap-2 h-[500px] overflow-x-auto overflow-y-auto ">
-                                @if (!isset($projects) || !is_array($projects))
+                                @if (!isset($kanbanProjects) || !is_array($kanbanProjects))
                                     <p class="text-red-500">Errore: progetti non trovati</p>
                                 @endif
 
-                                @if (isset($projects[$responsible]) && is_array($projects[$responsible]))
-                                    @foreach ($projects[$responsible] ?? [] as $project)
+                                @if (isset($kanbanProjects[$responsible]) && is_array($kanbanProjects[$responsible]))
+                                    @foreach ($kanbanProjects[$responsible] ?? [] as $project)
                                         @php
                                             $phaseMap = [
                                                 'Avvio' => [

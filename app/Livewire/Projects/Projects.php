@@ -2,16 +2,18 @@
 
 namespace App\Livewire\Projects;
 
-use Livewire\Attributes\On;
-
-use App\Models\Client;
-use App\Models\Estimate;
-use App\Models\Project;
-use App\Models\Referent;
 use Flux\Flux;
+
+use App\Models\User;
+use App\Models\Client;
+use App\Models\Project;
 use Livewire\Component;
-use Livewire\WithPagination;
+use App\Models\Estimate;
+use App\Models\Referent;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
+use Livewire\WithPagination;
+
 
 class Projects extends Component
 {
@@ -38,7 +40,7 @@ class Projects extends Component
     public string $kanbanTab = 'current_phase';
     public string $detailTab = 'task';
     public string $detailActiveTab = 'detail-list';
-    public string $query = '';
+    public string $responsible = '';
     public string $query_project = '';
     public string $query_phase = '';
     public string $query_search = '';
@@ -95,6 +97,8 @@ class Projects extends Component
         'status' => '',
     ];
 
+    public $selectedView;
+
     public function mount()
     {
         $this->clients = Client::select('id', 'name')
@@ -102,37 +106,6 @@ class Projects extends Component
 
         $this->estimates = Estimate::select('id', 'serial_number')
             ->get()->toArray();
-    }
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
-    public function updatingActiveTab($value)
-    {
-        $this->resetPage();
-    }
-    public function updatingKanbanTab()
-    {
-        $this->resetPage();
-    }
-    public function updatingDetailTab($value)
-    {
-        $this->resetPage();
-    }
-    public function updatingSortField()
-    {
-        $this->resetPage();
-    }
-    public function updatingSortDirection()
-    {
-        $this->resetPage();
-    }
-
-    public function search()
-    {
-        $this->resetPage();
     }
 
     public function create()
@@ -203,17 +176,12 @@ class Projects extends Component
         }
     }
 
-    public function updatingResponsibleQuery()
-    {
-        $this->resetPage();
-    }
-
     protected function buildProjectQuery()
     {
 
         return Project::query()
             ->when($this->search, fn($q) => $q->where('estimate', 'like', "%{$this->search}%"))
-            ->when($this->query, fn($q) => $q->where('responsible', 'like', '%' . $this->query . '%'))
+            ->when($this->responsible, fn($q) => $q->where('responsible_id', $this->responsible))
             ->when($this->query_project, fn($q) => $q->where('client_type', 'like', '%' . $this->query_project . '%'))
             ->when($this->query_phase, fn($q) => $q->where('current_phase', 'like', '%' . $this->query_phase . '%'))
             ->when($this->query_search, fn($q) => $q->where('client_name', 'like', '%' . $this->query_search . '%'))
@@ -259,6 +227,7 @@ class Projects extends Component
             'phases' => self::PHASES,
             'statuses' => Project::select('status')->distinct()->pluck('status'),
             'responsibles' => Project::select('responsible')->distinct()->pluck('responsible'),
+            'managers' => User::role('project manager')->get(),
             'clients' => $this->clients,
             'estimates' => $this->estimates,
         ]);

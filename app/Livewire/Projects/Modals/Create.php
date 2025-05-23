@@ -44,10 +44,9 @@ class Create extends ModalComponent
         'is_from_agent' => false,
         'total_budget' => '',
         'id_chief_area' => '',
-        'id_chief_project' => '',
+        'responsible_id' => '',
         'chief_area' => '',
         'chief_project' => '',
-        'responsible' => '',
         'start_at' => '',
         'end_at' => '',
         'starting_price' => '',
@@ -128,7 +127,7 @@ class Create extends ModalComponent
                     'formData.id_client' => 'required|integer',
                     'formData.total_budget' => 'required|numeric|min:0',
                     'formData.id_chief_area' => 'required|integer',
-                    'formData.id_chief_project' => 'required|integer',
+                    'formData.responsible_id' => 'required|integer',
                     'formData.start_at' => 'required|date',
                     'formData.end_at' => 'required|date|after_or_equal:formData.start_at',
                 ];
@@ -234,7 +233,7 @@ class Create extends ModalComponent
                 }
             }
 
-         
+
             $this->formData['firms_and_percentage'] = $firmsAssoc;
             $this->formData = Project::prepareFormData($this->formData);
 
@@ -261,7 +260,7 @@ class Create extends ModalComponent
                     'status' => 'In attesa',
                 ]);
 
-         /*        Task::create([
+                /*        Task::create([
                     'id_phases' => $newPhase->id,
                     'id_assignee' => auth()->id(),
                     'status' => 'In attesa',
@@ -290,6 +289,11 @@ class Create extends ModalComponent
             Flux::toast('Errore imprevisto: ' . $e->getMessage());
         }
         $this->closeModal();
+    }
+
+    public static function modalMaxWidthClass(): string
+    {
+        return 'max-w-9xl !mt-20';
     }
 
     public function render()

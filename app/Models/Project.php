@@ -7,12 +7,11 @@ use App\Models\Estimate;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Project extends Model
 {
     use HasFactory;
-
-    protected $table = 'projects';
 
     protected $fillable = [
         'general_info',
@@ -20,6 +19,7 @@ class Project extends Model
         'id_client',
         'name_project',
         'clients_id',
+        'responsible_id',
         'client_name',
         'logo_path_client',
         'client_type',
@@ -44,7 +44,6 @@ class Project extends Model
         'project_scope',
         'expected_results',
         'stackholder_id',
-        'responsible',
         'current_phase',
     ];
 
@@ -67,26 +66,30 @@ class Project extends Model
     }
 
     public function phases()
-{
-    return $this->hasMany(\App\Models\Phase::class, 'id_project');
-}
+    {
+        return $this->hasMany(\App\Models\Phase::class, 'id_project');
+    }
 
     public function estimate()
     {
         return $this->belongsTo(Estimate::class, 'phase_id');
     }
 
+    public function responsible(): BelongsTo {
+        return $this->belongsTo(User::class, 'responsible_id');
+    }
+
     public static function prepareFormData(array $formData): array
     {
         $getNameArea = User::role('responsabile area')->find($formData['id_chief_area'] ?? null);
-        $getNameProject = User::role('project manager')->find($formData['id_chief_project'] ?? null);
+        $getNameProject = User::role('project manager')->find($formData['responsible_id'] ?? null);
         $getClient = Client::find($formData['id_client'] ?? null);
         $getEstimate = Estimate::find($formData['estimate'] ?? null);
 
         $formData['estimate'] = $getEstimate?->serial_number ?? null;
         $formData['chief_area'] = $getNameArea ? $getNameArea->name . ' ' . $getNameArea->last_name : null;
         $formData['chief_project'] = $getNameProject ? $getNameProject->name . ' ' . $getNameProject->last_name : null;
-        $formData['responsible'] = $formData['chief_project'];
+        $formData['responsible_id'] = $formData['responsible_id'];
         $formData['address_client'] = $getClient?->address ?? null;
         $formData['client_status'] = $getClient?->status ?? null;
         $formData['client_name'] = $getClient?->name ?? null;
@@ -98,7 +101,7 @@ class Project extends Model
         $formData['discount_percentage'] = $formData['discount_percentage'] !== '' ? (float) $formData['discount_percentage'] : null;
         $formData['discounted'] = $formData['discounted'] !== '' ? (float) $formData['discounted'] : null;
         $formData['total_budget'] = $formData['total_budget'] !== '' ? (float) $formData['total_budget'] : null;
-        $formData['firms_and_percentage'] = json_encode( $formData['firms_and_percentage'] );
+        $formData['firms_and_percentage'] = json_encode($formData['firms_and_percentage']);
 
         return $formData;
     }

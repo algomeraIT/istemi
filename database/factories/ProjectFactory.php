@@ -16,12 +16,14 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         $clientIds = Client::pluck('id')->toArray();
+        $managerIds = User::role('project manager')->pluck('id')->toArray();
 
         return [
             'estimate' => strtoupper($this->faker->numerify('PRT-########')),
             'general_info' => $this->faker->paragraph(),
             'name_project' => $this->faker->sentence(3),
             'id_client' => fake()->randomElement($clientIds),
+            'responsible_id' =>fake()->randomElement($managerIds),
             'client_name' => $this->faker->company,
             'logo_path_client' => $this->faker->imageUrl(),
             'client_type' => $this->faker->randomElement(['Privato', 'Pubblico']),
@@ -33,7 +35,6 @@ class ProjectFactory extends Factory
             'id_chief_area' => User::inRandomOrder()->first()?->id,
             'id_chief_project' => User::inRandomOrder()->first()?->id,
             'chief_area' => $this->faker->name(),
-            'responsible' => $this->faker->name(),
             'chief_project' => $this->faker->name(),
             'start_at' => $this->faker->dateTimeBetween('-1 year', '+1 year'),
             'end_at' => $this->faker->dateTimeBetween('+1 month', '+2 years'),
