@@ -14,7 +14,7 @@ class NoteSeeder extends Seeder
     {
         $userIds = User::pluck('id')->toArray();
 
-        $clients = Client::where('status', 'contatto')->get();
+        $clients = Client::whereIn('status', ['contatto', 'cliente'])->get();
 
         foreach ($clients as $client) {
             Note::factory()->count(10)->make()->each(function ($note) use ($userIds, $client) {

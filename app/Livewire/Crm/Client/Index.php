@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Client;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 use App\Livewire\Forms\ClientForm;
 use Livewire\WithoutUrlPagination;
@@ -120,7 +121,7 @@ class Index extends Component
             ->distinct()
             ->orderBy('year', 'desc')
             ->pluck('year');
-        $salesManager = User::all();
+        $salesManager = User::role('commerciale')->get();
 
         $query = Client::where('status', $this->clientStatus)
             ->when($this->step, fn($q) => $q->where('step', $this->step))

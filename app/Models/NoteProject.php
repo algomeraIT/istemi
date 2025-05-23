@@ -15,7 +15,6 @@ class NoteProject extends Model {
         'note',
         'user_name',
         'user_id',
-        'role'
     ];
 
     public function project() {

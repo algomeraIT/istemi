@@ -34,10 +34,7 @@ class CreateNote extends ModalComponent
             NoteProject::create([
                 'note' => $this->note,
                 'project_id' => $this->id,
-                'id_phase' => null,
-                'client_id' => $project->id_client,
                 'user_name' => $user->name . ' ' . $user->last_name,
-                'role' => $user->role,
                 'user_id' => $user->id,
             ]);
     

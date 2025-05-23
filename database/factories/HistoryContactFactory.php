@@ -30,7 +30,7 @@ class HistoryClientFactory extends Factory
             'user_id'               => $user->id,
             'name'                  => $user->name,
             'last_name'             => $user->last_name ?? $this->faker->lastName(),
-            'role'                  => $user->role ?? $this->faker->randomElement(['user','admin','manager']),
+            'role'                  => $user->role_name ?? $this->faker->randomElement(['user','admin','manager']),
             'client_id'             => $client->id,
             'action'                => $this->faker->randomElement($actions),
             'estimate_id'           => $estimateId,

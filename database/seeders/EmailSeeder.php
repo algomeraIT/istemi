@@ -14,7 +14,7 @@ class EmailSeeder extends Seeder
     {
         $userIds = User::pluck('id')->toArray();
 
-        $clients = Client::where('status', 'contatto')->get();
+        $clients = Client::whereIn('status', ['contatto', 'cliente'])->get();
 
         foreach ($clients as $client) {
             Email::factory()->count(10)->make()->each(function ($email) use ($userIds, $client) {

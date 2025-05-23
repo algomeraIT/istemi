@@ -51,8 +51,6 @@ class MacroTaskDetail extends ModalComponent
             'id_phase' => $id,
             'note' => $this->note,
             'user_id' => Auth::user()->id,
-            'title' => '',
-            'role' => Auth::user()->role,
             'project_id' => $id,
             'user_name' => Auth::user()->name . ' ' . Auth::user()->last_name,
         ]);

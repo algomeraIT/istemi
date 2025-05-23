@@ -195,11 +195,11 @@
                             <div class="flex flex-col items-start ml-5 mb-5">
                                 <span
                                     class="text-[18px]  font-normal text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
-                                    {{ $selectedActivity->name . ' ' . $selectedActivity->last_name . ' - ' . $selectedActivity->role }}
+                                    {{ $selectedActivity->name . ' ' . $selectedActivity->last_name . ' - ' . $selectedActivity->role_name }}
                                 </span>
                                 <span
                                     class="text-[17px]  font-light text-[#232323] tracking-[0px] text-left opacity-100 font-inter">
-                                    {{ Auth::user()->role }}</span>
+                                    {{ Auth::user()->role_name }}</span>
                                 <span
                                     class="font-extralight">{{ $selectedActivity->created_at->diffForHumans() }}</span>
                             </div>

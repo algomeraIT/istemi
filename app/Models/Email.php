@@ -10,28 +10,21 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Email extends Model
+class Email extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia, BlameableTrait;
+
+    protected $fillable = [
+        'client_id',
+        'sent_by',
+        'to',
+        'subject',
+        'body',
+    ];
 
     protected $casts = [
         'to' => 'array',
     ];
-
-    public function client(): BelongsTo
-    {
-        return $this->belongsTo(Client::class);
-    }
-
-    public function sendBy(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'sent_by');
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
 
     protected static function booted()
     {
@@ -64,5 +57,31 @@ class Email extends Model
                 'status_client' => $email->client->step,
             ]);
         });
+    }
+
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function sendBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'sent_by');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function to()
+    {
+        return User::whereIn('email', $this->to ?? [])->get();
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('attached')
+            ->useDisk('public');
     }
 }

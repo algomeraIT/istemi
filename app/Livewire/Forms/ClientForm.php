@@ -17,14 +17,13 @@ class ClientForm extends Form
     public $clientId;
 
     public $logo = [];
-    public $parent_id, $estimate_id, $sales_manager_id, $is_company, $name, $email, $pec, $first_telephone, $second_telephone, $country, $city, $province, $address, $cap, $tax_code, $p_iva, $sdi, $site, $label, $note, $service, $provenance, $registered_office_address, $has_referent, $status, $step;
+    public $parent_id, $sales_manager_id, $is_company, $name, $email, $pec, $first_telephone, $second_telephone, $country, $city, $province, $address, $cap, $tax_code, $p_iva, $sdi, $site, $label, $note, $service, $provenance, $registered_office_address, $has_referent, $status, $step;
 
     public function rules()
     {
         return [
             'parent_id' => ['nullable', 'integer'],
-            'estimate_id' => ['nullable', 'integer'],
-            'sales_manager_id' => ['nullable', 'string'],
+            'sales_manager_id' => ['nullable'],
             'is_company' => ['nullable', 'boolean'],
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:clients,email,' . $this->clientId],
@@ -75,10 +74,9 @@ class ClientForm extends Form
 
     public function setClient($client)
     {
+        $this->fill($client->only($client->getFillable()));
         $this->client = $client;
         $this->clientId = $client->id;
-        $this->fill($client->only($client->getFillable()));
-
         $logo = $client->getFirstMedia('logos');
 
         if ($logo) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Forms;
+namespace App\Livewire\Forms\Client;
 
 use Livewire\Form;
 use App\Models\Referent;
@@ -9,7 +9,7 @@ use Mews\Purifier\Facades\Purifier;
 class ReferentForm extends Form
 {
     public $referent;
-    private $referentId;
+    public $referentId;
 
     public $client_id, $name, $last_name, $title, $job_position, $email, $telephone, $note;
 
@@ -52,8 +52,8 @@ class ReferentForm extends Form
     {
         if ($referentId) {
             $this->referent = Referent::findOrFail($referentId);
-            $this->referentId = $referentId;
             $this->fill($this->referent->only($this->referent->getFillable()));
+            $this->referentId = $referentId;
         } else {
             $this->reset();
             $this->referent = null;

@@ -19,19 +19,15 @@ Route::middleware(['auth'])->group(function () {
 
     // CRM
     Route::prefix('crm')->name('crm.')->group(function () {
-//        Route::name('client.')->group(function () {
-//            Route::get('/{status}', ClientIndex::class)->name('index');
-//            Route::get('/{status}/{id}', ClientShow::class)->name('show');
-//        });
-
-        Route::prefix('client')->name('client.')->group(function () {
-            Route::get('/{status}', ClientIndex::class)->name('index');
-            Route::get('/{status}/{id}', ClientShow::class)->name('show');
-        });
-
         // Products
         Route::prefix('products')->name('products.')->group(function () {
             Route::get('/', ProductsIndex::class)->name('index');
+        });
+
+        // Client
+        Route::prefix('client')->name('client.')->group(function () {
+            Route::get('/{status}', ClientIndex::class)->name('index');
+            Route::get('/{status}/{id}', ClientShow::class)->name('show');
         });
 
         // Quotes

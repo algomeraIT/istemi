@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 
@@ -24,6 +25,7 @@ class Client extends Model implements HasMedia
         'sales_manager_id',
         'is_company',
         'name',
+        'email',
         'client',
         'pec',
         'first_telephone',
@@ -32,6 +34,7 @@ class Client extends Model implements HasMedia
         'city',
         'province',
         'address',
+        'cap',
         'tax_code',
         'p_iva',
         'sdi',
@@ -46,58 +49,7 @@ class Client extends Model implements HasMedia
         'step',
     ];
 
-    public function registerMediaConversions(?Media $media = null): void
-    {
-        // Preview
-        $this->addMediaConversion('preview')
-            ->fit(Fit::Crop, 40, 40)
-            ->sharpen(10)
-            ->background('FFFFFF')
-            ->nonOptimized()
-            ->nonQueued();
-    }
-
-    /**
-     * Get the user who created this client.
-     */
-    public function parents()
-    {
-        return $this->hasMany(Client::class, 'parent_id');
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function salesManager(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'sales_manager_id');
-    }
-
-    public function estimate()
-    {
-        return $this->hasMany(Estimate::class);
-    }
-
-    public function referents()
-    {
-        return $this->hasMany(Referent::class);
-    }
-
-    public function communication()
-    {
-        return $this->hasMany(Communication::class);
-    }
-
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('clientLogo')
-            ->useDisk('public')
-            ->singleFile();
-    }
-
-        protected static function booted()
+    protected static function booted()
     {
         static::created(function ($client) {
             HistoryClient::create([
@@ -128,5 +80,68 @@ class Client extends Model implements HasMedia
                 'status_client' => $client->step,
             ]);
         });
+    }
+
+    public function parents()
+    {
+        return $this->hasMany(Client::class, 'parent_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function salesManager(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'sales_manager_id');
+    }
+
+    public function estimate(): HasMany
+    {
+        return $this->hasMany(Estimate::class);
+    }
+
+    public function referents(): HasMany
+    {
+        return $this->hasMany(Referent::class);
+    }
+
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class);
+    }
+
+    public function emails(): HasMany
+    {
+        return $this->hasMany(Email::class);
+    }
+
+    public function notes(): HasMany
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('clientLogo')
+            ->useDisk('public')
+            ->singleFile();
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        // Preview
+        $this->addMediaConversion('preview')
+            ->fit(Fit::Crop, 40, 40)
+            ->sharpen(10)
+            ->background('FFFFFF')
+            ->nonOptimized()
+            ->nonQueued();
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->last_name} {$this->name}";
     }
 }

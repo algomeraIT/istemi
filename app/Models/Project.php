@@ -66,14 +66,19 @@ class Project extends Model
         return $this->belongsTo(Phase::class, 'phase_id');
     }
 
+    public function estimate()
+    {
+        return $this->belongsTo(Estimate::class, 'phase_id');
+    }
+
     public static function prepareFormData(array $formData): array
     {
-        $getNameArea = User::where('role', 'area')->find($formData['id_chief_area'] ?? null);
-        $getNameProject = User::where('role', 'project')->find($formData['id_chief_project'] ?? null);
+        $getNameArea = User::role('responsabile area')->find($formData['id_chief_area'] ?? null);
+        $getNameProject = User::role('project manager')->find($formData['id_chief_project'] ?? null);
         $getClient = Client::find($formData['id_client'] ?? null);
+        $getEstimate = Estimate::find($formData['estimate'] ?? null);
 
-        $formData['phase'] = "ok";
-        $formData['estimate'] = $formData['estimate'];
+        $formData['estimate'] = $getEstimate?->serial_number ?? null;
         $formData['chief_area'] = $getNameArea ? $getNameArea->name . ' ' . $getNameArea->last_name : null;
         $formData['chief_project'] = $getNameProject ? $getNameProject->name . ' ' . $getNameProject->last_name : null;
         $formData['responsible'] = $formData['chief_project'];

@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->string('city')->nullable();
             $table->string('province')->nullable();
             $table->string('address')->nullable();
+            $table->string('cap')->nullable();
             $table->string('tax_code')->nullable();
             $table->string('p_iva')->nullable();
             $table->string('sdi')->nullable();

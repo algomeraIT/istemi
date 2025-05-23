@@ -3,19 +3,28 @@
 namespace App\Models;
 
 use Exception;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class User extends Authenticatable
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
+
+class User extends Authenticatable implements HasMedia
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles, SoftDeletes, InteractsWithMedia;
 
     protected $table = 'users';
 
@@ -48,9 +57,19 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function getRoleNameAttribute()
+    {
+        return $this->getRoleNames()->first();
+    }
+
     public function client(): HasOne
     {
         return $this->hasOne(Client::class, 'user_id_creation');
+    }
+
+    public function activities(): BelongsToMany
+    {
+        return $this->belongsToMany(Activity::class)->withPivot('role');
     }
 
     public function getFullNameAttribute()
@@ -108,5 +127,23 @@ class User extends Authenticatable
             DB::rollBack();
             return redirect()->route('home')->with('error', 'Errore nel cambiare la password, per favore prova di nuovo...');
         }
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('userImage')
+            ->useDisk('public')
+            ->singleFile();
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        // Preview
+        $this->addMediaConversion('preview')
+            ->fit(Fit::Crop, 40, 40)
+            ->sharpen(10)
+            ->background('FFFFFF')
+            ->nonOptimized()
+            ->nonQueued();
     }
 }

@@ -29,6 +29,7 @@ class Create extends ModalComponent
     public $projectUser = [];
     public $stackholderIds = [];
     protected array $rules = [];
+    public $formToken, $formPhase;
     public bool $canProceed = true;
     private const DEFAULT_FORM = [
         'estimate' => '',
@@ -59,8 +60,6 @@ class Create extends ModalComponent
         'expected_results' => '',
         'stackholder_id' => '',
         'stackholders' => [],
-        'agreement' => false,
-        'selectedAreas' => [],
         'selectedPhases' => [],
         'address_client' => 'ok',
         'client_status' => "ok",
@@ -73,8 +72,8 @@ class Create extends ModalComponent
     {
         $this->clients = Client::select('id', 'name')->get()->toArray();
         $this->estimates = Estimate::select('id', 'serial_number')->where('client_id', null)->get()->toArray();
-        $this->area = User::select('id', 'name', 'last_name', 'role')->where('role', 'area')->get()->toArray();
-        $this->projectUser = User::select('id', 'name', 'last_name', 'role')->where('role', 'project')->get()->toArray();
+        $this->area = User::select('id', 'name', 'last_name')->role('responsabile area')->get()->toArray();
+        $this->projectUser = User::select('id', 'name', 'last_name')->role('project manager')->get()->toArray();
     }
 
     public function toggleAllPhases()
@@ -224,9 +223,18 @@ class Create extends ModalComponent
         DB::beginTransaction();
 
         try {
+          
             $this->formData = Project::prepareFormData($this->formData);
+
+            $this->formToken = $this->formData;
+            $this->formPhase = $this->formData;
+            unset($this->formData['stackholders']);
+            unset($this->formData['selectedPhases']);
             $project = Project::create($this->formData);
-            $selected = is_array($this->formData['selectedPhases']) ? $this->formData['selectedPhases'] : [];
+
+            Stackholder::insertFromForm($this->formToken, $project->id);
+         
+            $selected = is_array($this->formPhase['selectedPhases']) ? $this->formPhase['selectedPhases'] : [];
 
             $phaseGroups = [
                 'Avvio progetto' => [
@@ -339,7 +347,6 @@ class Create extends ModalComponent
                 }
             }
 
-            Stackholder::insertFromForm($this->formData, $project->id);
 
             DB::commit();
 

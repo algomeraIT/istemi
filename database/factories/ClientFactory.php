@@ -25,6 +25,7 @@ class ClientFactory extends Factory
             'city' => $this->faker->city,
             'province' => $this->faker->state,
             'address' => $this->faker->streetAddress,
+            'cap' => fake()->regexify('[0-9]{5}'),
             'name' => $this->faker->company,
             'tax_code' => $this->faker->bothify('??######??'),
             'sdi' => $this->faker->bothify('??######??'),
