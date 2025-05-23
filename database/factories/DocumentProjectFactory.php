@@ -13,7 +13,6 @@ class DocumentProjectFactory extends Factory
     {
         return [
             'document_name' => $this->faker->words(3, true),
-            'project_id' => \App\Models\Project::inRandomOrder()->value('id'),
             'phase' => $this->faker->randomElement([
                 'Avvio progetto',
                 'Fatture e acconto SAL',

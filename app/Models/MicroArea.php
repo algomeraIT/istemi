@@ -9,5 +9,10 @@ class MicroArea extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'area_id'];
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 }
