@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             ActivitySeeder::class,
             EmailSeeder::class,
             NoteSeeder::class,
+            CallSeeder::class,
             // NoteProjectSeeder::class,
             // ProjectStartSeeder::class,
             // TaskProjectStartSeeder::class,
