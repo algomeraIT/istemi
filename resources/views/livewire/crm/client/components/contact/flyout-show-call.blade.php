@@ -1,4 +1,4 @@
-<flux:modal name="show-call" variant="flyout" @close="resetCall" :dismissible="false" class="w-2xl !px-26 hiddenXClose">
+<flux:modal name="show-call" variant="flyout" :dismissible="false" class="w-2xl !px-26 hiddenXClose">
     <div class="w-full flex items-center justify-between mb-10">
         <div class="flex items-center gap-2">
             <h2 class="text-2xl font-bold text-left">Chiamata</h2>
@@ -7,12 +7,26 @@
         <button class="text-lg z-10 bg-white text-[#A0A0A0] flex items-center gap-1 cursor-pointer"
             x-on:click="$flux.modals().close()">
             <flux:icon.x-mark class="size-4" />
-            <span>Annulla</span>
+            <span>Chiudi</span>
         </button>
     </div>
 
     @if ($callForm->call)
         <div class="flex flex-col justify-start items-start gap-10">
+            {{-- Action buttons --}}
+            <div class="w-full flex items-center justify-end">
+                <div>
+                    <flux:button wire:click="modifyCall({{ $callForm->call->id }})" variant="ghost" data-variant="ghost"
+                        data-color="gray" icon="pencil" size="sm" class="text-[#6C757D] text-xs font-medium">
+                        Modifica</flux:button>
+
+                    <flux:button wire:click="deleteCall({{ $callForm->call->id }})"
+                        wire:confirm="Sei sicuro di voler eliminare questa chiamata?" variant="ghost" data-variant="ghost"
+                        data-color="red" icon="trash" size="sm" class="text-[#E63946] text-xs font-medium">
+                        Elimina</flux:button>
+                </div>
+            </div>
+
             <div class="w-full flex-1 overflow-hidden overflow-y-auto">
                 <div class="w-full grid grid-cols-2 gap-x-5 gap-y-5">
 

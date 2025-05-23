@@ -1,4 +1,4 @@
-<flux:modal name="show-activity" variant="flyout" @close="resetActivity" :dismissible="false" class="w-2xl h-full !px-26 hiddenXClose">
+<flux:modal name="show-activity" variant="flyout" :dismissible="false" class="w-2xl h-full !px-26 hiddenXClose">
     <div class="w-full flex items-center justify-between mb-10">
         <div class="flex items-center gap-2">
             <h2 class="text-2xl font-bold text-left">Attività</h2>
@@ -7,7 +7,7 @@
         <button class="text-lg z-10 bg-white text-[#A0A0A0] flex items-center gap-1 cursor-pointer"
             x-on:click="$flux.modals().close()">
             <flux:icon.x-mark class="size-4" />
-            <span>Annulla</span>
+            <span>Chiudi</span>
         </button>
     </div>
 
