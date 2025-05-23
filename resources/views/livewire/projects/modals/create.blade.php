@@ -117,6 +117,7 @@
                                     <div><flux:icon.currency-euro />
                                         <flux:label>Budget Allocato</flux:label>
                                     </div>
+                                    
                                     <flux:input type="number" min="0" wire:model.live="formData.total_budget" />
                                     <flux:error name="formData.total_budget" />
                                 </flux:field>

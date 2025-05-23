@@ -169,11 +169,9 @@
 
                                                                         <flux:button
                                                                             wire:click="$dispatch('openModal', {
-                                                                                component: 'projects.modals.create-task-project',
+                                                                                component: 'projects.modals.edit-task',
                                                                                 arguments: {
-                                                                                    taskId: {{ $phase->id ?? 'null' }},
-                                                                                    phase_id: {{ $phase->id }},
-                                                                                    project_id: {{ $phase->id_project }}
+                                                                                  taskId: {{ $phase->id }}
                                                                                 }
                                                                             })"
                                                                             variant="ghost" data-variant="ghost"
@@ -322,9 +320,9 @@
                                                                 @foreach ($groupedElements as $element)
                                                                     <!-- Parent Task Card -->
                                                                     <div class="w-full border-l-4 border-[#08468B] p-4 shadow rounded bg-white"
-                                                                        wire:click="$dispatch('openModal', { component: 'projects.modals.macro-task-detail', arguments: { id: {{ $element->id }} }})">
+                                                                       >
                                                                         <div class="flex justify-between items-start">
-                                                                            <div>
+                                                                            <div  wire:click="$dispatch('openModal', { component: 'projects.modals.macro-task-detail', arguments: { id: {{ $element->id }} }})">
                                                                                 <p
                                                                                     class="text-sm font-medium text-gray-800">
                                                                                     {{ $element->name_phase }}</p>
@@ -369,12 +367,16 @@
                                                                         <div
                                                                             class="flex space-x-2 mt-3 justify-between">
                                                                             <div>
+                                                                       
                                                                                 <flux:button
-                                                                                    wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $project->id }}}})"
-                                                                                    variant="ghost"
-                                                                                    data-variant="ghost"
-                                                                                    data-color="gray" data-rounded
-                                                                                    icon="pencil" size="sm" />
+                                                                                wire:click="$dispatch('openModal', {
+                                                                                    component: 'projects.modals.edit-task',
+                                                                                    arguments: {
+                                                                                      taskId: {{ $element->id }}
+                                                                                    }
+                                                                                })"
+                                                                                variant="ghost" data-variant="ghost"
+                                                                                icon="pencil" size="sm" />
                                                                                 <flux:button
                                                                                     wire:click="deleteMacroTask({{ $project->id }})"
                                                                                     wire:confirm="Sei sicuro di voler archiviare questo macro task?"
@@ -384,18 +386,19 @@
                                                                                     icon="trash" size="sm" />
                                                                             </div>
                                                                             <flux:button
-                                                                                wire:click="$dispatch('openModal', {
+                                                                      
+                                                                            wire:click="$dispatch('openModal', {
                                                                                 component: 'projects.modals.create-task-project',
                                                                                 arguments: {
-                                                                                    project_id: {{ $project->id }},
-                                                                                    phase: 'project_start_id',
-                                                                                    id: {{ $element->id }}
+                                                                                    project_id: {{ $element->id_project }},
+                                                                                    phase_id: {{ $element->id }}
                                                                                 }
                                                                             })"
-                                                                                variant="ghost" icon="plus" />
+                                                                            variant="ghost"
+                                                                            data-variant="ghost"
+                                                                            icon="plus">
+                                                                        </flux:button>
                                                                         </div>
-
-
 
 
 
@@ -421,7 +424,7 @@
                                                                                             </p>
                                                                                         </div>
                                                                                         <div
-                                                                                            class="flex items-center space-x-2">
+                                                                                            class=" items-center space-x-2">
                                                                                             <select
                                                                                                 wire:change="updateMicroStatus({{ $micro->id }}, $event.target.value)"
                                                                                                 class="bg-transparent px-1 py-0.5 text-xs focus:outline-none
@@ -434,12 +437,12 @@
                                                                                                     @selected($micro->status === 'In attesa')>
                                                                                                     In attesa</option>
                                                                                             </select>
-
-                                                                                            <flux:button
+                                                                                    
+                                                                                      {{--       <flux:button
                                                                                                 wire:click="$dispatch('openModal', { component: 'projects.modals.edit-micro-task', arguments: { id: {{ $micro->id }} } })"
                                                                                                 variant="ghost"
                                                                                                 icon="pencil"
-                                                                                                size="sm" />
+                                                                                                size="sm" /> --}}
 
                                                                                             <flux:button
                                                                                                 wire:click="microDeleteTask({{ $micro->id }})"

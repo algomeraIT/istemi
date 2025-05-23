@@ -2,47 +2,43 @@
 
 namespace App\Livewire\Projects\Modals;
 
+use App\Models\Phase;
+use App\Models\User;
 use Flux\Flux;
 use LivewireUI\Modal\ModalComponent;
-use App\Models\Phase;
-
 
 class EditTask extends ModalComponent
 {
-    public $task;
-    public $name_phase, $user, $status, $form;
+    public $name_phase;
+    public $id_user;
+    public $status;
+    public Phase $phase;
 
-    public function mount($id)
+    public function mount($taskId)
     {
-        $this->task = Phase::findOrFail($id);
+        $this->phase = Phase::with(['area', 'microArea', 'user'])->findOrFail($taskId);
 
-        $this->form = $this->task->only([
-            'name_phase', 'user', 'status',
-        ]);
-
-        $this->name_phase = $this->task->name_phase;
-        $this->user = $this->task->user;
-        $this->status = $this->task->status;
+        $this->id_user = $this->phase->user->id;
+        $this->status = $this->phase->status;
     }
 
     public function save()
     {
-        $this->task->update([
-            'name_phase' => $this->name_phase,
-            'user' => $this->user,
+        $this->phase->update([
+            'id_user' => $this->id_user,
             'status' => $this->status,
         ]);
 
         $this->closeModal();
 
         Flux::toast('Task aggiornato con successo!');
-
         $this->dispatch('refresh');
-
     }
 
     public function render()
     {
-        return view('livewire.projects.modals.edit-task');
+        return view('livewire.projects.modals.edit-task', [
+            'users' => User::select('id', 'name', 'last_name')->get(),
+        ]);
     }
 }
