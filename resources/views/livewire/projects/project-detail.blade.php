@@ -201,17 +201,17 @@
 
                                                                             @endphp
 
-                                                                            <flux:table 
+                                                                            <flux:table
                                                                                 class="w-full text-[13px] border-l-4 border-r-1 border-t-1 border-b-1 border-[#4D1B83] bg-white ml-5 mt-4 mb-4">
-                                                                                <flux:table.columns 
+                                                                                <flux:table.columns
                                                                                     class="bg-white text-center text-xs font-semibold text-gray-600 justify-center">
-                                                                                    <flux:table.column
-                                                                                    data-flux-column class=" border-b justify-center">
+                                                                                    <flux:table.column data-flux-column
+                                                                                        class=" border-b justify-center">
                                                                                         Attività</flux:table.column>
                                                                                     <flux:table.column
                                                                                         class="border-b text-center">
                                                                                         Assegnato a</flux:table.column>
-                                                                       
+
                                                                                     <flux:table.column
                                                                                         class="  border-b text-center">
                                                                                         Stato</flux:table.column>
@@ -231,7 +231,7 @@
                                                                                             class="  border-t text-center">
                                                                                             {{ $task['assignee'] }}
                                                                                         </flux:table.cell>
-                                                                              
+
                                                                                         <flux:table.cell
                                                                                             class="  border-t">
                                                                                             <select
@@ -369,11 +369,12 @@
                                                                         <div
                                                                             class="flex space-x-2 mt-3 justify-between">
                                                                             <div>
-                                                                                {{--       <flux:button
-                                                                                wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $project->id }}}})"
-                                                                                variant="ghost" data-variant="ghost"
-                                                                                data-color="gray" data-rounded
-                                                                                icon="pencil" size="sm" /> --}}
+                                                                                <flux:button
+                                                                                    wire:click="$dispatch('openModal', { component: 'projects.modals.edit-task', arguments: { id: {{ $project->id }}}})"
+                                                                                    variant="ghost"
+                                                                                    data-variant="ghost"
+                                                                                    data-color="gray" data-rounded
+                                                                                    icon="pencil" size="sm" />
                                                                                 <flux:button
                                                                                     wire:click="deleteMacroTask({{ $project->id }})"
                                                                                     wire:confirm="Sei sicuro di voler archiviare questo macro task?"
@@ -394,56 +395,54 @@
                                                                                 variant="ghost" icon="plus" />
                                                                         </div>
 
-                                                                        <!-- Micro Tasks -->
-                                                                        @php
-                                                                            $microTasks =
-                                                                                $groupedMicroTasks[$phase->id] ??
-                                                                                collect();
 
-                                                                        @endphp
-                                                                        @if (!empty($groupedMicroTasks[$phase->id]))
-                                                                            {{--    @if (!empty($groupedMicroTasks)) --}}
+
+
+
+                                                                        <!-- Micro Tasks -->
+                                                                        @if (isset($groupedMicroTasks[$element->id]))
+                                                                            @php
+                                                                                $tasksForPhase =
+                                                                                    $groupedMicroTasks[$element->id];
+                                                                            @endphp
                                                                             <div
                                                                                 class="mt-4 pl-4 border-l-2 border-[#E0E0E0] space-y-2">
-
-                                                                                @foreach ($groupedMicroTasks as $micro)
+                                                                                @foreach ($tasksForPhase as $micro)
                                                                                     <div
-                                                                                        class="flex justify-between items-center px-2 py-1 h-96 overflow-scroll">
+                                                                                        class="flex justify-between items-center px-2 py-1 h-20">
                                                                                         <div>
                                                                                             <p
                                                                                                 class="text-sm font-medium text-gray-800">
-                                                                                                {{ $micro[0]['title'] }}
+                                                                                                {{ $micro->title }}
                                                                                             </p>
                                                                                             <p
                                                                                                 class="text-xs text-gray-500">
-                                                                                                {{ $micro[0]['assignee'] ?? '—' }}
+                                                                                                {{ $micro->assignee ?? '—' }}
                                                                                             </p>
                                                                                         </div>
-
                                                                                         <div
                                                                                             class="flex items-center space-x-2">
                                                                                             <select
-                                                                                                wire:change="updateMicroStatus({{ $micro[0]['id'] }}, $event.target.value)"
+                                                                                                wire:change="updateMicroStatus({{ $micro->id }}, $event.target.value)"
                                                                                                 class="bg-transparent px-1 py-0.5 text-xs focus:outline-none
-                                                                                                {{ $micro[0]['status'] === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
+                                                                                                {{ $micro->status === 'Svolto' ? 'bg-[#E9F6EC] text-[#28A745]' : 'bg-[#FFF9E5] text-[#FEC106]' }}">
                                                                                                 <option value="Svolto"
-                                                                                                    @selected($micro[0]['status'] === 'Svolto')>
+                                                                                                    @selected($micro->status === 'Svolto')>
                                                                                                     Svolto</option>
                                                                                                 <option
                                                                                                     value="In attesa"
-                                                                                                    @selected($micro[0]['status'] === 'In attesa')>
-                                                                                                    In attesa
-                                                                                                </option>
+                                                                                                    @selected($micro->status === 'In attesa')>
+                                                                                                    In attesa</option>
                                                                                             </select>
 
                                                                                             <flux:button
-                                                                                                wire:click="$dispatch('openModal', { component: 'projects.modals.edit-micro-task', arguments: { id: {{ $micro[0]['id'] }} } })"
+                                                                                                wire:click="$dispatch('openModal', { component: 'projects.modals.edit-micro-task', arguments: { id: {{ $micro->id }} } })"
                                                                                                 variant="ghost"
                                                                                                 icon="pencil"
                                                                                                 size="sm" />
 
                                                                                             <flux:button
-                                                                                                wire:click="microDeleteTask({{ $micro[0]['id'] }}"
+                                                                                                wire:click="microDeleteTask({{ $micro->id }})"
                                                                                                 wire:confirm="Sei sicuro di voler archiviare questo micro task?"
                                                                                                 variant="ghost"
                                                                                                 icon="trash"
@@ -452,7 +451,6 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 @endforeach
-
                                                                             </div>
                                                                         @endif
                                                                     </div>
