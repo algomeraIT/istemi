@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('quote_item_groups', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Quote::class)->constrained()->cascadeOnDelete();
-            $table->string('title')->nullable();
             $table->integer('sort_order')->default(0);
             $table->timestamps();
         });

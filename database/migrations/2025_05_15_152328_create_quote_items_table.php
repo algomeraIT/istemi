@@ -19,13 +19,16 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Product::class)->nullable()->constrained();
             $table->foreignIdFor(QuoteItemGroup::class)->nullable()->constrained();
-            $table->enum('type',['product','note']);
+            $table->enum('type',['product','note', 'title']);
             $table->decimal('quantity',10,2)->default(1)->nullable();
             $table->enum('uom', MeasurementUnitEnum::valuesArray())->comment('unità di misura');
             $table->decimal('unit_price',12,2)->default(0);
             $table->unsignedTinyInteger('discount_pct')->default(0);
             $table->decimal('line_total',12,2)->default(0);
             $table->boolean('is_cnpaia')->default(false);
+            $table->string('title')->nullable();
+            $table->text('note')->nullable();
+            $table->integer('sort_order')->default(0);
             $table->timestamps();
         });
     }

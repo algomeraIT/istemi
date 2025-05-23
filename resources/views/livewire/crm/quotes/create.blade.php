@@ -442,6 +442,9 @@
                                              wire:key="item-{{ $group['title_item']['id'] }}"
                                              class="mb-4 relative group-title group">
                                             <div class="flex items-end ">
+                                                <div class="absolute top-7 left-[-27px] text-gray-400 cursor-grab hidden group-hover:inline-block">
+                                                    <flux:icon.squares-2x2 />
+                                                </div>
                                                 <div class="flex-grow">
                                                     <flux:field data-input>
                                                         <flux:label>Titolo</flux:label>
@@ -478,6 +481,7 @@
 
                                             <flux:table class="table-fixed">
                                                 <flux:table.columns>
+                                                    <flux:table.column class="w-6"></flux:table.column>
                                                     <flux:table.column class="w-80 !font-extralight text-[13px] !text-[#B0B0B0]">Servizio</flux:table.column>
                                                     <flux:table.column align="end" class="w-24 !font-extralight text-[13px] !text-[#B0B0B0]">Quantità</flux:table.column>
                                                     <flux:table.column class="w-28 !font-extralight text-[13px] !text-[#B0B0B0]">UdM</flux:table.column>
@@ -492,6 +496,11 @@
                                                         <flux:table.row wire:key="item-{{ $item['id'] }}"
                                                                         class="group-product bg-white group overflow-visible"
                                                         >
+                                                            <flux:table.cell class="text-center border-y border-l border-gray-200 first:rounded-l-[1px] first:ps-3">
+                                                                <div class="inline-flex items-center justify-center text-gray-400 cursor-grab opacity-0 group-hover:opacity-100 transition-opacity">
+                                                                    <flux:icon.squares-2x2 />
+                                                                </div>
+                                                            </flux:table.cell>
                                                             <flux:table.cell class="border-y relative border-gray-200 border-x-none">
                                                                 <flux:select
                                                                         wire:model.live="items.{{ array_search($item, $items) }}.product_id"
@@ -622,6 +631,9 @@
                                              wire:key="item-{{ $item['id'] }}"
                                              class="mb-4 group-note group">
                                             <div class="flex items-end">
+                                                <div class="absolute top-7 left-[-27px] text-gray-400 cursor-grab hidden group-hover:inline-block">
+                                                    <flux:icon.squares-2x2 />
+                                                </div>
                                                 <div class="flex-grow">
                                                     <flux:field data-input>
                                                         <flux:label>Nota</flux:label>
@@ -665,45 +677,53 @@
                     </div>
 
                     <!-- Colonna dei totali -->
-                    <div class="col-span-2 bg-[#FAFAFA] p-5 shadow-[0px_0px_1px_#00000029] rounded-[1px]">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="col-span-1">
-                                <!-- Spazio per eventuali elementi a sinistra -->
-                            </div>
-                            <div class="col-span-1 space-y-2">
+                    <div class="col-span-2">
+                        <div class="grid grid-cols-2 gap-4 bg-[#FAFAFA] px-8 py-5 shadow-[0px_0px_1px_#00000029] rounded-[1px]">
+                            <div class="col-span-2 space-y-2">
                                 <div class="flex items-center justify-between">
-                                    <span class="text-sm text-gray-600">Totale servizi</span>
-                                    <span class="font-semibold">€ {{ number_format($subtotal, 2, ',', '.') }}</span>
+                                    <span class="font-semibold text-sm text-[#959595]">Totale servizi</span>
+                                    <span class="font-semibold text-[#959595]">€ {{ number_format($subtotal, 2, ',', '.') }}</span>
                                 </div>
 
-                                @if($total_discounts > 0)
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-sm text-gray-600">- di cui omaggi</span>
-                                        <span class="font-semibold text-red-500">- € {{ number_format($total_discounts, 2, ',', '.') }}</span>
-                                    </div>
-                                @endif
+                                <div class="flex items-center justify-between">
+                                    <span class="font-extralight text-sm text-[#959595]">- di cui omaggi</span>
+                                    <span class="font-semibold text-[#959595]">- € {{ number_format($total_discounts, 2, ',', '.') }}</span>
+                                </div>
+
+                                <flux:separator />
 
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center space-x-2">
-                                        <span class="text-sm text-gray-600">CNPAIA</span>
+                                        <span class="text-sm text-[#959595]">CNPAIA</span>
                                         <flux:checkbox disabled checked class="opacity-50" />
                                     </div>
-                                    <span class="font-semibold">€ {{ number_format($cnpaia_amount, 2, ',', '.') }}</span>
+                                    <span class="font-semibold text-[#959595]">€ {{ number_format($cnpaia_amount, 2, ',', '.') }}</span>
                                 </div>
 
-                                <div class="flex items-center justify-between pt-2 border-t">
-                                    <span class="text-sm text-gray-600">Subtotale imponibile</span>
-                                    <span class="font-semibold">€ {{ number_format($taxable_amount, 2, ',', '.') }}</span>
+                                <flux:separator />
+
+                                <div class="flex items-center justify-between">
+                                    <span class=" font-semibold text-sm text-[#959595]">Subtotale imponibile</span>
+                                    <span class="font-semibold text-[#959595]">€ {{ number_format($taxable_amount, 2, ',', '.') }}</span>
                                 </div>
 
                                 <div class="flex items-center justify-between">
-                                    <span class="text-sm text-gray-600">IVA ({{ $tax_rate }}%)</span>
-                                    <span class="font-semibold">€ {{ number_format($tax_amount, 2, ',', '.') }}</span>
+                                    <span class="font-semibold text-sm text-[#959595] flex space-x-4 items-center">
+                                        <span>
+                                            IVA
+                                        </span>
+                                        <flux:select size="sm">
+                                            @foreach($taxRates as $taxRate)
+                                                <flux:select.option value="{{ $taxRate->id }}">{{ $taxRate->name }}</flux:select.option>
+                                            @endforeach
+                                        </flux:select>
+                                    </span>
+                                    <span class="font-semibold text-[#959595]">€ {{ number_format($tax_amount, 2, ',', '.') }}</span>
                                 </div>
 
-                                <div class="flex items-center justify-between pt-2 border-t">
-                                    <span class="text-sm font-bold text-gray-800">TOTALE</span>
-                                    <span class="font-bold text-lg">€ {{ number_format($total, 2, ',', '.') }}</span>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm font-bold text-teal">Totale complessivo</span>
+                                    <span class="font-bold text-2xl text-teal ">€ {{ number_format($total, 2, ',', '.') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -712,14 +732,14 @@
             </div>
 
             <!-- Pulsanti di azione -->
-            <div class="flex justify-between items-center mt-4">
+            <div class="flex justify-start items-center mt-4">
                 <flux:button type="button" variant="ghost" data-variant="ghost" data-color="gray" wire:click="$refresh">
                     Annulla
                 </flux:button>
 
                 <div class="flex space-x-3">
-                    <flux:button type="submit" variant="primary" data-variant="primary" data-color="teal">
-                        Salva e Crea
+                    <flux:button type="submit" variant="primary" data-variant="primary" data-color="teal" disabled>
+                       Invia al Responsabile Area
                     </flux:button>
                 </div>
             </div>
@@ -729,5 +749,70 @@
 
 
 
+{{--TEST SORTABLE--}}
+
+{{--<div>--}}
+{{--    --}}{{-- wrapper che intercetta tutti i drops --}}
+{{--    <div wire:sortable-group="handleOrder" class="flex space-x-6 overflow-auto h-screen">--}}
+
+{{--        --}}{{-- macro-gruppi reali --}}
+{{--        @foreach($groups as $g)--}}
+{{--            @php--}}
+{{--                // Verifica se almeno un sotto-gruppo contiene elementi--}}
+{{--                $hasItems = collect($g->subgroups)->contains(fn($sg) => $sg->items->count() > 0);--}}
+{{--            @endphp--}}
+
+
+{{--                <div class="w-72 bg-gray-50 p-4 rounded shadow flex-shrink-0 {{ $hasItems ? '' : 'hidden' }} flex flex-col h-full">--}}
+{{--                    <h3 class="font-bold mb-2">{{ $g->label }}</h3>--}}
+
+{{--                    @foreach($g->subgroups as $sg)--}}
+{{--                        --}}{{-- Titolo e lista sempre presenti, ma nascosti quando vuoti --}}
+{{--                        <h4 class="mt-3 text-sm font-medium {{ $sg->items->count() ? '' : 'hidden' }}">--}}
+{{--                            {{ $sg->label }}--}}
+{{--                        </h4>--}}
+
+{{--                        <ul--}}
+{{--                                wire:sortable-group.item-group="{{ $g->id }}|{{ $sg->type }}"--}}
+{{--                                wire:sortable-group.options='{"animation":150,"group":"{{ $sg->type }}"}'--}}
+{{--                                class="flex-1  p-2 rounded min-h-[80px]--}}
+{{--                                  {{ $sg->items->count()--}}
+{{--                                     ? 'space-y-2 bg-white'--}}
+{{--                                     : 'gray-50'--}}
+{{--                                  }}"--}}
+{{--                            @foreach($sg->items as $item)--}}
+{{--                                <li--}}
+{{--                                        wire:sortable-group.handle--}}
+{{--                                        wire:sortable-group.item="{{ $item->id }}"--}}
+{{--                                        wire:key="item-{{ $item->id }}"--}}
+{{--                                        class="p-2 bg-gray-100 rounded border flex items-center cursor-move"--}}
+{{--                                >--}}
+{{--                                    <span class="flex-1">{{ $item->title ?? $item->note }}</span>--}}
+{{--                                    <button class="text-gray-400">☰</button>--}}
+{{--                                </li>--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+
+{{--        @endforeach--}}
+
+{{--        --}}{{-- zone “fantasma” per creazione gruppi per ogni tipo --}}
+{{--        @foreach(['title','service','note'] as $type)--}}
+{{--            <div class="w-72 flex-shrink-0 opacity-0 pointer-events-none">--}}
+{{--                <ul--}}
+{{--                        wire:sortable-group.item-group="new|{{ $type }}"--}}
+{{--                        wire:sortable-group.options='{"animation":150,"group":"{{ $type }}"}'--}}
+{{--                        class="min-h-[200px]"--}}
+{{--                ></ul>--}}
+{{--            </div>--}}
+{{--        @endforeach--}}
+
+{{--    </div>--}}
+
+{{--    @if(session()->has('status'))--}}
+{{--        <div class="mt-4 text-green-600">{{ session('status') }}</div>--}}
+{{--    @endif--}}
+{{--</div>--}}
 
 

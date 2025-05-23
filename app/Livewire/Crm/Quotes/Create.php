@@ -7,9 +7,14 @@ use App\Models\Client;
 use App\Models\Issuer;
 use App\Models\PriceList;
 use App\Models\Product;
+use App\Models\Quote;
+use App\Models\QuoteItem;
+use App\Models\QuoteItemGroup;
 use App\Models\QuoteTemplate;
 use App\Models\TaxRate;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Flux\Flux;
 
@@ -40,6 +45,8 @@ class Create extends Component
     public $nextItemId = 1;
     public $nextGroupId = 1;
 
+    public $taxRates;
+
     public function mount()
     {
         $this->loadLists();
@@ -57,6 +64,7 @@ class Create extends Component
         $this->clients = Client::orderBy('name')->get();
         $this->price_lists = PriceList::orderBy('name')->get();
         $this->templates = QuoteTemplate::orderBy('name')->get();
+        $this->taxRates = TaxRate::orderBy('name')->get();
         $this->users = User::orderBy('last_name')->take(10)->get();
         $this->products = Product::with('category')
             ->where('is_active', true)
@@ -582,6 +590,103 @@ class Create extends Component
                 variant: 'error',
             );
         }
+    }
+
+
+//    TEST sortable
+
+//    public Quote $quote;
+//    public $groups;    // caricati in mount
+//    public $types = ['title','product','note'];
+//
+//    protected $listeners = ['handleOrder'];
+//
+//    public function mount()
+//    {
+//        $this->quote = Quote::with(['itemGroups.items'])
+//            ->findOrFail(1);
+//        $this->loadGroups();
+//    }
+//
+//
+//    protected function loadGroups()
+//    {
+//        $this->groups = QuoteItemGroup::with('items')
+//            ->where('quote_id',$this->quote->id)
+//            ->orderBy('sort_order')
+//            ->get()
+//            ->map(function($g){
+//                // raggruppa i suoi item per tipo
+//                $subs = collect($this->types)
+//                    ->map(fn($t) => (object)[
+//                        'type'  => $t,
+//                        'label' => ucfirst($t),
+//                        'items' => $g->items
+//                            ->where('type',$t)
+//                            ->sortBy('sort_order')
+//                            ->values()
+//                    ]);
+//                return (object)[
+//                    'id'        => $g->id,
+//                    'label'     => "Group {$g->sort_order}",
+//                    'subgroups'=> $subs,
+//                ];
+//            })->toArray();
+//    }
+
+//    /**
+//     * $payload = [
+//     *   ['value'=>'3|title','items'=>[['value'=>12,'order'=>1],…]],
+//     *   …,
+//     *   ['value'=>'new|note','items'=>[ … ]]
+//     * ]
+//     */
+//    public function handleOrder($payload)
+//    {
+//        DB::transaction(function() use($payload) {
+//            foreach ($payload as $entry) {
+//                list($groupKey,$type) = explode('|',$entry['value'],2);
+//
+//                // CREAZIONE DINAMICA di nuovo gruppo
+//                if ($groupKey === 'new') {
+//                    if (! count($entry['items'])) continue;
+//
+//                    // 1) nuova riga in quote_item_groups
+//                    $newGroup = QuoteItemGroup::create([
+//                        'quote_id'   => $this->quote->id,
+//                        'sort_order' => QuoteItemGroup::where('quote_id',$this->quote->id)->max('sort_order')+1,
+//                    ]);
+//
+//                    // 2) assegna quegli items al nuovo gruppo
+//                    foreach ($entry['items'] as $it) {
+//                        QuoteItem::find($it['value'])->update([
+//                            'quote_item_group_id' => $newGroup->id,
+//                            'sort_order'          => $it['order'],
+//                        ]);
+//                    }
+//                    continue;
+//                }
+//
+//                // ALTRI casi: aggiornamento di un sotto-gruppo esistente
+//                $groupId = (int) $groupKey;
+//                foreach ($entry['items'] as $it) {
+//                    QuoteItem::find($it['value'])->update([
+//                        'quote_item_group_id' => $groupId,
+//                        'sort_order'          => $it['order'],
+//                    ]);
+//                }
+//            }
+//        });
+//
+//        // ricarica stato
+//        $this->loadGroups();
+//        session()->flash('status','Ordinamento salvato!');
+//    }
+
+
+    public function render()
+    {
+        return view('livewire.crm.quotes.create');
     }
 
 
