@@ -50,6 +50,14 @@
   }
 }
 
+* {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @layer utilities {
     [x-cloak] {
         display: none;
@@ -184,6 +192,14 @@
     }
 
 
+}
+
+[data-flux-column]{
+  @apply items-center text-center justify-items-center
+}
+
+[data-flux-tr]{
+  @apply items-center text-center 
 }
 
 [data-flux-select-native] {

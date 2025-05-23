@@ -25,7 +25,7 @@
         <!-- Action Buttons -->
         <div class="pt-4">
             <button
-                wire:click="save"
+                wire:click="saveNote"
                 class="px-4 py-2 bg-[#00C0D9] text-white rounded hover:bg-[#0caac0] transition text-sm">
                 Scrivi
             </button>

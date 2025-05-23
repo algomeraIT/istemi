@@ -12,8 +12,8 @@
 
         @if ($copy)
             <button title="Copia" wire:click="copy('{{ $data }}')" x-on:click="$flux.toast('Copiato con successo.')"
-                class="cursor-pointer ml-5">
-                <flux:icon.document-duplicate class="size-4 text-[#10BDD4]" />
+                class="cursor-pointer ml-2">
+                <flux:icon.document-duplicate variant="micro" class="text-[#10BDD4]" />
             </button>
         @endif
     </div>

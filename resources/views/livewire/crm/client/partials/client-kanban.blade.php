@@ -4,8 +4,10 @@
             {{-- Company Name --}}
             <div class="flex justify-between">
                 <h3 class="text-lg font-bold text-[#232323]">{{ $client->name }}</h3>
-                <img src="{{ optional($client)->logo_path ? asset($client->logo_path) : asset('icon/logo.svg') }}"
-                    class="w-10 h-10 rounded" alt="Logo" />
+                @if ($clientStatus === 'cliente')
+                    <img src="{{ optional($client)->logo_path ? asset($client->logo_path) : asset('icon/logo.svg') }}"
+                        class="size-10 rounded" alt="Logo" />
+                @endif
             </div>
 
             {{-- Acquisition Info --}}
@@ -29,7 +31,7 @@
 
                         <button title="Copia" wire:click="copy('{{ $client->email }}')"
                             x-on:click="$flux.toast('Mail copiata.')" class="cursor-pointer">
-                            <flux:icon.document-duplicate class="size-4 text-[#10BDD4]" />
+                            <flux:icon.document-duplicate variant="micro" class="text-[#10BDD4]" />
                         </button>
                     </div>
                 </div>
@@ -45,7 +47,7 @@
 
                         <button title="Copia" wire:click="copy('{{ $client->first_telephone }}')"
                             x-on:click="$flux.toast('Contatto telefonico copiato.')" class="cursor-pointer">
-                            <flux:icon.document-duplicate class="size-4 text-[#10BDD4]" />
+                            <flux:icon.document-duplicate variant="micro" class="text-[#10BDD4]" />
                         </button>
                     </div>
                 </div>

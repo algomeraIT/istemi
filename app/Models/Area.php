@@ -12,4 +12,9 @@ class Area extends Model
     protected $fillable = ['name'];
 
     public $timestamps = false;
+
+    public function microAreas()
+    {
+        return $this->hasMany(MicroArea::class);
+    }
 }

@@ -3,7 +3,7 @@
         <flux:table.columns>
             <flux:table.column>ID</flux:table.column>
             <flux:table.column class="{{ $clientStatus == 'cliente' ? '' : 'hidden' }}">Logo</flux:table.column>
-            <flux:table.column>Nome</flux:table.column>
+            <flux:table.column>Nome/Ragione Sociale</flux:table.column>
             <flux:table.column>Email</flux:table.column>
             <flux:table.column>Telefono</flux:table.column>
             <flux:table.column class="{{ $clientStatus == 'cliente' ? 'hidden' : '' }}">Acquisizione
@@ -28,7 +28,7 @@
 
                             <button title="Copia" wire:click="copy('{{ $client->email }}')"
                                 x-on:click="$flux.toast('Mail copiata.')" class="cursor-pointer">
-                                <flux:icon.document-duplicate class="size-4 text-[#10BDD4]" />
+                                <flux:icon.document-duplicate variant="micro" class="text-[#10BDD4]" />
                             </button>
                         </div>
                     </flux:table.cell>
@@ -38,7 +38,7 @@
 
                             <button title="Copia" wire:click="copy('{{ $client->first_telephone }}')"
                                 x-on:click="$flux.toast('Contatto telefonico copiato.')" class="cursor-pointer">
-                                <flux:icon.document-duplicate class="size-4 text-[#10BDD4]" />
+                                <flux:icon.document-duplicate variant="micro" class="text-[#10BDD4]" />
                             </button>
                         </div>
                     </flux:table.cell>
