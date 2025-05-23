@@ -2,6 +2,7 @@
     <div class="w-1/3 bg-white p-8 rounded shadow-lg">
         <!-- Header -->
         <div class="flex items-center justify-between mb-6">
+       
             <h2 class="text-lg font-semibold">
                 {{ $taskId ? 'Modifica attività' : 'Aggiungi attività' }}
             </h2>

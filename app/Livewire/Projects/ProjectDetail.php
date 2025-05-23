@@ -8,12 +8,10 @@ use App\Models\DocumentProject;
 use App\Models\NoteProject;
 use App\Models\Project;
 use App\Models\Stackholder;
-use App\Models\TaskProject;
 use App\Models\Phase;
 use App\Models\Task;
 use Livewire\Component;
 use Flux\Flux;
-use Illuminate\Support\Facades\DB;
 
 
 
@@ -31,40 +29,37 @@ class ProjectDetail extends Component
     public $openMicro = false;
     public string $queryProject = '';
     public $isOpenTaskModal = false;
-    public $phasesTable;
+    public $phasesTable, $phases;
     public $openPhaseId;
     public $openTable = false;
+    public $firms;
 
 
 
     public function mount($id)
     {
-        $this->id = $id;
-        $this->project = Project::findOrFail($id);
-        $this->document = DocumentProject::where("project_id", $id)->get();
-        $this->statusPhases = Phase::with(['area', 'microArea'])->where("id_project", $id)->where('status', '!=', 'deleted')->get();
-        $this->phaseID = Phase::where('id_project', $id)->pluck('id_micro_area');
-        $this->groupedMicroTasks = Task::whereIn(
-            'id_phases',
-            Phase::where('id_project', $this->project->id)->pluck('id')
-        )
-        ->where('status', '!=', 'deleted')
-        ->get()->groupBy('id_phases')->toArray();
+        $project = Project::findOrFail($id);
 
-        $this->phasesTable = Phase::with(['area', 'microArea', 'user', 'task'])
-            ->where('id_project', $this->project->id)
+        $this->phases = Phase::with(['area', 'microArea', 'user'])
+            ->where("id_project", $id)
             ->where('status', '!=', 'deleted')
             ->get();
 
-        $this->tasks = Task::whereIn('id_phases', $this->phaseID)->get();
+        $stackholderIds = json_decode($project->stackholder_id, true);
+        $stackholder = is_array($stackholderIds) && count($stackholderIds) > 0
+            ? Stackholder::whereIn('id', $stackholderIds)->get()
+            : collect();
 
-        $ids = json_decode($this->project['stackholder_id'], true);
-
-        if (is_array($ids) && count($ids) > 0) {
-            $this->stackholder = Stackholder::whereIn('id', $ids)->get();
-        } else {
-            $this->stackholder = collect();
-        }
+        $this->fill([
+            'id' => $id,
+            'project' => $project,
+            'firms' => json_decode($project->firms_and_percentage, true),
+            'stackholder' => $stackholder,
+            'document' => DocumentProject::where("project_id", $id)->get(),
+            'statusPhases' => $this->phases,
+            'phasesTable' => $this->phases,
+            'phaseID' => $this->phases->pluck('id_micro_area'),
+        ]);
     }
 
 
@@ -135,16 +130,21 @@ class ProjectDetail extends Component
 
             $this->dispatch('refresh');
 
-            Flux::toast('MicroTask eliminato con successo!');
+            Flux::toast('Fase eliminata con successo!');
         } catch (\Exception $e) {
             Flux::toast('Errore durante la cancellazione del MacroTask.');
         }
     }
-    
+
 
     #[On('refresh')]
     public function render()
     {
+        $phaseIds = $this->phases->pluck('id');
+
+        $this->groupedMicroTasks = Task::whereIn('id_phases', $phaseIds)
+            ->where('status', '!=', 'deleted')
+            ->get();
         $this->notes = NoteProject::where("project_id", $this->id)->orderBy('created_at', 'desc')->get();
 
         return view('livewire.projects.project-detail');

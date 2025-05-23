@@ -1,5 +1,5 @@
 
-<div class="w-full overflow-x-auto">
+<div class="w-full">
 
     @if ($projects)
         <flux:table>

@@ -234,7 +234,8 @@ class Create extends ModalComponent
                 }
             }
 
-            $this->formData['firms_and_percentage'] = json_encode($firmsAssoc);
+         
+            $this->formData['firms_and_percentage'] = $firmsAssoc;
             $this->formData = Project::prepareFormData($this->formData);
 
             $this->formToken = $this->formData;
@@ -252,7 +253,7 @@ class Create extends ModalComponent
             $microAreas = MicroArea::with('area')->whereIn('id', $selectedIds)->get();
 
             foreach ($microAreas as $microArea) {
-                $newPhase = Phase::create([
+                Phase::create([
                     'id_micro_area' => $microArea->id,
                     'id_area' => $microArea->area_id,
                     'id_project' => $project->id,
@@ -260,7 +261,7 @@ class Create extends ModalComponent
                     'status' => 'In attesa',
                 ]);
 
-                Task::create([
+         /*        Task::create([
                     'id_phases' => $newPhase->id,
                     'id_assignee' => auth()->id(),
                     'status' => 'In attesa',
@@ -270,7 +271,7 @@ class Create extends ModalComponent
                     'expire' => now()->addDays(7),
                     'note' => null,
                     'media' => json_encode([]),
-                ]);
+                ]); */
             }
 
 

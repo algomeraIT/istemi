@@ -186,6 +186,14 @@
 
 }
 
+[data-flux-column]{
+  @apply items-center text-center justify-items-center
+}
+
+[data-flux-tr]{
+  @apply items-center text-center 
+}
+
 [data-flux-select-native] {
   @apply rounded-none shadow-none text-[#B0B0B0] font-light h-8 py-0 border-[#B0B0B0] focus:border-[#B0B0B0] focus:ring-0 z-10;
 

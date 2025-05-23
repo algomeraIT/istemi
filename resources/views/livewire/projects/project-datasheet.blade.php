@@ -118,42 +118,42 @@
                         </p>
                     </div>
                 </div>
-                @php
-                $firms = json_decode($this->project['firms_and_percentage'] ?? '', true);
-                $firms = json_decode($firms, true);
-            
-            @endphp
-            
-            @if (!empty($firms))
-                <div class="flex mt-4">
-                    <div class="font-light p-2.5">
-                        <p class="flex text-[13px] items-center">
-                            <flux:icon.document class="w-3 h-3" />Componenti del raggruppamento
-                        </p>
-                        <div class="space-y-2">
-                            @foreach ($firms as $firm => $percentage)
-                                <div class="flex justify-between items-center border-b pb-1">
-                                    <span class="text-gray-700 font-medium">{{ $firm}}</span>
-                                </div>
-                            @endforeach
+   
+
+                @if (!empty($firms))
+                    <div class="flex mt-4">
+                        <div class="font-light p-2.5">
+                            <p class="flex text-[13px] items-center">
+                                <flux:icon.document class="w-3 h-3" />Componenti del raggruppamento
+                            </p>
+                            <div class="space-y-2">
+                                @foreach ($firms as $firm => $percentage)
+                                    <div class="flex justify-between items-center border-b pb-1">
+                                        <span class="text-gray-700 font-medium">{{ $firm }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="font-light p-2.5">
+                            <p class="flex text-[13px] items-center">
+                                <flux:icon.document class="w-3 h-3" />Percentuali dei raggruppati
+                            </p>
+                            <div class="space-y-2">
+                                @foreach ($firms as $firm => $percentage)
+                                    <div class="flex justify-between items-center border-b pb-1">
+                                        @if (is_array($percentage))
+                                            <span
+                                                class="text-gray-700 font-medium">{{ $percentage['firms_and_percentage'] }}%</span>
+                                        @else
+                                            <span class="text-gray-700 font-medium">{{ $percentage }}%</span>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-            
-                    <div class="font-light p-2.5">
-                        <p class="flex text-[13px] items-center">
-                            <flux:icon.document class="w-3 h-3" />Percentuali dei raggruppati
-                        </p>
-                        <div class="space-y-2">
-                            @foreach ($firms as $firm => $percentage)
-                                <div class="flex justify-between items-center border-b pb-1">
-                                    
-                                    <span class="text-gray-700 font-medium">{{ $percentage['firms_and_percentage']}}%</span>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            @endif
+                @endif
 
                 {{-- last line --}}
                 <div class="flex mt-4">

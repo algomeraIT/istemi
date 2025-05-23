@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Projects\Modals;
 
+use App\Models\Phase;
 use Livewire\Attributes\On;
 use App\Models\Task;
 use App\Models\User;
@@ -34,16 +35,16 @@ class CreateTaskProject extends ModalComponent
             ->pluck('id')
             ->toArray();
 
-        if ($this->taskId) {
-            $task = Task::findOrFail($this->taskId);
-
-            $this->title = $task->title ?? '';
-            $this->assignee = $task->assignee ?? '';
-            $this->cc = $task->cc ?? '';
-            $this->note = $task->note ?? '';
-            $this->status = $task->status ?? 'In attesa';
-            $this->expire = $task->expire ?? null;
-        }
+            if ($this->taskId) {
+                $task = Task::findOrFail($this->taskId);
+        
+                $this->title = $task->title ?? '';
+                $this->assignee = $task->assignee ?? '';
+                $this->cc = $task->cc ?? '';
+                $this->note = $task->note ?? '';
+                $this->status = $task->status ?? 'In attesa';
+                $this->expire = $task->expire ?? null;
+            }
     }
 
     public function rules(): array
