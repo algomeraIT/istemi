@@ -27,7 +27,7 @@
         </div>
     
         {{-- Mail --}}
-        <div class="ml-8">
+        <div class="ml-11">
             <div class="flex items-center gap-8 my-5">
                 <div class="flex items-center gap-2 text-[#B0B0B0]">
                     <span class="text-xs font-light">Mittente:</span>
@@ -61,8 +61,8 @@
                 <span class="font-medium text-[#232323]">{{ $email->subject }}</span>
             </div>
     
-            <div class="w-1/2 mt-3">
-                <p class="line-clamp-2 text-[#B0B0B0] text-xs font-medium">{!! $email->body !!}</p>
+            <div class="w-1/2 mt-3 line-clamp-2 text-[#B0B0B0] text-xs font-medium">
+                {!! $email->body !!}
             </div>
         </div>
     

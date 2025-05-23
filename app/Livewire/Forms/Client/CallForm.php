@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Livewire\Forms\Client;
+namespace App\Livewire\Forms\client;
 
 use Livewire\Form;
-use App\Models\Note;
+use App\Models\Call;
 use Livewire\WithFileUploads;
 use Mews\Purifier\Facades\Purifier;
 
-class NoteForm extends Form
+class CallForm extends Form
 {
     use WithFileUploads;
 
-    public $note;
+    public $call;
 
     public $client_id, $content;
     public $attachments = [];
@@ -45,11 +45,11 @@ class NoteForm extends Form
         }
     }
 
-    public function setNote($note)
+    public function setCall($call)
     {
-        $this->fill($note->only($note->getFillable()));
+        $this->fill($call->only($call->getFillable()));
 
-        $this->note = $note;
+        $this->call = $call;
     }
 
     public function store()
@@ -59,11 +59,11 @@ class NoteForm extends Form
 
         $validated['content'] = Purifier::clean($validated['content']);
 
-        $note = Note::create($validated);
+        $call = Call::create($validated);
 
         if (count($this->attachments)) {
             foreach ($this->attachments as $file) {
-                $note->addMedia($file->getRealPath())
+                $call->addMedia($file->getRealPath())
                     ->usingFileName($file->getClientOriginalName())
                     ->toMediaCollection('attached');
             }
@@ -79,7 +79,7 @@ class NoteForm extends Form
 
         $validated['content'] = Purifier::clean($validated['content']);
 
-        $this->note->update($validated);
+        $this->call->update($validated);
 
         $this->reset();
     }

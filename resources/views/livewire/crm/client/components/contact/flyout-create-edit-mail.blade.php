@@ -1,14 +1,16 @@
-<flux:modal name="new-email" variant="flyout" @close="resetEmail" :dismissible="false" class="w-2xl !px-32">
-    <button class="absolute top-4 right-4 text-lg z-10 bg-white text-[#A0A0A0] flex items-center gap-1 cursor-pointer"
-        x-on:click="$flux.modals().close()">
-        <flux:icon.x-mark class="size-4" />
-        <span>Annulla</span>
-    </button>
-
+<flux:modal name="new-email" variant="flyout" @close="resetEmail" :dismissible="false" class="w-2xl !px-26 hiddenXClose">
     <div class="flex flex-col justify-start items-start gap-10">
-        <h2 class="text-2xl font-bold text-left">
-            Invia e-mail
-        </h2>
+        <div class="w-full flex items-center justify-between">
+            <h2 class="text-2xl font-bold text-left">
+                Invia e-mail
+            </h2>
+
+            <button class="text-lg z-10 bg-white text-[#A0A0A0] flex items-center gap-1 cursor-pointer"
+                x-on:click="$flux.modals().close()">
+                <flux:icon.x-mark class="size-4" />
+                <span>Annulla</span>
+            </button>
+        </div>
 
         <div class="w-full grid grid-cols-2 gap-x-5 gap-y-8">
             <div class="col-span-2">

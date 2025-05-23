@@ -24,23 +24,25 @@
                 </div>
             </div>
         </div>
-        
-        {{-- Note --}}
-        <p class="mt-4 ml-12 text-sm font-semibold text-[#B0B0B0]">
-            {{ $note->content }}
-        </p>
+
+        {{-- Content --}}
+        <div class="w-1/2 mt-3 ml-11 ">
+            <div class="line-clamp-2 text-[#B0B0B0] text-xs font-medium">
+                {!! $note->content !!}
+            </div>
+        </div>
         
         {{-- Action Buttons --}}
-        {{-- <div class="flex items-center gap-2 mt-5">
+        <div class="flex items-center gap-2 mt-5">
             <flux:button variant="ghost" wire:click='showNote({{ $note->id }})' data-variant="ghost"
                 data-color="teal" icon="eye" size="sm" />
     
-            <flux:button wire:click="setNote({{ $note->id }})" variant="ghost" data-variant="ghost"
+            <flux:button wire:click="modifyNote({{ $note->id }})" variant="ghost" data-variant="ghost"
                 data-color="gray" icon="pencil" size="sm" />
     
             <flux:button wire:click="deleteNote({{ $note->id }})"
-                wire:confirm="Sei sicuro di voler eliminare questa attività?" variant="ghost" data-variant="ghost"
+                wire:confirm="Sei sicuro di voler eliminare questa nota?" variant="ghost" data-variant="ghost"
                 data-color="red" icon="trash" size="sm" />
-        </div> --}}
+        </div>
     </div>
 </div>

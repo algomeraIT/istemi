@@ -1,16 +1,18 @@
-<flux:modal name="show-activity" variant="flyout" :dismissible="false" class="w-2xl h-full !px-26">
-    <button class="absolute top-4 right-4 text-lg z-10 bg-white text-[#A0A0A0] flex items-center gap-1 cursor-pointer"
-        x-on:click="$flux.modals().close()">
-        <flux:icon.x-mark class="size-4" />
-        <span>Chiudi</span>
-    </button>
+<flux:modal name="show-activity" variant="flyout" @close="resetActivity" :dismissible="false" class="w-2xl h-full !px-26 hiddenXClose">
+    <div class="w-full flex items-center justify-between mb-10">
+        <div class="flex items-center gap-2">
+            <h2 class="text-2xl font-bold text-left">Attività</h2>
+        </div>
+
+        <button class="text-lg z-10 bg-white text-[#A0A0A0] flex items-center gap-1 cursor-pointer"
+            x-on:click="$flux.modals().close()">
+            <flux:icon.x-mark class="size-4" />
+            <span>Annulla</span>
+        </button>
+    </div>
 
     @if ($activityForm->activity)
         <div class="h-full flex flex-col justify-start items-start gap-10">
-            <div class="flex items-center gap-2">
-                <h2 class="text-2xl font-bold text-left">Attività</h2>
-            </div>
-
             {{-- Action buttons --}}
             <div class="w-full flex items-center justify-between">
                 <flux:badge size="sm" data-step="{{ $activityForm->status }}" class="capitalize">

@@ -373,6 +373,12 @@ select:focus[data-flux-control] {
   }
 }
 
+[data-flux-flyout].hiddenXClose {
+  [data-flux-modal-close] {
+    @apply hidden;
+  }
+}
+
 
 
 /* \[:where(&)\]:size-4 {

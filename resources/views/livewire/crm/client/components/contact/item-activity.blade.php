@@ -30,7 +30,7 @@
         </div>
     
         {{-- Activity --}}
-        <div class="ml-8">
+        <div class="ml-11">
             <div class="flex flex-wrap items-center gap-8 mt-5 mb-3">
                 <div class="flex items-center gap-2 text-[#B0B0B0]">
                     <span class="text-xs font-light ">Assegnato a:</span>

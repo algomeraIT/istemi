@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Note extends Model implements HasMedia
+class Call extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia, BlameableTrait;
 

@@ -110,16 +110,16 @@
                                         class="!text-[#B0B0B0] hover:!text-[#1278D4] hover:!bg-[#E2EDF7]">E-mail
                                     </flux:menu.item>
                                 </flux:modal.trigger>
-                                {{-- <flux:modal.trigger name="new-note">
-                                        <flux:menu.item icon="pencil"
-                                            class="!text-[#B0B0B0] hover:!text-[#B0B0B0] hover:!bg-[#F3F3F3]">Nota
-                                        </flux:menu.item>
-                                    </flux:modal.trigger>
-                                    <flux:modal.trigger name="new-call">
-                                        <flux:menu.item icon="phone"
-                                            class="!text-[#B0B0B0] hover:!text-[#A259F4] hover:!bg-[#F2EAFA]">Chiamata
-                                        </flux:menu.item>
-                                    </flux:modal.trigger> --}}
+                                <flux:modal.trigger name="new-note">
+                                    <flux:menu.item icon="pencil"
+                                        class="!text-[#B0B0B0] hover:!text-[#B0B0B0] hover:!bg-[#F3F3F3]">Nota
+                                    </flux:menu.item>
+                                </flux:modal.trigger>
+                                <flux:modal.trigger name="new-call">
+                                    <flux:menu.item icon="phone"
+                                        class="!text-[#B0B0B0] hover:!text-[#A259F4] hover:!bg-[#F2EAFA]">Chiamata
+                                    </flux:menu.item>
+                                </flux:modal.trigger>
                             </flux:menu>
                         </flux:dropdown>
 
@@ -136,7 +136,7 @@
                                 <flux:select.option>Attivita</flux:select.option>
                                 <flux:select.option>E-mail</flux:select.option>
                                 <flux:select.option>Nota</flux:select.option>
-                                {{-- <flux:select.option>Chiamata</flux:select.option> --}}
+                                <flux:select.option>Chiamata</flux:select.option>
                             </flux:select>
                         </flux:field>
                     </div>
@@ -162,12 +162,18 @@
                                             'note' => $record,
                                         ])
                                     </div>
+                                @elseif ($record instanceof \App\Models\Call)
+                                    <div wire:key="call-{{ $record->id }}">
+                                        @include('livewire.crm.client.components.contact.item-call', [
+                                            'call' => $record,
+                                        ])
+                                    </div>
                                 @endif
                             @endforeach
                         @else
                             <div class="w-full h-full flex items-center justify-center">
                                 <p class="text-[#B0B0B0] text-2xl font-medium">
-                                    Nessuna comunicazione al momento
+                                    Nessuna {{ $communicationType ?? 'comunicazione' }} al momento
                                 </p>
                             </div>
                         @endif
@@ -175,6 +181,8 @@
                         {{-- Flyout Modals Show --}}
                         @include('livewire.crm.client.components.contact.flyout-show-activity')
                         @include('livewire.crm.client.components.contact.flyout-show-mail')
+                        @include('livewire.crm.client.components.contact.flyout-show-note')
+                        @include('livewire.crm.client.components.contact.flyout-show-call')
                     </div>
                 </flux:tab.panel>
             </flux:tab.group>

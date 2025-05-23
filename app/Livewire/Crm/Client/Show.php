@@ -20,11 +20,15 @@ use App\Livewire\Forms\Client\ReferentForm;
 use App\Livewire\Forms\Client\ActivityForm;
 use App\Livewire\Forms\Client\EmailForm;
 use App\Livewire\Forms\Client\NoteForm;
+use App\Livewire\Forms\client\CallForm;
 
 // Traits
 use App\Livewire\Crm\Client\Traits\ActivityActions;
+use App\Livewire\Crm\Client\Traits\CallActions;
 use App\Livewire\Crm\Client\Traits\ReferentActions;
 use App\Livewire\Crm\Client\Traits\MailActions;
+use App\Livewire\Crm\Client\Traits\NoteActions;
+use App\Models\Call;
 
 class Show extends Component
 {
@@ -37,7 +41,11 @@ class Show extends Component
     use MailActions;
     public EmailForm $emailForm;
 
+    use NoteActions;
     public NoteForm $noteForm;
+
+    use CallActions;
+    public CallForm $callForm;
 
     public $client;
     public $references;
@@ -102,6 +110,7 @@ class Show extends Component
         $activities = Activity::where('client_id', $this->client->id)->latest()->get();
         $emails = Email::where('client_id', $this->client->id)->latest()->get();
         $notes = Note::where('client_id', $this->client->id)->latest()->get();
+        $calls = Call::where('client_id', $this->client->id)->latest()->get();
         $users = User::all();
         $clients = Client::all();
 
@@ -115,11 +124,14 @@ class Show extends Component
             $communications = $emails;
         } elseif ($this->communicationType === 'Nota') {
             $communications = $notes;
+        } elseif ($this->communicationType === 'Chiamata') {
+            $communications = $calls;
         } else {
             $communications = collect()
                 ->merge($activities)
                 ->merge($emails)
-                ->merge($notes);
+                ->merge($notes)
+                ->merge($calls);
         }
 
         $communications = $communications
@@ -140,6 +152,7 @@ class Show extends Component
             'activities' => $activities,
             'emails' => $emails,
             'notes' => $notes,
+            'calls' => $calls,
             'users' => $users,
             'all' => $all,
             'communications' => $communications,
