@@ -35,15 +35,20 @@ class Create extends Component
     public $tax_amount = 0;
     public $total = 0;
 
+    // Struttura semplificata: ogni elemento ha un group_id e un order_within_group
+    public $items = [];
+    public $nextItemId = 1;
+    public $nextGroupId = 1;
+
     public function mount()
     {
-        // Load dropdown data
         $this->loadLists();
-
-        // Set default values
         $this->setDefaultValues();
-
         $this->form->same_as_billing = true;
+
+        // Inizializza il primo gruppo
+        $this->nextGroupId = 1;
+        $this->nextItemId = 1;
     }
 
     protected function loadLists()
@@ -67,14 +72,6 @@ class Create extends Component
         $this->form->billing_country = 'Italia';
         $this->form->delivery_country = 'Italia';
         $this->form->status = 'draft';
-
-        // Initialize with an empty group
-        $this->form->item_groups = [
-            [
-                'title' => '',
-                'items' => []
-            ]
-        ];
     }
 
     public function updatedFormClientId($clientId)
@@ -114,48 +111,16 @@ class Create extends Component
         if ($templateId) {
             $template = QuoteTemplate::with('lines.product')->find($templateId);
             if ($template) {
-                // If we already have groups, use the first one
-                // or create a new one if none exist
-                if (empty($this->form->item_groups)) {
-                    $this->form->item_groups[] = [
-                        'title' => '',
-                        'items' => []
-                    ];
-                }
+                // Pulisci gli elementi esistenti
+                $this->items = [];
 
-                $groupIndex = 0;
-
-                // Add products from template
+                // Aggiungi elementi dal template al primo gruppo
                 foreach ($template->lines as $line) {
                     if ($line->product_id) {
                         $product = $line->product;
-
-                        $this->form->item_groups[$groupIndex]['items'][] = [
-                            'product_id' => $product->id,
-                            'product_code' => $product->unique_code,
-                            'title' => $product->title,
-                            'quantity' => $line->quantity ?? 1,
-                            'uom' => $product->uom,
-                            'unit_price' => $product->price,
-                            'discount_pct' => 0,
-                            'line_total' => $product->price * ($line->quantity ?? 1),
-                            'is_cnpaia' => $product->is_cnpaia,
-                            'type' => 'product'
-                        ];
+                        $this->addProductToGroup(1, $product, $line->quantity ?? 1);
                     } else {
-                        // If it's a text/note
-                        $this->form->item_groups[$groupIndex]['items'][] = [
-                            'product_id' => null,
-                            'product_code' => '',
-                            'title' => $line->description,
-                            'quantity' => $line->quantity ?? 1,
-                            'uom' => $line->uom ?? 'a corpo',
-                            'unit_price' => 0,
-                            'discount_pct' => 0,
-                            'line_total' => 0,
-                            'is_cnpaia' => false,
-                            'type' => 'note'
-                        ];
+                        $this->addNoteToGroup(1, $line->description);
                     }
                 }
 
@@ -165,129 +130,361 @@ class Create extends Component
     }
 
     /**
-     * Add a new title (creates a new group)
+     * Aggiungi un titolo al primo gruppo
      */
     public function addTitle()
     {
-        // Create a new group with a title
-        $this->form->item_groups[] = [
-            'title' => 'Nuovo Titolo',
-            'items' => []
-        ];
+        $this->addTitleToGroup(1);
     }
 
     /**
-     * Add a product to the current group (last group)
+     * Aggiungi un servizio al primo gruppo
      */
     public function addProduct()
     {
-        // If no groups exist, create one
-        if (empty($this->form->item_groups)) {
-            $this->form->item_groups[] = [
-                'title' => '',
-                'items' => []
-            ];
-        }
-
-        // Get the last group index
-        $lastGroupIndex = count($this->form->item_groups) - 1;
-
-        // Add a product to the last group
-        $this->form->item_groups[$lastGroupIndex]['items'][] = [
-            'product_id' => null,
-            'product_code' => '',
-            'title' => '',
-            'quantity' => 1,
-            'uom' => 'a corpo',
-            'unit_price' => 0,
-            'discount_pct' => 0,
-            'line_total' => 0,
-            'is_cnpaia' => true,
-            'type' => 'product'
-        ];
-
-        $this->calculateTotals();
+        $this->addProductToGroup(1);
     }
 
     /**
-     * Add a note to the current group (last group)
+     * Aggiungi una nota al primo gruppo
      */
     public function addNote()
     {
-        // If no groups exist, create one
-        if (empty($this->form->item_groups)) {
-            $this->form->item_groups[] = [
-                'title' => '',
-                'items' => []
-            ];
-        }
+        $this->addNoteToGroup(1);
+    }
 
-        // Get the last group index
-        $lastGroupIndex = count($this->form->item_groups) - 1;
+    /**
+     * Aggiungi un titolo a un gruppo specifico
+     */
+    protected function addTitleToGroup($groupId, $title = 'Nuovo Titolo')
+    {
+        // Assicurati che il gruppo esista
+        $this->ensureGroupExists($groupId);
 
-        // Add a note to the last group
-        $this->form->item_groups[$lastGroupIndex]['items'][] = [
+        $this->items[] = [
+            'id' => $this->nextItemId++,
+            'group_id' => $groupId,
+            'type' => 'title',
+            'title' => $title,
             'product_id' => null,
             'product_code' => '',
-            'title' => '',
-            'quantity' => 1,
-            'uom' => 'a corpo',
+            'quantity' => 0,
+            'uom' => '',
             'unit_price' => 0,
             'discount_pct' => 0,
             'line_total' => 0,
             'is_cnpaia' => false,
-            'type' => 'note'
+            'order_within_group' => $this->getNextOrderInGroup($groupId)
         ];
+
+        $this->reorderItemsInGroups();
     }
 
     /**
-     * Remove an item from a group
+     * Aggiungi un prodotto a un gruppo specifico
      */
-    public function removeItem($groupIndex, $itemIndex)
+    protected function addProductToGroup($groupId, $product = null, $quantity = 1)
     {
-        unset($this->form->item_groups[$groupIndex]['items'][$itemIndex]);
-        $this->form->item_groups[$groupIndex]['items'] = array_values($this->form->item_groups[$groupIndex]['items']);
+        // Assicurati che il gruppo esista
+        $this->ensureGroupExists($groupId);
+
+        $this->items[] = [
+            'id' => $this->nextItemId++,
+            'group_id' => $groupId,
+            'type' => 'product',
+            'title' => $product ? $product->title : '',
+            'product_id' => $product ? $product->id : null,
+            'product_code' => $product ? $product->unique_code : '',
+            'quantity' => $quantity,
+            'uom' => $product ? $product->uom : 'a corpo',
+            'unit_price' => $product ? $product->price : 0,
+            'discount_pct' => 0,
+            'line_total' => $product ? ($product->price * $quantity) : 0,
+            'is_cnpaia' => $product ? $product->is_cnpaia : true,
+            'order_within_group' => $this->getNextOrderInGroup($groupId)
+        ];
+
+        $this->reorderItemsInGroups();
         $this->calculateTotals();
     }
 
     /**
-     * Handle product selection
+     * Aggiungi una nota a un gruppo specifico
      */
-    public function selectProduct($groupIndex, $itemIndex, $productId)
+    protected function addNoteToGroup($groupId, $note = '')
     {
-        $product = Product::find($productId);
-        if ($product) {
-            $this->form->item_groups[$groupIndex]['items'][$itemIndex]['product_id'] = $product->id;
-            $this->form->item_groups[$groupIndex]['items'][$itemIndex]['product_code'] = $product->unique_code;
-            $this->form->item_groups[$groupIndex]['items'][$itemIndex]['title'] = $product->title;
-            $this->form->item_groups[$groupIndex]['items'][$itemIndex]['uom'] = $product->uom;
-            $this->form->item_groups[$groupIndex]['items'][$itemIndex]['unit_price'] = $product->price;
-            $this->form->item_groups[$groupIndex]['items'][$itemIndex]['is_cnpaia'] = $product->is_cnpaia;
+        // Assicurati che il gruppo esista
+        $this->ensureGroupExists($groupId);
 
-            $this->calculateItemTotal($groupIndex, $itemIndex);
+        $this->items[] = [
+            'id' => $this->nextItemId++,
+            'group_id' => $groupId,
+            'type' => 'note',
+            'title' => $note,
+            'product_id' => null,
+            'product_code' => '',
+            'quantity' => 0,
+            'uom' => '',
+            'unit_price' => 0,
+            'discount_pct' => 0,
+            'line_total' => 0,
+            'is_cnpaia' => false,
+            'order_within_group' => $this->getNextOrderInGroup($groupId)
+        ];
+
+        $this->reorderItemsInGroups();
+    }
+
+    /**
+     * Assicura che un gruppo esista
+     */
+    protected function ensureGroupExists($groupId)
+    {
+        if ($groupId > $this->nextGroupId - 1) {
+            $this->nextGroupId = $groupId + 1;
         }
     }
 
     /**
-     * Calculate the total for a specific item
+     * Ottieni il prossimo numero d'ordine in un gruppo
      */
-    public function calculateItemTotal($groupIndex, $itemIndex)
+    protected function getNextOrderInGroup($groupId)
     {
-        $item = $this->form->item_groups[$groupIndex]['items'][$itemIndex];
-        $quantity = floatval($item['quantity'] ?? 1);
-        $unitPrice = floatval($item['unit_price'] ?? 0);
-        $discountPct = floatval($item['discount_pct'] ?? 0);
+        $maxOrder = 0;
+        foreach ($this->items as $item) {
+            if ($item['group_id'] == $groupId) {
+                $maxOrder = max($maxOrder, $item['order_within_group']);
+            }
+        }
+        return $maxOrder + 1;
+    }
 
-        $discountMultiplier = (100 - $discountPct) / 100;
-        $lineTotal = $quantity * $unitPrice * $discountMultiplier;
+    /**
+     * Rimuovi un elemento
+     */
+    public function removeItem($itemId)
+    {
+        $this->items = array_filter($this->items, function($item) use ($itemId) {
+            return $item['id'] != $itemId;
+        });
 
-        $this->form->item_groups[$groupIndex]['items'][$itemIndex]['line_total'] = $lineTotal;
-
+        $this->items = array_values($this->items); // Re-index array
+        $this->reorderItemsInGroups();
         $this->calculateTotals();
     }
 
     /**
-     * Calculate all totals
+     * Gestisce il riordinamento degli elementi tramite drag & drop
+     * $orderedIds: array di ID nell'ordine finale voluto
+     */
+    public function updateItemsOrder($orderedIds)
+    {
+        // Crea una mappa temporanea degli elementi
+        $itemsMap = [];
+        foreach ($this->items as $item) {
+            $itemsMap[$item['id']] = $item;
+        }
+
+        // Ricostruisci l'array nell'ordine specificato
+        $reorderedItems = [];
+        foreach ($orderedIds as $id) {
+            if (isset($itemsMap[$id])) {
+                $reorderedItems[] = $itemsMap[$id];
+            }
+        }
+
+        $this->items = $reorderedItems;
+
+        // Rigenera i gruppi basandosi sulla nuova posizione
+        $this->regenerateGroups();
+        $this->reorderItemsInGroups();
+        $this->calculateTotals();
+    }
+
+    /**
+     * Rigenera i gruppi basandosi sull'ordine degli elementi
+     */
+    protected function regenerateGroups()
+    {
+        $currentGroupId = 1;
+        $this->nextGroupId = 1;
+
+        foreach ($this->items as $index => $item) {
+            if ($item['type'] === 'title') {
+                // I titoli definiscono nuovi gruppi, eccetto se sono il primo elemento dopo un altro titolo
+                if ($index === 0) {
+                    // Primo elemento: inizia gruppo 1
+                    $this->items[$index]['group_id'] = 1;
+                    $currentGroupId = 1;
+                } else {
+                    // Controlla se l'elemento precedente era un titolo
+                    $previousItem = $this->items[$index - 1];
+                    if ($previousItem['type'] === 'title') {
+                        // Due titoli consecutivi: mantieni lo stesso gruppo
+                        $this->items[$index]['group_id'] = $currentGroupId;
+                    } else {
+                        // Inizia un nuovo gruppo
+                        $currentGroupId++;
+                        $this->items[$index]['group_id'] = $currentGroupId;
+                    }
+                }
+            } else {
+                // Servizi e note ereditano il gruppo dall'ultimo titolo visto
+                $this->items[$index]['group_id'] = $currentGroupId;
+            }
+        }
+
+        $this->nextGroupId = $currentGroupId + 1;
+    }
+
+    /**
+     * Riordina gli elementi all'interno di ogni gruppo mantenendo l'ordine: titoli -> prodotti -> note
+     */
+    protected function reorderItemsInGroups()
+    {
+        // Raggruppa per group_id
+        $groupedItems = [];
+        foreach ($this->items as $item) {
+            $groupId = $item['group_id'];
+            if (!isset($groupedItems[$groupId])) {
+                $groupedItems[$groupId] = ['titles' => [], 'products' => [], 'notes' => []];
+            }
+
+            switch ($item['type']) {
+                case 'title':
+                    $groupedItems[$groupId]['titles'][] = $item;
+                    break;
+                case 'product':
+                    $groupedItems[$groupId]['products'][] = $item;
+                    break;
+                case 'note':
+                    $groupedItems[$groupId]['notes'][] = $item;
+                    break;
+            }
+        }
+
+        // Ricostruisci l'array ordinato
+        $orderedItems = [];
+        ksort($groupedItems); // Ordina per group_id
+
+        foreach ($groupedItems as $groupId => $group) {
+            $orderInGroup = 1;
+
+            // Prima i titoli
+            foreach ($group['titles'] as $item) {
+                $item['order_within_group'] = $orderInGroup++;
+                $orderedItems[] = $item;
+            }
+
+            // Poi i prodotti
+            foreach ($group['products'] as $item) {
+                $item['order_within_group'] = $orderInGroup++;
+                $orderedItems[] = $item;
+            }
+
+            // Infine le note
+            foreach ($group['notes'] as $item) {
+                $item['order_within_group'] = $orderInGroup++;
+                $orderedItems[] = $item;
+            }
+        }
+
+        $this->items = $orderedItems;
+        $this->prepareFormData();
+    }
+
+    /**
+     * Prepara i dati per il form
+     */
+    protected function prepareFormData()
+    {
+        $this->form->item_groups = [];
+
+        // Raggruppa gli elementi per group_id
+        $groupedItems = [];
+        foreach ($this->items as $item) {
+            $groupId = $item['group_id'];
+            if (!isset($groupedItems[$groupId])) {
+                $groupedItems[$groupId] = [
+                    'title' => '',
+                    'items' => []
+                ];
+            }
+
+            if ($item['type'] === 'title') {
+                $groupedItems[$groupId]['title'] = $item['title'];
+            } elseif ($item['type'] === 'product' || $item['type'] === 'note') {
+                $groupedItems[$groupId]['items'][] = [
+                    'product_id' => $item['product_id'],
+                    'product_code' => $item['product_code'],
+                    'title' => $item['title'],
+                    'quantity' => $item['quantity'],
+                    'uom' => $item['uom'],
+                    'unit_price' => $item['unit_price'],
+                    'discount_pct' => $item['discount_pct'],
+                    'line_total' => $item['line_total'],
+                    'is_cnpaia' => $item['is_cnpaia'],
+                    'type' => $item['type']
+                ];
+            }
+        }
+
+        // Ordina per group_id e assegna al form
+        ksort($groupedItems);
+        $this->form->item_groups = array_values($groupedItems);
+    }
+
+    /**
+     * Seleziona un prodotto
+     */
+    public function selectProduct($itemId, $productId)
+    {
+        $product = Product::find($productId);
+        if (!$product) return;
+
+        foreach ($this->items as $index => $item) {
+            if ($item['id'] == $itemId) {
+                $this->items[$index]['product_id'] = $product->id;
+                $this->items[$index]['product_code'] = $product->unique_code;
+                $this->items[$index]['title'] = $product->title;
+                $this->items[$index]['uom'] = $product->uom;
+                $this->items[$index]['unit_price'] = $product->price;
+                $this->items[$index]['is_cnpaia'] = $product->is_cnpaia;
+
+                // Calcola il totale della riga
+                $this->calculateItemTotal($itemId);
+                break;
+            }
+        }
+
+        $this->prepareFormData();
+    }
+
+    /**
+     * Calcola il totale per un elemento
+     */
+    public function calculateItemTotal($itemId)
+    {
+        foreach ($this->items as $index => $item) {
+            if ($item['id'] == $itemId) {
+                $quantity = floatval($item['quantity'] ?? 1);
+                $unitPrice = floatval($item['unit_price'] ?? 0);
+                $discountPct = floatval($item['discount_pct'] ?? 0);
+
+                $discountMultiplier = (100 - $discountPct) / 100;
+                $lineTotal = $quantity * $unitPrice * $discountMultiplier;
+
+                $this->items[$index]['line_total'] = $lineTotal;
+                break;
+            }
+        }
+
+        $this->prepareFormData();
+        $this->calculateTotals();
+    }
+
+    /**
+     * Calcola tutti i totali
      */
     public function calculateTotals()
     {
@@ -295,8 +492,8 @@ class Create extends Component
         $this->total_discounts = 0;
         $this->cnpaia_base = 0;
 
-        foreach ($this->form->item_groups as $group) {
-            foreach ($group['items'] as $item) {
+        foreach ($this->items as $item) {
+            if ($item['type'] === 'product') {
                 $this->subtotal += floatval($item['line_total'] ?? 0);
 
                 $quantity = floatval($item['quantity'] ?? 1);
@@ -313,35 +510,65 @@ class Create extends Component
             }
         }
 
-        // CNPAIA calculation (4%)
+        // Calcolo CNPAIA (4%)
         $this->cnpaia_amount = $this->cnpaia_base * 0.04;
 
-        // Taxable amount
+        // Imponibile
         $this->taxable_amount = $this->subtotal + $this->cnpaia_amount;
 
-        // VAT calculation
+        // Calcolo IVA
         $this->tax_amount = $this->taxable_amount * ($this->tax_rate / 100);
 
-        // Total
+        // Totale
         $this->total = $this->taxable_amount + $this->tax_amount;
 
-        // Update form value
+        // Aggiorna il valore nel form
         $this->form->total = $this->total;
     }
 
     /**
-     * Save the quote
+     * Ottieni i gruppi organizzati per la visualizzazione
+     */
+    public function getGroupedItems()
+    {
+        $groups = [];
+
+        foreach ($this->items as $item) {
+            $groupId = $item['group_id'];
+
+            if (!isset($groups[$groupId])) {
+                $groups[$groupId] = [
+                    'id' => $groupId,
+                    'title' => '',
+                    'items' => []
+                ];
+            }
+
+            if ($item['type'] === 'title') {
+                $groups[$groupId]['title'] = $item['title'];
+                $groups[$groupId]['title_item'] = $item;
+            }
+
+            $groups[$groupId]['items'][] = $item;
+        }
+
+        ksort($groups);
+        return $groups;
+    }
+
+    /**
+     * Salva il preventivo
      */
     public function saveQuote()
     {
-        // Update total in form before saving
+        // Aggiorna il totale nel form prima di salvare
         $this->form->total = $this->total;
 
-        // Use form's store method
+        // Utilizza il metodo store del form
         $result = $this->form->store();
 
         if ($result instanceof \App\Models\Quote) {
-            // Success
+            // Successo
             Flux::toast(
                 text: "Preventivo " . $result->code . " creato con successo!",
                 variant: 'success',
@@ -349,7 +576,7 @@ class Create extends Component
 
             return redirect()->route('crm.quotes.show', $result);
         } else {
-            // Error
+            // Errore
             Flux::toast(
                 text: "Errore durante la creazione del preventivo: " . $result,
                 variant: 'error',
@@ -357,8 +584,5 @@ class Create extends Component
         }
     }
 
-    public function render()
-    {
-        return view('livewire.crm.quotes.create');
-    }
+
 }

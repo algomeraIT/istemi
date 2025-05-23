@@ -107,3 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
         arrowsOutward.classList.toggle('block', !showInward);
     }
 });
+
+window.addEventListener('livewire:load', () => {
+    console.log('🔥 Livewire loaded – ora il DOM di Livewire è pronto');
+});

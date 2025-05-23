@@ -172,8 +172,8 @@ class QuoteForm extends Form
 
             // 4. Create quote item groups and items
             foreach ($this->item_groups as $index => $group) {
-                // Skip groups with no items
-                if (empty($group['items'])) {
+                // Skip empty groups (no title and no items)
+                if (empty($group['title']) && empty($group['items'])) {
                     continue;
                 }
 
@@ -244,8 +244,8 @@ class QuoteForm extends Form
             $updatedGroups = [];
 
             foreach ($this->item_groups as $index => $group) {
-                // Skip empty groups on update
-                if (empty($group['items'])) {
+                // Skip empty groups (no title and no items)
+                if (empty($group['title']) && empty($group['items'])) {
                     continue;
                 }
 

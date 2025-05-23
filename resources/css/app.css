@@ -385,6 +385,32 @@ select:focus[data-flux-control] {
 
 }
 
+/* 1) Assicurati che il container principale sia “relative” */
+.group-title,
+.group-note {
+    position: relative;
+}
+
+/* 2) Allarga il padding-right dell’input per fare spazio all’icona */
+.group-title input[data-flux-control],
+.group-note input[data-flux-control]{
+    padding-right: 2.5rem; /* regola se serve più/meno spazio */
+}
+
+/* 3) Posiziona il bottone “trash” assoluto, con z-index sopra l’input */
+.group-title .ml-2.mb-1 [data-flux-button],
+.group-note .ml-2.mb-1 [data-flux-button] {
+    position: absolute;
+    top:40px;                  /* centro verticale */
+    right: 0.75rem;            /* distanza dal bordo destro dell’input */
+    transform: translateY(-50%);
+    margin: 0;                 /* reset dei margini originali */
+    z-index: 10;               /* sopra l’input */
+}
+
+
+
+
 [data-flux-column] {
 
     &[data-detail="detailColumn"] {
@@ -394,8 +420,6 @@ select:focus[data-flux-control] {
         text-align: center;
     }
 }
-
-
 
 
 
