@@ -273,7 +273,7 @@
                                                                                                 icon="pencil"
                                                                                                 size="sm" />
 
-                                                                                            <flux:button
+                                                                                  {{--           <flux:button
                                                                                                 wire:click="microDeleteTask({{ $task['id'] }})"
                                                                                                 wire:confirm="Sei sicuro di voler archiviare questo macro task?"
                                                                                                 variant="ghost"
@@ -281,7 +281,7 @@
                                                                                                 data-color="red"
                                                                                                 data-rounded
                                                                                                 icon="trash"
-                                                                                                size="sm" />
+                                                                                                size="sm" /> --}}
                                                                                         </flux:table.cell>
                                                                                     </flux:table.row>
                                                                                 @endforeach
@@ -444,13 +444,13 @@
                                                                                                 icon="pencil"
                                                                                                 size="sm" /> --}}
 
-                                                                                            <flux:button
+                                                                                          {{--   <flux:button
                                                                                                 wire:click="microDeleteTask({{ $micro->id }})"
                                                                                                 wire:confirm="Sei sicuro di voler archiviare questo micro task?"
                                                                                                 variant="ghost"
                                                                                                 icon="trash"
                                                                                                 data-color="red"
-                                                                                                size="sm" />
+                                                                                                size="sm" /> --}}
                                                                                         </div>
                                                                                     </div>
                                                                                 @endforeach

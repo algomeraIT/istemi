@@ -117,7 +117,7 @@
                                     <div><flux:icon.currency-euro />
                                         <flux:label>Budget Allocato</flux:label>
                                     </div>
-                                    
+
                                     <flux:input type="number" min="0" wire:model.live="formData.total_budget" />
                                     <flux:error name="formData.total_budget" />
                                 </flux:field>
@@ -208,18 +208,23 @@
                                     </flux:field>
                                 </div>
 
-                                <div class="space-y-4">
+                                <div class="space-y-4 mt-5">
                                     @foreach ($firms_and_percentage_keys as $index => $key)
-                                    <div class="flex gap-2 items-center mb-2">
-                                        <flux:input wire:model="firms_and_percentage_keys.{{ $index }}" placeholder="Azienda {{ $index + 1 }}" />
-                                        <flux:input type="number" min="0" wire:model="firms_and_percentage_values.{{ $index }}" placeholder="%" />
-                                        <button type="button" wire:click="removeFirm({{ $index }})" class="text-red-500">✕</button>
-                                    </div>
-                                @endforeach
-                                
-                                <button type="button" wire:click="addFirm" class="mt-2 bg-cyan-600 text-white px-3 py-1 rounded">
-                                    + Aggiungi azienda
-                                </button>
+                                        <div class="flex gap-2 items-center mb-2">
+                                            <flux:input wire:model="firms_and_percentage_keys.{{ $index }}"
+                                                placeholder="Azienda {{ $index + 1 }}" />
+                                            <flux:input class="w-10" type="number" min="0"
+                                                wire:model="firms_and_percentage_values.{{ $index }}"
+                                                placeholder="%" />
+                                            <button type="button" wire:click="removeFirm({{ $index }})"
+                                                class="text-red-500">✕</button>
+                                        </div>
+                                    @endforeach
+
+                                    <button type="button" wire:click="addFirm"
+                                        class="mt-2 bg-cyan-600 text-white px-3 py-1 rounded">
+                                        +
+                                    </button>
                                 </div>
                                 <flux:field data-input class="flex-1 mt-10">
                                     <div>
@@ -249,7 +254,7 @@
 
                                     {{-- Ambito del Progetto --}}
                                     <flux:field data-input>
-                                        <div>
+                                        <div class="mt-10">
                                             <flux:icon.clipboard />
                                             <flux:label>Ambito del Progetto</flux:label>
                                         </div>
@@ -261,7 +266,7 @@
 
                                     {{-- Risultati attesi --}}
                                     <flux:field data-input>
-                                        <div>
+                                        <div class="mt-10">
                                             <flux:icon.clipboard />
                                             <flux:label>Risultati Attesi</flux:label>
                                         </div>
