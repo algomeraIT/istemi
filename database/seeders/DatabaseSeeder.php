@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             ClientsSeeder::class,
             ProjectSeeder::class,
             EstimateSeeder::class,
-            HistorySeeder::class,
+            // HistorySeeder::class,
             ActivitySeeder::class,
             EmailSeeder::class,
             NoteSeeder::class,
